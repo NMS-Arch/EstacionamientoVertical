@@ -141,9 +141,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="formulario.cpp" />
+    <ClCompile Include="usuarios.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="formulario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="usuarios.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

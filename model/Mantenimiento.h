@@ -3,7 +3,7 @@
 
 public ref class Mantenimiento : public Usuario {
 public:
-    Mantenimiento(int dni, String^ nom, int ed, char sex, int auth);
+    Mantenimiento(int dni, String^ nom, int ed, String^ sex, int auth);
 
     void activarEstacionamiento();
     void desactivarEstacionamiento();

@@ -2,7 +2,7 @@
 #include "Administrador.h"
 
 
-Administrador::Administrador(int dni, String^ nom, int ed, char sex, int auth)
+Administrador::Administrador(int dni, String^ nom, int ed, String^ sex, int auth)
     : Usuario(dni, nom, ed, sex, auth)
 {
 }

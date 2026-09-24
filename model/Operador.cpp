@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Operador.h"
 
-Operador::Operador(int dni, String^ nom, int ed, char sex, int auth)
+Operador::Operador(int dni, String^ nom, int ed, String^ sex, int auth)
     : Usuario(dni, nom, ed, sex, auth)
 {
 }

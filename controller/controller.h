@@ -15,7 +15,14 @@ namespace controller {
 		static bool modificarEspacio(int id, bool ocupado, bool est);
 		static Espacio^ buscarEspacio(int id);
 
+		//usuarios
 
-		// TODO: Agregue aquí los métodos de esta clase.
+		static List<Usuario^>^ Usuarios = gcnew List<Usuario^>();
+
+		static void agregarUsuario(int dni, String^ nom, int ed, String^ sex, int auth, bool vip);
+		static bool eliminarUsuario(int dni);
+		static bool modificarUsuario(int dni, String^ nom, int ed, String^ sex, int auth, bool vip);
+		static Usuario^ buscarUsuario(int dni);
+
 	};
 }

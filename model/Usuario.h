@@ -3,14 +3,18 @@
 using namespace System;
 
 public ref class Usuario abstract {
-protected:
+public:
     int DNI;
     String^ nombre;
     int edad;
-    char sexo;
+   String^ sexo;
     int autorizacion;
-
-public:
     
-    Usuario(int dni, String^ nom, int ed, char sex, int auth);
+    Usuario::Usuario(int dni, String^ nom, int ed, String^ sex, int auth) {
+        DNI = dni;
+        nombre = nom;
+        edad = ed;
+        sexo = sex;
+        autorizacion = auth;
+    }
 };

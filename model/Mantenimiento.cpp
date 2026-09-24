@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Mantenimiento.h"
 
-Mantenimiento::Mantenimiento(int dni, String^ nom, int ed, char sex, int auth)
+Mantenimiento::Mantenimiento(int dni, String^ nom, int ed, String^ sex, int auth)
     : Usuario(dni, nom, ed, sex, auth)
 {
 }

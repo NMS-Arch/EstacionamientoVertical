@@ -3,7 +3,7 @@
 
 public ref class Operador : public Usuario {
 public:
-    Operador(int dni, String^ nom, int ed, char sex, int auth);
+    Operador(int dni, String^ nom, int ed, String^ sex, int auth);
 
     void registrarTicket();
     void hacerReclamo();

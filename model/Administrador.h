@@ -7,7 +7,7 @@ using namespace System;
 
 public ref class Administrador : public Usuario {
 public:
-    Administrador(int dni, String^ nom, int ed, char sex, int auth);
+    Administrador(int dni, String^ nom, int ed, String^ sex, int auth);
 
     void verReclamos();
     void verFinanzas();
