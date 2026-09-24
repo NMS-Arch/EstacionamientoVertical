@@ -1,11 +1,14 @@
 #pragma once
 
 public ref class Espacio {
-private:
+public:
     bool ocupado;
     bool estado;
     int id;
 
-public:
-    Espacio(int id_espacio, bool esta_ocupado, bool est);
+    Espacio(int id_espacio, bool esta_ocupado, bool est) {
+		this->id = id_espacio;
+		this->ocupado = esta_ocupado;
+		this->estado = est;
+    }
 };
