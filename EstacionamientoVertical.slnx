@@ -3,5 +3,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="controller/controller.vcxproj" />
+  <Project Path="model/model.vcxproj" />
   <Project Path="View/View.vcxproj" />
 </Solution>
