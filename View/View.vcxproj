@@ -140,11 +140,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fallas.cpp" />
     <ClCompile Include="formulario.cpp" />
+    <ClCompile Include="reclamos.cpp" />
+    <ClCompile Include="tickets.cpp" />
     <ClCompile Include="usuarios.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="fallas.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="formulario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="reclamos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="tickets.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="usuarios.h">

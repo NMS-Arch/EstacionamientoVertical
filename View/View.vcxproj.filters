@@ -21,12 +21,30 @@
     <ClCompile Include="usuarios.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fallas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tickets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="reclamos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="formulario.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="usuarios.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fallas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tickets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reclamos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

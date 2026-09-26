@@ -274,68 +274,79 @@ namespace View {
 		return (t == "1" || t == "true" || t == "si" || t == "s");
 	}
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		int dni = Int32::Parse(this->textBox1->Text);
-		String^ nombre = this->textBox2->Text;
-		int edad = Int32::Parse(this->textBox3->Text);
-		String^ sexo = this->textBox4->Text;
-		int autorizacion = Int32::Parse(this->textBox5->Text);
-		bool vip = ParseBool(this->textBox6->Text);
-
-		::controller::controller::agregarUsuario(dni, nombre, edad, sexo, autorizacion, vip);
-		Console::WriteLine("Usuario agregado: DNI={0}, Nombre={1}, Edad={2}, Sexo={3}, Aut={4}, VIP={5}",
-			dni, nombre, edad, sexo, autorizacion, vip);
-
-		LimpiarCampos();
-	}
-
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		int dni = Int32::Parse(this->textBox1->Text);
-
-		Usuario^ usr = ::controller::controller::buscarUsuario(dni);
-		if (usr == nullptr) {
-			Console::WriteLine("No se encontró el usuario con DNI {0}.", dni);
-		}
-		else {
-			this->textBox2->Text = usr->nombre;
-			this->textBox3->Text = usr->edad.ToString();
-			this->textBox4->Text = usr->sexo;
-			this->textBox5->Text = usr->autorizacion.ToString();
-			//this->textBox6->Text = usr->vip.ToString();
-
-			Console::WriteLine("Se encontró el usuario: DNI {0}, Nombre {1}.\n", usr->DNI, usr->nombre);
-		}
-	}
-
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		int dni = Int32::Parse(this->textBox1->Text);
-		String^ nombre = this->textBox2->Text;
-		int edad = Int32::Parse(this->textBox3->Text);
-		String^ sexo = this->textBox4->Text;
-		int autorizacion = Int32::Parse(this->textBox5->Text);
-		bool vip = ParseBool(this->textBox6->Text);
-
-		if (::controller::controller::modificarUsuario(dni, nombre, edad, sexo, autorizacion, vip)) {
-			Console::WriteLine("Se modificó el usuario con DNI {0}.", dni);
-		}
-		else {
-			Console::WriteLine("No se encontró el usuario con DNI {0} para modificar.", dni);
+	private:
+		// Función auxiliar para parsear enteros de forma segura
+		int ParseIntSeguro(String^ texto, int valorPorDefecto) {
+			int resultado;
+			if (Int32::TryParse(texto, resultado)) {
+				return resultado;
+			}
+			return valorPorDefecto;
 		}
 
-		LimpiarCampos();
-	}
+		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			int dni = ParseIntSeguro(this->textBox1->Text, 0);
+			String^ nombre = this->textBox2->Text;
+			int edad = ParseIntSeguro(this->textBox3->Text, 0);
+			String^ sexo = this->textBox4->Text;
+			int autorizacion = ParseIntSeguro(this->textBox5->Text, 0);
+			bool vip = ParseBool(this->textBox6->Text);
 
-	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		int dni = Int32::Parse(this->textBox1->Text);
+			::controller::controller::agregarCliente(dni, nombre, edad, sexo, autorizacion, vip);
+			Console::WriteLine("Cliente agregado: DNI={0}, Nombre={1}, Edad={2}, Sexo={3}, Aut={4}, VIP={5}",
+				dni, nombre, edad, sexo, autorizacion, vip);
 
-		if (::controller::controller::eliminarUsuario(dni)) {
-			Console::WriteLine("Se eliminó el usuario con DNI {0}.", dni);
+			LimpiarCampos();
 		}
-		else {
-			Console::WriteLine("No se encontró el usuario con DNI {0} para eliminar.", dni);
+
+		System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+			int dni = ParseIntSeguro(this->textBox1->Text, 0);
+
+			Cliente^ cliente = ::controller::controller::buscarCliente(dni);
+			if (cliente == nullptr) {
+				Console::WriteLine("No se encontró el cliente con DNI {0}.", dni);
+			}
+			else {
+				this->textBox2->Text = cliente->nombre;
+				this->textBox3->Text = cliente->edad.ToString();
+				this->textBox4->Text = cliente->sexo;
+				this->textBox5->Text = cliente->autorizacion.ToString();
+				//this->textBox6->Text = cliente->esVIP.ToString();
+
+				Console::WriteLine("Se encontró el cliente: DNI {0}, Nombre {1}, Edad {2}, Sexo {3}, Aut {4}, VIP {5}\n",
+					cliente->DNI, cliente->nombre, cliente->edad, cliente->sexo, cliente->autorizacion, cliente->esVIP);
+			}
 		}
 
-		LimpiarCampos();
-	}
+		System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+			int dni = ParseIntSeguro(this->textBox1->Text, 0);
+			String^ nombre = this->textBox2->Text;
+			int edad = ParseIntSeguro(this->textBox3->Text, 0);
+			String^ sexo = this->textBox4->Text;
+			int autorizacion = ParseIntSeguro(this->textBox5->Text, 0);
+			bool vip = ParseBool(this->textBox6->Text);
+
+			if (::controller::controller::modificarCliente(dni, nombre, edad, sexo, autorizacion, vip)) {
+				Console::WriteLine("Se modificó el cliente con DNI {0}.", dni);
+			}
+			else {
+				Console::WriteLine("No se encontró el cliente con DNI {0} para modificar.", dni);
+			}
+
+			LimpiarCampos();
+		}
+
+		System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+			int dni = ParseIntSeguro(this->textBox1->Text, 0);
+
+			if (::controller::controller::eliminarCliente(dni)) {
+				Console::WriteLine("Se eliminó el cliente con DNI {0}.", dni);
+			}
+			else {
+				Console::WriteLine("No se encontró el cliente con DNI {0} para eliminar.", dni);
+			}
+
+			LimpiarCampos();
+		}
 	};
 }

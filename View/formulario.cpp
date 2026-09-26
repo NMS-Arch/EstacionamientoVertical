@@ -1,6 +1,6 @@
 #include "formulario.h"
 
-//Quitar el comentario en este para que ejecutarlo, poner el comentarios en el otro para que no haya conflicto
+//Quitar el comentario en este para ejecutarlo, poner el comentario en el otro para que no haya conflicto
 
 //using namespace System;
 //using namespace System::Windows::Forms;

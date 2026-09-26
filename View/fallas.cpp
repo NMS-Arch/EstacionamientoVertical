@@ -1,4 +1,4 @@
-#include "usuarios.h"
+#include "fallas.h"
 
 //using namespace System;
 //using namespace System::Windows::Forms;
@@ -7,7 +7,7 @@
 //int Main(array<String^>^ args) {
 //	Application::EnableVisualStyles();
 //	Application::SetCompatibleTextRenderingDefault(false);
-//	usuarios form;
+//	fallas form;
 //	Application::Run(% form);
 //	return 0;
 //}
