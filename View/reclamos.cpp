@@ -4,7 +4,7 @@ using namespace System;
 using namespace System::Windows::Forms;
 using namespace View;
 
-int Main(array<String^>^ args) {
+int MainReclamo(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	reclamos form;
