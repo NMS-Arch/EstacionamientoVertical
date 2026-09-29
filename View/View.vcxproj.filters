@@ -30,6 +30,9 @@
     <ClCompile Include="reclamos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyForm_Login_Principal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="formulario.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="reclamos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyForm_Login_Principal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

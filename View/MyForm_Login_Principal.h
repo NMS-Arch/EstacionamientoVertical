@@ -155,22 +155,27 @@ private: System::Void Boton_Ingresar_Sesion_Click(System::Object^ sender, System
 	if (usuario == "operador" && contra == "ope123") {
 
 		// gcnew crea la ventana en memoria
-		formulario^ ventanaForm = gcnew formulario();
-		ventanaForm->Show(); // Show() la hace visible en pantalla
-
 		tickets^ ventanaTickets = gcnew tickets();
 		ventanaTickets->Show();
+
+
+		/*formulario^ ventanaForm = gcnew formulario();
+		ventanaForm->Show(); */
+
+		
 
 		this->Hide(); // this->Hide() oculta la ventana actual de Login
 	}
 	// 3. Rol: ADMINISTRADOR (Ingresa a reclamos y usuarios)
 	else if (usuario == "admin" && contra == "admin123") {
 
-		reclamos^ ventanaReclamos = gcnew reclamos();
-		ventanaReclamos->Show();
+		
 
 		usuarios^ ventanaUsuarios = gcnew usuarios();
 		ventanaUsuarios->Show();
+
+		//reclamos^ ventanaReclamos = gcnew reclamos();
+		//ventanaReclamos->Show();
 
 		this->Hide();
 	}
