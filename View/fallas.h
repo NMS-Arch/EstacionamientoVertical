@@ -73,98 +73,71 @@ namespace View {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(20, 15);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(27, 18);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(110, 13);
+			this->label1->Size = System::Drawing::Size(135, 17);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Gestión de Fallas";
 			// 
 			// lblId
 			// 
 			this->lblId->AutoSize = true;
-			this->lblId->Location = System::Drawing::Point(15, 47);
+			this->lblId->Location = System::Drawing::Point(20, 58);
+			this->lblId->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblId->Name = L"lblId";
-			this->lblId->Size = System::Drawing::Size(21, 13);
+			this->lblId->Size = System::Drawing::Size(23, 16);
 			this->lblId->TabIndex = 9;
 			this->lblId->Text = L"ID:";
 			// 
 			// lblDescripcion
 			// 
 			this->lblDescripcion->AutoSize = true;
-			this->lblDescripcion->Location = System::Drawing::Point(15, 80);
+			this->lblDescripcion->Location = System::Drawing::Point(20, 98);
+			this->lblDescripcion->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblDescripcion->Name = L"lblDescripcion";
-			this->lblDescripcion->Size = System::Drawing::Size(66, 13);
+			this->lblDescripcion->Size = System::Drawing::Size(82, 16);
 			this->lblDescripcion->TabIndex = 10;
 			this->lblDescripcion->Text = L"Descripción:";
 			// 
 			// lblPrioridad
 			// 
 			this->lblPrioridad->AutoSize = true;
-			this->lblPrioridad->Location = System::Drawing::Point(15, 113);
+			this->lblPrioridad->Location = System::Drawing::Point(20, 139);
+			this->lblPrioridad->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblPrioridad->Name = L"lblPrioridad";
-			this->lblPrioridad->Size = System::Drawing::Size(51, 13);
+			this->lblPrioridad->Size = System::Drawing::Size(65, 16);
 			this->lblPrioridad->TabIndex = 11;
 			this->lblPrioridad->Text = L"Prioridad:";
 			// 
 			// lblFecha
 			// 
 			this->lblFecha->AutoSize = true;
-			this->lblFecha->Location = System::Drawing::Point(15, 146);
+			this->lblFecha->Location = System::Drawing::Point(20, 180);
+			this->lblFecha->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblFecha->Name = L"lblFecha";
-			this->lblFecha->Size = System::Drawing::Size(40, 13);
+			this->lblFecha->Size = System::Drawing::Size(48, 16);
 			this->lblFecha->TabIndex = 12;
 			this->lblFecha->Text = L"Fecha:";
 			// 
 			// lblHora
 			// 
 			this->lblHora->AutoSize = true;
-			this->lblHora->Location = System::Drawing::Point(15, 179);
+			this->lblHora->Location = System::Drawing::Point(20, 220);
+			this->lblHora->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblHora->Name = L"lblHora";
-			this->lblHora->Size = System::Drawing::Size(33, 13);
+			this->lblHora->Size = System::Drawing::Size(40, 16);
 			this->lblHora->TabIndex = 13;
 			this->lblHora->Text = L"Hora:";
 			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(85, 44);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 5;
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(85, 77);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 6;
-			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(85, 110);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(100, 20);
-			this->textBox3->TabIndex = 7;
-			// 
-			// textBox4
-			// 
-			this->textBox4->Location = System::Drawing::Point(85, 143);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(100, 20);
-			this->textBox4->TabIndex = 8;
-			// 
-			// textBox5
-			// 
-			this->textBox5->Location = System::Drawing::Point(85, 176);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(100, 20);
-			this->textBox5->TabIndex = 14;
-			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(205, 42);
+			this->button1->Location = System::Drawing::Point(273, 52);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(130, 25);
+			this->button1->Size = System::Drawing::Size(173, 31);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"agregar";
 			this->button1->UseVisualStyleBackColor = true;
@@ -172,9 +145,10 @@ namespace View {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(205, 75);
+			this->button2->Location = System::Drawing::Point(273, 92);
+			this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(130, 25);
+			this->button2->Size = System::Drawing::Size(173, 31);
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"buscar";
 			this->button2->UseVisualStyleBackColor = true;
@@ -182,9 +156,10 @@ namespace View {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(205, 108);
+			this->button3->Location = System::Drawing::Point(273, 133);
+			this->button3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(130, 25);
+			this->button3->Size = System::Drawing::Size(173, 31);
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"modificar";
 			this->button3->UseVisualStyleBackColor = true;
@@ -192,19 +167,60 @@ namespace View {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(205, 141);
+			this->button4->Location = System::Drawing::Point(273, 174);
+			this->button4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(130, 25);
+			this->button4->Size = System::Drawing::Size(173, 31);
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"eliminar";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &fallas::button4_Click);
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(113, 54);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(132, 22);
+			this->textBox1->TabIndex = 5;
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(113, 95);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(132, 22);
+			this->textBox2->TabIndex = 6;
+			// 
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(113, 135);
+			this->textBox3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(132, 22);
+			this->textBox3->TabIndex = 7;
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(113, 176);
+			this->textBox4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(132, 22);
+			this->textBox4->TabIndex = 8;
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(113, 217);
+			this->textBox5->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(132, 22);
+			this->textBox5->TabIndex = 14;
+			// 
 			// fallas
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(360, 220);
+			this->ClientSize = System::Drawing::Size(1358, 662);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->lblHora);
 			this->Controls->Add(this->lblFecha);
@@ -220,8 +236,10 @@ namespace View {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"fallas";
 			this->Text = L"fallas";
+			this->Load += gcnew System::EventHandler(this, &fallas::fallas_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -309,5 +327,7 @@ namespace View {
 
 		LimpiarCampos();
 	}
-	};
+	private: System::Void fallas_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

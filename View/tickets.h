@@ -36,14 +36,32 @@ namespace View {
 	private: System::Windows::Forms::Label^ lblModelo;
 	private: System::Windows::Forms::Label^ lblPlaca;
 	private: System::Windows::Forms::Label^ lblPrecio;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::TextBox^ textBox1; // ID
-	private: System::Windows::Forms::TextBox^ textBox2; // Modelo
-	private: System::Windows::Forms::TextBox^ textBox3; // Placa
-	private: System::Windows::Forms::TextBox^ textBox4; // Precio
+	private: System::Windows::Forms::Button^ buttonModifiOperTicket;
+	private: System::Windows::Forms::Button^ buttonAlmaceOperTicket;
+
+
+	private: System::Windows::Forms::TextBox^ textBoxDNIOperTick;
+	private: System::Windows::Forms::TextBox^ textBoxNombreOperTick;
+	private: System::Windows::Forms::TextBox^ textBoxPlacaOperTick;
+	private: System::Windows::Forms::TextBox^ textBoxPrecioOperTick;
+
+
+		   // ID
+ // Modelo
+ // Placa
+ // Precio
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::TextBox^ textBoxCeldAsigOperTick;
+	private: System::Windows::Forms::TextBox^ textBoxIDGeneOperTick;
+	private: System::Windows::Forms::TextBox^ textBoxPesoOperTick;
+
+
+
+
+
+
 
 	private:
 		System::ComponentModel::Container^ components;
@@ -56,148 +74,204 @@ namespace View {
 			this->lblModelo = (gcnew System::Windows::Forms::Label());
 			this->lblPlaca = (gcnew System::Windows::Forms::Label());
 			this->lblPrecio = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->buttonModifiOperTicket = (gcnew System::Windows::Forms::Button());
+			this->buttonAlmaceOperTicket = (gcnew System::Windows::Forms::Button());
+			this->textBoxDNIOperTick = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxNombreOperTick = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxPlacaOperTick = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxPrecioOperTick = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBoxCeldAsigOperTick = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxIDGeneOperTick = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxPesoOperTick = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(20, 15);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(27, 18);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(115, 13);
+			this->label1->Size = System::Drawing::Size(144, 17);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Gestión de Tickets";
 			// 
 			// lblId
 			// 
 			this->lblId->AutoSize = true;
-			this->lblId->Location = System::Drawing::Point(15, 47);
+			this->lblId->Location = System::Drawing::Point(92, 61);
+			this->lblId->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblId->Name = L"lblId";
-			this->lblId->Size = System::Drawing::Size(21, 13);
+			this->lblId->Size = System::Drawing::Size(33, 16);
 			this->lblId->TabIndex = 9;
-			this->lblId->Text = L"ID:";
+			this->lblId->Text = L"DNI:";
 			// 
 			// lblModelo
 			// 
 			this->lblModelo->AutoSize = true;
-			this->lblModelo->Location = System::Drawing::Point(15, 80);
+			this->lblModelo->Location = System::Drawing::Point(66, 98);
+			this->lblModelo->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblModelo->Name = L"lblModelo";
-			this->lblModelo->Size = System::Drawing::Size(45, 13);
+			this->lblModelo->Size = System::Drawing::Size(59, 16);
 			this->lblModelo->TabIndex = 10;
-			this->lblModelo->Text = L"Modelo:";
+			this->lblModelo->Text = L"Nombre:";
 			// 
 			// lblPlaca
 			// 
 			this->lblPlaca->AutoSize = true;
-			this->lblPlaca->Location = System::Drawing::Point(15, 113);
+			this->lblPlaca->Location = System::Drawing::Point(80, 136);
+			this->lblPlaca->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblPlaca->Name = L"lblPlaca";
-			this->lblPlaca->Size = System::Drawing::Size(37, 13);
+			this->lblPlaca->Size = System::Drawing::Size(45, 16);
 			this->lblPlaca->TabIndex = 11;
 			this->lblPlaca->Text = L"Placa:";
 			// 
 			// lblPrecio
 			// 
 			this->lblPrecio->AutoSize = true;
-			this->lblPrecio->Location = System::Drawing::Point(15, 146);
+			this->lblPrecio->Location = System::Drawing::Point(320, 61);
+			this->lblPrecio->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblPrecio->Name = L"lblPrecio";
-			this->lblPrecio->Size = System::Drawing::Size(40, 13);
+			this->lblPrecio->Size = System::Drawing::Size(49, 16);
 			this->lblPrecio->TabIndex = 12;
 			this->lblPrecio->Text = L"Precio:";
 			// 
-			// textBox1
+			// buttonModifiOperTicket
 			// 
-			this->textBox1->Location = System::Drawing::Point(85, 44);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 5;
+			this->buttonModifiOperTicket->Location = System::Drawing::Point(113, 300);
+			this->buttonModifiOperTicket->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->buttonModifiOperTicket->Name = L"buttonModifiOperTicket";
+			this->buttonModifiOperTicket->Size = System::Drawing::Size(173, 31);
+			this->buttonModifiOperTicket->TabIndex = 1;
+			this->buttonModifiOperTicket->Text = L"Modificar";
+			this->buttonModifiOperTicket->UseVisualStyleBackColor = true;
+			this->buttonModifiOperTicket->Click += gcnew System::EventHandler(this, &tickets::button1_Click);
 			// 
-			// textBox2
+			// buttonAlmaceOperTicket
 			// 
-			this->textBox2->Location = System::Drawing::Point(85, 77);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(100, 20);
-			this->textBox2->TabIndex = 6;
+			this->buttonAlmaceOperTicket->Location = System::Drawing::Point(335, 300);
+			this->buttonAlmaceOperTicket->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->buttonAlmaceOperTicket->Name = L"buttonAlmaceOperTicket";
+			this->buttonAlmaceOperTicket->Size = System::Drawing::Size(173, 31);
+			this->buttonAlmaceOperTicket->TabIndex = 2;
+			this->buttonAlmaceOperTicket->Text = L"Almacenar";
+			this->buttonAlmaceOperTicket->UseVisualStyleBackColor = true;
+			this->buttonAlmaceOperTicket->Click += gcnew System::EventHandler(this, &tickets::button2_Click);
 			// 
-			// textBox3
+			// textBoxDNIOperTick
 			// 
-			this->textBox3->Location = System::Drawing::Point(85, 110);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(100, 20);
-			this->textBox3->TabIndex = 7;
+			this->textBoxDNIOperTick->Location = System::Drawing::Point(133, 58);
+			this->textBoxDNIOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxDNIOperTick->Name = L"textBoxDNIOperTick";
+			this->textBoxDNIOperTick->ReadOnly = true;
+			this->textBoxDNIOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxDNIOperTick->TabIndex = 5;
 			// 
-			// textBox4
+			// textBoxNombreOperTick
 			// 
-			this->textBox4->Location = System::Drawing::Point(85, 143);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(100, 20);
-			this->textBox4->TabIndex = 8;
+			this->textBoxNombreOperTick->Location = System::Drawing::Point(133, 95);
+			this->textBoxNombreOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxNombreOperTick->Name = L"textBoxNombreOperTick";
+			this->textBoxNombreOperTick->ReadOnly = true;
+			this->textBoxNombreOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxNombreOperTick->TabIndex = 6;
 			// 
-			// button1
+			// textBoxPlacaOperTick
 			// 
-			this->button1->Location = System::Drawing::Point(205, 42);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(130, 25);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"agregar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &tickets::button1_Click);
+			this->textBoxPlacaOperTick->Location = System::Drawing::Point(133, 133);
+			this->textBoxPlacaOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxPlacaOperTick->Name = L"textBoxPlacaOperTick";
+			this->textBoxPlacaOperTick->ReadOnly = true;
+			this->textBoxPlacaOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxPlacaOperTick->TabIndex = 7;
 			// 
-			// button2
+			// textBoxPrecioOperTick
 			// 
-			this->button2->Location = System::Drawing::Point(205, 75);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(130, 25);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"buscar";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &tickets::button2_Click);
+			this->textBoxPrecioOperTick->Location = System::Drawing::Point(377, 58);
+			this->textBoxPrecioOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxPrecioOperTick->Name = L"textBoxPrecioOperTick";
+			this->textBoxPrecioOperTick->ReadOnly = true;
+			this->textBoxPrecioOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxPrecioOperTick->TabIndex = 8;
 			// 
-			// button3
+			// label2
 			// 
-			this->button3->Location = System::Drawing::Point(205, 108);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(130, 25);
-			this->button3->TabIndex = 3;
-			this->button3->Text = L"modificar";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &tickets::button3_Click);
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(320, 98);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(42, 16);
+			this->label2->TabIndex = 13;
+			this->label2->Text = L"Peso:";
 			// 
-			// button4
+			// label3
 			// 
-			this->button4->Location = System::Drawing::Point(205, 141);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(130, 25);
-			this->button4->TabIndex = 4;
-			this->button4->Text = L"eliminar";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &tickets::button4_Click);
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(19, 177);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(106, 16);
+			this->label3->TabIndex = 14;
+			this->label3->Text = L"Celda asignada:";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(38, 215);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(87, 16);
+			this->label4->TabIndex = 15;
+			this->label4->Text = L"ID Generado:";
+			// 
+			// textBoxCeldAsigOperTick
+			// 
+			this->textBoxCeldAsigOperTick->Location = System::Drawing::Point(133, 174);
+			this->textBoxCeldAsigOperTick->Name = L"textBoxCeldAsigOperTick";
+			this->textBoxCeldAsigOperTick->ReadOnly = true;
+			this->textBoxCeldAsigOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxCeldAsigOperTick->TabIndex = 16;
+			// 
+			// textBoxIDGeneOperTick
+			// 
+			this->textBoxIDGeneOperTick->Location = System::Drawing::Point(133, 212);
+			this->textBoxIDGeneOperTick->Name = L"textBoxIDGeneOperTick";
+			this->textBoxIDGeneOperTick->ReadOnly = true;
+			this->textBoxIDGeneOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxIDGeneOperTick->TabIndex = 17;
+			// 
+			// textBoxPesoOperTick
+			// 
+			this->textBoxPesoOperTick->Location = System::Drawing::Point(377, 95);
+			this->textBoxPesoOperTick->Name = L"textBoxPesoOperTick";
+			this->textBoxPesoOperTick->ReadOnly = true;
+			this->textBoxPesoOperTick->Size = System::Drawing::Size(132, 22);
+			this->textBoxPesoOperTick->TabIndex = 18;
 			// 
 			// tickets
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(360, 200);
+			this->ClientSize = System::Drawing::Size(610, 402);
+			this->Controls->Add(this->textBoxPesoOperTick);
+			this->Controls->Add(this->textBoxIDGeneOperTick);
+			this->Controls->Add(this->textBoxCeldAsigOperTick);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->lblPrecio);
 			this->Controls->Add(this->lblPlaca);
 			this->Controls->Add(this->lblModelo);
 			this->Controls->Add(this->lblId);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->textBoxPrecioOperTick);
+			this->Controls->Add(this->textBoxPlacaOperTick);
+			this->Controls->Add(this->textBoxNombreOperTick);
+			this->Controls->Add(this->textBoxDNIOperTick);
+			this->Controls->Add(this->buttonAlmaceOperTicket);
+			this->Controls->Add(this->buttonModifiOperTicket);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"tickets";
 			this->Text = L"tickets";
 			this->ResumeLayout(false);

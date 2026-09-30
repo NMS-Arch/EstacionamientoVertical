@@ -140,14 +140,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BuscadorAutoOperador.cpp" />
     <ClCompile Include="fallas.cpp" />
     <ClCompile Include="formulario.cpp" />
     <ClCompile Include="MyForm_Login_Principal.cpp" />
+    <ClCompile Include="NoSePuedoRegistrarSalida.cpp" />
     <ClCompile Include="reclamos.cpp" />
     <ClCompile Include="tickets.cpp" />
     <ClCompile Include="usuarios.cpp" />
+    <ClCompile Include="VentanaRegistroSalida.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuscadorAutoOperador.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="fallas.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -155,6 +161,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm_Login_Principal.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="NoSePuedoRegistrarSalida.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="reclamos.h">
@@ -166,13 +175,31 @@
     <ClInclude Include="usuarios.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="VentanaRegistroSalida.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BuscadorAutoOperador.resx">
+      <DependentUpon>BuscadorAutoOperador.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fallas.resx">
+      <DependentUpon>fallas.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formulario.resx">
       <DependentUpon>formulario.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm_Login_Principal.resx">
       <DependentUpon>MyForm_Login_Principal.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoSePuedoRegistrarSalida.resx">
+      <DependentUpon>NoSePuedoRegistrarSalida.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tickets.resx">
+      <DependentUpon>tickets.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaRegistroSalida.resx">
+      <DependentUpon>VentanaRegistroSalida.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
