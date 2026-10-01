@@ -3,7 +3,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-namespace controller {
+namespace controllerPrincipal {
 	public ref class controller
 	{
 	public:

@@ -8,7 +8,7 @@ namespace View {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace controller;
+	using namespace controllerPrincipal;
 	using namespace model;
 
 	/// <summary>
@@ -292,7 +292,7 @@ namespace View {
 			int autorizacion = ParseIntSeguro(this->textBox5->Text, 0);
 			bool vip = ParseBool(this->textBox6->Text);
 
-			::controller::controller::agregarCliente(dni, nombre, edad, sexo, autorizacion, vip);
+			controller::agregarCliente(dni, nombre, edad, sexo, autorizacion, vip);
 			Console::WriteLine("Cliente agregado: DNI={0}, Nombre={1}, Edad={2}, Sexo={3}, Aut={4}, VIP={5}",
 				dni, nombre, edad, sexo, autorizacion, vip);
 
@@ -302,7 +302,7 @@ namespace View {
 		System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 			int dni = ParseIntSeguro(this->textBox1->Text, 0);
 
-			Cliente^ cliente = ::controller::controller::buscarCliente(dni);
+			Cliente^ cliente = controller::buscarCliente(dni);
 			if (cliente == nullptr) {
 				Console::WriteLine("No se encontró el cliente con DNI {0}.", dni);
 			}
@@ -326,7 +326,7 @@ namespace View {
 			int autorizacion = ParseIntSeguro(this->textBox5->Text, 0);
 			bool vip = ParseBool(this->textBox6->Text);
 
-			if (::controller::controller::modificarCliente(dni, nombre, edad, sexo, autorizacion, vip)) {
+			if (controller::modificarCliente(dni, nombre, edad, sexo, autorizacion, vip)) {
 				Console::WriteLine("Se modificó el cliente con DNI {0}.", dni);
 			}
 			else {
@@ -339,7 +339,7 @@ namespace View {
 		System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 			int dni = ParseIntSeguro(this->textBox1->Text, 0);
 
-			if (::controller::controller::eliminarCliente(dni)) {
+			if (controller::eliminarCliente(dni)) {
 				Console::WriteLine("Se eliminó el cliente con DNI {0}.", dni);
 			}
 			else {

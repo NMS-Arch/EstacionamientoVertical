@@ -8,7 +8,7 @@ namespace View {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace controller;
+	using namespace controllerPrincipal;
 	using namespace model;
 
 	/// <summary>
@@ -236,7 +236,7 @@ namespace View {
 		bool ocupado = ParseBool(this->textBox2->Text);
 		bool estado = ParseBool(this->textBox3->Text);
 
-		::controller::controller::agregarEspacio(ocupado, estado);
+		controller::agregarEspacio(ocupado, estado);
 		Console::WriteLine("Espacio agregado: Nombre={0}, Ocupado={1}, Estado={2}", nombre, ocupado, estado);
 
 		LimpiarCampos();
@@ -245,7 +245,7 @@ namespace View {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ObtenerId();
 
-		Espacio^ esp = ::controller::controller::buscarEspacio(id);
+		Espacio^ esp = controller::buscarEspacio(id);
 		if (esp == nullptr) {
 			Console::WriteLine("No se encontró el espacio con ID {0}.", id);
 		}
@@ -261,7 +261,7 @@ namespace View {
 		bool ocupado = ParseBool(this->textBox2->Text);
 		bool estado = ParseBool(this->textBox3->Text);
 
-		if (::controller::controller::modificarEspacio(id, ocupado, estado)) {
+		if (controller::modificarEspacio(id, ocupado, estado)) {
 			Console::WriteLine("Se modificó el espacio con ID {0}.", id);
 		}
 		else {
@@ -274,7 +274,7 @@ namespace View {
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ObtenerId();
 
-		if (::controller::controller::eliminarEspacio(id)) {
+		if (controller::eliminarEspacio(id)) {
 			Console::WriteLine("Se eliminó el espacio con ID {0}.", id);
 		}
 		else {

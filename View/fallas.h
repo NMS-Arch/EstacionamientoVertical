@@ -8,7 +8,7 @@ namespace View {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace controller;
+	using namespace controllerPrincipal;
 	using namespace model;
 
 	/// 
@@ -253,7 +253,7 @@ namespace View {
 		String^ fecha = this->textBox4->Text;
 		String^ hora = this->textBox5->Text;
 
-		::controller::controller::agregarFalla(id, descripcion, prioridad, fecha, hora);
+		controller::agregarFalla(id, descripcion, prioridad, fecha, hora);
 		Console::WriteLine("Falla agregada: ID={0}, Descripcion={1}, Prioridad={2}, Fecha={3}, Hora={4}",
 			id, descripcion, prioridad, fecha, hora);
 
@@ -263,7 +263,7 @@ namespace View {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		Falla^ f = ::controller::controller::buscarFalla(id);
+		Falla^ f = controller::buscarFalla(id);
 		if (f == nullptr) {
 			Console::WriteLine("No se encontró la falla con ID {0}.", id);
 		}
@@ -287,7 +287,7 @@ namespace View {
 		String^ fecha = this->textBox4->Text;
 		String^ hora = this->textBox5->Text;
 
-		if (::controller::controller::modificarFalla(id, descripcion, prioridad, fecha, hora)) {
+		if (controller::modificarFalla(id, descripcion, prioridad, fecha, hora)) {
 			Console::WriteLine("Se modificó la falla con ID {0}.", id);
 		}
 		else {
@@ -300,7 +300,7 @@ namespace View {
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		if (::controller::controller::eliminarFalla(id)) {
+		if (controller::eliminarFalla(id)) {
 			Console::WriteLine("Se eliminó la falla con ID {0}.", id);
 		}
 		else {

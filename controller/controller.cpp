@@ -1,12 +1,12 @@
 #include "pch.h"
 
 #include "controller.h"
-
+using namespace controllerPrincipal;
 //ESPACIO
 
-void controller::controller::agregarEspacio(bool ocupado, bool est) {
+void controller::agregarEspacio(bool ocupado, bool est) {
 	int maxId = 0;
-	for each (Espacio ^ esp in controller::controller::Espacios) {
+	for each (Espacio ^ esp in controller::Espacios) {
 		if (esp->id > maxId) {
 			maxId = esp->id;
 		}
@@ -14,23 +14,23 @@ void controller::controller::agregarEspacio(bool ocupado, bool est) {
 	int id = maxId + 1;
 
 	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est);
-	controller::controller::Espacios->Add(nEspacio);
+	controller::Espacios->Add(nEspacio);
 	//Console::WriteLine("Se añadió el espacio: id {0}, ocupado {1}, est {2}.\n", id, ocupado, est);
 }
-bool controller::controller::eliminarEspacio(int id) {
-	for (int i = 0; i < controller::controller::Espacios->Count; i++) {
-		if (controller::controller::Espacios[i]->id == id) {
-			controller::controller::Espacios->RemoveAt(i);
+bool controller::eliminarEspacio(int id) {
+	for (int i = 0; i < controller::Espacios->Count; i++) {
+		if (controller::Espacios[i]->id == id) {
+			controller::Espacios->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
-bool controller::controller::modificarEspacio(int id, bool ocupado, bool est) {
-	for (int i = 0; i < controller::controller::Espacios->Count; i++) {
-		if (controller::controller::Espacios[i]->id == id) {
-			controller::controller::Espacios[i]->ocupado = ocupado;
-			controller::controller::Espacios[i]->estado = est;
+bool controller::modificarEspacio(int id, bool ocupado, bool est) {
+	for (int i = 0; i < controller::Espacios->Count; i++) {
+		if (controller::Espacios[i]->id == id) {
+			controller::Espacios[i]->ocupado = ocupado;
+			controller::Espacios[i]->estado = est;
 			return true;
 			/*Console::WriteLine("Se actualizó la estacion de id {0} a: nombre {1}, tipo {2}, estado {3}, ubicacion {4}.", id, nombre, tipo, estado, ubicacion);*/
 		}
@@ -38,10 +38,10 @@ bool controller::controller::modificarEspacio(int id, bool ocupado, bool est) {
 
 	return false;
 }
-Espacio^ controller::controller::buscarEspacio(int id) {
-	for (int i = 0; i < controller::controller::Espacios->Count; i++) {
-		if (controller::controller::Espacios[i]->id == id) {
-			Espacio^ esp = controller::controller::Espacios[i];
+Espacio^ controller::buscarEspacio(int id) {
+	for (int i = 0; i < controller::Espacios->Count; i++) {
+		if (controller::Espacios[i]->id == id) {
+			Espacio^ esp = controller::Espacios[i];
 			return esp;
 		}
 	}
@@ -51,7 +51,7 @@ Espacio^ controller::controller::buscarEspacio(int id) {
 
 //EMPLEADOS	
 
-void controller::controller::agregarUsuario(int dni, String^ nom, int ed, String^ sex, int auth) {
+void controller::agregarUsuario(int dni, String^ nom, int ed, String^ sex, int auth) {
 
 	Usuario^ nUsuario;
 
@@ -73,24 +73,24 @@ void controller::controller::agregarUsuario(int dni, String^ nom, int ed, String
 		break;
 	}
 
-	controller::controller::Usuarios->Add(nUsuario);
+	controller::Usuarios->Add(nUsuario);
 	//Console::WriteLine("Se añadió el usuario: dni {0}, nombre {1}, edad {2}, sexo {3}, autorizacion {4}.\n", dni, nom, ed, sex, auth);
 }
 
-bool controller::controller::eliminarUsuario(int dni) {
-	for (int i = 0; i < controller::controller::Usuarios->Count; i++) {
-		if (controller::controller::Usuarios[i]->DNI == dni) {
-			controller::controller::Usuarios->RemoveAt(i);
+bool controller::eliminarUsuario(int dni) {
+	for (int i = 0; i < controller::Usuarios->Count; i++) {
+		if (controller::Usuarios[i]->DNI == dni) {
+			controller::Usuarios->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool controller::controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex, int auth) {
-	for (int i = 0; i < controller::controller::Usuarios->Count; i++) {
-		if (controller::controller::Usuarios[i]->DNI == dni) {
-			Usuario^ usuario = controller::controller::Usuarios[i];
+bool controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex, int auth) {
+	for (int i = 0; i < controller::Usuarios->Count; i++) {
+		if (controller::Usuarios[i]->DNI == dni) {
+			Usuario^ usuario = controller::Usuarios[i];
 			usuario->nombre = nom;
 			usuario->edad = ed;
 			usuario->sexo = sex;
@@ -101,10 +101,10 @@ bool controller::controller::modificarUsuario(int dni, String^ nom, int ed, Stri
 	return false;
 }
 
-Usuario^ controller::controller::buscarUsuario(int dni) {
-	for (int i = 0; i < controller::controller::Usuarios->Count; i++) {
-		if (controller::controller::Usuarios[i]->DNI == dni) {
-			Usuario^ usuario = controller::controller::Usuarios[i];
+Usuario^ controller::buscarUsuario(int dni) {
+	for (int i = 0; i < controller::Usuarios->Count; i++) {
+		if (controller::Usuarios[i]->DNI == dni) {
+			Usuario^ usuario = controller::Usuarios[i];
 			return usuario;
 		}
 	}
@@ -113,28 +113,28 @@ Usuario^ controller::controller::buscarUsuario(int dni) {
 
 //CLIENTES
 
-void controller::controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip) {
+void controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip) {
 
 	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, auth, vip);
 
-	controller::controller::Clientes->Add(nCliente);
+	controller::Clientes->Add(nCliente);
 	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, autorizacion {4}, vip {5}.\n", dni, nom, ed, sex, auth, vip);
 }
 
-bool controller::controller::eliminarCliente(int dni) {
-	for (int i = 0; i < controller::controller::Clientes->Count; i++) {
-		if (controller::controller::Clientes[i]->DNI == dni) {
-			controller::controller::Clientes->RemoveAt(i);
+bool controller::eliminarCliente(int dni) {
+	for (int i = 0; i < controller::Clientes->Count; i++) {
+		if (controller::Clientes[i]->DNI == dni) {
+			controller::Clientes->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool controller::controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip) {
-	for (int i = 0; i < controller::controller::Clientes->Count; i++) {
-		if (controller::controller::Clientes[i]->DNI == dni) {
-			Cliente^ cliente = controller::controller::Clientes[i];
+bool controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip) {
+	for (int i = 0; i < controller::Clientes->Count; i++) {
+		if (controller::Clientes[i]->DNI == dni) {
+			Cliente^ cliente = controller::Clientes[i];
 			cliente->nombre = nom;
 			cliente->edad = ed;
 			cliente->sexo = sex;
@@ -146,10 +146,10 @@ bool controller::controller::modificarCliente(int dni, String^ nom, int ed, Stri
 	return false;
 }
 
-Cliente^ controller::controller::buscarCliente(int dni) {
-	for (int i = 0; i < controller::controller::Clientes->Count; i++) {
-		if (controller::controller::Clientes[i]->DNI == dni) {
-			Cliente^ cliente = controller::controller::Clientes[i];
+Cliente^ controller::buscarCliente(int dni) {
+	for (int i = 0; i < controller::Clientes->Count; i++) {
+		if (controller::Clientes[i]->DNI == dni) {
+			Cliente^ cliente = controller::Clientes[i];
 			return cliente;
 		}
 	}
@@ -158,25 +158,25 @@ Cliente^ controller::controller::buscarCliente(int dni) {
 
 //FALLAS
 
-void controller::controller::agregarFalla(int id_falla, String^ desc, int prio, String^ fec, String^ hor) {
+void controller::agregarFalla(int id_falla, String^ desc, int prio, String^ fec, String^ hor) {
 	Falla^ nFalla = gcnew Falla(id_falla, desc, prio, fec, hor);
-	controller::controller::Fallas->Add(nFalla);
+	controller::Fallas->Add(nFalla);
 }
 
-bool controller::controller::eliminarFalla(int id) {
-	for (int i = 0; i < controller::controller::Fallas->Count; i++) {
-		if (controller::controller::Fallas[i]->id == id) {
-			controller::controller::Fallas->RemoveAt(i);
+bool controller::eliminarFalla(int id) {
+	for (int i = 0; i < controller::Fallas->Count; i++) {
+		if (controller::Fallas[i]->id == id) {
+			controller::Fallas->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool controller::controller::modificarFalla(int id, String^ desc, int prio, String^ fec, String^ hor) {
-	for (int i = 0; i < controller::controller::Fallas->Count; i++) {
-		if (controller::controller::Fallas[i]->id == id) {
-			Falla^ falla = controller::controller::Fallas[i];
+bool controller::modificarFalla(int id, String^ desc, int prio, String^ fec, String^ hor) {
+	for (int i = 0; i < controller::Fallas->Count; i++) {
+		if (controller::Fallas[i]->id == id) {
+			Falla^ falla = controller::Fallas[i];
 			falla->descripcion = desc;
 			falla->prioridad = prio;
 			falla->fecha = fec;
@@ -187,10 +187,10 @@ bool controller::controller::modificarFalla(int id, String^ desc, int prio, Stri
 	return false;
 }
 
-Falla^ controller::controller::buscarFalla(int id) {
-	for (int i = 0; i < controller::controller::Fallas->Count; i++) {
-		if (controller::controller::Fallas[i]->id == id) {
-			Falla^ falla = controller::controller::Fallas[i];
+Falla^ controller::buscarFalla(int id) {
+	for (int i = 0; i < controller::Fallas->Count; i++) {
+		if (controller::Fallas[i]->id == id) {
+			Falla^ falla = controller::Fallas[i];
 			return falla;
 		}
 	}
@@ -199,25 +199,25 @@ Falla^ controller::controller::buscarFalla(int id) {
 
 //TICKETS
 
-void controller::controller::agregarTicket(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec) {
+void controller::agregarTicket(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec) {
 	TicketAuto^ nTicket = gcnew TicketAuto(id_ticket, cli, mod, pla, prec);
-	controller::controller::Tickets->Add(nTicket);
+	controller::Tickets->Add(nTicket);
 }
 
-bool controller::controller::eliminarTicket(int id_ticket) {
-	for (int i = 0; i < controller::controller::Tickets->Count; i++) {
-		if (controller::controller::Tickets[i]->id == id_ticket) {
-			controller::controller::Tickets->RemoveAt(i);
+bool controller::eliminarTicket(int id_ticket) {
+	for (int i = 0; i < controller::Tickets->Count; i++) {
+		if (controller::Tickets[i]->id == id_ticket) {
+			controller::Tickets->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool controller::controller::modificarTicket(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec) {
-	for (int i = 0; i < controller::controller::Tickets->Count; i++) {
-		if (controller::controller::Tickets[i]->id == id_ticket) {
-			TicketAuto^ ticket = controller::controller::Tickets[i];
+bool controller::modificarTicket(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec) {
+	for (int i = 0; i < controller::Tickets->Count; i++) {
+		if (controller::Tickets[i]->id == id_ticket) {
+			TicketAuto^ ticket =controller::Tickets[i];
 			ticket->clienteAsociado = cli;
 			ticket->modeloAuto = mod;
 			ticket->placa = pla;
@@ -228,10 +228,10 @@ bool controller::controller::modificarTicket(int id_ticket, Cliente^ cli, String
 	return false;
 }
 
-TicketAuto^ controller::controller::buscarTicket(int id_ticket) {
-	for (int i = 0; i < controller::controller::Tickets->Count; i++) {
-		if (controller::controller::Tickets[i]->id == id_ticket) {
-			TicketAuto^ ticket = controller::controller::Tickets[i];
+TicketAuto^ controller::buscarTicket(int id_ticket) {
+	for (int i = 0; i < controller::Tickets->Count; i++) {
+		if (controller::Tickets[i]->id == id_ticket) {
+			TicketAuto^ ticket = controller::Tickets[i];
 			return ticket;
 		}
 	}
@@ -240,25 +240,25 @@ TicketAuto^ controller::controller::buscarTicket(int id_ticket) {
 
 //RECLAMOS
 
-void controller::controller::agregarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
+void controller::agregarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
 	Reclamo^ nReclamo = gcnew Reclamo(id_reclamo, fec, hor, desc);
-	controller::controller::Reclamos->Add(nReclamo);
+	controller::Reclamos->Add(nReclamo);
 }
 
-bool controller::controller::eliminarReclamo(int id_reclamo) {
-	for (int i = 0; i < controller::controller::Reclamos->Count; i++) {
-		if (controller::controller::Reclamos[i]->id == id_reclamo) {
-			controller::controller::Reclamos->RemoveAt(i);
+bool controller::eliminarReclamo(int id_reclamo) {
+	for (int i = 0; i < controller::Reclamos->Count; i++) {
+		if (controller::Reclamos[i]->id == id_reclamo) {
+			controller::Reclamos->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool controller::controller::modificarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
-	for (int i = 0; i < controller::controller::Reclamos->Count; i++) {
-		if (controller::controller::Reclamos[i]->id == id_reclamo) {
-			Reclamo^ reclamo = controller::controller::Reclamos[i];
+bool controller::modificarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
+	for (int i = 0; i < controller::Reclamos->Count; i++) {
+		if (controller::Reclamos[i]->id == id_reclamo) {
+			Reclamo^ reclamo = controller::Reclamos[i];
 			reclamo->fecha = fec;
 			reclamo->hora = hor;
 			reclamo->descripcion = desc;
@@ -268,10 +268,10 @@ bool controller::controller::modificarReclamo(int id_reclamo, String^ fec, Strin
 	return false;
 }
 
-Reclamo^ controller::controller::buscarReclamo(int id_reclamo) {
-	for (int i = 0; i < controller::controller::Reclamos->Count; i++) {
-		if (controller::controller::Reclamos[i]->id == id_reclamo) {
-			Reclamo^ reclamo = controller::controller::Reclamos[i];
+Reclamo^ controller::buscarReclamo(int id_reclamo) {
+	for (int i = 0; i < controller::Reclamos->Count; i++) {
+		if (controller::Reclamos[i]->id == id_reclamo) {
+			Reclamo^ reclamo = controller::Reclamos[i];
 			return reclamo;
 		}
 	}

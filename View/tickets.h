@@ -8,7 +8,7 @@ namespace View {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace controller;
+	using namespace controllerPrincipal;
 	using namespace model;
 
 	/// 
@@ -239,7 +239,7 @@ namespace View {
 		String^ placa = this->textBox3->Text;
 		double precio = ParseDoubleSeguro(this->textBox4->Text, 0.0);
 
-		::controller::controller::agregarTicket(id, cliente, modelo, placa, precio);
+		controller::agregarTicket(id, cliente, modelo, placa, precio);
 		Console::WriteLine("Ticket agregado: ID={0}, Modelo={1}, Placa={2}, Precio={3}",
 			id, modelo, placa, precio);
 
@@ -249,7 +249,7 @@ namespace View {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		TicketAuto^ t = ::controller::controller::buscarTicket(id);
+		TicketAuto^ t = controller::buscarTicket(id);
 		if (t == nullptr) {
 			Console::WriteLine("No se encontró el ticket con ID {0}.", id);
 		}
@@ -270,7 +270,7 @@ namespace View {
 		String^ placa = this->textBox3->Text;
 		double precio = ParseDoubleSeguro(this->textBox4->Text, 0.0);
 
-		if (::controller::controller::modificarTicket(id, cliente, modelo, placa, precio)) {
+		if (controller::modificarTicket(id, cliente, modelo, placa, precio)) {
 			Console::WriteLine("Se modificó el ticket con ID {0}.", id);
 		}
 		else {
@@ -283,7 +283,7 @@ namespace View {
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		if (::controller::controller::eliminarTicket(id)) {
+		if (controller::eliminarTicket(id)) {
 			Console::WriteLine("Se eliminó el ticket con ID {0}.", id);
 		}
 		else {

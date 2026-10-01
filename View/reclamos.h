@@ -8,7 +8,7 @@ namespace View {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace controller;
+	using namespace controllerPrincipal;
 	using namespace model;
 
 	/// 
@@ -229,7 +229,7 @@ namespace View {
 		String^ hora = this->textBox3->Text;
 		String^ descripcion = this->textBox4->Text;
 
-		::controller::controller::agregarReclamo(id, fecha, hora, descripcion);
+		controller::agregarReclamo(id, fecha, hora, descripcion);
 		Console::WriteLine("Reclamo agregado: ID={0}, Fecha={1}, Hora={2}, Descripcion={3}",
 			id, fecha, hora, descripcion);
 
@@ -239,7 +239,7 @@ namespace View {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		Reclamo^ r = ::controller::controller::buscarReclamo(id);
+		Reclamo^ r = controller::buscarReclamo(id);
 		if (r == nullptr) {
 			Console::WriteLine("No se encontró el reclamo con ID {0}.", id);
 		}
@@ -259,7 +259,7 @@ namespace View {
 		String^ hora = this->textBox3->Text;
 		String^ descripcion = this->textBox4->Text;
 
-		if (::controller::controller::modificarReclamo(id, fecha, hora, descripcion)) {
+		if (controller::modificarReclamo(id, fecha, hora, descripcion)) {
 			Console::WriteLine("Se modificó el reclamo con ID {0}.", id);
 		}
 		else {
@@ -272,7 +272,7 @@ namespace View {
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		if (::controller::controller::eliminarReclamo(id)) {
+		if (controller::eliminarReclamo(id)) {
 			Console::WriteLine("Se eliminó el reclamo con ID {0}.", id);
 		}
 		else {
