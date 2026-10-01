@@ -142,6 +142,10 @@
   <ItemGroup>
     <ClCompile Include="fallas.cpp" />
     <ClCompile Include="formulario.cpp" />
+    <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="Operador_Buscar_Auto_Form.cpp" />
+    <ClCompile Include="Operador_Formulario_Form.cpp" />
+    <ClCompile Include="Operador_Registrar_Ticket_Form.cpp" />
     <ClCompile Include="reclamos.cpp" />
     <ClCompile Include="tickets.cpp" />
     <ClCompile Include="usuarios.cpp" />
@@ -151,6 +155,18 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="formulario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Operador_Buscar_Auto_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Operador_Formulario_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Operador_Registrar_Ticket_Form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="reclamos.h">
@@ -166,6 +182,18 @@
   <ItemGroup>
     <EmbeddedResource Include="formulario.resx">
       <DependentUpon>formulario.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operador_Buscar_Auto_Form.resx">
+      <DependentUpon>Operador_Buscar_Auto_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operador_Formulario_Form.resx">
+      <DependentUpon>Operador_Formulario_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operador_Registrar_Ticket_Form.resx">
+      <DependentUpon>Operador_Registrar_Ticket_Form.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
