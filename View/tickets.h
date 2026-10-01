@@ -36,8 +36,10 @@ namespace View {
 	private: System::Windows::Forms::Label^ lblModelo;
 	private: System::Windows::Forms::Label^ lblPlaca;
 	private: System::Windows::Forms::Label^ lblPrecio;
-	private: System::Windows::Forms::Button^ buttonModifiOperTicket;
-	private: System::Windows::Forms::Button^ buttonAlmaceOperTicket;
+	private: System::Windows::Forms::Button^ btn_Modificar;
+
+	private: System::Windows::Forms::Button^ btn_Almacenar;
+
 
 
 	private: System::Windows::Forms::TextBox^ textBoxDNIOperTick;
@@ -74,8 +76,8 @@ namespace View {
 			this->lblModelo = (gcnew System::Windows::Forms::Label());
 			this->lblPlaca = (gcnew System::Windows::Forms::Label());
 			this->lblPrecio = (gcnew System::Windows::Forms::Label());
-			this->buttonModifiOperTicket = (gcnew System::Windows::Forms::Button());
-			this->buttonAlmaceOperTicket = (gcnew System::Windows::Forms::Button());
+			this->btn_Modificar = (gcnew System::Windows::Forms::Button());
+			this->btn_Almacenar = (gcnew System::Windows::Forms::Button());
 			this->textBoxDNIOperTick = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxNombreOperTick = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxPlacaOperTick = (gcnew System::Windows::Forms::TextBox());
@@ -140,32 +142,30 @@ namespace View {
 			this->lblPrecio->TabIndex = 12;
 			this->lblPrecio->Text = L"Precio:";
 			// 
-			// buttonModifiOperTicket
+			// btn_Modificar
 			// 
-			this->buttonModifiOperTicket->Location = System::Drawing::Point(113, 300);
-			this->buttonModifiOperTicket->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->buttonModifiOperTicket->Name = L"buttonModifiOperTicket";
-			this->buttonModifiOperTicket->Size = System::Drawing::Size(173, 31);
-			this->buttonModifiOperTicket->TabIndex = 1;
-			this->buttonModifiOperTicket->Text = L"Modificar";
-			this->buttonModifiOperTicket->UseVisualStyleBackColor = true;
-			this->buttonModifiOperTicket->Click += gcnew System::EventHandler(this, &tickets::button1_Click);
+			this->btn_Modificar->Location = System::Drawing::Point(377, 300);
+			this->btn_Modificar->Margin = System::Windows::Forms::Padding(4);
+			this->btn_Modificar->Name = L"btn_Modificar";
+			this->btn_Modificar->Size = System::Drawing::Size(173, 31);
+			this->btn_Modificar->TabIndex = 1;
+			this->btn_Modificar->Text = L"Modificar";
+			this->btn_Modificar->UseVisualStyleBackColor = true;
 			// 
-			// buttonAlmaceOperTicket
+			// btn_Almacenar
 			// 
-			this->buttonAlmaceOperTicket->Location = System::Drawing::Point(335, 300);
-			this->buttonAlmaceOperTicket->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->buttonAlmaceOperTicket->Name = L"buttonAlmaceOperTicket";
-			this->buttonAlmaceOperTicket->Size = System::Drawing::Size(173, 31);
-			this->buttonAlmaceOperTicket->TabIndex = 2;
-			this->buttonAlmaceOperTicket->Text = L"Almacenar";
-			this->buttonAlmaceOperTicket->UseVisualStyleBackColor = true;
-			this->buttonAlmaceOperTicket->Click += gcnew System::EventHandler(this, &tickets::button2_Click);
+			this->btn_Almacenar->Location = System::Drawing::Point(124, 300);
+			this->btn_Almacenar->Margin = System::Windows::Forms::Padding(4);
+			this->btn_Almacenar->Name = L"btn_Almacenar";
+			this->btn_Almacenar->Size = System::Drawing::Size(173, 31);
+			this->btn_Almacenar->TabIndex = 2;
+			this->btn_Almacenar->Text = L"Almacenar";
+			this->btn_Almacenar->UseVisualStyleBackColor = true;
 			// 
 			// textBoxDNIOperTick
 			// 
 			this->textBoxDNIOperTick->Location = System::Drawing::Point(133, 58);
-			this->textBoxDNIOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxDNIOperTick->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxDNIOperTick->Name = L"textBoxDNIOperTick";
 			this->textBoxDNIOperTick->ReadOnly = true;
 			this->textBoxDNIOperTick->Size = System::Drawing::Size(132, 22);
@@ -174,7 +174,7 @@ namespace View {
 			// textBoxNombreOperTick
 			// 
 			this->textBoxNombreOperTick->Location = System::Drawing::Point(133, 95);
-			this->textBoxNombreOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxNombreOperTick->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxNombreOperTick->Name = L"textBoxNombreOperTick";
 			this->textBoxNombreOperTick->ReadOnly = true;
 			this->textBoxNombreOperTick->Size = System::Drawing::Size(132, 22);
@@ -183,7 +183,7 @@ namespace View {
 			// textBoxPlacaOperTick
 			// 
 			this->textBoxPlacaOperTick->Location = System::Drawing::Point(133, 133);
-			this->textBoxPlacaOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxPlacaOperTick->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxPlacaOperTick->Name = L"textBoxPlacaOperTick";
 			this->textBoxPlacaOperTick->ReadOnly = true;
 			this->textBoxPlacaOperTick->Size = System::Drawing::Size(132, 22);
@@ -192,7 +192,7 @@ namespace View {
 			// textBoxPrecioOperTick
 			// 
 			this->textBoxPrecioOperTick->Location = System::Drawing::Point(377, 58);
-			this->textBoxPrecioOperTick->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxPrecioOperTick->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxPrecioOperTick->Name = L"textBoxPrecioOperTick";
 			this->textBoxPrecioOperTick->ReadOnly = true;
 			this->textBoxPrecioOperTick->Size = System::Drawing::Size(132, 22);
@@ -268,103 +268,103 @@ namespace View {
 			this->Controls->Add(this->textBoxPlacaOperTick);
 			this->Controls->Add(this->textBoxNombreOperTick);
 			this->Controls->Add(this->textBoxDNIOperTick);
-			this->Controls->Add(this->buttonAlmaceOperTicket);
-			this->Controls->Add(this->buttonModifiOperTicket);
+			this->Controls->Add(this->btn_Almacenar);
+			this->Controls->Add(this->btn_Modificar);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"tickets";
 			this->Text = L"tickets";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
-#pragma endregion
+	#pragma endregion
 
-		// Función auxiliar para borrar el contenido de todas las casillas
-	private: void LimpiarCampos() {
-		this->textBox1->Text = "";
-		this->textBox2->Text = "";
-		this->textBox3->Text = "";
-		this->textBox4->Text = "";
-	}
+	//	// Función auxiliar para borrar el contenido de todas las casillas
+	//private: void LimpiarCampos() {
+	//	this->textBox1->Text = "";
+	//	this->textBox2->Text = "";
+	//	this->textBox3->Text = "";
+	//	this->textBox4->Text = "";
+	//}
 
-		   // Función auxiliar para convertir texto a entero de forma segura
-	private: int ParseIntSeguro(String^ texto, int valorPorDefecto) {
-		int resultado = 0;
-		if (Int32::TryParse(texto, resultado)) {
-			return resultado;
-		}
-		return valorPorDefecto;
-	}
+	//	   // Función auxiliar para convertir texto a entero de forma segura
+	//private: int ParseIntSeguro(String^ texto, int valorPorDefecto) {
+	//	int resultado = 0;
+	//	if (Int32::TryParse(texto, resultado)) {
+	//		return resultado;
+	//	}
+	//	return valorPorDefecto;
+	//}
 
-		   // Función auxiliar para convertir texto a double de forma segura
-	private: double ParseDoubleSeguro(String^ texto, double valorPorDefecto) {
-		double resultado = 0.0;
-		if (Double::TryParse(texto, resultado)) {
-			return resultado;
-		}
-		return valorPorDefecto;
-	}
+	//	   // Función auxiliar para convertir texto a double de forma segura
+	//private: double ParseDoubleSeguro(String^ texto, double valorPorDefecto) {
+	//	double resultado = 0.0;
+	//	if (Double::TryParse(texto, resultado)) {
+	//		return resultado;
+	//	}
+	//	return valorPorDefecto;
+	//}
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ParseIntSeguro(this->textBox1->Text, 0);
-		Cliente^ cliente = gcnew Cliente(0, "Cliente", 0, "M", 0, false); // Cliente por defecto
-		String^ modelo = this->textBox2->Text;
-		String^ placa = this->textBox3->Text;
-		double precio = ParseDoubleSeguro(this->textBox4->Text, 0.0);
+	//private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ParseIntSeguro(this->textBox1->Text, 0);
+	//	Cliente^ cliente = gcnew Cliente(0, "Cliente", 0, "M", 0, false); // Cliente por defecto
+	//	String^ modelo = this->textBox2->Text;
+	//	String^ placa = this->textBox3->Text;
+	//	double precio = ParseDoubleSeguro(this->textBox4->Text, 0.0);
 
-		::controller::controller::agregarTicket(id, cliente, modelo, placa, precio);
-		Console::WriteLine("Ticket agregado: ID={0}, Modelo={1}, Placa={2}, Precio={3}",
-			id, modelo, placa, precio);
+	//	::controller::controller::agregarTicket(id, cliente, modelo, placa, precio);
+	//	Console::WriteLine("Ticket agregado: ID={0}, Modelo={1}, Placa={2}, Precio={3}",
+	//		id, modelo, placa, precio);
 
-		LimpiarCampos();
-	}
+	//	LimpiarCampos();
+	//}
 
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ParseIntSeguro(this->textBox1->Text, 0);
+	//private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		TicketAuto^ t = ::controller::controller::buscarTicket(id);
-		if (t == nullptr) {
-			Console::WriteLine("No se encontró el ticket con ID {0}.", id);
-		}
-		else {
-			this->textBox2->Text = t->modeloAuto;
-			this->textBox3->Text = t->placa;
-			this->textBox4->Text = t->precio.ToString();
+	//	TicketAuto^ t = ::controller::controller::buscarTicket(id);
+	//	if (t == nullptr) {
+	//		Console::WriteLine("No se encontró el ticket con ID {0}.", id);
+	//	}
+	//	else {
+	//		this->textBox2->Text = t->modeloAuto;
+	//		this->textBox3->Text = t->placa;
+	//		this->textBox4->Text = t->precio.ToString();
 
-			Console::WriteLine("Se encontró el ticket: ID={0}, Modelo={1}, Placa={2}, Precio={3}\n",
-				t->id, t->modeloAuto, t->placa, t->precio);
-		}
-	}
+	//		Console::WriteLine("Se encontró el ticket: ID={0}, Modelo={1}, Placa={2}, Precio={3}\n",
+	//			t->id, t->modeloAuto, t->placa, t->precio);
+	//	}
+	//}
 
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ParseIntSeguro(this->textBox1->Text, 0);
-		Cliente^ cliente = gcnew Cliente(0, "Cliente", 0, "M", 0, false); // Cliente por defecto
-		String^ modelo = this->textBox2->Text;
-		String^ placa = this->textBox3->Text;
-		double precio = ParseDoubleSeguro(this->textBox4->Text, 0.0);
+	//private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ParseIntSeguro(this->textBox1->Text, 0);
+	//	Cliente^ cliente = gcnew Cliente(0, "Cliente", 0, "M", 0, false); // Cliente por defecto
+	//	String^ modelo = this->textBox2->Text;
+	//	String^ placa = this->textBox3->Text;
+	//	double precio = ParseDoubleSeguro(this->textBox4->Text, 0.0);
 
-		if (::controller::controller::modificarTicket(id, cliente, modelo, placa, precio)) {
-			Console::WriteLine("Se modificó el ticket con ID {0}.", id);
-		}
-		else {
-			Console::WriteLine("No se encontró el ticket con ID {0} para modificar.", id);
-		}
+	//	if (::controller::controller::modificarTicket(id, cliente, modelo, placa, precio)) {
+	//		Console::WriteLine("Se modificó el ticket con ID {0}.", id);
+	//	}
+	//	else {
+	//		Console::WriteLine("No se encontró el ticket con ID {0} para modificar.", id);
+	//	}
 
-		LimpiarCampos();
-	}
+	//	LimpiarCampos();
+	//}
 
-	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ParseIntSeguro(this->textBox1->Text, 0);
+	//private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ParseIntSeguro(this->textBox1->Text, 0);
 
-		if (::controller::controller::eliminarTicket(id)) {
-			Console::WriteLine("Se eliminó el ticket con ID {0}.", id);
-		}
-		else {
-			Console::WriteLine("No se encontró el ticket con ID {0} para eliminar.", id);
-		}
+	//	if (::controller::controller::eliminarTicket(id)) {
+	//		Console::WriteLine("Se eliminó el ticket con ID {0}.", id);
+	//	}
+	//	else {
+	//		Console::WriteLine("No se encontró el ticket con ID {0} para eliminar.", id);
+	//	}
 
-		LimpiarCampos();
-	}
+	//	LimpiarCampos();
+	//}
 	};
 }

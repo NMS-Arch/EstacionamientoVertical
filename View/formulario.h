@@ -36,8 +36,11 @@ namespace View {
 	private: System::Windows::Forms::Label^ lblOcupado;
 	private: System::Windows::Forms::Label^ lblEstado;
 	private: System::Windows::Forms::Label^ lblId;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ btn_Agregar;
+
+	private: System::Windows::Forms::Button^ btn_Buscar;
+
+
 	private: System::Windows::Forms::TextBox^ TextBoxNombreOperForm;
 
 	private: System::Windows::Forms::TextBox^ textBoxDNIOperForm;
@@ -55,7 +58,8 @@ namespace View {
 
 
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ btn_Pesar;
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBoxPrecioOperForm;
 
@@ -68,8 +72,9 @@ namespace View {
 
 
 	private: System::Windows::Forms::TextBox^ textBoxMuestraPrecioTotalOperForm;
+	private: System::Windows::Forms::Button^ btn_Generar_Precio;
 
-	private: System::Windows::Forms::Button^ buttonGenerarPrecioOperForm;
+
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Placa_Historial_Oper_Form;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DNI_Historial_Oper_Form;
@@ -104,20 +109,13 @@ namespace View {
 			this->lblOcupado = (gcnew System::Windows::Forms::Label());
 			this->lblEstado = (gcnew System::Windows::Forms::Label());
 			this->lblId = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->btn_Agregar = (gcnew System::Windows::Forms::Button());
+			this->btn_Buscar = (gcnew System::Windows::Forms::Button());
 			this->TextBoxNombreOperForm = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxDNIOperForm = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxOperForm = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxPesoOperForm = (gcnew System::Windows::Forms::TextBox());
 			this->CuadroDeHistorialOperadorForm = (gcnew System::Windows::Forms::DataGridView());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBoxPrecioOperForm = (gcnew System::Windows::Forms::TextBox());
-			this->textBoxMuestraPrecioTotalOperForm = (gcnew System::Windows::Forms::TextBox());
-			this->buttonGenerarPrecioOperForm = (gcnew System::Windows::Forms::Button());
-			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->Placa_Historial_Oper_Form = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->DNI_Historial_Oper_Form = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Nombre_Historial_Oper_Form = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -127,6 +125,13 @@ namespace View {
 			this->HoraIngreso_Historial_Oper_Form = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->HoraSalida_Historial_Oper_Form = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Fecha_Historial_Oper_Form = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->btn_Pesar = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->textBoxPrecioOperForm = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxMuestraPrecioTotalOperForm = (gcnew System::Windows::Forms::TextBox());
+			this->btn_Generar_Precio = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CuadroDeHistorialOperadorForm))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -161,7 +166,6 @@ namespace View {
 			this->lblOcupado->Size = System::Drawing::Size(33, 16);
 			this->lblOcupado->TabIndex = 10;
 			this->lblOcupado->Text = L"DNI:";
-			this->lblOcupado->Click += gcnew System::EventHandler(this, &formulario::lblOcupado_Click);
 			// 
 			// lblEstado
 			// 
@@ -183,32 +187,30 @@ namespace View {
 			this->lblId->TabIndex = 12;
 			this->lblId->Text = L"Peso:";
 			// 
-			// button1
+			// btn_Agregar
 			// 
-			this->button1->Location = System::Drawing::Point(281, 52);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(187, 31);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"agregar";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &formulario::button1_Click);
+			this->btn_Agregar->Location = System::Drawing::Point(281, 52);
+			this->btn_Agregar->Margin = System::Windows::Forms::Padding(4);
+			this->btn_Agregar->Name = L"btn_Agregar";
+			this->btn_Agregar->Size = System::Drawing::Size(187, 31);
+			this->btn_Agregar->TabIndex = 1;
+			this->btn_Agregar->Text = L"agregar";
+			this->btn_Agregar->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// btn_Buscar
 			// 
-			this->button2->Location = System::Drawing::Point(281, 110);
-			this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(187, 31);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"buscar";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &formulario::button2_Click);
+			this->btn_Buscar->Location = System::Drawing::Point(281, 110);
+			this->btn_Buscar->Margin = System::Windows::Forms::Padding(4);
+			this->btn_Buscar->Name = L"btn_Buscar";
+			this->btn_Buscar->Size = System::Drawing::Size(187, 31);
+			this->btn_Buscar->TabIndex = 2;
+			this->btn_Buscar->Text = L"buscar";
+			this->btn_Buscar->UseVisualStyleBackColor = true;
 			// 
 			// TextBoxNombreOperForm
 			// 
 			this->TextBoxNombreOperForm->Location = System::Drawing::Point(100, 88);
-			this->TextBoxNombreOperForm->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->TextBoxNombreOperForm->Margin = System::Windows::Forms::Padding(4);
 			this->TextBoxNombreOperForm->Name = L"TextBoxNombreOperForm";
 			this->TextBoxNombreOperForm->Size = System::Drawing::Size(132, 22);
 			this->TextBoxNombreOperForm->TabIndex = 5;
@@ -216,7 +218,7 @@ namespace View {
 			// textBoxDNIOperForm
 			// 
 			this->textBoxDNIOperForm->Location = System::Drawing::Point(100, 49);
-			this->textBoxDNIOperForm->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxDNIOperForm->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxDNIOperForm->Name = L"textBoxDNIOperForm";
 			this->textBoxDNIOperForm->Size = System::Drawing::Size(132, 22);
 			this->textBoxDNIOperForm->TabIndex = 6;
@@ -224,7 +226,7 @@ namespace View {
 			// textBoxOperForm
 			// 
 			this->textBoxOperForm->Location = System::Drawing::Point(100, 131);
-			this->textBoxOperForm->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxOperForm->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxOperForm->Name = L"textBoxOperForm";
 			this->textBoxOperForm->Size = System::Drawing::Size(132, 22);
 			this->textBoxOperForm->TabIndex = 7;
@@ -232,7 +234,7 @@ namespace View {
 			// textBoxPesoOperForm
 			// 
 			this->textBoxPesoOperForm->Location = System::Drawing::Point(100, 207);
-			this->textBoxPesoOperForm->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBoxPesoOperForm->Margin = System::Windows::Forms::Padding(4);
 			this->textBoxPesoOperForm->Name = L"textBoxPesoOperForm";
 			this->textBoxPesoOperForm->ReadOnly = true;
 			this->textBoxPesoOperForm->Size = System::Drawing::Size(132, 22);
@@ -255,69 +257,6 @@ namespace View {
 			this->CuadroDeHistorialOperadorForm->RowTemplate->Height = 24;
 			this->CuadroDeHistorialOperadorForm->Size = System::Drawing::Size(795, 186);
 			this->CuadroDeHistorialOperadorForm->TabIndex = 13;
-			this->CuadroDeHistorialOperadorForm->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &formulario::dataGridView1_CellContentClick);
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(581, 35);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(59, 16);
-			this->label2->TabIndex = 16;
-			this->label2->Text = L"Historial:";
-			this->label2->Click += gcnew System::EventHandler(this, &formulario::label2_Click);
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(100, 170);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(132, 30);
-			this->button3->TabIndex = 17;
-			this->button3->Text = L"Pesar";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(45, 292);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(49, 16);
-			this->label3->TabIndex = 18;
-			this->label3->Text = L"Precio:";
-			// 
-			// textBoxPrecioOperForm
-			// 
-			this->textBoxPrecioOperForm->Location = System::Drawing::Point(100, 289);
-			this->textBoxPrecioOperForm->Name = L"textBoxPrecioOperForm";
-			this->textBoxPrecioOperForm->ReadOnly = true;
-			this->textBoxPrecioOperForm->Size = System::Drawing::Size(100, 22);
-			this->textBoxPrecioOperForm->TabIndex = 19;
-			// 
-			// textBoxMuestraPrecioTotalOperForm
-			// 
-			this->textBoxMuestraPrecioTotalOperForm->Location = System::Drawing::Point(331, 286);
-			this->textBoxMuestraPrecioTotalOperForm->Name = L"textBoxMuestraPrecioTotalOperForm";
-			this->textBoxMuestraPrecioTotalOperForm->ReadOnly = true;
-			this->textBoxMuestraPrecioTotalOperForm->Size = System::Drawing::Size(100, 22);
-			this->textBoxMuestraPrecioTotalOperForm->TabIndex = 20;
-			// 
-			// buttonGenerarPrecioOperForm
-			// 
-			this->buttonGenerarPrecioOperForm->Location = System::Drawing::Point(325, 245);
-			this->buttonGenerarPrecioOperForm->Name = L"buttonGenerarPrecioOperForm";
-			this->buttonGenerarPrecioOperForm->Size = System::Drawing::Size(106, 23);
-			this->buttonGenerarPrecioOperForm->TabIndex = 21;
-			this->buttonGenerarPrecioOperForm->Text = L"Generar precio";
-			this->buttonGenerarPrecioOperForm->UseVisualStyleBackColor = true;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(248, 292);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(77, 16);
-			this->label4->TabIndex = 22;
-			this->label4->Text = L"Precio total:";
 			// 
 			// Placa_Historial_Oper_Form
 			// 
@@ -391,17 +330,78 @@ namespace View {
 			this->Fecha_Historial_Oper_Form->Name = L"Fecha_Historial_Oper_Form";
 			this->Fecha_Historial_Oper_Form->ReadOnly = true;
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(581, 35);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(59, 16);
+			this->label2->TabIndex = 16;
+			this->label2->Text = L"Historial:";
+			// 
+			// btn_Pesar
+			// 
+			this->btn_Pesar->Location = System::Drawing::Point(100, 170);
+			this->btn_Pesar->Name = L"btn_Pesar";
+			this->btn_Pesar->Size = System::Drawing::Size(132, 30);
+			this->btn_Pesar->TabIndex = 17;
+			this->btn_Pesar->Text = L"Pesar";
+			this->btn_Pesar->UseVisualStyleBackColor = true;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(45, 292);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(49, 16);
+			this->label3->TabIndex = 18;
+			this->label3->Text = L"Precio:";
+			// 
+			// textBoxPrecioOperForm
+			// 
+			this->textBoxPrecioOperForm->Location = System::Drawing::Point(100, 289);
+			this->textBoxPrecioOperForm->Name = L"textBoxPrecioOperForm";
+			this->textBoxPrecioOperForm->ReadOnly = true;
+			this->textBoxPrecioOperForm->Size = System::Drawing::Size(100, 22);
+			this->textBoxPrecioOperForm->TabIndex = 19;
+			// 
+			// textBoxMuestraPrecioTotalOperForm
+			// 
+			this->textBoxMuestraPrecioTotalOperForm->Location = System::Drawing::Point(331, 286);
+			this->textBoxMuestraPrecioTotalOperForm->Name = L"textBoxMuestraPrecioTotalOperForm";
+			this->textBoxMuestraPrecioTotalOperForm->ReadOnly = true;
+			this->textBoxMuestraPrecioTotalOperForm->Size = System::Drawing::Size(100, 22);
+			this->textBoxMuestraPrecioTotalOperForm->TabIndex = 20;
+			// 
+			// btn_Generar_Precio
+			// 
+			this->btn_Generar_Precio->Location = System::Drawing::Point(325, 245);
+			this->btn_Generar_Precio->Name = L"btn_Generar_Precio";
+			this->btn_Generar_Precio->Size = System::Drawing::Size(106, 23);
+			this->btn_Generar_Precio->TabIndex = 21;
+			this->btn_Generar_Precio->Text = L"Generar precio";
+			this->btn_Generar_Precio->UseVisualStyleBackColor = true;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(248, 292);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(77, 16);
+			this->label4->TabIndex = 22;
+			this->label4->Text = L"Precio total:";
+			// 
 			// formulario
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1391, 384);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->buttonGenerarPrecioOperForm);
+			this->Controls->Add(this->btn_Generar_Precio);
 			this->Controls->Add(this->textBoxMuestraPrecioTotalOperForm);
 			this->Controls->Add(this->textBoxPrecioOperForm);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->btn_Pesar);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->CuadroDeHistorialOperadorForm);
 			this->Controls->Add(this->lblId);
@@ -412,10 +412,10 @@ namespace View {
 			this->Controls->Add(this->textBoxOperForm);
 			this->Controls->Add(this->textBoxDNIOperForm);
 			this->Controls->Add(this->TextBoxNombreOperForm);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btn_Buscar);
+			this->Controls->Add(this->btn_Agregar);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"formulario";
 			this->Text = L"formulario";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CuadroDeHistorialOperadorForm))->EndInit();
@@ -423,90 +423,90 @@ namespace View {
 			this->PerformLayout();
 
 		}
-#pragma endregion
+	#pragma endregion
 
-		// Función auxiliar para borrar el contenido de todas las casillas
-	private: void LimpiarCampos() {
-		this->textBox1->Text = "";
-		this->textBox2->Text = "";
-		this->textBox3->Text = "";
-		this->textBox4->Text = "";
-	}
+	//	// Función auxiliar para borrar el contenido de todas las casillas
+	//private: void LimpiarCampos() {
+	//	this->textBox1->Text = "";
+	//	this->textBox2->Text = "";
+	//	this->textBox3->Text = "";
+	//	this->textBox4->Text = "";
+	//}
 
-		   // Función auxiliar para convertir texto a bool de forma segura
-	private: bool ParseBool(String^ texto) {
-		bool resultado = false;
-		if (Boolean::TryParse(texto, resultado)) {
-			return resultado;
-		}
-		String^ t = texto->Trim()->ToLower();
-		return (t == "1" || t == "true" || t == "si" || t == "s");
-	}
+	//	   // Función auxiliar para convertir texto a bool de forma segura
+	//private: bool ParseBool(String^ texto) {
+	//	bool resultado = false;
+	//	if (Boolean::TryParse(texto, resultado)) {
+	//		return resultado;
+	//	}
+	//	String^ t = texto->Trim()->ToLower();
+	//	return (t == "1" || t == "true" || t == "si" || t == "s");
+	//}
 
-		   // Función auxiliar para obtener el ID desde textBox4
-	private: int ObtenerId() {
-		int id = 0;
-		Int32::TryParse(this->textBox4->Text, id);
-		return id;
-	}
+	//	   // Función auxiliar para obtener el ID desde textBox4
+	//private: int ObtenerId() {
+	//	int id = 0;
+	//	Int32::TryParse(this->textBox4->Text, id);
+	//	return id;
+	//}
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ nombre = this->textBox1->Text;
-		bool ocupado = ParseBool(this->textBox2->Text);
-		bool estado = ParseBool(this->textBox3->Text);
+	//private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	String^ nombre = this->textBox1->Text;
+	//	bool ocupado = ParseBool(this->textBox2->Text);
+	//	bool estado = ParseBool(this->textBox3->Text);
 
-		::controller::controller::agregarEspacio(ocupado, estado);
-		Console::WriteLine("Espacio agregado: Nombre={0}, Ocupado={1}, Estado={2}", nombre, ocupado, estado);
+	//	::controller::controller::agregarEspacio(ocupado, estado);
+	//	Console::WriteLine("Espacio agregado: Nombre={0}, Ocupado={1}, Estado={2}", nombre, ocupado, estado);
 
-		LimpiarCampos();
-	}
+	//	LimpiarCampos();
+	//}
 
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ObtenerId();
+	//private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ObtenerId();
 
-		Espacio^ esp = ::controller::controller::buscarEspacio(id);
-		if (esp == nullptr) {
-			Console::WriteLine("No se encontró el espacio con ID {0}.", id);
-		}
-		else {
-			Console::WriteLine("Se encontró el espacio: id {0}, ocupado {1}, est {2}.\n", esp->id, esp->ocupado, esp->estado);
-		}
+	//	Espacio^ esp = ::controller::controller::buscarEspacio(id);
+	//	if (esp == nullptr) {
+	//		Console::WriteLine("No se encontró el espacio con ID {0}.", id);
+	//	}
+	//	else {
+	//		Console::WriteLine("Se encontró el espacio: id {0}, ocupado {1}, est {2}.\n", esp->id, esp->ocupado, esp->estado);
+	//	}
 
-		LimpiarCampos();
-	}
+	//	LimpiarCampos();
+	//}
 
-	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ObtenerId();
-		bool ocupado = ParseBool(this->textBox2->Text);
-		bool estado = ParseBool(this->textBox3->Text);
+	//private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ObtenerId();
+	//	bool ocupado = ParseBool(this->textBox2->Text);
+	//	bool estado = ParseBool(this->textBox3->Text);
 
-		if (::controller::controller::modificarEspacio(id, ocupado, estado)) {
-			Console::WriteLine("Se modificó el espacio con ID {0}.", id);
-		}
-		else {
-			Console::WriteLine("No se encontró el espacio con ID {0} para modificar.", id);
-		}
+	//	if (::controller::controller::modificarEspacio(id, ocupado, estado)) {
+	//		Console::WriteLine("Se modificó el espacio con ID {0}.", id);
+	//	}
+	//	else {
+	//		Console::WriteLine("No se encontró el espacio con ID {0} para modificar.", id);
+	//	}
 
-		LimpiarCampos();
-	}
+	//	LimpiarCampos();
+	//}
 
-	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		int id = ObtenerId();
+	//private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//	int id = ObtenerId();
 
-		if (::controller::controller::eliminarEspacio(id)) {
-			Console::WriteLine("Se eliminó el espacio con ID {0}.", id);
-		}
-		else {
-			Console::WriteLine("No se encontró el espacio con ID {0} para eliminar.", id);
-		}
+	//	if (::controller::controller::eliminarEspacio(id)) {
+	//		Console::WriteLine("Se eliminó el espacio con ID {0}.", id);
+	//	}
+	//	else {
+	//		Console::WriteLine("No se encontró el espacio con ID {0} para eliminar.", id);
+	//	}
 
-		LimpiarCampos();
-	}
-	private: System::Void lblOcupado_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
+	//	LimpiarCampos();
+	//}
+	//private: System::Void lblOcupado_Click(System::Object^ sender, System::EventArgs^ e) {
+	//}
+	//private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//}
+	//private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	//}
 };
 }

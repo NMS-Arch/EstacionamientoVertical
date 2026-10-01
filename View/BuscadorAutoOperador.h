@@ -37,10 +37,14 @@ namespace View {
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Button^ buttonBuscarBuscaOpera;
+	private: System::Windows::Forms::Button^ btn_consultar;
 
-	private: System::Windows::Forms::Button^ ButtonRegistrarSaliBuscaOpera;
-	private: System::Windows::Forms::Button^ buttonLlamarCeldaBuscaOpera;
+	private: System::Windows::Forms::Button^ btn_Registrar_Salida;
+	private: System::Windows::Forms::Button^ btn_Llamar_celdas;
+
+
+
+
 
 
 
@@ -90,13 +94,10 @@ namespace View {
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->buttonBuscarBuscaOpera = (gcnew System::Windows::Forms::Button());
-			this->ButtonRegistrarSaliBuscaOpera = (gcnew System::Windows::Forms::Button());
-			this->buttonLlamarCeldaBuscaOpera = (gcnew System::Windows::Forms::Button());
+			this->btn_consultar = (gcnew System::Windows::Forms::Button());
+			this->btn_Registrar_Salida = (gcnew System::Windows::Forms::Button());
+			this->btn_Llamar_celdas = (gcnew System::Windows::Forms::Button());
 			this->ResultadoBuscadorOpera = (gcnew System::Windows::Forms::DataGridView());
-			this->comboBoxBuscaOpera = (gcnew System::Windows::Forms::ComboBox());
-			this->textBoxBuscaOpera = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->Placa_BuscaOpera = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->DNI_BuscaOpera = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Nombre_BuscaOpera = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -106,6 +107,9 @@ namespace View {
 			this->HoraIng_BuscaOpera = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->HoraSali_BuscaOpera = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Fecha_BuscaOpera = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->comboBoxBuscaOpera = (gcnew System::Windows::Forms::ComboBox());
+			this->textBoxBuscaOpera = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ResultadoBuscadorOpera))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -128,32 +132,32 @@ namespace View {
 			this->label2->Text = L"Ingresar:";
 			this->label2->Click += gcnew System::EventHandler(this, &BuscadorAutoOperador::label2_Click);
 			// 
-			// buttonBuscarBuscaOpera
+			// btn_consultar
 			// 
-			this->buttonBuscarBuscaOpera->Location = System::Drawing::Point(119, 150);
-			this->buttonBuscarBuscaOpera->Name = L"buttonBuscarBuscaOpera";
-			this->buttonBuscarBuscaOpera->Size = System::Drawing::Size(108, 27);
-			this->buttonBuscarBuscaOpera->TabIndex = 2;
-			this->buttonBuscarBuscaOpera->Text = L"Buscar";
-			this->buttonBuscarBuscaOpera->UseVisualStyleBackColor = true;
+			this->btn_consultar->Location = System::Drawing::Point(119, 150);
+			this->btn_consultar->Name = L"btn_consultar";
+			this->btn_consultar->Size = System::Drawing::Size(108, 27);
+			this->btn_consultar->TabIndex = 2;
+			this->btn_consultar->Text = L"Buscar";
+			this->btn_consultar->UseVisualStyleBackColor = true;
 			// 
-			// ButtonRegistrarSaliBuscaOpera
+			// btn_Registrar_Salida
 			// 
-			this->ButtonRegistrarSaliBuscaOpera->Location = System::Drawing::Point(699, 306);
-			this->ButtonRegistrarSaliBuscaOpera->Name = L"ButtonRegistrarSaliBuscaOpera";
-			this->ButtonRegistrarSaliBuscaOpera->Size = System::Drawing::Size(164, 36);
-			this->ButtonRegistrarSaliBuscaOpera->TabIndex = 3;
-			this->ButtonRegistrarSaliBuscaOpera->Text = L"Registrar salida";
-			this->ButtonRegistrarSaliBuscaOpera->UseVisualStyleBackColor = true;
+			this->btn_Registrar_Salida->Location = System::Drawing::Point(699, 306);
+			this->btn_Registrar_Salida->Name = L"btn_Registrar_Salida";
+			this->btn_Registrar_Salida->Size = System::Drawing::Size(164, 36);
+			this->btn_Registrar_Salida->TabIndex = 3;
+			this->btn_Registrar_Salida->Text = L"Registrar salida";
+			this->btn_Registrar_Salida->UseVisualStyleBackColor = true;
 			// 
-			// buttonLlamarCeldaBuscaOpera
+			// btn_Llamar_celdas
 			// 
-			this->buttonLlamarCeldaBuscaOpera->Location = System::Drawing::Point(149, 306);
-			this->buttonLlamarCeldaBuscaOpera->Name = L"buttonLlamarCeldaBuscaOpera";
-			this->buttonLlamarCeldaBuscaOpera->Size = System::Drawing::Size(164, 36);
-			this->buttonLlamarCeldaBuscaOpera->TabIndex = 4;
-			this->buttonLlamarCeldaBuscaOpera->Text = L"Llamar celda";
-			this->buttonLlamarCeldaBuscaOpera->UseVisualStyleBackColor = true;
+			this->btn_Llamar_celdas->Location = System::Drawing::Point(149, 306);
+			this->btn_Llamar_celdas->Name = L"btn_Llamar_celdas";
+			this->btn_Llamar_celdas->Size = System::Drawing::Size(164, 36);
+			this->btn_Llamar_celdas->TabIndex = 4;
+			this->btn_Llamar_celdas->Text = L"Llamar celdas";
+			this->btn_Llamar_celdas->UseVisualStyleBackColor = true;
 			// 
 			// ResultadoBuscadorOpera
 			// 
@@ -171,33 +175,6 @@ namespace View {
 			this->ResultadoBuscadorOpera->RowTemplate->Height = 24;
 			this->ResultadoBuscadorOpera->Size = System::Drawing::Size(783, 147);
 			this->ResultadoBuscadorOpera->TabIndex = 5;
-			// 
-			// comboBoxBuscaOpera
-			// 
-			this->comboBoxBuscaOpera->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBoxBuscaOpera->FormattingEnabled = true;
-			this->comboBoxBuscaOpera->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"DNI", L"Nombre", L"Placa" });
-			this->comboBoxBuscaOpera->Location = System::Drawing::Point(119, 44);
-			this->comboBoxBuscaOpera->Name = L"comboBoxBuscaOpera";
-			this->comboBoxBuscaOpera->Size = System::Drawing::Size(121, 24);
-			this->comboBoxBuscaOpera->TabIndex = 6;
-			// 
-			// textBoxBuscaOpera
-			// 
-			this->textBoxBuscaOpera->Location = System::Drawing::Point(119, 102);
-			this->textBoxBuscaOpera->Name = L"textBoxBuscaOpera";
-			this->textBoxBuscaOpera->Size = System::Drawing::Size(126, 22);
-			this->textBoxBuscaOpera->TabIndex = 7;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(298, 21);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(72, 16);
-			this->label3->TabIndex = 8;
-			this->label3->Text = L"Resultado:";
-			this->label3->Click += gcnew System::EventHandler(this, &BuscadorAutoOperador::label3_Click);
 			// 
 			// Placa_BuscaOpera
 			// 
@@ -271,6 +248,33 @@ namespace View {
 			this->Fecha_BuscaOpera->ReadOnly = true;
 			this->Fecha_BuscaOpera->Width = 77;
 			// 
+			// comboBoxBuscaOpera
+			// 
+			this->comboBoxBuscaOpera->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBoxBuscaOpera->FormattingEnabled = true;
+			this->comboBoxBuscaOpera->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"DNI", L"Nombre", L"Placa" });
+			this->comboBoxBuscaOpera->Location = System::Drawing::Point(119, 44);
+			this->comboBoxBuscaOpera->Name = L"comboBoxBuscaOpera";
+			this->comboBoxBuscaOpera->Size = System::Drawing::Size(121, 24);
+			this->comboBoxBuscaOpera->TabIndex = 6;
+			// 
+			// textBoxBuscaOpera
+			// 
+			this->textBoxBuscaOpera->Location = System::Drawing::Point(119, 102);
+			this->textBoxBuscaOpera->Name = L"textBoxBuscaOpera";
+			this->textBoxBuscaOpera->Size = System::Drawing::Size(126, 22);
+			this->textBoxBuscaOpera->TabIndex = 7;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(298, 21);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(72, 16);
+			this->label3->TabIndex = 8;
+			this->label3->Text = L"Resultado:";
+			this->label3->Click += gcnew System::EventHandler(this, &BuscadorAutoOperador::label3_Click);
+			// 
 			// BuscadorAutoOperador
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -280,9 +284,9 @@ namespace View {
 			this->Controls->Add(this->textBoxBuscaOpera);
 			this->Controls->Add(this->comboBoxBuscaOpera);
 			this->Controls->Add(this->ResultadoBuscadorOpera);
-			this->Controls->Add(this->buttonLlamarCeldaBuscaOpera);
-			this->Controls->Add(this->ButtonRegistrarSaliBuscaOpera);
-			this->Controls->Add(this->buttonBuscarBuscaOpera);
+			this->Controls->Add(this->btn_Llamar_celdas);
+			this->Controls->Add(this->btn_Registrar_Salida);
+			this->Controls->Add(this->btn_consultar);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"BuscadorAutoOperador";
