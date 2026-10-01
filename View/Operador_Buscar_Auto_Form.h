@@ -493,6 +493,7 @@ namespace View {
 			this->btn_Procesar_Pago->TabIndex = 40;
 			this->btn_Procesar_Pago->Text = L"Procesar Pago";
 			this->btn_Procesar_Pago->UseVisualStyleBackColor = true;
+			this->btn_Procesar_Pago->Click += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::btn_Procesar_Pago_Click);
 			// 
 			// Operador_Buscar_Auto_Form
 			// 
@@ -555,6 +556,11 @@ namespace View {
 			this->Close();
 
 			FormularioForm->Show();
+
+		}
+		private: System::Void btn_Procesar_Pago_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			MessageBox::Show("Se logro registrar el pago del vehiculo","Aviso Pago",MessageBoxButtons::OK,MessageBoxIcon::Information);
 
 		}
 };
