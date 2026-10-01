@@ -73,6 +73,21 @@ namespace View {
 	private: System::Windows::Forms::Button^ btn_Forzar_Bajada;
 	private: System::Windows::Forms::Button^ btn_Bajar_Espacio;
 	private: System::Windows::Forms::Button^ btn_Cerrar_Sesion;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+
+
+
+
+
+
+
 
 
 
@@ -110,6 +125,14 @@ namespace View {
 			this->btn_Forzar_Bajada = (gcnew System::Windows::Forms::Button());
 			this->btn_Bajar_Espacio = (gcnew System::Windows::Forms::Button());
 			this->btn_Cerrar_Sesion = (gcnew System::Windows::Forms::Button());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_))->BeginInit();
@@ -177,11 +200,15 @@ namespace View {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(336, 133);
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->Column1,
+					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8
+			});
+			this->dataGridView1->Location = System::Drawing::Point(306, 133);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(762, 310);
+			this->dataGridView1->Size = System::Drawing::Size(908, 310);
 			this->dataGridView1->TabIndex = 9;
 			// 
 			// btn_Listar_Historial
@@ -230,7 +257,7 @@ namespace View {
 			// 
 			// btn_Registrar_TIcket
 			// 
-			this->btn_Registrar_TIcket->Location = System::Drawing::Point(336, 470);
+			this->btn_Registrar_TIcket->Location = System::Drawing::Point(306, 470);
 			this->btn_Registrar_TIcket->Name = L"btn_Registrar_TIcket";
 			this->btn_Registrar_TIcket->Size = System::Drawing::Size(176, 60);
 			this->btn_Registrar_TIcket->TabIndex = 15;
@@ -284,7 +311,7 @@ namespace View {
 			// 
 			// btn_Bajar_Espacio
 			// 
-			this->btn_Bajar_Espacio->Location = System::Drawing::Point(43, 270);
+			this->btn_Bajar_Espacio->Location = System::Drawing::Point(43, 259);
 			this->btn_Bajar_Espacio->Name = L"btn_Bajar_Espacio";
 			this->btn_Bajar_Espacio->Size = System::Drawing::Size(166, 29);
 			this->btn_Bajar_Espacio->TabIndex = 21;
@@ -301,11 +328,67 @@ namespace View {
 			this->btn_Cerrar_Sesion->UseVisualStyleBackColor = true;
 			this->btn_Cerrar_Sesion->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Cerrar_Sesion_Click);
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Ticket";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 125;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Espacio";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Placa";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 125;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Modelo";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Peso";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 125;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Precio Base";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 125;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Hora Entrada";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 125;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"R.I. Completo";
+			this->Column8->MinimumWidth = 6;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 125;
+			// 
 			// Operador_Formulario_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1133, 592);
+			this->ClientSize = System::Drawing::Size(1226, 592);
 			this->Controls->Add(this->btn_Cerrar_Sesion);
 			this->Controls->Add(this->btn_Bajar_Espacio);
 			this->Controls->Add(this->btn_Forzar_Bajada);

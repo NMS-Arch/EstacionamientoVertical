@@ -93,6 +93,19 @@ namespace View {
 	private: System::Windows::Forms::NumericUpDown^ numeric_Peso_Vehiculo;
 	private: System::Windows::Forms::Button^ btn_Regresar_Formulario;
 	private: System::Windows::Forms::Button^ btn_Procesar_Pago;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column12;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 
 	protected:
 
@@ -149,6 +162,19 @@ namespace View {
 			this->numeric_Peso_Vehiculo = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btn_Regresar_Formulario = (gcnew System::Windows::Forms::Button());
 			this->btn_Procesar_Pago = (gcnew System::Windows::Forms::Button());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column10 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
@@ -202,11 +228,16 @@ namespace View {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(13) {
+				this->Column1,
+					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9, this->Column10,
+					this->Column11, this->Column12, this->Column13
+			});
 			this->dataGridView1->Location = System::Drawing::Point(333, 91);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(768, 88);
+			this->dataGridView1->Size = System::Drawing::Size(848, 88);
 			this->dataGridView1->TabIndex = 5;
 			// 
 			// btn_Buscar_Registro
@@ -322,7 +353,7 @@ namespace View {
 			// 
 			// btn_Obtener_Precio_por_Estacionar
 			// 
-			this->btn_Obtener_Precio_por_Estacionar->Location = System::Drawing::Point(688, 323);
+			this->btn_Obtener_Precio_por_Estacionar->Location = System::Drawing::Point(765, 323);
 			this->btn_Obtener_Precio_por_Estacionar->Name = L"btn_Obtener_Precio_por_Estacionar";
 			this->btn_Obtener_Precio_por_Estacionar->Size = System::Drawing::Size(252, 85);
 			this->btn_Obtener_Precio_por_Estacionar->TabIndex = 19;
@@ -331,14 +362,14 @@ namespace View {
 			// 
 			// numeric_Precio_por_Estacionar
 			// 
-			this->numeric_Precio_por_Estacionar->Location = System::Drawing::Point(688, 426);
+			this->numeric_Precio_por_Estacionar->Location = System::Drawing::Point(765, 426);
 			this->numeric_Precio_por_Estacionar->Name = L"numeric_Precio_por_Estacionar";
 			this->numeric_Precio_por_Estacionar->Size = System::Drawing::Size(252, 22);
 			this->numeric_Precio_por_Estacionar->TabIndex = 20;
 			// 
 			// btn_Bajar_Espacio
 			// 
-			this->btn_Bajar_Espacio->Location = System::Drawing::Point(688, 488);
+			this->btn_Bajar_Espacio->Location = System::Drawing::Point(765, 488);
 			this->btn_Bajar_Espacio->Name = L"btn_Bajar_Espacio";
 			this->btn_Bajar_Espacio->Size = System::Drawing::Size(113, 100);
 			this->btn_Bajar_Espacio->TabIndex = 21;
@@ -347,7 +378,7 @@ namespace View {
 			// 
 			// btn_Imprimir_Boleta
 			// 
-			this->btn_Imprimir_Boleta->Location = System::Drawing::Point(1005, 323);
+			this->btn_Imprimir_Boleta->Location = System::Drawing::Point(1082, 323);
 			this->btn_Imprimir_Boleta->Name = L"btn_Imprimir_Boleta";
 			this->btn_Imprimir_Boleta->Size = System::Drawing::Size(96, 205);
 			this->btn_Imprimir_Boleta->TabIndex = 22;
@@ -477,7 +508,7 @@ namespace View {
 			// 
 			// btn_Regresar_Formulario
 			// 
-			this->btn_Regresar_Formulario->Location = System::Drawing::Point(883, 14);
+			this->btn_Regresar_Formulario->Location = System::Drawing::Point(960, 23);
 			this->btn_Regresar_Formulario->Name = L"btn_Regresar_Formulario";
 			this->btn_Regresar_Formulario->Size = System::Drawing::Size(218, 44);
 			this->btn_Regresar_Formulario->TabIndex = 39;
@@ -487,7 +518,7 @@ namespace View {
 			// 
 			// btn_Procesar_Pago
 			// 
-			this->btn_Procesar_Pago->Location = System::Drawing::Point(826, 485);
+			this->btn_Procesar_Pago->Location = System::Drawing::Point(903, 485);
 			this->btn_Procesar_Pago->Name = L"btn_Procesar_Pago";
 			this->btn_Procesar_Pago->Size = System::Drawing::Size(114, 100);
 			this->btn_Procesar_Pago->TabIndex = 40;
@@ -495,11 +526,102 @@ namespace View {
 			this->btn_Procesar_Pago->UseVisualStyleBackColor = true;
 			this->btn_Procesar_Pago->Click += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::btn_Procesar_Pago_Click);
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"ID Registro";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 125;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Ticket";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Espacio";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 125;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Placa";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Modelo";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 125;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"DNI";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 125;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Peso";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 125;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Precio Base";
+			this->Column8->MinimumWidth = 6;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 125;
+			// 
+			// Column9
+			// 
+			this->Column9->HeaderText = L"Tiempo Transcurrido";
+			this->Column9->MinimumWidth = 6;
+			this->Column9->Name = L"Column9";
+			this->Column9->Width = 125;
+			// 
+			// Column10
+			// 
+			this->Column10->HeaderText = L"Fecha Entrada";
+			this->Column10->MinimumWidth = 6;
+			this->Column10->Name = L"Column10";
+			this->Column10->Width = 125;
+			// 
+			// Column11
+			// 
+			this->Column11->HeaderText = L"Hora Entrada";
+			this->Column11->MinimumWidth = 6;
+			this->Column11->Name = L"Column11";
+			this->Column11->Width = 125;
+			// 
+			// Column12
+			// 
+			this->Column12->HeaderText = L"Fecha Salida";
+			this->Column12->MinimumWidth = 6;
+			this->Column12->Name = L"Column12";
+			this->Column12->Width = 125;
+			// 
+			// Column13
+			// 
+			this->Column13->HeaderText = L"Hora Salida";
+			this->Column13->MinimumWidth = 6;
+			this->Column13->Name = L"Column13";
+			this->Column13->Width = 125;
+			// 
 			// Operador_Buscar_Auto_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1139, 736);
+			this->ClientSize = System::Drawing::Size(1229, 736);
 			this->Controls->Add(this->btn_Procesar_Pago);
 			this->Controls->Add(this->btn_Regresar_Formulario);
 			this->Controls->Add(this->numeric_Peso_Vehiculo);
