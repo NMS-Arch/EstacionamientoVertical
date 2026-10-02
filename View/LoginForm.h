@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Operador_Formulario_Form.h"
+#include "Administrador_Interfaz_Principal_Form.h"
 
 namespace View {
 
@@ -152,16 +153,14 @@ namespace View {
 
 
 			}
-			//// 3. Rol: ADMINISTRADOR (Ingresa a reclamos y usuarios)
-			//else if (usuario == "admin" && contra == "admin123") {
+			// 3. Rol: ADMINISTRADOR (Ingresa a reclamos y usuarios)
+			else if (usuario == "admin" && contra == "admin123") {
 
-			//	reclamos^ ventanaReclamos = gcnew reclamos();
-			//	ventanaReclamos->Show();
+				this->Hide();
 
-			//	usuarios^ ventanaUsuarios = gcnew usuarios();
-			//	ventanaUsuarios->Show();
+				Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this);
+				MenuAdminForm->Show();
 
-			//	this->Hide();
 			//}
 			//// 4. Rol: MECÁNICO / MANTENIMIENTO (Ingresa a fallas)
 			//else if (usuario == "mecanico" && contra == "mec123") {
@@ -170,7 +169,7 @@ namespace View {
 			//	ventanaFallas->Show();
 
 			//	this->Hide();
-			//}
+			}
 			// 5. Validación de error
 			else {
 				MessageBox::Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons::OK, MessageBoxIcon::Error);

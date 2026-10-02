@@ -169,6 +169,7 @@ namespace View {
 			// 
 			// numeric_Peso_Vehiculo
 			// 
+			this->numeric_Peso_Vehiculo->DecimalPlaces = 1;
 			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(47, 353);
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
 			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(162, 22);
@@ -192,6 +193,7 @@ namespace View {
 			// 
 			// numeric_
 			// 
+			this->numeric_->DecimalPlaces = 2;
 			this->numeric_->Location = System::Drawing::Point(47, 446);
 			this->numeric_->Name = L"numeric_";
 			this->numeric_->Size = System::Drawing::Size(163, 22);

@@ -203,10 +203,12 @@ namespace View {
 			// 
 			// comboBox1
 			// 
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(146, 91);
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Ticket", L"Placa", L"DNI" });
+			this->comboBox1->Location = System::Drawing::Point(117, 91);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 24);
+			this->comboBox1->Size = System::Drawing::Size(150, 24);
 			this->comboBox1->TabIndex = 2;
 			// 
 			// label3
@@ -494,13 +496,15 @@ namespace View {
 			// 
 			// numericUpDown1
 			// 
+			this->numericUpDown1->DecimalPlaces = 2;
 			this->numericUpDown1->Location = System::Drawing::Point(888, 680);
 			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(120, 22);
+			this->numericUpDown1->Size = System::Drawing::Size(171, 22);
 			this->numericUpDown1->TabIndex = 37;
 			// 
 			// numeric_Peso_Vehiculo
 			// 
+			this->numeric_Peso_Vehiculo->DecimalPlaces = 2;
 			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(168, 525);
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
 			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(145, 22);

@@ -140,6 +140,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Administracion_Gestion_Usuarios_Form.cpp" />
+    <ClCompile Include="Administracion_Reporte_Finanzas_Form.cpp" />
+    <ClCompile Include="Administracion_Tarifas_y_Auditoria_Form.cpp" />
+    <ClCompile Include="Administrador_Interfaz_Principal_Form.cpp" />
     <ClCompile Include="fallas.cpp" />
     <ClCompile Include="formulario.cpp" />
     <ClCompile Include="LoginForm.cpp" />
@@ -151,6 +155,18 @@
     <ClCompile Include="usuarios.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Administracion_Gestion_Usuarios_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Administracion_Reporte_Finanzas_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Administracion_Tarifas_y_Auditoria_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Administrador_Interfaz_Principal_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="fallas.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -180,6 +196,18 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Administracion_Gestion_Usuarios_Form.resx">
+      <DependentUpon>Administracion_Gestion_Usuarios_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion_Reporte_Finanzas_Form.resx">
+      <DependentUpon>Administracion_Reporte_Finanzas_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion_Tarifas_y_Auditoria_Form.resx">
+      <DependentUpon>Administracion_Tarifas_y_Auditoria_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador_Interfaz_Principal_Form.resx">
+      <DependentUpon>Administrador_Interfaz_Principal_Form.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formulario.resx">
       <DependentUpon>formulario.h</DependentUpon>
     </EmbeddedResource>
