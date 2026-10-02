@@ -144,8 +144,6 @@
     <ClCompile Include="Administracion_Reporte_Finanzas_Form.cpp" />
     <ClCompile Include="Administracion_Tarifas_y_Auditoria_Form.cpp" />
     <ClCompile Include="Administrador_Interfaz_Principal_Form.cpp" />
-    <ClCompile Include="fallas.cpp" />
-    <ClCompile Include="formulario.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Mantenimiento_Menu_Form.cpp" />
     <ClCompile Include="Mantenimiento_Motor_Principal_Form.cpp" />
@@ -154,9 +152,6 @@
     <ClCompile Include="Operador_Formulario_Form.cpp" />
     <ClCompile Include="Operador_Registrar_Falla_Form.cpp" />
     <ClCompile Include="Operador_Registrar_Ticket_Form.cpp" />
-    <ClCompile Include="reclamos.cpp" />
-    <ClCompile Include="tickets.cpp" />
-    <ClCompile Include="usuarios.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Administracion_Gestion_Usuarios_Form.h">
@@ -169,12 +164,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Administrador_Interfaz_Principal_Form.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="fallas.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="formulario.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
@@ -201,15 +190,6 @@
     <ClInclude Include="Operador_Registrar_Ticket_Form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="reclamos.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="tickets.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="usuarios.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Administracion_Gestion_Usuarios_Form.resx">
@@ -223,9 +203,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administrador_Interfaz_Principal_Form.resx">
       <DependentUpon>Administrador_Interfaz_Principal_Form.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formulario.resx">
-      <DependentUpon>formulario.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
