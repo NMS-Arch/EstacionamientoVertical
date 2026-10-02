@@ -65,6 +65,14 @@ namespace View {
 	private: System::Windows::Forms::NumericUpDown^ numeric_Ingresos_Hoy;
 	private: System::Windows::Forms::NumericUpDown^ numeric_Autos_Atendidos_Hoy;
 	private: System::Windows::Forms::NumericUpDown^ numeric_Espacios_Ocupados;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
 	protected:
 
 	private:
@@ -95,6 +103,14 @@ namespace View {
 			this->numeric_Ingresos_Hoy = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_Autos_Atendidos_Hoy = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_Espacios_Ocupados = (gcnew System::Windows::Forms::NumericUpDown());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Ingresos_Hoy))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Autos_Atendidos_Hoy))->BeginInit();
@@ -167,11 +183,15 @@ namespace View {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->Column1,
+					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8
+			});
 			this->dataGridView1->Location = System::Drawing::Point(46, 264);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(793, 126);
+			this->dataGridView1->Size = System::Drawing::Size(1082, 172);
 			this->dataGridView1->TabIndex = 10;
 			// 
 			// btn_ver_Reportes_Financieros
@@ -186,7 +206,7 @@ namespace View {
 			// 
 			// btn_ver_Gestion_Personal
 			// 
-			this->btn_ver_Gestion_Personal->Location = System::Drawing::Point(319, 476);
+			this->btn_ver_Gestion_Personal->Location = System::Drawing::Point(426, 476);
 			this->btn_ver_Gestion_Personal->Name = L"btn_ver_Gestion_Personal";
 			this->btn_ver_Gestion_Personal->Size = System::Drawing::Size(182, 43);
 			this->btn_ver_Gestion_Personal->TabIndex = 12;
@@ -196,7 +216,7 @@ namespace View {
 			// 
 			// btn_Configurar_Pagos_Auditoria
 			// 
-			this->btn_Configurar_Pagos_Auditoria->Location = System::Drawing::Point(583, 476);
+			this->btn_Configurar_Pagos_Auditoria->Location = System::Drawing::Point(761, 476);
 			this->btn_Configurar_Pagos_Auditoria->Name = L"btn_Configurar_Pagos_Auditoria";
 			this->btn_Configurar_Pagos_Auditoria->Size = System::Drawing::Size(256, 38);
 			this->btn_Configurar_Pagos_Auditoria->TabIndex = 13;
@@ -206,7 +226,7 @@ namespace View {
 			// 
 			// btn_Cerrar_Sesion
 			// 
-			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(638, 35);
+			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(915, 84);
 			this->btn_Cerrar_Sesion->Name = L"btn_Cerrar_Sesion";
 			this->btn_Cerrar_Sesion->Size = System::Drawing::Size(200, 47);
 			this->btn_Cerrar_Sesion->TabIndex = 14;
@@ -216,7 +236,9 @@ namespace View {
 			// 
 			// numeric_Ingresos_Hoy
 			// 
+			this->numeric_Ingresos_Hoy->DecimalPlaces = 2;
 			this->numeric_Ingresos_Hoy->Location = System::Drawing::Point(108, 165);
+			this->numeric_Ingresos_Hoy->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
 			this->numeric_Ingresos_Hoy->Name = L"numeric_Ingresos_Hoy";
 			this->numeric_Ingresos_Hoy->Size = System::Drawing::Size(124, 22);
 			this->numeric_Ingresos_Hoy->TabIndex = 15;
@@ -235,11 +257,67 @@ namespace View {
 			this->numeric_Espacios_Ocupados->Size = System::Drawing::Size(120, 22);
 			this->numeric_Espacios_Ocupados->TabIndex = 17;
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"ID Registro";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 125;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Monto Total";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Ticket";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 125;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Placa";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Precio Base";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 125;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Tiempo Total";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 125;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"ID Operario";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 125;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"Nombre Ope.";
+			this->Column8->MinimumWidth = 6;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 125;
+			// 
 			// Administrador_Interfaz_Principal_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(923, 559);
+			this->ClientSize = System::Drawing::Size(1154, 563);
 			this->Controls->Add(this->numeric_Espacios_Ocupados);
 			this->Controls->Add(this->numeric_Autos_Atendidos_Hoy);
 			this->Controls->Add(this->numeric_Ingresos_Hoy);

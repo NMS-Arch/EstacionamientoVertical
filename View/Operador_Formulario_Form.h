@@ -81,6 +81,11 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::NumericUpDown^ numeric_ID_Operario_Cuenta;
+	private: System::Windows::Forms::Label^ label8;
+
+
 
 
 
@@ -133,11 +138,15 @@ namespace View {
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_forzado))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario_Cuenta))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label3
@@ -151,18 +160,18 @@ namespace View {
 			// 
 			// btn_Espacios_Disponibles
 			// 
-			this->btn_Espacios_Disponibles->Location = System::Drawing::Point(41, 89);
+			this->btn_Espacios_Disponibles->Location = System::Drawing::Point(41, 133);
 			this->btn_Espacios_Disponibles->Name = L"btn_Espacios_Disponibles";
-			this->btn_Espacios_Disponibles->Size = System::Drawing::Size(163, 28);
+			this->btn_Espacios_Disponibles->Size = System::Drawing::Size(192, 41);
 			this->btn_Espacios_Disponibles->TabIndex = 3;
 			this->btn_Espacios_Disponibles->Text = L"Espacios Disponibles";
 			this->btn_Espacios_Disponibles->UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(46, 319);
+			this->button1->Location = System::Drawing::Point(41, 380);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(163, 28);
+			this->button1->Size = System::Drawing::Size(190, 28);
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Pesar Vehiculo";
 			this->button1->UseVisualStyleBackColor = true;
@@ -170,23 +179,23 @@ namespace View {
 			// numeric_Peso_Vehiculo
 			// 
 			this->numeric_Peso_Vehiculo->DecimalPlaces = 1;
-			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(47, 353);
+			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(43, 425);
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
-			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(162, 22);
+			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(188, 22);
 			this->numeric_Peso_Vehiculo->TabIndex = 5;
 			// 
 			// numeric_Espacios_Disponibles
 			// 
-			this->numeric_Espacios_Disponibles->Location = System::Drawing::Point(107, 138);
+			this->numeric_Espacios_Disponibles->Location = System::Drawing::Point(128, 195);
 			this->numeric_Espacios_Disponibles->Name = L"numeric_Espacios_Disponibles";
-			this->numeric_Espacios_Disponibles->Size = System::Drawing::Size(97, 22);
+			this->numeric_Espacios_Disponibles->Size = System::Drawing::Size(103, 22);
 			this->numeric_Espacios_Disponibles->TabIndex = 6;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(46, 407);
+			this->button2->Location = System::Drawing::Point(43, 474);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(163, 31);
+			this->button2->Size = System::Drawing::Size(185, 31);
 			this->button2->TabIndex = 7;
 			this->button2->Text = L"Precio por Hora";
 			this->button2->UseVisualStyleBackColor = true;
@@ -194,9 +203,9 @@ namespace View {
 			// numeric_
 			// 
 			this->numeric_->DecimalPlaces = 2;
-			this->numeric_->Location = System::Drawing::Point(47, 446);
+			this->numeric_->Location = System::Drawing::Point(44, 513);
 			this->numeric_->Name = L"numeric_";
-			this->numeric_->Size = System::Drawing::Size(163, 22);
+			this->numeric_->Size = System::Drawing::Size(186, 22);
 			this->numeric_->TabIndex = 8;
 			// 
 			// dataGridView1
@@ -215,7 +224,7 @@ namespace View {
 			// 
 			// btn_Listar_Historial
 			// 
-			this->btn_Listar_Historial->Location = System::Drawing::Point(447, 79);
+			this->btn_Listar_Historial->Location = System::Drawing::Point(487, 79);
 			this->btn_Listar_Historial->Name = L"btn_Listar_Historial";
 			this->btn_Listar_Historial->Size = System::Drawing::Size(123, 37);
 			this->btn_Listar_Historial->TabIndex = 10;
@@ -225,7 +234,7 @@ namespace View {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(40, 140);
+			this->label1->Location = System::Drawing::Point(40, 197);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(61, 16);
 			this->label1->TabIndex = 11;
@@ -234,32 +243,32 @@ namespace View {
 			// cb_ID_Vehiculo_Dinamico
 			// 
 			this->cb_ID_Vehiculo_Dinamico->FormattingEnabled = true;
-			this->cb_ID_Vehiculo_Dinamico->Location = System::Drawing::Point(144, 201);
+			this->cb_ID_Vehiculo_Dinamico->Location = System::Drawing::Point(131, 250);
 			this->cb_ID_Vehiculo_Dinamico->Name = L"cb_ID_Vehiculo_Dinamico";
-			this->cb_ID_Vehiculo_Dinamico->Size = System::Drawing::Size(63, 24);
+			this->cb_ID_Vehiculo_Dinamico->Size = System::Drawing::Size(100, 24);
 			this->cb_ID_Vehiculo_Dinamico->TabIndex = 12;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(40, 204);
+			this->label2->Location = System::Drawing::Point(40, 253);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(95, 16);
+			this->label2->Size = System::Drawing::Size(64, 16);
 			this->label2->TabIndex = 13;
-			this->label2->Text = L"ID Disponibles";
+			this->label2->Text = L"Espacios";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(333, 89);
+			this->label4->Location = System::Drawing::Point(303, 89);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(77, 16);
+			this->label4->Size = System::Drawing::Size(148, 16);
 			this->label4->TabIndex = 14;
-			this->label4->Text = L"HISTORIAL";
+			this->label4->Text = L"HISTORIAL RECIENTE";
 			// 
 			// btn_Registrar_TIcket
 			// 
-			this->btn_Registrar_TIcket->Location = System::Drawing::Point(306, 470);
+			this->btn_Registrar_TIcket->Location = System::Drawing::Point(306, 475);
 			this->btn_Registrar_TIcket->Name = L"btn_Registrar_TIcket";
 			this->btn_Registrar_TIcket->Size = System::Drawing::Size(176, 60);
 			this->btn_Registrar_TIcket->TabIndex = 15;
@@ -269,7 +278,7 @@ namespace View {
 			// 
 			// btn_Buscar
 			// 
-			this->btn_Buscar->Location = System::Drawing::Point(573, 470);
+			this->btn_Buscar->Location = System::Drawing::Point(573, 475);
 			this->btn_Buscar->Name = L"btn_Buscar";
 			this->btn_Buscar->Size = System::Drawing::Size(182, 60);
 			this->btn_Buscar->TabIndex = 16;
@@ -313,16 +322,16 @@ namespace View {
 			// 
 			// btn_Bajar_Espacio
 			// 
-			this->btn_Bajar_Espacio->Location = System::Drawing::Point(43, 259);
+			this->btn_Bajar_Espacio->Location = System::Drawing::Point(43, 320);
 			this->btn_Bajar_Espacio->Name = L"btn_Bajar_Espacio";
-			this->btn_Bajar_Espacio->Size = System::Drawing::Size(166, 29);
+			this->btn_Bajar_Espacio->Size = System::Drawing::Size(188, 30);
 			this->btn_Bajar_Espacio->TabIndex = 21;
 			this->btn_Bajar_Espacio->Text = L"Bajar Espacio";
 			this->btn_Bajar_Espacio->UseVisualStyleBackColor = true;
 			// 
 			// btn_Cerrar_Sesion
 			// 
-			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(839, 31);
+			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(956, 25);
 			this->btn_Cerrar_Sesion->Name = L"btn_Cerrar_Sesion";
 			this->btn_Cerrar_Sesion->Size = System::Drawing::Size(258, 48);
 			this->btn_Cerrar_Sesion->TabIndex = 22;
@@ -386,11 +395,39 @@ namespace View {
 			this->Column8->Name = L"Column8";
 			this->Column8->Width = 125;
 			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(38, 79);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(76, 16);
+			this->label7->TabIndex = 23;
+			this->label7->Text = L"ID Operario";
+			// 
+			// numeric_ID_Operario_Cuenta
+			// 
+			this->numeric_ID_Operario_Cuenta->Location = System::Drawing::Point(128, 77);
+			this->numeric_ID_Operario_Cuenta->Name = L"numeric_ID_Operario_Cuenta";
+			this->numeric_ID_Operario_Cuenta->Size = System::Drawing::Size(105, 22);
+			this->numeric_ID_Operario_Cuenta->TabIndex = 24;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(41, 269);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(79, 16);
+			this->label8->TabIndex = 25;
+			this->label8->Text = L"Disponibles";
+			// 
 			// Operador_Formulario_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1226, 592);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->numeric_ID_Operario_Cuenta);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->btn_Cerrar_Sesion);
 			this->Controls->Add(this->btn_Bajar_Espacio);
 			this->Controls->Add(this->btn_Forzar_Bajada);
@@ -419,6 +456,7 @@ namespace View {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_forzado))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario_Cuenta))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

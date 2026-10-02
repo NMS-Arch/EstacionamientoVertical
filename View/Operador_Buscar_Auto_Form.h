@@ -106,6 +106,7 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column11;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column12;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
+	private: System::Windows::Forms::Button^ btn_Anular_Pago;
 
 	protected:
 
@@ -175,6 +176,7 @@ namespace View {
 			this->Column11 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->btn_Anular_Pago = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
@@ -382,7 +384,7 @@ namespace View {
 			// 
 			this->btn_Imprimir_Boleta->Location = System::Drawing::Point(1082, 323);
 			this->btn_Imprimir_Boleta->Name = L"btn_Imprimir_Boleta";
-			this->btn_Imprimir_Boleta->Size = System::Drawing::Size(96, 205);
+			this->btn_Imprimir_Boleta->Size = System::Drawing::Size(96, 131);
 			this->btn_Imprimir_Boleta->TabIndex = 22;
 			this->btn_Imprimir_Boleta->Text = L"Imprimir Boleta";
 			this->btn_Imprimir_Boleta->UseVisualStyleBackColor = true;
@@ -522,7 +524,7 @@ namespace View {
 			// 
 			// btn_Procesar_Pago
 			// 
-			this->btn_Procesar_Pago->Location = System::Drawing::Point(903, 485);
+			this->btn_Procesar_Pago->Location = System::Drawing::Point(916, 485);
 			this->btn_Procesar_Pago->Name = L"btn_Procesar_Pago";
 			this->btn_Procesar_Pago->Size = System::Drawing::Size(114, 100);
 			this->btn_Procesar_Pago->TabIndex = 40;
@@ -621,11 +623,21 @@ namespace View {
 			this->Column13->Name = L"Column13";
 			this->Column13->Width = 125;
 			// 
+			// btn_Anular_Pago
+			// 
+			this->btn_Anular_Pago->Location = System::Drawing::Point(1066, 482);
+			this->btn_Anular_Pago->Name = L"btn_Anular_Pago";
+			this->btn_Anular_Pago->Size = System::Drawing::Size(112, 103);
+			this->btn_Anular_Pago->TabIndex = 41;
+			this->btn_Anular_Pago->Text = L"Anular Pago";
+			this->btn_Anular_Pago->UseVisualStyleBackColor = true;
+			// 
 			// Operador_Buscar_Auto_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1229, 736);
+			this->Controls->Add(this->btn_Anular_Pago);
 			this->Controls->Add(this->btn_Procesar_Pago);
 			this->Controls->Add(this->btn_Regresar_Formulario);
 			this->Controls->Add(this->numeric_Peso_Vehiculo);
