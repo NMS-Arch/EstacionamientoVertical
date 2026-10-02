@@ -319,7 +319,7 @@ namespace View {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1634, 601);
+			this->ClientSize = System::Drawing::Size(1701, 601);
 			this->Controls->Add(this->btn_Regresar_Menu_Administracion);
 			this->Controls->Add(this->numericUpDown1);
 			this->Controls->Add(this->label2);
