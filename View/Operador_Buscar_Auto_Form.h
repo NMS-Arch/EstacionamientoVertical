@@ -62,7 +62,7 @@ namespace View {
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Button^ btn_Obtener_Precio_por_Estacionar;
 
-	private: System::Windows::Forms::NumericUpDown^ numeric_Precio_por_Estacionar;
+
 	private: System::Windows::Forms::Button^ btn_Bajar_Espacio;
 
 
@@ -89,7 +89,8 @@ namespace View {
 	private: System::Windows::Forms::TextBox^ tb_Tiempo_Transcurrido;
 
 	private: System::Windows::Forms::Label^ label19;
-	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
+	private: System::Windows::Forms::NumericUpDown^ numeric_Precio_Base;
+
 	private: System::Windows::Forms::NumericUpDown^ numeric_Peso_Vehiculo;
 	private: System::Windows::Forms::Button^ btn_Regresar_Formulario;
 	private: System::Windows::Forms::Button^ btn_Procesar_Pago;
@@ -107,6 +108,7 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column12;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column13;
 	private: System::Windows::Forms::Button^ btn_Anular_Pago;
+	private: System::Windows::Forms::NumericUpDown^ numeric_Precio_por_Estacionar;
 
 	protected:
 
@@ -143,7 +145,6 @@ namespace View {
 			this->tb_DNI = (gcnew System::Windows::Forms::TextBox());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->btn_Obtener_Precio_por_Estacionar = (gcnew System::Windows::Forms::Button());
-			this->numeric_Precio_por_Estacionar = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btn_Bajar_Espacio = (gcnew System::Windows::Forms::Button());
 			this->btn_Imprimir_Boleta = (gcnew System::Windows::Forms::Button());
 			this->label12 = (gcnew System::Windows::Forms::Label());
@@ -159,7 +160,7 @@ namespace View {
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->tb_Tiempo_Transcurrido = (gcnew System::Windows::Forms::TextBox());
 			this->label19 = (gcnew System::Windows::Forms::Label());
-			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numeric_Precio_Base = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_Peso_Vehiculo = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btn_Regresar_Formulario = (gcnew System::Windows::Forms::Button());
 			this->btn_Procesar_Pago = (gcnew System::Windows::Forms::Button());
@@ -177,10 +178,11 @@ namespace View {
 			this->Column12 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column13 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btn_Anular_Pago = (gcnew System::Windows::Forms::Button());
+			this->numeric_Precio_por_Estacionar = (gcnew System::Windows::Forms::NumericUpDown());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Base))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -364,13 +366,6 @@ namespace View {
 			this->btn_Obtener_Precio_por_Estacionar->Text = L"Obtener Precio por Estacionar";
 			this->btn_Obtener_Precio_por_Estacionar->UseVisualStyleBackColor = true;
 			// 
-			// numeric_Precio_por_Estacionar
-			// 
-			this->numeric_Precio_por_Estacionar->Location = System::Drawing::Point(765, 426);
-			this->numeric_Precio_por_Estacionar->Name = L"numeric_Precio_por_Estacionar";
-			this->numeric_Precio_por_Estacionar->Size = System::Drawing::Size(252, 22);
-			this->numeric_Precio_por_Estacionar->TabIndex = 20;
-			// 
 			// btn_Bajar_Espacio
 			// 
 			this->btn_Bajar_Espacio->Location = System::Drawing::Point(765, 488);
@@ -382,9 +377,9 @@ namespace View {
 			// 
 			// btn_Imprimir_Boleta
 			// 
-			this->btn_Imprimir_Boleta->Location = System::Drawing::Point(1082, 323);
+			this->btn_Imprimir_Boleta->Location = System::Drawing::Point(1066, 323);
 			this->btn_Imprimir_Boleta->Name = L"btn_Imprimir_Boleta";
-			this->btn_Imprimir_Boleta->Size = System::Drawing::Size(96, 131);
+			this->btn_Imprimir_Boleta->Size = System::Drawing::Size(112, 131);
 			this->btn_Imprimir_Boleta->TabIndex = 22;
 			this->btn_Imprimir_Boleta->Text = L"Imprimir Boleta";
 			this->btn_Imprimir_Boleta->UseVisualStyleBackColor = true;
@@ -496,13 +491,13 @@ namespace View {
 			this->label19->TabIndex = 36;
 			this->label19->Text = L"PRECIO BASE";
 			// 
-			// numericUpDown1
+			// numeric_Precio_Base
 			// 
-			this->numericUpDown1->DecimalPlaces = 2;
-			this->numericUpDown1->Location = System::Drawing::Point(888, 680);
-			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(171, 22);
-			this->numericUpDown1->TabIndex = 37;
+			this->numeric_Precio_Base->DecimalPlaces = 2;
+			this->numeric_Precio_Base->Location = System::Drawing::Point(888, 680);
+			this->numeric_Precio_Base->Name = L"numeric_Precio_Base";
+			this->numeric_Precio_Base->Size = System::Drawing::Size(171, 22);
+			this->numeric_Precio_Base->TabIndex = 37;
 			// 
 			// numeric_Peso_Vehiculo
 			// 
@@ -632,16 +627,27 @@ namespace View {
 			this->btn_Anular_Pago->Text = L"Anular Pago";
 			this->btn_Anular_Pago->UseVisualStyleBackColor = true;
 			// 
+			// numeric_Precio_por_Estacionar
+			// 
+			this->numeric_Precio_por_Estacionar->DecimalPlaces = 2;
+			this->numeric_Precio_por_Estacionar->Location = System::Drawing::Point(773, 427);
+			this->numeric_Precio_por_Estacionar->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
+			this->numeric_Precio_por_Estacionar->Name = L"numeric_Precio_por_Estacionar";
+			this->numeric_Precio_por_Estacionar->Size = System::Drawing::Size(243, 22);
+			this->numeric_Precio_por_Estacionar->TabIndex = 42;
+			// 
 			// Operador_Buscar_Auto_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoValidate = System::Windows::Forms::AutoValidate::EnablePreventFocusChange;
 			this->ClientSize = System::Drawing::Size(1229, 736);
+			this->Controls->Add(this->numeric_Precio_por_Estacionar);
 			this->Controls->Add(this->btn_Anular_Pago);
 			this->Controls->Add(this->btn_Procesar_Pago);
 			this->Controls->Add(this->btn_Regresar_Formulario);
 			this->Controls->Add(this->numeric_Peso_Vehiculo);
-			this->Controls->Add(this->numericUpDown1);
+			this->Controls->Add(this->numeric_Precio_Base);
 			this->Controls->Add(this->label19);
 			this->Controls->Add(this->tb_Tiempo_Transcurrido);
 			this->Controls->Add(this->label18);
@@ -657,7 +663,6 @@ namespace View {
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->btn_Imprimir_Boleta);
 			this->Controls->Add(this->btn_Bajar_Espacio);
-			this->Controls->Add(this->numeric_Precio_por_Estacionar);
 			this->Controls->Add(this->btn_Obtener_Precio_por_Estacionar);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->tb_DNI);
@@ -681,9 +686,9 @@ namespace View {
 			this->Name = L"Operador_Buscar_Auto_Form";
 			this->Text = L"Operador_Buscar_Auto_Form";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Base))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

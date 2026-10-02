@@ -54,6 +54,18 @@
     <ClCompile Include="Administracion_Tarifas_y_Auditoria_Form.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mantenimiento_Menu_Form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mantenimiento_Registro_Fallas_Form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mantenimiento_Motor_Principal_Form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operador_Registrar_Falla_Form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="formulario.h">
@@ -93,6 +105,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Administracion_Tarifas_y_Auditoria_Form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mantenimiento_Menu_Form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mantenimiento_Registro_Fallas_Form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mantenimiento_Motor_Principal_Form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operador_Registrar_Falla_Form.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

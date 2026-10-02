@@ -1,6 +1,7 @@
 #pragma once
 #include "Operador_Registrar_Ticket_Form.h"
 #include "Operador_Buscar_Auto_Form.h"
+#include "Operador_Registrar_Falla_Form.h"
 
 
 namespace View {
@@ -84,6 +85,7 @@ namespace View {
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_Operario_Cuenta;
 	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Button^ btn_Registrar_Falla;
 
 
 
@@ -141,6 +143,7 @@ namespace View {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_))->BeginInit();
@@ -298,7 +301,7 @@ namespace View {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(899, 514);
+			this->label6->Location = System::Drawing::Point(899, 497);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(91, 16);
 			this->label6->TabIndex = 18;
@@ -315,7 +318,7 @@ namespace View {
 			// 
 			this->btn_Forzar_Bajada->Location = System::Drawing::Point(1023, 514);
 			this->btn_Forzar_Bajada->Name = L"btn_Forzar_Bajada";
-			this->btn_Forzar_Bajada->Size = System::Drawing::Size(75, 45);
+			this->btn_Forzar_Bajada->Size = System::Drawing::Size(146, 45);
 			this->btn_Forzar_Bajada->TabIndex = 20;
 			this->btn_Forzar_Bajada->Text = L"Forzar Bajada";
 			this->btn_Forzar_Bajada->UseVisualStyleBackColor = true;
@@ -420,11 +423,22 @@ namespace View {
 			this->label8->TabIndex = 25;
 			this->label8->Text = L"Disponibles";
 			// 
+			// btn_Registrar_Falla
+			// 
+			this->btn_Registrar_Falla->Location = System::Drawing::Point(902, 596);
+			this->btn_Registrar_Falla->Name = L"btn_Registrar_Falla";
+			this->btn_Registrar_Falla->Size = System::Drawing::Size(267, 46);
+			this->btn_Registrar_Falla->TabIndex = 26;
+			this->btn_Registrar_Falla->Text = L"Registrar Falla";
+			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
+			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Registrar_Falla_Click);
+			// 
 			// Operador_Formulario_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1226, 592);
+			this->ClientSize = System::Drawing::Size(1253, 664);
+			this->Controls->Add(this->btn_Registrar_Falla);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->numeric_ID_Operario_Cuenta);
 			this->Controls->Add(this->label7);
@@ -485,6 +499,14 @@ namespace View {
 
 			BuscarVehiculoForm->Show();
 
+		}
+		private: System::Void btn_Registrar_Falla_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			this->Hide();
+
+			Operador_Registrar_Falla_Form^ RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
+
+			RegistrarFallaForm->Show();
 		}
 };
 }

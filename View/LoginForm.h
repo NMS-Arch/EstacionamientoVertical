@@ -2,6 +2,7 @@
 
 #include "Operador_Formulario_Form.h"
 #include "Administrador_Interfaz_Principal_Form.h"
+#include "Mantenimiento_Menu_Form.h"
 
 namespace View {
 
@@ -143,7 +144,7 @@ namespace View {
 			String^ contra = tb_Clave->Text;
 
 
-			// 2. Rol: OPERADOR (Ingresa a formulario y tickets)
+			// Rol: OPERADOR 
 			if (usuario == "operador" && contra == "ope123") {
 
 				this->Hide();
@@ -153,7 +154,7 @@ namespace View {
 
 
 			}
-			// 3. Rol: ADMINISTRADOR (Ingresa a reclamos y usuarios)
+			// Rol: ADMINISTRADOR 
 			else if (usuario == "admin" && contra == "admin123") {
 
 				this->Hide();
@@ -161,16 +162,17 @@ namespace View {
 				Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this);
 				MenuAdminForm->Show();
 
-			//}
-			//// 4. Rol: MECÁNICO / MANTENIMIENTO (Ingresa a fallas)
-			//else if (usuario == "mecanico" && contra == "mec123") {
-
-			//	fallas^ ventanaFallas = gcnew fallas();
-			//	ventanaFallas->Show();
-
-			//	this->Hide();
 			}
-			// 5. Validación de error
+			// Rol: MECANICO /MANTENIMIENTO 
+			else if (usuario == "mecanico" && contra == "mec123") {
+
+				this->Hide();
+
+				Mantenimiento_Menu_Form^ MantenimientoMenuForm = gcnew Mantenimiento_Menu_Form(this);
+				MantenimientoMenuForm->Show();
+
+				
+			}
 			else {
 				MessageBox::Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
