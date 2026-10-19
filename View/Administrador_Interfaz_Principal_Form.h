@@ -18,7 +18,13 @@ namespace View {
 	public ref class Administrador_Interfaz_Principal_Form : public System::Windows::Forms::Form
 	{
 	private:
-		Form^ loginForm;
+		//Padre
+		Form^ loginForm;  
+		//Hijos
+		Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm;
+		Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios;
+		Administracion_Tarifas_y_Auditoria_Form^ AdminTarifasAuditoriaForm;
+
 	public:
 		Administrador_Interfaz_Principal_Form(Form^ entrada_loginForm)
 		{
@@ -26,6 +32,12 @@ namespace View {
 			//
 			//TODO: Add the constructor code here
 			loginForm = entrada_loginForm;
+
+			AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this);
+			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this);
+			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this);
+
+
 			//
 		}
 
@@ -81,7 +93,7 @@ namespace View {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
-#pragma region Windows Form Designer generated code
+	#pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -348,25 +360,25 @@ namespace View {
 
 
 			this->Close();
-			loginForm->Show();
+			this->loginForm->Show();
 		}
 		private: System::Void btn_ver_Reportes_Financieros_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
-			Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this);
-			AdminReportesFinanForm->Show();
+			//Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this);
+			this->AdminReportesFinanForm->Show();
 		}
 		private: System::Void btn_ver_Gestion_Personal_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
-			Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this);
-			AdminGestionUsuarios->Show();
+			//Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this);
+			this->AdminGestionUsuarios->Show();
 		}
 		private: System::Void btn_Configurar_Pagos_Auditoria_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
-			Administracion_Tarifas_y_Auditoria_Form^ AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this);
-			AdminTarifasAuditoriaForm->Show();
+			//Administracion_Tarifas_y_Auditoria_Form^ AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this);
+			this->AdminTarifasAuditoriaForm->Show();
 		}
 };
 }

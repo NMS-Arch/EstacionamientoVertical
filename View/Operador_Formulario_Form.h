@@ -20,8 +20,12 @@ namespace View {
 	{
 
 	private:
-
+		//Padre
 		Form^ loginForm;
+		//hijos
+		Operador_Registrar_Falla_Form^ RegistrarFallaForm;
+		Operador_Buscar_Auto_Form^ BuscarVehiculoForm;
+		Operador_Registrar_Ticket_Form^ RegistrarTicketForm;
 
 	public:
 		Operador_Formulario_Form(Form^ entrada_loginForm)
@@ -31,6 +35,11 @@ namespace View {
 			//TODO: Add the constructor code here
 			 
 			loginForm = entrada_loginForm;
+
+			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
+			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this);
+			RegistrarTicketForm = gcnew Operador_Registrar_Ticket_Form(this);
+
 			//
 		}
 
@@ -487,7 +496,7 @@ namespace View {
 
 			this->Hide();
 
-			Operador_Registrar_Ticket_Form^ RegistrarTicketForm = gcnew Operador_Registrar_Ticket_Form(this);
+			//Operador_Registrar_Ticket_Form^ RegistrarTicketForm = gcnew Operador_Registrar_Ticket_Form(this);
 
 			RegistrarTicketForm->Show();
 		}
@@ -495,7 +504,7 @@ namespace View {
 
 			this->Hide();
 
-			Operador_Buscar_Auto_Form^ BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this);
+			//Operador_Buscar_Auto_Form^ BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this);
 
 			BuscarVehiculoForm->Show();
 
@@ -504,7 +513,7 @@ namespace View {
 
 			this->Hide();
 
-			Operador_Registrar_Falla_Form^ RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
+			//Operador_Registrar_Falla_Form^ RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
 
 			RegistrarFallaForm->Show();
 		}

@@ -18,7 +18,11 @@ namespace View {
 	public ref class Mantenimiento_Menu_Form : public System::Windows::Forms::Form
 	{
 	private:
+		//Padre
 		Form^ loginForm;
+		//hijos
+		Mantenimiento_Motor_Principal_Form^ MotorPrincipalForm;
+		Mantenimiento_Registro_Fallas_Form^ RegistroFallasForm;
 
 	public:
 		Mantenimiento_Menu_Form(Form^ entrada_loginForm)
@@ -27,6 +31,8 @@ namespace View {
 			//
 			//TODO: Add the constructor code here
 			loginForm = entrada_loginForm;
+			MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this);
+			RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this);
 			//
 		}
 
@@ -679,7 +685,7 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 
 			this->Hide();
 
-			Mantenimiento_Motor_Principal_Form^ MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this);
+			//Mantenimiento_Motor_Principal_Form^ MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this);
 
 			MotorPrincipalForm->Show();
 
@@ -688,7 +694,7 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 
 			this->Hide();
 
-			Mantenimiento_Registro_Fallas_Form^ RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this);
+			//Mantenimiento_Registro_Fallas_Form^ RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this);
 
 			RegistroFallasForm->Show();
 

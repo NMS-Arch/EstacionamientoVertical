@@ -449,13 +449,13 @@ namespace View {
 		#pragma endregion
 		private: System::Void btn_Regresar_Sin_Cambios_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			this->Close();
+			this->Hide();
 			
 			FormularioForm->Show();
 		}
 		private: System::Void btn_Registrar_Falla_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			this->Close();
+			this->Hide();
 
 			FormularioForm->Show();
 		}

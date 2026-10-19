@@ -321,7 +321,7 @@ namespace View {
 		#pragma endregion
 		private: System::Void btn_Regresar_Formulario_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			this->Close();
+			this->Hide();
 
 			FormularioForm->Show();
 
