@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfReclamo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Reclamo>
+    <fecha>22/10/2026</fecha>
+    <hora>13:32:42</hora>
+    <descripcion>1222</descripcion>
+    <id>1</id>
+  </Reclamo>
+  <Reclamo>
+    <fecha>22/10/2026</fecha>
+    <hora>13:33:20</hora>
+    <descripcion>1222333</descripcion>
+    <id>2</id>
+  </Reclamo>
+</ArrayOfReclamo>

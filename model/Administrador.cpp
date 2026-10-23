@@ -1,11 +1,8 @@
 #include "pch.h"
 #include "Administrador.h"
 
+using namespace modelPrincipal;
 
-Administrador::Administrador(int dni, String^ nom, int ed, String^ sex, int auth)
-    : Usuario(dni, nom, ed, sex, auth)
-{
-}
 
 void Administrador::finalizarReclamo(Reclamo^ id) {
     

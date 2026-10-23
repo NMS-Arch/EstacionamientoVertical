@@ -152,6 +152,7 @@
     <ClCompile Include="Operador_Formulario_Form.cpp" />
     <ClCompile Include="Operador_Registrar_Falla_Form.cpp" />
     <ClCompile Include="Operador_Registrar_Ticket_Form.cpp" />
+    <ClCompile Include="PRUEBA.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Administracion_Gestion_Usuarios_Form.h">
@@ -188,6 +189,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Operador_Registrar_Ticket_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PRUEBA.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -227,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operador_Registrar_Ticket_Form.resx">
       <DependentUpon>Operador_Registrar_Ticket_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PRUEBA.resx">
+      <DependentUpon>PRUEBA.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

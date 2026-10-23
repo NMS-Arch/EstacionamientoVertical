@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ModuloEspacios.h"
 
+using namespace modelPrincipal;
+
 ModuloEspacios::ModuloEspacios() {
     listaEspacios = gcnew array<Espacio^>(10);
     for (int i = 0; i < 10; i++) {

@@ -5,14 +5,16 @@
 using namespace System;
 using namespace System::Collections::Generic; 
 
-public ref class ModuloUsuarios {
-private:
-  
-    List<Usuario^>^ Empleados;
-    List<Cliente^>^ Clientes;
+namespace modelPrincipal {
+    public ref class ModuloUsuarios {
+    private:
 
-public:
-    ModuloUsuarios(); 
+        List<Usuario^>^ Empleados;
+        List<Cliente^>^ Clientes;
 
-    int registrarEmpleados(Usuario^ nuevoEmpleado);
-};
+    public:
+        ModuloUsuarios();
+
+        int registrarEmpleados(Usuario^ nuevoEmpleado);
+    };
+}

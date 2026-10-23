@@ -1,11 +1,13 @@
 #pragma once
 #include "Sensor.h"
 
-public ref class Camara : public Sensor {
-public:
-    Camara(int id_sensor, bool est);
+namespace modelPrincipal {
+    public ref class Camara : public Sensor {
+    public:
+        Camara(int id_sensor, bool est);
 
-    void inicioGrabar();
-    void finGrabar();
-    void Foto();
-};
+        void inicioGrabar();
+        void finGrabar();
+        void Foto();
+    };
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEspacio xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>false</estado>
+    <id>1</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>true</ocupado>
+    <estado>true</estado>
+    <id>2</id>
+  </Espacio>
+</ArrayOfEspacio>

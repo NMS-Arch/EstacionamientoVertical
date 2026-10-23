@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Camara.h"
 
+using namespace modelPrincipal;
 
 Camara::Camara(int id_sensor, bool est)
     : Sensor(id_sensor, est)

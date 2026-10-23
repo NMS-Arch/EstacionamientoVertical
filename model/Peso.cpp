@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Peso.h"
 
+using namespace modelPrincipal;
+
 Peso::Peso(int id_sensor, bool est, double pMedido)
     : Sensor(id_sensor, est)
 {

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Sensor.h"
 
+using namespace modelPrincipal;
+
 Sensor::Sensor(int id_sensor, bool est) {
     this->id = id_sensor;
     this->estado = est;

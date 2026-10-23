@@ -51,6 +51,9 @@
     <ClCompile Include="Operador_Registrar_Falla_Form.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PRUEBA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoginForm.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Operador_Registrar_Falla_Form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRUEBA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

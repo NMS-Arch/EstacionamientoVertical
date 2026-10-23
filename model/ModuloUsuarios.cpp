@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ModuloUsuarios.h"
 
+using namespace modelPrincipal;
+
 ModuloUsuarios::ModuloUsuarios() {
     
 }

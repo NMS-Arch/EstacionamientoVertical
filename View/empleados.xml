@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUsuario xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Usuario xsi:type="Operador">
+    <DNI>1</DNI>
+    <nombre>2</nombre>
+    <edad>3</edad>
+    <sexo>4</sexo>
+  </Usuario>
+  <Usuario xsi:type="Operador">
+    <DNI>2</DNI>
+    <nombre>2</nombre>
+    <edad>3</edad>
+    <sexo>4</sexo>
+  </Usuario>
+  <Usuario xsi:type="Mantenimiento">
+    <DNI>3</DNI>
+    <nombre>2</nombre>
+    <edad>3</edad>
+    <sexo>4</sexo>
+  </Usuario>
+  <Usuario xsi:type="Administrador">
+    <DNI>4</DNI>
+    <nombre>2</nombre>
+    <edad>3</edad>
+    <sexo>4</sexo>
+  </Usuario>
+</ArrayOfUsuario>

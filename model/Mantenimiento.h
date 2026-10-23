@@ -1,13 +1,17 @@
 #pragma once
 #include "Usuario.h"
 
-public ref class Mantenimiento : public Usuario {
-public:
-    Mantenimiento(int dni, String^ nom, int ed, String^ sex, int auth);
+namespace modelPrincipal {
+    public ref class Mantenimiento : public Usuario {
+    public:
+        Mantenimiento(int dni, String^ nom, int ed, String^ sex) : Usuario(dni, nom, ed, sex) {};
 
-    void activarEstacionamiento();
-    void desactivarEstacionamiento();
-    void finalizarFalla(int idFalla);
-    void activarEspacio(int idEspacio);
-    void desactivarEspacio(int idEspacio);
-};
+        Mantenimiento() {};
+
+        void activarEstacionamiento();
+        void desactivarEstacionamiento();
+        void finalizarFalla(int idFalla);
+        void activarEspacio(int idEspacio);
+        void desactivarEspacio(int idEspacio);
+    };
+}

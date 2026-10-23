@@ -5,11 +5,14 @@
 
 using namespace System;
 
-public ref class Administrador : public Usuario {
-public:
-    Administrador(int dni, String^ nom, int ed, String^ sex, int auth);
+namespace modelPrincipal {
+    public ref class Administrador : public Usuario {
+    public:
+        Administrador(int dni, String^ nom, int ed, String^ sex) : Usuario(dni, nom, ed, sex) {};
+		Administrador() {};
 
-    void verReclamos();
-    void verFinanzas();
-    void finalizarReclamo(Reclamo^ id);
-};
+        void verReclamos();
+        void verFinanzas();
+        void finalizarReclamo(Reclamo^ id);
+    };
+}

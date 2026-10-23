@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCliente xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Cliente>
+    <DNI>1</DNI>
+    <nombre>2</nombre>
+    <edad>3</edad>
+    <sexo>4</sexo>
+    <autorizacion>5</autorizacion>
+    <esVIP>true</esVIP>
+  </Cliente>
+  <Cliente>
+    <DNI>2</DNI>
+    <nombre>2</nombre>
+    <edad>3</edad>
+    <sexo>4</sexo>
+    <autorizacion>5</autorizacion>
+    <esVIP>false</esVIP>
+  </Cliente>
+</ArrayOfCliente>

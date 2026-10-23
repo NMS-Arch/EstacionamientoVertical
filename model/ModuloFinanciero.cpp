@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ModuloFinanciero.h"
 
+using namespace modelPrincipal;
+
 ModuloFinanciero::ModuloFinanciero() {
     
 }

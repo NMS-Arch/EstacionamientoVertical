@@ -1,16 +1,21 @@
 #pragma once
 #include "Usuario.h"
 
-public ref class Cliente : public Usuario {
-public:
-    bool esVIP;
-    Cliente::Cliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip)
-        : Usuario(dni, nom, ed, sex, auth)
-    {
-        this->esVIP = vip;
-    }
+namespace modelPrincipal {
 
-    
-    /*void SolicitarIngreso();
-    void pagarTicket();*/
-};
+    public ref class Cliente : public Usuario {
+    public:
+        bool esVIP;
+
+        Cliente() {};
+
+        Cliente(int dni, String^ nom, int ed, String^ sex, bool vip) : Usuario(dni, nom, ed, sex)
+        {
+            this->esVIP = vip;
+        }
+
+
+        /*void SolicitarIngreso();
+        void pagarTicket();*/
+    };
+}

@@ -1,10 +1,8 @@
 #include "pch.h"
 #include "Operador.h"
 
-Operador::Operador(int dni, String^ nom, int ed, String^ sex, int auth)
-    : Usuario(dni, nom, ed, sex, auth)
-{
-}
+using namespace modelPrincipal;
+
 
 void Operador::registrarTicket() {
     

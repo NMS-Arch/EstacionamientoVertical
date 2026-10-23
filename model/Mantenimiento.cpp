@@ -1,10 +1,7 @@
 #include "pch.h"
 #include "Mantenimiento.h"
 
-Mantenimiento::Mantenimiento(int dni, String^ nom, int ed, String^ sex, int auth)
-    : Usuario(dni, nom, ed, sex, auth)
-{
-}
+using namespace modelPrincipal;
 
 void Mantenimiento::activarEstacionamiento() {}
 void Mantenimiento::desactivarEstacionamiento() {}

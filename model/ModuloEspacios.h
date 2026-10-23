@@ -1,12 +1,14 @@
 #pragma once
 #include "Espacio.h"
 
-public ref class ModuloEspacios {
-private:
-    array<Espacio^>^ listaEspacios; 
+namespace modelPrincipal {
+    public ref class ModuloEspacios {
+    private:
+        array<Espacio^>^ listaEspacios;
 
-public:
-    ModuloEspacios();
+    public:
+        ModuloEspacios();
 
-    void AsignarEspacio(); 
-};
+        void AsignarEspacio();
+    };
+}

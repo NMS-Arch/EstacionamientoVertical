@@ -2,6 +2,11 @@
 
 #include "controller.h"
 using namespace controllerPrincipal;
+using namespace System;
+using namespace System::Collections::Generic;
+using namespace modelPrincipal;
+using namespace persistancePrincipal;
+
 //ESPACIO
 
 void controller::agregarEspacio(bool ocupado, bool est) {
@@ -15,7 +20,6 @@ void controller::agregarEspacio(bool ocupado, bool est) {
 
 	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est);
 	controller::Espacios->Add(nEspacio);
-	//Console::WriteLine("Se añadió el espacio: id {0}, ocupado {1}, est {2}.\n", id, ocupado, est);
 }
 bool controller::eliminarEspacio(int id) {
 	for (int i = 0; i < controller::Espacios->Count; i++) {
@@ -32,7 +36,6 @@ bool controller::modificarEspacio(int id, bool ocupado, bool est) {
 			controller::Espacios[i]->ocupado = ocupado;
 			controller::Espacios[i]->estado = est;
 			return true;
-			/*Console::WriteLine("Se actualizó la estacion de id {0} a: nombre {1}, tipo {2}, estado {3}, ubicacion {4}.", id, nombre, tipo, estado, ubicacion);*/
 		}
 	}
 
@@ -48,34 +51,48 @@ Espacio^ controller::buscarEspacio(int id) {
 	return nullptr;
 }
 
+void controller::guardarEspacios() {
+	persistance::guardarEspacios(controller::Espacios);
+}
+
+List<Espacio^>^ controller::cargarEspacios() {
+	return persistance::cargarEspacios();
+}
+
 
 //EMPLEADOS	
 
-void controller::agregarUsuario(int dni, String^ nom, int ed, String^ sex, int auth) {
+void controller::agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex) {
 
-	Usuario^ nUsuario;
+	int maxId = 0;
+	for each(Usuario ^ usu in controller::Usuarios) {
+		if (usu->DNI > maxId) {
+			maxId = usu->DNI;
+		}
+	}
+	int id = maxId + 1;
 
-	switch (auth) {
-	case 1:
-		nUsuario = gcnew Operador(dni, nom, ed, sex, auth);
-		break;
+	Usuario^ nUsuario = nullptr;
 
-	case 2:
-		nUsuario = gcnew Mantenimiento(dni, nom, ed, sex, auth);
-		break;
-
-	case 3:
-		nUsuario = gcnew Administrador(dni, nom, ed, sex, auth);
-		break;
-
-	default:
-		nUsuario = nullptr;
-		break;
+	if (tipo == "Administrador") {
+		Console::WriteLine("Creando un Administrador");
+		nUsuario = gcnew Administrador(id, nom, ed, sex);
+	}
+	else if (tipo == "Mantenimiento") {
+		Console::WriteLine("Creando un Mantenimiento");
+		nUsuario = gcnew Mantenimiento(id, nom, ed, sex);
+	}
+	else if (tipo == "Operador") {
+		Console::WriteLine("Creando un Operador");
+		nUsuario = gcnew Operador(id, nom, ed, sex);
+	}
+	else {
+		return;
 	}
 
 	controller::Usuarios->Add(nUsuario);
-	//Console::WriteLine("Se añadió el usuario: dni {0}, nombre {1}, edad {2}, sexo {3}, autorizacion {4}.\n", dni, nom, ed, sex, auth);
 }
+
 
 bool controller::eliminarUsuario(int dni) {
 	for (int i = 0; i < controller::Usuarios->Count; i++) {
@@ -87,14 +104,13 @@ bool controller::eliminarUsuario(int dni) {
 	return false;
 }
 
-bool controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex, int auth) {
+bool controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex) {
 	for (int i = 0; i < controller::Usuarios->Count; i++) {
 		if (controller::Usuarios[i]->DNI == dni) {
 			Usuario^ usuario = controller::Usuarios[i];
 			usuario->nombre = nom;
 			usuario->edad = ed;
 			usuario->sexo = sex;
-			usuario->autorizacion = auth;
 			return true;
 		}
 	}
@@ -111,14 +127,23 @@ Usuario^ controller::buscarUsuario(int dni) {
 	return nullptr;
 }
 
+void controller::guardarUsuarios() {
+	persistance::guardarUsuarios(controller::Usuarios);
+}
+
+List<Usuario^>^ controller::cargarUsuarios() {
+	return persistance::cargarUsuarios();
+}
+
+
 //CLIENTES
 
-void controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip) {
+void controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
 
-	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, auth, vip);
+	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, vip);
 
 	controller::Clientes->Add(nCliente);
-	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, autorizacion {4}, vip {5}.\n", dni, nom, ed, sex, auth, vip);
+	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, vip {4}.\n", dni, nom, ed, sex, vip);
 }
 
 bool controller::eliminarCliente(int dni) {
@@ -131,14 +156,13 @@ bool controller::eliminarCliente(int dni) {
 	return false;
 }
 
-bool controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, int auth, bool vip) {
+bool controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
 	for (int i = 0; i < controller::Clientes->Count; i++) {
 		if (controller::Clientes[i]->DNI == dni) {
 			Cliente^ cliente = controller::Clientes[i];
 			cliente->nombre = nom;
 			cliente->edad = ed;
 			cliente->sexo = sex;
-			cliente->autorizacion = auth;
 			cliente->esVIP = vip;
 			return true;
 		}
@@ -156,10 +180,28 @@ Cliente^ controller::buscarCliente(int dni) {
 	return nullptr;
 }
 
+void controller::guardarClientes() {
+	persistance::guardarClientes(controller::Clientes);
+}
+
+List<Cliente^>^ controller::cargarClientes() {
+	return persistance::cargarClientes();
+}
+
+
 //FALLAS
 
-void controller::agregarFalla(int id_falla, String^ desc, int prio, String^ fec, String^ hor) {
-	Falla^ nFalla = gcnew Falla(id_falla, desc, prio, fec, hor);
+void controller::agregarFalla(String^ desc, int prio, String^ fec, String^ hor) {
+
+	int maxId = 0;
+	for each (Falla ^ falla in controller::Fallas) {
+		if (falla->id > maxId) {
+			maxId = falla->id;
+		}
+	}
+	int id = maxId + 1;
+
+	Falla^ nFalla = gcnew Falla(id, desc, prio, fec, hor);
 	controller::Fallas->Add(nFalla);
 }
 
@@ -197,10 +239,27 @@ Falla^ controller::buscarFalla(int id) {
 	return nullptr;
 }
 
+void controller::guardarFallas() {
+	persistance::guardarFallas(controller::Fallas);
+}
+
+List<Falla^>^ controller::cargarFallas() {
+	return persistance::cargarFallas();
+}
+
 //TICKETS
 
-void controller::agregarTicket(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec) {
-	TicketAuto^ nTicket = gcnew TicketAuto(id_ticket, cli, mod, pla, prec);
+void controller::agregarTicket(Cliente^ cli, String^ mod, String^ pla, double prec, String^ fecha, String^ hora) {
+
+	int maxId = 0;
+	for each (TicketAuto ^ ticket in controller::Tickets) {
+		if (ticket->id > maxId) {
+			maxId = ticket->id;
+		}
+	}
+	int id = maxId + 1;
+
+	TicketAuto^ nTicket = gcnew TicketAuto(id, cli, mod, pla, prec, fecha, hora);
 	controller::Tickets->Add(nTicket);
 }
 
@@ -238,10 +297,28 @@ TicketAuto^ controller::buscarTicket(int id_ticket) {
 	return nullptr;
 }
 
+void controller::guardarTickets() {
+	persistance::guardarTickets(controller::Tickets);
+}
+
+List<TicketAuto^>^ controller::cargarTickets() {
+	return persistance::cargarTickets();
+}
+
+
 //RECLAMOS
 
-void controller::agregarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
-	Reclamo^ nReclamo = gcnew Reclamo(id_reclamo, fec, hor, desc);
+void controller::agregarReclamo(String^ fec, String^ hor, String^ desc) {
+
+	int maxId = 0;
+	for each (Reclamo ^ reclamo in controller::Reclamos) {
+		if (reclamo->id > maxId) {
+			maxId = reclamo->id;
+		}
+	}
+	int id = maxId + 1;
+
+	Reclamo^ nReclamo = gcnew Reclamo(id, fec, hor, desc);
 	controller::Reclamos->Add(nReclamo);
 }
 
@@ -276,4 +353,12 @@ Reclamo^ controller::buscarReclamo(int id_reclamo) {
 		}
 	}
 	return nullptr;
+}
+
+void controller::guardarReclamos() {
+	persistance::guardarReclamos(controller::Reclamos);
+}
+
+List<Reclamo^>^ controller::cargarReclamos() {
+	return persistance::cargarReclamos();
 }
