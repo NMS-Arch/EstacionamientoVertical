@@ -25,7 +25,15 @@ namespace View {
 		//hijos
 		Operador_Registrar_Falla_Form^ RegistrarFallaForm;
 		Operador_Buscar_Auto_Form^ BuscarVehiculoForm;
-		Operador_Registrar_Ticket_Form^ RegistrarTicketForm;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+		   Operador_Registrar_Ticket_Form^ RegistrarTicketForm;
 
 	public:
 		Operador_Formulario_Form(Form^ entrada_loginForm)
@@ -83,14 +91,14 @@ namespace View {
 	private: System::Windows::Forms::Button^ btn_Forzar_Bajada;
 	private: System::Windows::Forms::Button^ btn_Bajar_Espacio;
 	private: System::Windows::Forms::Button^ btn_Cerrar_Sesion;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_Operario_Cuenta;
 	private: System::Windows::Forms::Label^ label8;
@@ -141,6 +149,10 @@ namespace View {
 			this->btn_Forzar_Bajada = (gcnew System::Windows::Forms::Button());
 			this->btn_Bajar_Espacio = (gcnew System::Windows::Forms::Button());
 			this->btn_Cerrar_Sesion = (gcnew System::Windows::Forms::Button());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
 			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -149,10 +161,6 @@ namespace View {
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_))->BeginInit();
@@ -164,26 +172,29 @@ namespace View {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(38, 25);
+			this->label3->Location = System::Drawing::Point(28, 20);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(195, 16);
+			this->label3->Size = System::Drawing::Size(153, 13);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Gestion de Espacios - Operario";
 			// 
 			// btn_Espacios_Disponibles
 			// 
-			this->btn_Espacios_Disponibles->Location = System::Drawing::Point(41, 133);
+			this->btn_Espacios_Disponibles->Location = System::Drawing::Point(31, 108);
+			this->btn_Espacios_Disponibles->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Espacios_Disponibles->Name = L"btn_Espacios_Disponibles";
-			this->btn_Espacios_Disponibles->Size = System::Drawing::Size(192, 41);
+			this->btn_Espacios_Disponibles->Size = System::Drawing::Size(144, 33);
 			this->btn_Espacios_Disponibles->TabIndex = 3;
 			this->btn_Espacios_Disponibles->Text = L"Espacios Disponibles";
 			this->btn_Espacios_Disponibles->UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(41, 380);
+			this->button1->Location = System::Drawing::Point(31, 309);
+			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(190, 28);
+			this->button1->Size = System::Drawing::Size(142, 23);
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Pesar Vehiculo";
 			this->button1->UseVisualStyleBackColor = true;
@@ -191,23 +202,26 @@ namespace View {
 			// numeric_Peso_Vehiculo
 			// 
 			this->numeric_Peso_Vehiculo->DecimalPlaces = 1;
-			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(43, 425);
+			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(32, 345);
+			this->numeric_Peso_Vehiculo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
-			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(188, 22);
+			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(141, 20);
 			this->numeric_Peso_Vehiculo->TabIndex = 5;
 			// 
 			// numeric_Espacios_Disponibles
 			// 
-			this->numeric_Espacios_Disponibles->Location = System::Drawing::Point(128, 195);
+			this->numeric_Espacios_Disponibles->Location = System::Drawing::Point(96, 158);
+			this->numeric_Espacios_Disponibles->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->numeric_Espacios_Disponibles->Name = L"numeric_Espacios_Disponibles";
-			this->numeric_Espacios_Disponibles->Size = System::Drawing::Size(103, 22);
+			this->numeric_Espacios_Disponibles->Size = System::Drawing::Size(77, 20);
 			this->numeric_Espacios_Disponibles->TabIndex = 6;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(43, 474);
+			this->button2->Location = System::Drawing::Point(32, 385);
+			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(185, 31);
+			this->button2->Size = System::Drawing::Size(139, 25);
 			this->button2->TabIndex = 7;
 			this->button2->Text = L"Precio por Hora";
 			this->button2->UseVisualStyleBackColor = true;
@@ -215,9 +229,10 @@ namespace View {
 			// numeric_
 			// 
 			this->numeric_->DecimalPlaces = 2;
-			this->numeric_->Location = System::Drawing::Point(44, 513);
+			this->numeric_->Location = System::Drawing::Point(33, 417);
+			this->numeric_->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->numeric_->Name = L"numeric_";
-			this->numeric_->Size = System::Drawing::Size(186, 22);
+			this->numeric_->Size = System::Drawing::Size(140, 20);
 			this->numeric_->TabIndex = 8;
 			// 
 			// dataGridView1
@@ -227,18 +242,20 @@ namespace View {
 				this->Column1,
 					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8
 			});
-			this->dataGridView1->Location = System::Drawing::Point(306, 133);
+			this->dataGridView1->Location = System::Drawing::Point(230, 108);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(908, 310);
+			this->dataGridView1->Size = System::Drawing::Size(699, 252);
 			this->dataGridView1->TabIndex = 9;
 			// 
 			// btn_Listar_Historial
 			// 
-			this->btn_Listar_Historial->Location = System::Drawing::Point(487, 79);
+			this->btn_Listar_Historial->Location = System::Drawing::Point(365, 64);
+			this->btn_Listar_Historial->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Listar_Historial->Name = L"btn_Listar_Historial";
-			this->btn_Listar_Historial->Size = System::Drawing::Size(123, 37);
+			this->btn_Listar_Historial->Size = System::Drawing::Size(92, 30);
 			this->btn_Listar_Historial->TabIndex = 10;
 			this->btn_Listar_Historial->Text = L"Actualizar";
 			this->btn_Listar_Historial->UseVisualStyleBackColor = true;
@@ -246,43 +263,48 @@ namespace View {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(40, 197);
+			this->label1->Location = System::Drawing::Point(30, 160);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(61, 16);
+			this->label1->Size = System::Drawing::Size(49, 13);
 			this->label1->TabIndex = 11;
 			this->label1->Text = L"Cantidad";
 			// 
 			// cb_ID_Vehiculo_Dinamico
 			// 
 			this->cb_ID_Vehiculo_Dinamico->FormattingEnabled = true;
-			this->cb_ID_Vehiculo_Dinamico->Location = System::Drawing::Point(131, 250);
+			this->cb_ID_Vehiculo_Dinamico->Location = System::Drawing::Point(98, 203);
+			this->cb_ID_Vehiculo_Dinamico->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->cb_ID_Vehiculo_Dinamico->Name = L"cb_ID_Vehiculo_Dinamico";
-			this->cb_ID_Vehiculo_Dinamico->Size = System::Drawing::Size(100, 24);
+			this->cb_ID_Vehiculo_Dinamico->Size = System::Drawing::Size(76, 21);
 			this->cb_ID_Vehiculo_Dinamico->TabIndex = 12;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(40, 253);
+			this->label2->Location = System::Drawing::Point(30, 206);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(64, 16);
+			this->label2->Size = System::Drawing::Size(50, 13);
 			this->label2->TabIndex = 13;
 			this->label2->Text = L"Espacios";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(303, 89);
+			this->label4->Location = System::Drawing::Point(227, 72);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(148, 16);
+			this->label4->Size = System::Drawing::Size(121, 13);
 			this->label4->TabIndex = 14;
 			this->label4->Text = L"HISTORIAL RECIENTE";
 			// 
 			// btn_Registrar_TIcket
 			// 
-			this->btn_Registrar_TIcket->Location = System::Drawing::Point(306, 475);
+			this->btn_Registrar_TIcket->Location = System::Drawing::Point(230, 386);
+			this->btn_Registrar_TIcket->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Registrar_TIcket->Name = L"btn_Registrar_TIcket";
-			this->btn_Registrar_TIcket->Size = System::Drawing::Size(176, 60);
+			this->btn_Registrar_TIcket->Size = System::Drawing::Size(132, 49);
 			this->btn_Registrar_TIcket->TabIndex = 15;
 			this->btn_Registrar_TIcket->Text = L"Registrar Ticket";
 			this->btn_Registrar_TIcket->UseVisualStyleBackColor = true;
@@ -290,9 +312,10 @@ namespace View {
 			// 
 			// btn_Buscar
 			// 
-			this->btn_Buscar->Location = System::Drawing::Point(573, 475);
+			this->btn_Buscar->Location = System::Drawing::Point(430, 386);
+			this->btn_Buscar->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Buscar->Name = L"btn_Buscar";
-			this->btn_Buscar->Size = System::Drawing::Size(182, 60);
+			this->btn_Buscar->Size = System::Drawing::Size(136, 49);
 			this->btn_Buscar->TabIndex = 16;
 			this->btn_Buscar->Text = L"Buscar para Retiro";
 			this->btn_Buscar->UseVisualStyleBackColor = true;
@@ -301,152 +324,159 @@ namespace View {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(899, 481);
+			this->label5->Location = System::Drawing::Point(674, 391);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(92, 16);
+			this->label5->Size = System::Drawing::Size(72, 13);
 			this->label5->TabIndex = 17;
 			this->label5->Text = L"Forzar Bajada";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(899, 497);
+			this->label6->Location = System::Drawing::Point(674, 404);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(91, 16);
+			this->label6->Size = System::Drawing::Size(73, 13);
 			this->label6->TabIndex = 18;
 			this->label6->Text = L"ID de espacio";
 			// 
 			// numeric_ID_forzado
 			// 
-			this->numeric_ID_forzado->Location = System::Drawing::Point(902, 533);
+			this->numeric_ID_forzado->Location = System::Drawing::Point(676, 433);
+			this->numeric_ID_forzado->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->numeric_ID_forzado->Name = L"numeric_ID_forzado";
-			this->numeric_ID_forzado->Size = System::Drawing::Size(88, 22);
+			this->numeric_ID_forzado->Size = System::Drawing::Size(66, 20);
 			this->numeric_ID_forzado->TabIndex = 19;
 			// 
 			// btn_Forzar_Bajada
 			// 
-			this->btn_Forzar_Bajada->Location = System::Drawing::Point(1023, 514);
+			this->btn_Forzar_Bajada->Location = System::Drawing::Point(767, 418);
+			this->btn_Forzar_Bajada->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Forzar_Bajada->Name = L"btn_Forzar_Bajada";
-			this->btn_Forzar_Bajada->Size = System::Drawing::Size(146, 45);
+			this->btn_Forzar_Bajada->Size = System::Drawing::Size(110, 37);
 			this->btn_Forzar_Bajada->TabIndex = 20;
 			this->btn_Forzar_Bajada->Text = L"Forzar Bajada";
 			this->btn_Forzar_Bajada->UseVisualStyleBackColor = true;
 			// 
 			// btn_Bajar_Espacio
 			// 
-			this->btn_Bajar_Espacio->Location = System::Drawing::Point(43, 320);
+			this->btn_Bajar_Espacio->Location = System::Drawing::Point(32, 260);
+			this->btn_Bajar_Espacio->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Bajar_Espacio->Name = L"btn_Bajar_Espacio";
-			this->btn_Bajar_Espacio->Size = System::Drawing::Size(188, 30);
+			this->btn_Bajar_Espacio->Size = System::Drawing::Size(141, 24);
 			this->btn_Bajar_Espacio->TabIndex = 21;
 			this->btn_Bajar_Espacio->Text = L"Bajar Espacio";
 			this->btn_Bajar_Espacio->UseVisualStyleBackColor = true;
 			// 
 			// btn_Cerrar_Sesion
 			// 
-			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(956, 25);
+			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(717, 20);
+			this->btn_Cerrar_Sesion->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Cerrar_Sesion->Name = L"btn_Cerrar_Sesion";
-			this->btn_Cerrar_Sesion->Size = System::Drawing::Size(258, 48);
+			this->btn_Cerrar_Sesion->Size = System::Drawing::Size(194, 39);
 			this->btn_Cerrar_Sesion->TabIndex = 22;
 			this->btn_Cerrar_Sesion->Text = L"Cerrar Sesion";
 			this->btn_Cerrar_Sesion->UseVisualStyleBackColor = true;
 			this->btn_Cerrar_Sesion->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Cerrar_Sesion_Click);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(28, 64);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(61, 13);
+			this->label7->TabIndex = 23;
+			this->label7->Text = L"ID Operario";
+			// 
+			// numeric_ID_Operario_Cuenta
+			// 
+			this->numeric_ID_Operario_Cuenta->Location = System::Drawing::Point(96, 63);
+			this->numeric_ID_Operario_Cuenta->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->numeric_ID_Operario_Cuenta->Name = L"numeric_ID_Operario_Cuenta";
+			this->numeric_ID_Operario_Cuenta->Size = System::Drawing::Size(79, 20);
+			this->numeric_ID_Operario_Cuenta->TabIndex = 24;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(31, 219);
+			this->label8->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(61, 13);
+			this->label8->TabIndex = 25;
+			this->label8->Text = L"Disponibles";
+			// 
+			// btn_Registrar_Falla
+			// 
+			this->btn_Registrar_Falla->Location = System::Drawing::Point(676, 484);
+			this->btn_Registrar_Falla->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_Registrar_Falla->Name = L"btn_Registrar_Falla";
+			this->btn_Registrar_Falla->Size = System::Drawing::Size(200, 37);
+			this->btn_Registrar_Falla->TabIndex = 26;
+			this->btn_Registrar_Falla->Text = L"Registrar Falla";
+			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
+			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Registrar_Falla_Click);
 			// 
 			// Column1
 			// 
 			this->Column1->HeaderText = L"Ticket";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
-			this->Column1->Width = 125;
+			this->Column1->Width = 75;
 			// 
 			// Column2
 			// 
 			this->Column2->HeaderText = L"Espacio";
 			this->Column2->MinimumWidth = 6;
 			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
 			// 
 			// Column3
 			// 
 			this->Column3->HeaderText = L"Placa";
 			this->Column3->MinimumWidth = 6;
 			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
+			this->Column3->Width = 75;
 			// 
 			// Column4
 			// 
 			this->Column4->HeaderText = L"Modelo";
 			this->Column4->MinimumWidth = 6;
 			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
 			// 
 			// Column5
 			// 
 			this->Column5->HeaderText = L"Peso";
 			this->Column5->MinimumWidth = 6;
 			this->Column5->Name = L"Column5";
-			this->Column5->Width = 125;
+			this->Column5->Width = 50;
 			// 
 			// Column6
 			// 
 			this->Column6->HeaderText = L"Precio Base";
 			this->Column6->MinimumWidth = 6;
 			this->Column6->Name = L"Column6";
-			this->Column6->Width = 125;
+			this->Column6->Width = 75;
 			// 
 			// Column7
 			// 
 			this->Column7->HeaderText = L"Hora Entrada";
 			this->Column7->MinimumWidth = 6;
 			this->Column7->Name = L"Column7";
-			this->Column7->Width = 125;
+			this->Column7->Width = 75;
 			// 
 			// Column8
 			// 
 			this->Column8->HeaderText = L"R.I. Completo";
 			this->Column8->MinimumWidth = 6;
 			this->Column8->Name = L"Column8";
-			this->Column8->Width = 125;
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(38, 79);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(76, 16);
-			this->label7->TabIndex = 23;
-			this->label7->Text = L"ID Operario";
-			// 
-			// numeric_ID_Operario_Cuenta
-			// 
-			this->numeric_ID_Operario_Cuenta->Location = System::Drawing::Point(128, 77);
-			this->numeric_ID_Operario_Cuenta->Name = L"numeric_ID_Operario_Cuenta";
-			this->numeric_ID_Operario_Cuenta->Size = System::Drawing::Size(105, 22);
-			this->numeric_ID_Operario_Cuenta->TabIndex = 24;
-			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(41, 269);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(79, 16);
-			this->label8->TabIndex = 25;
-			this->label8->Text = L"Disponibles";
-			// 
-			// btn_Registrar_Falla
-			// 
-			this->btn_Registrar_Falla->Location = System::Drawing::Point(902, 596);
-			this->btn_Registrar_Falla->Name = L"btn_Registrar_Falla";
-			this->btn_Registrar_Falla->Size = System::Drawing::Size(267, 46);
-			this->btn_Registrar_Falla->TabIndex = 26;
-			this->btn_Registrar_Falla->Text = L"Registrar Falla";
-			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
-			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Registrar_Falla_Click);
 			// 
 			// Operador_Formulario_Form
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1253, 664);
+			this->ClientSize = System::Drawing::Size(952, 540);
 			this->Controls->Add(this->btn_Registrar_Falla);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->numeric_ID_Operario_Cuenta);
@@ -472,6 +502,7 @@ namespace View {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->btn_Espacios_Disponibles);
 			this->Controls->Add(this->label3);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"Operador_Formulario_Form";
 			this->Text = L"Operador_Formulario_Form";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->EndInit();
