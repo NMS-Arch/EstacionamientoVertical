@@ -20,12 +20,13 @@ namespace View {
 	{
 	private:
 		Form^ FormularioForm;
+
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_espacio;
 
 		controller^ controlador_GUI;
 
 	public:
-		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm)
+		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, double peso, double ID_espacio)
 		{
 			InitializeComponent();
 			//

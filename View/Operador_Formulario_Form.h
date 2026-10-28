@@ -13,6 +13,10 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for Operador_Formulario_Form
 	/// </summary>
@@ -25,6 +29,13 @@ namespace View {
 		//hijos
 		Operador_Registrar_Falla_Form^ RegistrarFallaForm;
 		Operador_Buscar_Auto_Form^ BuscarVehiculoForm;
+		Operador_Registrar_Ticket_Form^ RegistrarTicketForm;
+
+		controller^ controlador_GUI;
+		double peso_vehiculo;
+		double ID_espacio_vehiculo;
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
@@ -33,7 +44,6 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
-		   Operador_Registrar_Ticket_Form^ RegistrarTicketForm;
 
 	public:
 		Operador_Formulario_Form(Form^ entrada_loginForm)
@@ -44,7 +54,10 @@ namespace View {
 			 
 			loginForm = entrada_loginForm;
 
-			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
+			controlador_GUI = gcnew controller();
+
+
+			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this, controlador_GUI,peso_vehiculo, ID_espacio_vehiculo);
 			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this);
 			RegistrarTicketForm = gcnew Operador_Registrar_Ticket_Form(this);
 
