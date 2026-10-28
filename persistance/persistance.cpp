@@ -2,29 +2,29 @@
 
 #include "persistance.h"
 
-using namespace persistancePrincipal;
-using namespace System;
-using namespace System::Collections::Generic;
-using namespace modelPrincipal;
-using namespace System::IO;
-using namespace System::Xml::Serialization;
+//using namespace persistancePrincipal;
+//using namespace System;
+//using namespace System::Collections::Generic;
+//using namespace modelPrincipal;
+//using namespace System::IO;
+//using namespace System::Xml::Serialization;
 
 //espacios
 
-void persistance::guardarEspacios(List<Espacio^>^ espacios) {
+void persistancePrincipal::persistance::guardarEspacios(List<Espacio^>^ espacios) {
 
-	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaEspacios);
+	StreamWriter^ sw = gcnew StreamWriter(rutaEspacios);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Espacio^>::typeid);
 	ser->Serialize(sw, espacios);
 	sw->Close();
 
 }
 
-List<Espacio^>^ persistance::cargarEspacios() {
+List<Espacio^>^ persistancePrincipal::persistance::cargarEspacios() {
 	List<Espacio^>^ lista = gcnew List<Espacio^>();
-	if (!File::Exists(persistance::rutaEspacios)) return lista;
+	if (!File::Exists(rutaEspacios)) return lista;
 
-	StreamReader^ sr = gcnew StreamReader(persistance::rutaEspacios);
+	StreamReader^ sr = gcnew StreamReader(rutaEspacios);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Espacio^>::typeid);
 	lista = (List<Espacio^>^)ser->Deserialize(sr);
 	sr->Close();
@@ -34,20 +34,20 @@ List<Espacio^>^ persistance::cargarEspacios() {
 
 //fallas
 
-void persistance::guardarFallas(List<Falla^>^ fallas) {
+void persistancePrincipal::persistance::guardarFallas(List<Falla^>^ fallas) {
 
-	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaFallas);
+	StreamWriter^ sw = gcnew StreamWriter(rutaFallas);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Falla^>::typeid);
 	ser->Serialize(sw, fallas);
 	sw->Close();
 
 }
 
-List<Falla^>^ persistance::cargarFallas() {
+List<Falla^>^ persistancePrincipal::persistance::cargarFallas() {
 	List<Falla^>^ lista = gcnew List<Falla^>();
-	if (!File::Exists(persistance::rutaFallas)) return lista;
+	if (!File::Exists(rutaFallas)) return lista;
 
-	StreamReader^ sr = gcnew StreamReader(persistance::rutaFallas);
+	StreamReader^ sr = gcnew StreamReader(rutaFallas);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Falla^>::typeid);
 	lista = (List<Falla^>^)ser->Deserialize(sr);
 	sr->Close();
@@ -57,7 +57,7 @@ List<Falla^>^ persistance::cargarFallas() {
 
 //tickets
 
-void persistance::guardarTickets(List<TicketAuto^>^ tickets) {
+void persistancePrincipal::persistance::guardarTickets(List<TicketAuto^>^ tickets) {
 
 	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaTickets);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<TicketAuto^>::typeid);
@@ -66,11 +66,11 @@ void persistance::guardarTickets(List<TicketAuto^>^ tickets) {
 
 }
 
-List<TicketAuto^>^ persistance::cargarTickets() {
+List<TicketAuto^>^ persistancePrincipal::persistance::cargarTickets() {
 	List<TicketAuto^>^ lista = gcnew List<TicketAuto^>();
-	if (!File::Exists(persistance::rutaTickets)) return lista;
+	if (!File::Exists(rutaTickets)) return lista;
 
-	StreamReader^ sr = gcnew StreamReader(persistance::rutaTickets);
+	StreamReader^ sr = gcnew StreamReader(rutaTickets);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<TicketAuto^>::typeid);
 	lista = (List<TicketAuto^>^)ser->Deserialize(sr);
 	sr->Close();
@@ -80,20 +80,20 @@ List<TicketAuto^>^ persistance::cargarTickets() {
 
 //reclamos
 
-void persistance::guardarReclamos(List<Reclamo^>^ reclamos) {
+void persistancePrincipal::persistance::guardarReclamos(List<Reclamo^>^ reclamos) {
 
-	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaReclamos);
+	StreamWriter^ sw = gcnew StreamWriter(rutaReclamos);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Reclamo^>::typeid);
 	ser->Serialize(sw, reclamos);
 	sw->Close();
 
 }
 
-List<Reclamo^>^ persistance::cargarReclamos() {
+List<Reclamo^>^ persistancePrincipal::persistance::cargarReclamos() {
 	List<Reclamo^>^ lista = gcnew List<Reclamo^>();
-	if (!File::Exists(persistance::rutaReclamos)) return lista;
+	if (!File::Exists(rutaReclamos)) return lista;
 
-	StreamReader^ sr = gcnew StreamReader(persistance::rutaReclamos);
+	StreamReader^ sr = gcnew StreamReader(rutaReclamos);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Reclamo^>::typeid);
 	lista = (List<Reclamo^>^)ser->Deserialize(sr);
 	sr->Close();
@@ -103,20 +103,20 @@ List<Reclamo^>^ persistance::cargarReclamos() {
 
 //clientes
 
-void persistance::guardarClientes(List<Cliente^>^ clientes) {
+void persistancePrincipal::persistance::guardarClientes(List<Cliente^>^ clientes) {
 
-	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaClientes);
+	StreamWriter^ sw = gcnew StreamWriter(rutaClientes);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Cliente^>::typeid);
 	ser->Serialize(sw, clientes);
 	sw->Close();
 
 }
 
-List<Cliente^>^ persistance::cargarClientes() {
+List<Cliente^>^ persistancePrincipal::persistance::cargarClientes() {
 	List<Cliente^>^ lista = gcnew List<Cliente^>();
 	if (!File::Exists(persistance::rutaClientes)) return lista;
 
-	StreamReader^ sr = gcnew StreamReader(persistance::rutaClientes);
+	StreamReader^ sr = gcnew StreamReader(rutaClientes);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Cliente^>::typeid);
 	lista = (List<Cliente^>^)ser->Deserialize(sr);
 	sr->Close();
@@ -126,20 +126,20 @@ List<Cliente^>^ persistance::cargarClientes() {
 
 //empleados
 
-void persistance::guardarUsuarios(List<Usuario^>^ usuarios) {
+void persistancePrincipal::persistance::guardarUsuarios(List<Usuario^>^ usuarios) {
 
-	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaUsuarios);
+	StreamWriter^ sw = gcnew StreamWriter(rutaUsuarios);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Usuario^>::typeid);
 	ser->Serialize(sw, usuarios);
 	sw->Close();
 
 }
 
-List<Usuario^>^ persistance::cargarUsuarios() {
+List<Usuario^>^ persistancePrincipal::persistance::cargarUsuarios() {
 	List<Usuario^>^ lista = gcnew List<Usuario^>();
-	if (!File::Exists(persistance::rutaUsuarios)) return lista;
+	if (!File::Exists(rutaUsuarios)) return lista;
 
-	StreamReader^ sr = gcnew StreamReader(persistance::rutaUsuarios);
+	StreamReader^ sr = gcnew StreamReader(rutaUsuarios);
 	XmlSerializer^ ser = gcnew XmlSerializer(List<Usuario^>::typeid);
 	lista = (List<Usuario^>^)ser->Deserialize(sr);
 	sr->Close();

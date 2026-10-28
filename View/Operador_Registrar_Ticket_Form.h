@@ -8,6 +8,10 @@ namespace View {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Summary for Operador_Registrar_Ticket_Form
@@ -16,6 +20,9 @@ namespace View {
 	{
 	private:
 		Form^ FormularioForm;
+	private: System::Windows::Forms::NumericUpDown^ numeric_ID_espacio;
+
+		controller^ controlador_GUI;
 
 	public:
 		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm)
@@ -24,6 +31,9 @@ namespace View {
 			//
 			//TODO: Add the constructor code here
 			FormularioForm = entrada_FormularioForm;
+
+
+			controlador_GUI = gcnew controller();
 			//
 		}
 
@@ -45,13 +55,18 @@ namespace View {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::CheckBox^ checkb_registro_completo;
 
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ tb_Placa;
+	private: System::Windows::Forms::TextBox^ tb_Modelo;
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ tb_DNI;
+
 	private: System::Windows::Forms::Button^ btn_Generar_ID_Ticket;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::TextBox^ tb_ID_Generado;
@@ -86,13 +101,12 @@ namespace View {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->checkb_registro_completo = (gcnew System::Windows::Forms::CheckBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->tb_Placa = (gcnew System::Windows::Forms::TextBox());
+			this->tb_Modelo = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->tb_DNI = (gcnew System::Windows::Forms::TextBox());
 			this->btn_Generar_ID_Ticket = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->tb_ID_Generado = (gcnew System::Windows::Forms::TextBox());
@@ -101,7 +115,9 @@ namespace View {
 			this->btn_Regresar_Formulario = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->numeric_Peso_Vehiculo = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numeric_ID_espacio = (gcnew System::Windows::Forms::NumericUpDown());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_espacio))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -161,26 +177,19 @@ namespace View {
 			this->checkb_registro_completo->Text = L"registro completo";
 			this->checkb_registro_completo->UseVisualStyleBackColor = true;
 			// 
-			// textBox1
+			// tb_Placa
 			// 
-			this->textBox1->Location = System::Drawing::Point(204, 153);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(118, 22);
-			this->textBox1->TabIndex = 6;
+			this->tb_Placa->Location = System::Drawing::Point(204, 197);
+			this->tb_Placa->Name = L"tb_Placa";
+			this->tb_Placa->Size = System::Drawing::Size(117, 22);
+			this->tb_Placa->TabIndex = 7;
 			// 
-			// textBox2
+			// tb_Modelo
 			// 
-			this->textBox2->Location = System::Drawing::Point(204, 197);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(117, 22);
-			this->textBox2->TabIndex = 7;
-			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(204, 242);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(117, 22);
-			this->textBox3->TabIndex = 8;
+			this->tb_Modelo->Location = System::Drawing::Point(204, 242);
+			this->tb_Modelo->Name = L"tb_Modelo";
+			this->tb_Modelo->Size = System::Drawing::Size(117, 22);
+			this->tb_Modelo->TabIndex = 8;
 			// 
 			// label6
 			// 
@@ -209,12 +218,12 @@ namespace View {
 			this->label8->TabIndex = 11;
 			this->label8->Text = L"DNI";
 			// 
-			// textBox4
+			// tb_DNI
 			// 
-			this->textBox4->Location = System::Drawing::Point(445, 143);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(122, 22);
-			this->textBox4->TabIndex = 12;
+			this->tb_DNI->Location = System::Drawing::Point(445, 143);
+			this->tb_DNI->Name = L"tb_DNI";
+			this->tb_DNI->Size = System::Drawing::Size(122, 22);
+			this->tb_DNI->TabIndex = 12;
 			// 
 			// btn_Generar_ID_Ticket
 			// 
@@ -249,6 +258,7 @@ namespace View {
 			this->btn_Imprimir_y_Registrar_ID_Ticket->TabIndex = 16;
 			this->btn_Imprimir_y_Registrar_ID_Ticket->Text = L"Imprimir y Registrar ID del TIcket";
 			this->btn_Imprimir_y_Registrar_ID_Ticket->UseVisualStyleBackColor = true;
+			this->btn_Imprimir_y_Registrar_ID_Ticket->Click += gcnew System::EventHandler(this, &Operador_Registrar_Ticket_Form::btn_Imprimir_y_Registrar_ID_Ticket_Click);
 			// 
 			// label10
 			// 
@@ -285,11 +295,19 @@ namespace View {
 			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(121, 22);
 			this->numeric_Peso_Vehiculo->TabIndex = 20;
 			// 
+			// numeric_ID_espacio
+			// 
+			this->numeric_ID_espacio->Location = System::Drawing::Point(200, 157);
+			this->numeric_ID_espacio->Name = L"numeric_ID_espacio";
+			this->numeric_ID_espacio->Size = System::Drawing::Size(120, 22);
+			this->numeric_ID_espacio->TabIndex = 21;
+			// 
 			// Operador_Registrar_Ticket_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(641, 506);
+			this->Controls->Add(this->numeric_ID_espacio);
 			this->Controls->Add(this->numeric_Peso_Vehiculo);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->btn_Regresar_Formulario);
@@ -298,13 +316,12 @@ namespace View {
 			this->Controls->Add(this->tb_ID_Generado);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->btn_Generar_ID_Ticket);
-			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->tb_DNI);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->tb_Modelo);
+			this->Controls->Add(this->tb_Placa);
 			this->Controls->Add(this->checkb_registro_completo);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -314,6 +331,7 @@ namespace View {
 			this->Name = L"Operador_Registrar_Ticket_Form";
 			this->Text = L"Operador_Registrar_Ticket_Form";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_espacio))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -328,5 +346,22 @@ namespace View {
 		}
 
 
+		private: System::Void btn_Imprimir_y_Registrar_ID_Ticket_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+			TicketAuto^ ticket_new = gcnew TicketAuto();
+
+			ticket_new->peso = Convert::ToDouble(numeric_Peso_Vehiculo->Value);
+			
+			ticket_new->id_espacio = Convert::ToDouble(numeric_ID_espacio->Value);
+			
+			ticket_new->placa = tb_Placa->Text;
+
+			ticket_new->modeloAuto = tb_Modelo->Text;
+
+			ticket_new->RC = checkb_registro_completo->Checked;
+
+			controlador_GUI->agregarTicket(ticket_new);
+
+		}
 };
 }

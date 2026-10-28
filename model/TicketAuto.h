@@ -10,21 +10,36 @@ namespace modelPrincipal {
         String^ placa;
 		String^ fechaIngreso;
 		String^ horaIngreso;
+
         bool pagado;
+
         double precio;
         int id;
 
+        double peso;
+        int id_espacio;
+
+        bool RC;
+
         TicketAuto() {};
 
-        TicketAuto(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec, String^ fecha, String^ hora) {
+        TicketAuto(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec, String^ fecha, String^ hora,double peso,int id_espacio,bool RC) {
             this->id = id_ticket;
+
             this->clienteAsociado = cli;
+
             this->modeloAuto = mod;
             this->placa = pla;
             this->precio = prec;
+
+            this->id_espacio = id_espacio;
+            this->peso = peso;
+
             this->fechaIngreso = fecha;
             this->horaIngreso = hora;
             this->pagado = false;
+
+			this->RC = RC;
         }
     };
 }

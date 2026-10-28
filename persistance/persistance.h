@@ -3,8 +3,11 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace modelPrincipal;
+using namespace System::Xml::Serialization;
+using namespace System::IO;
 
-namespace persistancePrincipal {
+
+namespace persistancePrincipal {	
 	public ref class persistance
 	{
 	public:

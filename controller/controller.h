@@ -3,12 +3,26 @@
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace modelPrincipal;
+using namespace System::Xml;
+using namespace persistancePrincipal;
 
 
 namespace controllerPrincipal {
 	public ref class controller
 	{
+
+
 	public:
+		controller() {
+			//cargar datos desde archivos XML
+			controller::Espacios = persistance::cargarEspacios();
+			controller::Fallas = persistance::cargarFallas();
+			controller::Tickets = persistance::cargarTickets();
+			controller::Reclamos = persistance::cargarReclamos();
+			controller::Clientes = persistance::cargarClientes();
+			controller::Usuarios = persistance::cargarUsuarios();
+		}
+	
 		//espacio
 		static List<Espacio^>^ Espacios = gcnew List<Espacio^>();
 
@@ -57,17 +71,6 @@ namespace controllerPrincipal {
 		static void guardarFallas();
 		static List<Falla^>^ cargarFallas();
 
-		//tickets
-
-		static List<TicketAuto^>^ Tickets = gcnew List<TicketAuto^>();
-
-		static void agregarTicket(Cliente^ cli, String^ mod, String^ pla, double prec, String^ fecha, String^ hora);
-		static bool eliminarTicket(int id_ticket);
-		static bool modificarTicket(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec);
-		static TicketAuto^ buscarTicket(int id_ticket);
-
-		static void guardarTickets();
-		static List<TicketAuto^>^ cargarTickets();
 
 		//reclamos
 
@@ -80,6 +83,21 @@ namespace controllerPrincipal {
 
 		static void guardarReclamos();
 		static List<Reclamo^>^ cargarReclamos();
+
+
+
+
+		//tickets
+
+		static List<TicketAuto^>^ Tickets = gcnew List<TicketAuto^>();
+
+		static void agregarTicket(TicketAuto^ ticket);
+		static void eliminarTicket(int id_ticket);
+		static void modificarTicket(int id_ticket, TicketAuto^ ticket);
+		static TicketAuto^ buscarTicket(int id_ticket);
+
+		static void guardarTickets();
+		static List<TicketAuto^>^ cargarTickets();
 
 	};
 }
