@@ -20,21 +20,32 @@ namespace View {
 	{
 	private:
 		Form^ FormularioForm;
+		double peso_vehiculo;
+		int ID_espacio_vehiculo;
+		double precio_hora;
 
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_espacio;
+	private: System::Windows::Forms::NumericUpDown^ numeric_Precio_Hora;
+
+	private: System::Windows::Forms::Label^ label12;
 
 		controller^ controlador_GUI;
 
 	public:
-		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, double peso, double ID_espacio)
+		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, controller^ controlador, double peso, int ID_espacio, double precio)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+
+			peso_vehiculo = peso;
+			ID_espacio_vehiculo = ID_espacio;
+			precio_hora = precio;
+
+			controlador_GUI = controlador;
+
 			FormularioForm = entrada_FormularioForm;
 
-
-			controlador_GUI = gcnew controller();
 			//
 		}
 
@@ -117,8 +128,11 @@ namespace View {
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->numeric_Peso_Vehiculo = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_ID_espacio = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numeric_Precio_Hora = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label12 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_espacio))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -135,7 +149,7 @@ namespace View {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(54, 159);
+			this->label2->Location = System::Drawing::Point(54, 198);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(91, 16);
 			this->label2->TabIndex = 1;
@@ -144,7 +158,7 @@ namespace View {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(54, 203);
+			this->label3->Location = System::Drawing::Point(54, 252);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(119, 16);
 			this->label3->TabIndex = 2;
@@ -153,7 +167,7 @@ namespace View {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(54, 248);
+			this->label4->Location = System::Drawing::Point(54, 297);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(130, 16);
 			this->label4->TabIndex = 3;
@@ -162,7 +176,7 @@ namespace View {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(54, 306);
+			this->label5->Location = System::Drawing::Point(54, 355);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(129, 16);
 			this->label5->TabIndex = 4;
@@ -171,7 +185,7 @@ namespace View {
 			// checkb_registro_completo
 			// 
 			this->checkb_registro_completo->AutoSize = true;
-			this->checkb_registro_completo->Location = System::Drawing::Point(210, 306);
+			this->checkb_registro_completo->Location = System::Drawing::Point(210, 355);
 			this->checkb_registro_completo->Name = L"checkb_registro_completo";
 			this->checkb_registro_completo->Size = System::Drawing::Size(133, 20);
 			this->checkb_registro_completo->TabIndex = 5;
@@ -180,14 +194,14 @@ namespace View {
 			// 
 			// tb_Placa
 			// 
-			this->tb_Placa->Location = System::Drawing::Point(204, 197);
+			this->tb_Placa->Location = System::Drawing::Point(204, 246);
 			this->tb_Placa->Name = L"tb_Placa";
 			this->tb_Placa->Size = System::Drawing::Size(117, 22);
 			this->tb_Placa->TabIndex = 7;
 			// 
 			// tb_Modelo
 			// 
-			this->tb_Modelo->Location = System::Drawing::Point(204, 242);
+			this->tb_Modelo->Location = System::Drawing::Point(204, 291);
 			this->tb_Modelo->Name = L"tb_Modelo";
 			this->tb_Modelo->Size = System::Drawing::Size(117, 22);
 			this->tb_Modelo->TabIndex = 8;
@@ -228,7 +242,7 @@ namespace View {
 			// 
 			// btn_Generar_ID_Ticket
 			// 
-			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(56, 419);
+			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(56, 456);
 			this->btn_Generar_ID_Ticket->Name = L"btn_Generar_ID_Ticket";
 			this->btn_Generar_ID_Ticket->Size = System::Drawing::Size(117, 38);
 			this->btn_Generar_ID_Ticket->TabIndex = 13;
@@ -238,7 +252,7 @@ namespace View {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(54, 388);
+			this->label9->Location = System::Drawing::Point(54, 425);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(134, 16);
 			this->label9->TabIndex = 14;
@@ -246,14 +260,14 @@ namespace View {
 			// 
 			// tb_ID_Generado
 			// 
-			this->tb_ID_Generado->Location = System::Drawing::Point(205, 427);
+			this->tb_ID_Generado->Location = System::Drawing::Point(205, 464);
 			this->tb_ID_Generado->Name = L"tb_ID_Generado";
 			this->tb_ID_Generado->Size = System::Drawing::Size(117, 22);
 			this->tb_ID_Generado->TabIndex = 15;
 			// 
 			// btn_Imprimir_y_Registrar_ID_Ticket
 			// 
-			this->btn_Imprimir_y_Registrar_ID_Ticket->Location = System::Drawing::Point(445, 376);
+			this->btn_Imprimir_y_Registrar_ID_Ticket->Location = System::Drawing::Point(445, 413);
 			this->btn_Imprimir_y_Registrar_ID_Ticket->Name = L"btn_Imprimir_y_Registrar_ID_Ticket";
 			this->btn_Imprimir_y_Registrar_ID_Ticket->Size = System::Drawing::Size(143, 118);
 			this->btn_Imprimir_y_Registrar_ID_Ticket->TabIndex = 16;
@@ -272,7 +286,7 @@ namespace View {
 			// 
 			// btn_Regresar_Formulario
 			// 
-			this->btn_Regresar_Formulario->Location = System::Drawing::Point(448, 265);
+			this->btn_Regresar_Formulario->Location = System::Drawing::Point(448, 302);
 			this->btn_Regresar_Formulario->Name = L"btn_Regresar_Formulario";
 			this->btn_Regresar_Formulario->Size = System::Drawing::Size(140, 73);
 			this->btn_Regresar_Formulario->TabIndex = 18;
@@ -291,23 +305,46 @@ namespace View {
 			// 
 			// numeric_Peso_Vehiculo
 			// 
+			this->numeric_Peso_Vehiculo->DecimalPlaces = 2;
 			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(200, 118);
+			this->numeric_Peso_Vehiculo->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
 			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(121, 22);
 			this->numeric_Peso_Vehiculo->TabIndex = 20;
 			// 
 			// numeric_ID_espacio
 			// 
-			this->numeric_ID_espacio->Location = System::Drawing::Point(200, 157);
+			this->numeric_ID_espacio->Location = System::Drawing::Point(200, 196);
+			this->numeric_ID_espacio->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
 			this->numeric_ID_espacio->Name = L"numeric_ID_espacio";
 			this->numeric_ID_espacio->Size = System::Drawing::Size(120, 22);
 			this->numeric_ID_espacio->TabIndex = 21;
+			// 
+			// numeric_Precio_Hora
+			// 
+			this->numeric_Precio_Hora->DecimalPlaces = 2;
+			this->numeric_Precio_Hora->Location = System::Drawing::Point(200, 159);
+			this->numeric_Precio_Hora->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
+			this->numeric_Precio_Hora->Name = L"numeric_Precio_Hora";
+			this->numeric_Precio_Hora->Size = System::Drawing::Size(120, 22);
+			this->numeric_Precio_Hora->TabIndex = 23;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(54, 161);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(102, 16);
+			this->label12->TabIndex = 22;
+			this->label12->Text = L"Precio por Hora";
 			// 
 			// Operador_Registrar_Ticket_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(641, 506);
+			this->ClientSize = System::Drawing::Size(641, 543);
+			this->Controls->Add(this->numeric_Precio_Hora);
+			this->Controls->Add(this->label12);
 			this->Controls->Add(this->numeric_ID_espacio);
 			this->Controls->Add(this->numeric_Peso_Vehiculo);
 			this->Controls->Add(this->label11);
@@ -333,10 +370,24 @@ namespace View {
 			this->Text = L"Operador_Registrar_Ticket_Form";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_espacio))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
+
+		
+		public: void Actualizar_datos(double peso, int ID_espacio,double precio) {
+			peso_vehiculo = peso;
+			ID_espacio_vehiculo = ID_espacio;
+			precio_hora = precio;
+
+			numeric_Precio_Hora->Value = (Decimal)precio_hora;
+			numeric_Peso_Vehiculo->Value = (Decimal)peso_vehiculo;
+			numeric_ID_espacio->Value = (Decimal)ID_espacio_vehiculo;
+		}
+
+
 		#pragma endregion
 		private: System::Void btn_Regresar_Formulario_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -351,15 +402,17 @@ namespace View {
 		
 			TicketAuto^ ticket_new = gcnew TicketAuto();
 
-			ticket_new->peso = Convert::ToDouble(numeric_Peso_Vehiculo->Value);
+			ticket_new->peso = peso_vehiculo;
 			
-			ticket_new->id_espacio = Convert::ToDouble(numeric_ID_espacio->Value);
+			ticket_new->id_espacio = ID_espacio_vehiculo;
 			
 			ticket_new->placa = tb_Placa->Text;
 
 			ticket_new->modeloAuto = tb_Modelo->Text;
 
 			ticket_new->RC = checkb_registro_completo->Checked;
+
+			ticket_new->precio = precio_hora;
 
 			controlador_GUI->agregarTicket(ticket_new);
 

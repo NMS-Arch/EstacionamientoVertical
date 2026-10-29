@@ -252,21 +252,24 @@ void controllerPrincipal::controller::agregarTicket(TicketAuto^ ticket_entrada) 
 
 	int maxId = 0;
 	for each (TicketAuto^ ticket in Tickets) {
+
 		if (ticket->id > maxId) {
 			maxId = ticket->id;
 		}
 	}
-	int id = maxId + 1;
-
+	
+	ticket_entrada->id = maxId + 1;
 
 	Tickets->Add(ticket_entrada);
+
+	persistance::guardarTickets(Tickets);
 }
 
 void controllerPrincipal::controller::eliminarTicket(int id_ticket) {
 	for (int i = 0; i < Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			Tickets->RemoveAt(i);
-			
+			persistance::guardarTickets(Tickets);
 		}
 	}
 
@@ -279,7 +282,7 @@ void controllerPrincipal::controller::modificarTicket(int id_ticket, TicketAuto^
 		if (Tickets[i]->id == id_ticket) {
 			
 			Tickets[i] = ticket_modificado;
-			
+			persistance::guardarTickets(Tickets);
 		}
 	}
 
@@ -289,10 +292,16 @@ TicketAuto^ controllerPrincipal::controller::buscarTicket(int id_ticket) {
 	for (int i = 0; i < controller::Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			return Tickets[i];
+			persistance::guardarTickets(Tickets);
 		}
 	}
 	return nullptr;
 }
+
+List<TicketAuto^>^ controllerPrincipal::controller::listarTickets() {
+	return Tickets;
+}
+
 
 void controllerPrincipal::controller::guardarTickets() {
 	persistance::guardarTickets(controller::Tickets);
