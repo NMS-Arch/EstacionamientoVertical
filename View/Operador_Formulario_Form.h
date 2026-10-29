@@ -34,6 +34,10 @@ namespace View {
 		controller^ controlador_GUI;
 		double peso_vehiculo;
 		int ID_espacio_vehiculo;
+		double precio_hora;
+
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
@@ -42,11 +46,6 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
-		   double precio_hora;
-
-
-
-
 
 
 
