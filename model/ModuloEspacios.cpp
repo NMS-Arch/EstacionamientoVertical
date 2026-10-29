@@ -4,9 +4,9 @@
 using namespace modelPrincipal;
 
 ModuloEspacios::ModuloEspacios() {
-    listaEspacios = gcnew array<Espacio^>(10);
+    arrayEspacios = gcnew array<Espacio^>(10);
     for (int i = 0; i < 10; i++) {
-        listaEspacios[i] = gcnew Espacio(i + 1, false, true);
+        arrayEspacios[i] = gcnew Espacio(i + 1, false, true);
     }
 }
 

@@ -4,7 +4,7 @@
 namespace modelPrincipal {
     public ref class ModuloEspacios {
     private:
-        array<Espacio^>^ listaEspacios;
+        array<Espacio^>^ arrayEspacios;
 
     public:
         ModuloEspacios();
