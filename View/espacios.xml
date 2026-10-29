@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEspacio xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Espacio>
-    <ocupado>false</ocupado>
-    <estado>false</estado>
+    <ocupado>true</ocupado>
+    <estado>true</estado>
     <id>1</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
+    <ocupado>false</ocupado>
     <estado>true</estado>
     <id>2</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>3</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>4</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>5</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>6</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>7</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>8</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>9</id>
+  </Espacio>
+  <Espacio>
+    <ocupado>false</ocupado>
+    <estado>true</estado>
+    <id>10</id>
   </Espacio>
 </ArrayOfEspacio>

@@ -39,9 +39,10 @@ namespace View {
 
 
 		controller^ controlador_GUI;
+		ControlEspacios^ controladorEspacios;
 
 	public:
-		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, controller^ controlador, double peso, int ID_espacio, double precio)
+		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, controller^ controlador,ControlEspacios^ controladorEspacios_entrada, double peso, int ID_espacio, double precio)
 		{
 			InitializeComponent();
 			//
@@ -52,6 +53,7 @@ namespace View {
 			precio_hora = precio;
 
 			controlador_GUI = controlador;
+			controladorEspacios = controladorEspacios_entrada;
 
 			FormularioForm = entrada_FormularioForm;
 
@@ -505,6 +507,7 @@ namespace View {
 
 			controlador_GUI->agregarTicket(ticket_new);
 
+			controladorEspacios->OcuparEspacio(ticket_new->id_espacio);
 
 
 			this->Hide();

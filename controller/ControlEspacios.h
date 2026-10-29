@@ -12,15 +12,21 @@ namespace controllerPrincipal {
 	public ref class ControlEspacios
 	{
 	private:
+		static int numeroEspacios = 10;
 		static List<Espacio^>^ listaEspacios;
-		static void InicilizarEspaciosFisicos();
+
+		// Esta inializacion es algo agresiva, ya que introduce espacios por la fuerza
+		// recomiendo que borres o cambies en caso de aumentar o disminuir el numero de espacios
+		static void InicilizarEspaciosFisicos(int numeroEspacios);
+		
 
 	public:
 		static ControlEspacios() {
 			listaEspacios = persistance::cargarEspacios();
 
-			if (listaEspacios->Count == 0) {
-				InicilizarEspaciosFisicos();
+			if (listaEspacios->Count == 0 || listaEspacios->Count < numeroEspacios ) {
+				InicilizarEspaciosFisicos(numeroEspacios);
+				Console::WriteLine("Verificando que se inicializo los espacios");
 			}
 		}
 

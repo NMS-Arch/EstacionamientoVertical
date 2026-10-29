@@ -3,10 +3,10 @@
 
 
 
-void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos() {
-    for (int i = 1; i <= 10; i++) {
+void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos(int numeroEspacios) {
+    
+    for (int i = 1; i <= numeroEspacios; i++) {
 
-        
         listaEspacios->Add(gcnew Espacio(i, false,true));
     }
 
