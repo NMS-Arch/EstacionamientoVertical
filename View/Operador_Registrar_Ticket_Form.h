@@ -76,8 +76,8 @@ namespace View {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::CheckBox^ checkb_registro_completo;
+
+
 
 	private: System::Windows::Forms::TextBox^ tb_Placa;
 	private: System::Windows::Forms::TextBox^ tb_Modelo;
@@ -123,8 +123,6 @@ namespace View {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->checkb_registro_completo = (gcnew System::Windows::Forms::CheckBox());
 			this->tb_Placa = (gcnew System::Windows::Forms::TextBox());
 			this->tb_Modelo = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -189,25 +187,6 @@ namespace View {
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Modelo del Vehiculo";
 			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(54, 454);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(129, 16);
-			this->label5->TabIndex = 4;
-			this->label5->Text = L"Registro Completo \?";
-			// 
-			// checkb_registro_completo
-			// 
-			this->checkb_registro_completo->AutoSize = true;
-			this->checkb_registro_completo->Location = System::Drawing::Point(210, 454);
-			this->checkb_registro_completo->Name = L"checkb_registro_completo";
-			this->checkb_registro_completo->Size = System::Drawing::Size(133, 20);
-			this->checkb_registro_completo->TabIndex = 5;
-			this->checkb_registro_completo->Text = L"registro completo";
-			this->checkb_registro_completo->UseVisualStyleBackColor = true;
-			// 
 			// tb_Placa
 			// 
 			this->tb_Placa->Location = System::Drawing::Point(204, 345);
@@ -258,7 +237,7 @@ namespace View {
 			// 
 			// btn_Generar_ID_Ticket
 			// 
-			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(56, 555);
+			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(55, 530);
 			this->btn_Generar_ID_Ticket->Name = L"btn_Generar_ID_Ticket";
 			this->btn_Generar_ID_Ticket->Size = System::Drawing::Size(117, 38);
 			this->btn_Generar_ID_Ticket->TabIndex = 13;
@@ -268,7 +247,7 @@ namespace View {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(54, 524);
+			this->label9->Location = System::Drawing::Point(53, 499);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(134, 16);
 			this->label9->TabIndex = 14;
@@ -276,7 +255,7 @@ namespace View {
 			// 
 			// tb_ID_Generado
 			// 
-			this->tb_ID_Generado->Location = System::Drawing::Point(205, 563);
+			this->tb_ID_Generado->Location = System::Drawing::Point(204, 538);
 			this->tb_ID_Generado->Name = L"tb_ID_Generado";
 			this->tb_ID_Generado->Size = System::Drawing::Size(117, 22);
 			this->tb_ID_Generado->TabIndex = 15;
@@ -420,8 +399,6 @@ namespace View {
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->tb_Modelo);
 			this->Controls->Add(this->tb_Placa);
-			this->Controls->Add(this->checkb_registro_completo);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -438,13 +415,14 @@ namespace View {
 
 		
 		public: void Actualizar_datos(double peso, int ID_espacio,double precio) {
+			
+			
 
 			peso_vehiculo = peso;
 			ID_espacio_vehiculo = ID_espacio;
 			precio_hora = precio;
 
 			
-
 			numeric_Peso_Vehiculo->Value = (Decimal)peso_vehiculo;
 			numeric_Peso_Vehiculo->Enabled = false;
 
@@ -453,6 +431,9 @@ namespace View {
 
 			numeric_Precio_Hora->Value = (Decimal)precio_hora;
 			numeric_Precio_Hora->Enabled = false;
+
+
+
 
 			//Actualizar fecha y hora de ingreso
 			fecha_ingreso = DateTime::Now;
@@ -487,13 +468,39 @@ namespace View {
 
 			ticket_new->modeloAuto = tb_Modelo->Text;
 
-			ticket_new->RC = checkb_registro_completo->Checked;
+			//ticket_new->RC = checkb_registro_completo->Checked;
 
 			ticket_new->precio = precio_hora;
 			
 			ticket_new->fechaIngreso = fecha_ingreso;
 
+
+			if (!String::IsNullOrWhiteSpace(tb_DNI->Text)) {
+
+				int numPrueba;
+
+				if (Int32::TryParse(tb_DNI->Text, numPrueba) && numPrueba >= 10000000 && numPrueba <= 99999999) {
+
+					ticket_new->dni = numPrueba;
+				}
+				else {
+					MessageBox::Show("El DNI ingresado no es valido. Debe ser un numero de 8 digitos.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+				}
+			}
+
+			
+
 			controlador_GUI->agregarTicket(ticket_new);
+
+
+
+			this->Hide();
+
+			FormularioForm->Show();
+			//FormularioForm->actualizar();
+
+			FormularioForm->Refresh();
 
 		}
 };

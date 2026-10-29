@@ -34,9 +34,6 @@ namespace View {
 		controller^ controlador_GUI;
 		double peso_vehiculo;
 		int ID_espacio_vehiculo;
-		double precio_hora;
-
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
@@ -45,6 +42,17 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+		   double precio_hora;
+
+
+
+
+
+
+
+
+
+
 
 	public:
 		Operador_Formulario_Form(Form^ entrada_loginForm)
@@ -54,6 +62,22 @@ namespace View {
 			//TODO: Add the constructor code here
 			
 			this->IsMdiContainer = true;
+
+
+			///////////////////////////////////////////////////////////////////////////////////////////////////////
+			//  Al convertir en MDI se volvio gris y la IA dijo que colocara esto, ni idea como funcina este bloque
+			// ////////////////////////////////////////////////////////////////////////////////////////////////////
+			// Buscamos el control oculto MdiClient que Windows generó
+			for each (Control ^ ctl in this->Controls) {
+				// Verificamos si el control actual es de tipo MdiClient
+				if (ctl->GetType() == System::Windows::Forms::MdiClient::typeid) {
+					// Le devolvemos el color blanco o el que prefieras
+					ctl->BackColor = System::Drawing::Color::White;
+					break; // Como solo hay uno, rompemos el ciclo
+				}
+			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 			
 			loginForm = entrada_loginForm;
 
@@ -160,14 +184,6 @@ namespace View {
 			this->btn_Precio_Hora = (gcnew System::Windows::Forms::Button());
 			this->numeric_Precio_Hora = (gcnew System::Windows::Forms::NumericUpDown());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btn_Listar_Historial = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->cb_ID_Vehiculo_Dinamico = (gcnew System::Windows::Forms::ComboBox());
@@ -185,6 +201,14 @@ namespace View {
 			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->BeginInit();
@@ -276,62 +300,6 @@ namespace View {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(932, 310);
 			this->dataGridView1->TabIndex = 9;
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Ticket";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 75;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Espacio";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Placa";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 75;
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Modelo";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Peso";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 50;
-			// 
-			// Column6
-			// 
-			this->Column6->HeaderText = L"Precio Base";
-			this->Column6->MinimumWidth = 6;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 75;
-			// 
-			// Column7
-			// 
-			this->Column7->HeaderText = L"Hora Entrada";
-			this->Column7->MinimumWidth = 6;
-			this->Column7->Name = L"Column7";
-			this->Column7->Width = 75;
-			// 
-			// Column8
-			// 
-			this->Column8->HeaderText = L"R.I. Completo";
-			this->Column8->MinimumWidth = 6;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 125;
 			// 
 			// btn_Listar_Historial
 			// 
@@ -501,6 +469,62 @@ namespace View {
 			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
 			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Registrar_Falla_Click);
 			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Ticket";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 75;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Espacio";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 125;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Placa";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 75;
+			// 
+			// Column4
+			// 
+			this->Column4->HeaderText = L"Modelo";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 125;
+			// 
+			// Column5
+			// 
+			this->Column5->HeaderText = L"Peso";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 50;
+			// 
+			// Column6
+			// 
+			this->Column6->HeaderText = L"Precio Base";
+			this->Column6->MinimumWidth = 6;
+			this->Column6->Name = L"Column6";
+			this->Column6->Width = 75;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"Hora Entrada";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 75;
+			// 
+			// Column8
+			// 
+			this->Column8->HeaderText = L"DNI";
+			this->Column8->MinimumWidth = 6;
+			this->Column8->Name = L"Column8";
+			this->Column8->Width = 125;
+			// 
 			// Operador_Formulario_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -543,6 +567,11 @@ namespace View {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario_Cuenta))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
+			this->numeric_Peso_Vehiculo->Enabled = false;
+			this->numeric_Precio_Hora->Enabled = false;
+
+
 
 		}
 
@@ -611,23 +640,38 @@ namespace View {
 		private: System::Void btn_Pesar_Vehiculo_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			// Simulación de la acción de pesar un vehículo
-			numeric_Peso_Vehiculo->Value = Convert::ToDecimal(1500.45); // Asignar un peso simulado de 1500 kg
 
-			peso_vehiculo = Convert::ToDouble(numeric_Peso_Vehiculo->Value);
+			Random^ peso_random = gcnew Random();
+			double min = 4.0;
+			double max = 13.0;
+
+			double peso_simulado = (peso_random->NextDouble() * (max - min)) + min;
+
+			numeric_Peso_Vehiculo->Value = Convert::ToDecimal(peso_simulado);
+			numeric_Peso_Vehiculo->Enabled = false;
+			peso_vehiculo = peso_simulado;
 
 		}
 
 		private: System::Void btn_Precio_Hora_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			// Simulación de la acción de pesar un vehículo
-			numeric_Precio_Hora->Value = Convert::ToDecimal(150.45); // Asignar un precio simulado de 1500 kg
+			// Simulación de la acción de precio un vehículo
+			Random^ precio_random = gcnew Random();
+			double min = 20.0;
+			double max = 150.0;
 
-			precio_hora = Convert::ToDouble(numeric_Precio_Hora->Value);
+			double precio_simulado = (precio_random->NextDouble() * (max - min)) + min;
+
+
+
+			numeric_Precio_Hora->Value = Convert::ToDecimal(precio_simulado);
+			numeric_Precio_Hora->Enabled = false;
+			precio_hora = precio_simulado;
 
 
 		}
 
-		private: void actualizar() {
+		public: void actualizar() {
 			List<TicketAuto^>^ tickets = controlador_GUI->listarTickets();
 
 
@@ -635,13 +679,13 @@ namespace View {
 
 			for each (TicketAuto ^ ticket in tickets) {
 
-				String^ valueRIC;
+				String^ valueDNI;
 				//valor RIC
-				if (ticket->RC) {
-					valueRIC = "Sí";
+				if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
+					valueDNI = ticket->dni.ToString();
 				}
 				else {
-					valueRIC = "No";
+					valueDNI = "No introducido";
 				}
 
 
@@ -653,7 +697,7 @@ namespace View {
 					ticket->peso,
 					ticket->precio,
 					ticket->fechaIngreso.ToString("HH:mm:ss"),
-					valueRIC
+					valueDNI
 				);
 			}
 		}
