@@ -457,7 +457,19 @@ namespace View {
 
 
 		private: System::Void btn_Imprimir_y_Registrar_ID_Ticket_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+			
+
+			if (String::IsNullOrWhiteSpace(tb_Placa->Text)) {
+				MessageBox::Show("Es nesacrio que indique placa del vehiculo","Falta Informacion",MessageBoxButtons::OK,MessageBoxIcon::Information);
+				return;
+			}
+
+			if (String::IsNullOrWhiteSpace(tb_Modelo->Text)) {
+				MessageBox::Show("Es nesacrio que indique modelo del vehiculo", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+
 			TicketAuto^ ticket_new = gcnew TicketAuto();
 
 			ticket_new->peso = peso_vehiculo;

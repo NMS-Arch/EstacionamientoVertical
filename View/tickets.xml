@@ -55,4 +55,26 @@
     <id_espacio>6</id_espacio>
     <dni>0</dni>
   </TicketAuto>
+  <TicketAuto>
+    <modeloAuto />
+    <placa />
+    <fechaIngreso>2026-10-29T15:06:03.6500211-05:00</fechaIngreso>
+    <pagado>false</pagado>
+    <precio>140.15393393121377</precio>
+    <id>6</id>
+    <peso>7.6469437548178</peso>
+    <id_espacio>7</id_espacio>
+    <dni>0</dni>
+  </TicketAuto>
+  <TicketAuto>
+    <modeloAuto>Toyota</modeloAuto>
+    <placa>ASDASF</placa>
+    <fechaIngreso>2026-10-29T15:10:14.2737749-05:00</fechaIngreso>
+    <pagado>false</pagado>
+    <precio>33.027690319822952</precio>
+    <id>7</id>
+    <peso>12.3018010022593</peso>
+    <id_espacio>6</id_espacio>
+    <dni>0</dni>
+  </TicketAuto>
 </ArrayOfTicketAuto>
