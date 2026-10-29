@@ -11,4 +11,26 @@
     <id_espacio>1</id_espacio>
     <dni>0</dni>
   </TicketAuto>
+  <TicketAuto>
+    <modeloAuto>Toyota</modeloAuto>
+    <placa>ANM14J</placa>
+    <fechaIngreso>2026-10-29T18:15:43.9661941-05:00</fechaIngreso>
+    <pagado>false</pagado>
+    <precio>53.147385210333105</precio>
+    <id>2</id>
+    <peso>10.6524266622273</peso>
+    <id_espacio>2</id_espacio>
+    <dni>0</dni>
+  </TicketAuto>
+  <TicketAuto>
+    <modeloAuto>Ford</modeloAuto>
+    <placa>NHJK4</placa>
+    <fechaIngreso>2026-10-29T18:25:59.3662017-05:00</fechaIngreso>
+    <pagado>false</pagado>
+    <precio>78.110923645138229</precio>
+    <id>3</id>
+    <peso>10.5942912151079</peso>
+    <id_espacio>8</id_espacio>
+    <dni>12345687</dni>
+  </TicketAuto>
 </ArrayOfTicketAuto>

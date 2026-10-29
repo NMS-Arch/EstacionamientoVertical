@@ -561,6 +561,7 @@ namespace View {
 			this->Name = L"Operador_Formulario_Form";
 			this->Text = L"Operador_Formulario_Form";
 			this->Load += gcnew System::EventHandler(this, &Operador_Formulario_Form::Operador_Formulario_Form_Load);
+			this->VisibleChanged += gcnew System::EventHandler(this, &Operador_Formulario_Form::Operador_Formulario_Form_VisibleChanged);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->EndInit();
@@ -699,6 +700,20 @@ namespace View {
 			}
 		}
 
+		public:void limpiar() {
+			numeric_Espacios_Disponibles->Value = false;
+			numeric_Espacios_Disponibles->Enabled = false;
+
+			cb_ID_Vehiculo_Dinamico->Items->Clear();
+
+			numeric_Peso_Vehiculo->Value = false;
+			numeric_Peso_Vehiculo->Enabled = false;
+
+			numeric_Precio_Hora->Value = false;
+			numeric_Precio_Hora->Enabled = false;
+		}
+
+
 		private: System::Void btn_Listar_Historial_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			actualizar();
@@ -740,6 +755,19 @@ namespace View {
 
 
 
+		}
+		private: System::Void Operador_Formulario_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
+
+			// Si el formulario padre se acaba de volver VISIBLE (el hijo se cerró)
+			if (this->Visible == true) {
+
+				// 1. Refrescamos el DataGridView pidiéndole los datos frescos al Controlador
+				actualizar();
+
+				// 2. Actualizamos cualquier recuadro de texto en el padre (ej. conteo de tickets)
+				
+				limpiar();
+			}
 		}
 };
 }

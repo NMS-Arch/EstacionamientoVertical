@@ -458,6 +458,16 @@ namespace View {
 		}
 
 
+
+		public: void limpiar_registro() {
+			
+			tb_Placa->Clear();
+			tb_Modelo->Clear();
+			tb_DNI->Clear();
+			
+
+		}
+
 		private: System::Void btn_Imprimir_y_Registrar_ID_Ticket_Click(System::Object^ sender, System::EventArgs^ e) {
 			
 
@@ -512,10 +522,9 @@ namespace View {
 
 			this->Hide();
 
-			FormularioForm->Show();
-			//FormularioForm->actualizar();
+			limpiar_registro();
 
-			FormularioForm->Refresh();
+			FormularioForm->Show();
 
 		}
 };
