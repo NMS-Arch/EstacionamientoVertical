@@ -8,8 +8,8 @@ namespace modelPrincipal {
         Cliente^ clienteAsociado;
         String^ modeloAuto;
         String^ placa;
-		String^ fechaIngreso;
-		String^ horaIngreso;
+		DateTime fechaIngreso;
+		//String^ horaIngreso;
 
         bool pagado;
 
@@ -23,7 +23,9 @@ namespace modelPrincipal {
 
         TicketAuto() {};
 
-        TicketAuto(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec, String^ fecha, String^ hora,double peso,int id_espacio,bool RC) {
+        TicketAuto(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec, DateTime fecha, 
+            //String^ hora,
+            double peso,int id_espacio,bool RC) {
             this->id = id_ticket;
 
             this->clienteAsociado = cli;
@@ -36,7 +38,7 @@ namespace modelPrincipal {
             this->peso = peso;
 
             this->fechaIngreso = fecha;
-            this->horaIngreso = hora;
+            //this->horaIngreso = hora;
             this->pagado = false;
 
 			this->RC = RC;

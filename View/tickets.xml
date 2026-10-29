@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTicketAuto xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TicketAuto>
+    <modeloAuto>Toyota</modeloAuto>
+    <placa>AEF12</placa>
+    <fechaIngreso>2026-10-29T11:57:12.2404262-05:00</fechaIngreso>
+    <pagado>false</pagado>
+    <precio>1500.45</precio>
+    <id>1</id>
+    <peso>1500.45</peso>
+    <id_espacio>2</id_espacio>
+    <RC>false</RC>
+  </TicketAuto>
+</ArrayOfTicketAuto>

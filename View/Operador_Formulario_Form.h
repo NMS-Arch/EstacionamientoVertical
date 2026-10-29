@@ -61,6 +61,7 @@ namespace View {
 
 			this->peso_vehiculo;
 			this->ID_espacio_vehiculo;
+			this->precio_hora;
 
 
 			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
@@ -619,7 +620,7 @@ namespace View {
 		private: System::Void btn_Precio_Hora_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			// Simulación de la acción de pesar un vehículo
-			numeric_Precio_Hora->Value = Convert::ToDecimal(1500.45); // Asignar un precio simulado de 1500 kg
+			numeric_Precio_Hora->Value = Convert::ToDecimal(150.45); // Asignar un precio simulado de 1500 kg
 
 			precio_hora = Convert::ToDouble(numeric_Precio_Hora->Value);
 
@@ -651,7 +652,7 @@ namespace View {
 					ticket->modeloAuto,
 					ticket->peso,
 					ticket->precio,
-					"Aun no implementado",
+					ticket->fechaIngreso.ToString("HH:mm:ss"),
 					valueRIC
 				);
 			}

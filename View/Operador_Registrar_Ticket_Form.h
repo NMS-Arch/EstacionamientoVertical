@@ -20,14 +20,23 @@ namespace View {
 	{
 	private:
 		Form^ FormularioForm;
+
 		double peso_vehiculo;
 		int ID_espacio_vehiculo;
 		double precio_hora;
+
+		DateTime fecha_ingreso;
 
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_espacio;
 	private: System::Windows::Forms::NumericUpDown^ numeric_Precio_Hora;
 
 	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::TextBox^ tb_Fecha_Ingreso;
+	private: System::Windows::Forms::Label^ label13;
+	private: System::Windows::Forms::Label^ label14;
+	private: System::Windows::Forms::TextBox^ tb_Hora_Ingreso;
+
+
 
 		controller^ controlador_GUI;
 
@@ -45,6 +54,9 @@ namespace View {
 			controlador_GUI = controlador;
 
 			FormularioForm = entrada_FormularioForm;
+
+
+			fecha_ingreso = DateTime::Now;
 
 			//
 		}
@@ -130,6 +142,10 @@ namespace View {
 			this->numeric_ID_espacio = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_Precio_Hora = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->tb_Fecha_Ingreso = (gcnew System::Windows::Forms::TextBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->tb_Hora_Ingreso = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_espacio))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->BeginInit();
@@ -158,7 +174,7 @@ namespace View {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(54, 252);
+			this->label3->Location = System::Drawing::Point(54, 351);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(119, 16);
 			this->label3->TabIndex = 2;
@@ -167,7 +183,7 @@ namespace View {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(54, 297);
+			this->label4->Location = System::Drawing::Point(54, 396);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(130, 16);
 			this->label4->TabIndex = 3;
@@ -176,7 +192,7 @@ namespace View {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(54, 355);
+			this->label5->Location = System::Drawing::Point(54, 454);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(129, 16);
 			this->label5->TabIndex = 4;
@@ -185,7 +201,7 @@ namespace View {
 			// checkb_registro_completo
 			// 
 			this->checkb_registro_completo->AutoSize = true;
-			this->checkb_registro_completo->Location = System::Drawing::Point(210, 355);
+			this->checkb_registro_completo->Location = System::Drawing::Point(210, 454);
 			this->checkb_registro_completo->Name = L"checkb_registro_completo";
 			this->checkb_registro_completo->Size = System::Drawing::Size(133, 20);
 			this->checkb_registro_completo->TabIndex = 5;
@@ -194,14 +210,14 @@ namespace View {
 			// 
 			// tb_Placa
 			// 
-			this->tb_Placa->Location = System::Drawing::Point(204, 246);
+			this->tb_Placa->Location = System::Drawing::Point(204, 345);
 			this->tb_Placa->Name = L"tb_Placa";
 			this->tb_Placa->Size = System::Drawing::Size(117, 22);
 			this->tb_Placa->TabIndex = 7;
 			// 
 			// tb_Modelo
 			// 
-			this->tb_Modelo->Location = System::Drawing::Point(204, 291);
+			this->tb_Modelo->Location = System::Drawing::Point(204, 390);
 			this->tb_Modelo->Name = L"tb_Modelo";
 			this->tb_Modelo->Size = System::Drawing::Size(117, 22);
 			this->tb_Modelo->TabIndex = 8;
@@ -235,14 +251,14 @@ namespace View {
 			// 
 			// tb_DNI
 			// 
-			this->tb_DNI->Location = System::Drawing::Point(445, 143);
+			this->tb_DNI->Location = System::Drawing::Point(422, 143);
 			this->tb_DNI->Name = L"tb_DNI";
 			this->tb_DNI->Size = System::Drawing::Size(122, 22);
 			this->tb_DNI->TabIndex = 12;
 			// 
 			// btn_Generar_ID_Ticket
 			// 
-			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(56, 456);
+			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(56, 555);
 			this->btn_Generar_ID_Ticket->Name = L"btn_Generar_ID_Ticket";
 			this->btn_Generar_ID_Ticket->Size = System::Drawing::Size(117, 38);
 			this->btn_Generar_ID_Ticket->TabIndex = 13;
@@ -252,7 +268,7 @@ namespace View {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(54, 425);
+			this->label9->Location = System::Drawing::Point(54, 524);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(134, 16);
 			this->label9->TabIndex = 14;
@@ -260,14 +276,14 @@ namespace View {
 			// 
 			// tb_ID_Generado
 			// 
-			this->tb_ID_Generado->Location = System::Drawing::Point(205, 464);
+			this->tb_ID_Generado->Location = System::Drawing::Point(205, 563);
 			this->tb_ID_Generado->Name = L"tb_ID_Generado";
 			this->tb_ID_Generado->Size = System::Drawing::Size(117, 22);
 			this->tb_ID_Generado->TabIndex = 15;
 			// 
 			// btn_Imprimir_y_Registrar_ID_Ticket
 			// 
-			this->btn_Imprimir_y_Registrar_ID_Ticket->Location = System::Drawing::Point(445, 413);
+			this->btn_Imprimir_y_Registrar_ID_Ticket->Location = System::Drawing::Point(401, 450);
 			this->btn_Imprimir_y_Registrar_ID_Ticket->Name = L"btn_Imprimir_y_Registrar_ID_Ticket";
 			this->btn_Imprimir_y_Registrar_ID_Ticket->Size = System::Drawing::Size(143, 118);
 			this->btn_Imprimir_y_Registrar_ID_Ticket->TabIndex = 16;
@@ -286,9 +302,9 @@ namespace View {
 			// 
 			// btn_Regresar_Formulario
 			// 
-			this->btn_Regresar_Formulario->Location = System::Drawing::Point(448, 302);
+			this->btn_Regresar_Formulario->Location = System::Drawing::Point(401, 339);
 			this->btn_Regresar_Formulario->Name = L"btn_Regresar_Formulario";
-			this->btn_Regresar_Formulario->Size = System::Drawing::Size(140, 73);
+			this->btn_Regresar_Formulario->Size = System::Drawing::Size(143, 73);
 			this->btn_Regresar_Formulario->TabIndex = 18;
 			this->btn_Regresar_Formulario->Text = L"Regresar a formulario";
 			this->btn_Regresar_Formulario->UseVisualStyleBackColor = true;
@@ -306,26 +322,32 @@ namespace View {
 			// numeric_Peso_Vehiculo
 			// 
 			this->numeric_Peso_Vehiculo->DecimalPlaces = 2;
+			this->numeric_Peso_Vehiculo->InterceptArrowKeys = false;
 			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(200, 118);
 			this->numeric_Peso_Vehiculo->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
+			this->numeric_Peso_Vehiculo->ReadOnly = true;
 			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(121, 22);
 			this->numeric_Peso_Vehiculo->TabIndex = 20;
 			// 
 			// numeric_ID_espacio
 			// 
+			this->numeric_ID_espacio->InterceptArrowKeys = false;
 			this->numeric_ID_espacio->Location = System::Drawing::Point(200, 196);
 			this->numeric_ID_espacio->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
 			this->numeric_ID_espacio->Name = L"numeric_ID_espacio";
+			this->numeric_ID_espacio->ReadOnly = true;
 			this->numeric_ID_espacio->Size = System::Drawing::Size(120, 22);
 			this->numeric_ID_espacio->TabIndex = 21;
 			// 
 			// numeric_Precio_Hora
 			// 
 			this->numeric_Precio_Hora->DecimalPlaces = 2;
+			this->numeric_Precio_Hora->InterceptArrowKeys = false;
 			this->numeric_Precio_Hora->Location = System::Drawing::Point(200, 159);
 			this->numeric_Precio_Hora->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
 			this->numeric_Precio_Hora->Name = L"numeric_Precio_Hora";
+			this->numeric_Precio_Hora->ReadOnly = true;
 			this->numeric_Precio_Hora->Size = System::Drawing::Size(120, 22);
 			this->numeric_Precio_Hora->TabIndex = 23;
 			// 
@@ -338,11 +360,49 @@ namespace View {
 			this->label12->TabIndex = 22;
 			this->label12->Text = L"Precio por Hora";
 			// 
+			// tb_Fecha_Ingreso
+			// 
+			this->tb_Fecha_Ingreso->Location = System::Drawing::Point(200, 238);
+			this->tb_Fecha_Ingreso->Name = L"tb_Fecha_Ingreso";
+			this->tb_Fecha_Ingreso->ReadOnly = true;
+			this->tb_Fecha_Ingreso->Size = System::Drawing::Size(121, 22);
+			this->tb_Fecha_Ingreso->TabIndex = 24;
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(52, 241);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(93, 16);
+			this->label13->TabIndex = 25;
+			this->label13->Text = L"Fecha Ingreso";
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(52, 279);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(85, 16);
+			this->label14->TabIndex = 26;
+			this->label14->Text = L"Hora Ingreso";
+			// 
+			// tb_Hora_Ingreso
+			// 
+			this->tb_Hora_Ingreso->Location = System::Drawing::Point(200, 276);
+			this->tb_Hora_Ingreso->Name = L"tb_Hora_Ingreso";
+			this->tb_Hora_Ingreso->ReadOnly = true;
+			this->tb_Hora_Ingreso->Size = System::Drawing::Size(121, 22);
+			this->tb_Hora_Ingreso->TabIndex = 27;
+			// 
 			// Operador_Registrar_Ticket_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(641, 543);
+			this->ClientSize = System::Drawing::Size(592, 616);
+			this->Controls->Add(this->tb_Hora_Ingreso);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->tb_Fecha_Ingreso);
 			this->Controls->Add(this->numeric_Precio_Hora);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->numeric_ID_espacio);
@@ -378,13 +438,30 @@ namespace View {
 
 		
 		public: void Actualizar_datos(double peso, int ID_espacio,double precio) {
+
 			peso_vehiculo = peso;
 			ID_espacio_vehiculo = ID_espacio;
 			precio_hora = precio;
 
-			numeric_Precio_Hora->Value = (Decimal)precio_hora;
+			
+
 			numeric_Peso_Vehiculo->Value = (Decimal)peso_vehiculo;
+			numeric_Peso_Vehiculo->Enabled = false;
+
 			numeric_ID_espacio->Value = (Decimal)ID_espacio_vehiculo;
+			numeric_ID_espacio->Enabled = false;
+
+			numeric_Precio_Hora->Value = (Decimal)precio_hora;
+			numeric_Precio_Hora->Enabled = false;
+
+			//Actualizar fecha y hora de ingreso
+			fecha_ingreso = DateTime::Now;
+
+			tb_Fecha_Ingreso->Text = fecha_ingreso.ToString("dd/MM/yyyy");
+			tb_Fecha_Ingreso->Enabled = false;
+
+			tb_Hora_Ingreso->Text = fecha_ingreso.ToString("HH:mm:ss");
+			tb_Hora_Ingreso->Enabled = false;
 		}
 
 
@@ -413,6 +490,8 @@ namespace View {
 			ticket_new->RC = checkb_registro_completo->Checked;
 
 			ticket_new->precio = precio_hora;
+			
+			ticket_new->fechaIngreso = fecha_ingreso;
 
 			controlador_GUI->agregarTicket(ticket_new);
 
