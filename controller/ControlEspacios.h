@@ -13,6 +13,12 @@ namespace controllerPrincipal {
 	{
 	private:
 		static int numeroEspacios = 10;
+
+		static int Operativo = 1;
+		static int No_Operativo = 2;
+		static int En_Mantenimiento = 3;
+
+
 		static List<Espacio^>^ listaEspacios;
 
 		// Esta inializacion es algo agresiva, ya que introduce espacios por la fuerza

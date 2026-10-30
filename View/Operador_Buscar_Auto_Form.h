@@ -940,7 +940,7 @@ namespace View {
 
 		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		
+			
 			controladorEspacios->solicitarDescensoPlataforma(ticket_temporal->id_espacio);
 
 		}

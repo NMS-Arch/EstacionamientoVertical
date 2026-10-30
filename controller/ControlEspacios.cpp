@@ -7,7 +7,7 @@ void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos(int numeroE
     
     for (int i = 1; i <= numeroEspacios; i++) {
 
-        listaEspacios->Add(gcnew Espacio(i, false,true,false));
+        listaEspacios->Add(gcnew Espacio(i, false,Operativo,false));
     }
 
     persistance::guardarEspacios(listaEspacios);
@@ -37,7 +37,7 @@ List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles
 
     List<Espacio^>^ libres = gcnew List<Espacio^>();
     for each (Espacio ^ esp in listaEspacios) {
-        if (esp->ocupado == false) {
+        if (esp->ocupado == false && esp->estado == Operativo ) {
             libres->Add(esp);
         }
     }

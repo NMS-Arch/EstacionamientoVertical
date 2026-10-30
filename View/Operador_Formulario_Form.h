@@ -816,7 +816,10 @@ namespace View {
 
 			if (cb_ID_Vehiculo_Dinamico->SelectedIndex >= 0) {
 
-				controladorEspacios->solicitarDescensoPlataforma(cb_ID_Vehiculo_Dinamico->SelectedIndex);
+
+				String^ numeroID = cb_ID_Vehiculo_Dinamico->Items[cb_ID_Vehiculo_Dinamico->SelectedIndex]->ToString();
+
+				controladorEspacios->solicitarDescensoPlataforma( Convert::ToInt32(numeroID) );
 			}
 
 			
