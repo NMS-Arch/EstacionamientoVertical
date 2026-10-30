@@ -25,6 +25,7 @@ namespace controllerPrincipal {
 		// recomiendo que borres o cambies en caso de aumentar o disminuir el numero de espacios
 		static void InicilizarEspaciosFisicos(int numeroEspacios);
 		
+		static int estadoMotorPrincipal;
 
 	public:
 		static ControlEspacios() {
@@ -34,6 +35,8 @@ namespace controllerPrincipal {
 				InicilizarEspaciosFisicos(numeroEspacios);
 				Console::WriteLine("Verificando que se inicializo los espacios");
 			}
+
+			estadoMotorPrincipal = Operativo;
 		}
 
 		
@@ -45,7 +48,13 @@ namespace controllerPrincipal {
 
 		static void solicitarDescensoPlataforma(int idEspacio);
 
+		static void inhabiltarEspacio(int idEspacio);
 
+		static void habilitarEspacio(int idEspacio);
+
+		static void paraEmergenciaGeneral();
+
+		static void restablecerSistema();
 
 	};
 }

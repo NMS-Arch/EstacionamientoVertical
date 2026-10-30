@@ -48,13 +48,21 @@ List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles
 
 void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEspacio) {
 
+    if (estadoMotorPrincipal==No_Operativo || estadoMotorPrincipal==En_Mantenimiento) {
+        
+        throw gcnew Exception("El sistema se encuentra DETENIDO");
+
+        return;
+    }
+
     for each (Espacio^ esp in listaEspacios) {
 
         if (esp->id == idEspacio) {
 
 
             if (esp->estaEnSuelo == true) {
-                throw gcnew Exception("La plataforma ya se encuentra en el suelo");
+                //Tal vez sea bueno devolver un string e impirmir un mensaje si logro bajar la plataforma o no
+                return;
             }
 
             ////////
@@ -77,3 +85,44 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
 }
 
 
+
+
+
+
+
+void controllerPrincipal::ControlEspacios::inhabiltarEspacio(int idEspacio) {
+
+    for each (Espacio ^ esp in listaEspacios) {
+        if (esp->id == idEspacio) {
+
+            esp->estado = No_Operativo;
+
+            persistance::guardarEspacios(listaEspacios);
+            return;
+        }
+    }
+
+
+}
+
+void controllerPrincipal::ControlEspacios::habilitarEspacio(int idEspacio) {
+
+    for each (Espacio ^ esp in listaEspacios) {
+        if (esp->id == idEspacio) {
+
+            esp->estado = Operativo;
+
+            persistance::guardarEspacios(listaEspacios);
+            return;
+        }
+    }
+
+}
+
+void controllerPrincipal::ControlEspacios::paraEmergenciaGeneral() {
+
+}
+
+void controllerPrincipal::ControlEspacios::restablecerSistema() {
+
+}

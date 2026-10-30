@@ -38,6 +38,8 @@ namespace View {
 		int ID_espacio_vehiculo;
 		double precio_hora;
 
+		bool SeLogroBajarPlataforma;
+
 
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Ticket;
@@ -88,8 +90,10 @@ namespace View {
 			this->ID_espacio_vehiculo;
 			this->precio_hora;
 
+			SeLogroBajarPlataforma=false;
 
-			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
+
+			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this, controlador_GUI,controladorEspacios);
 			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this,controlador_GUI,controladorEspacios);
 
 
@@ -596,6 +600,11 @@ namespace View {
 				return;
 			}
 
+			if (SeLogroBajarPlataforma == false) {
+				MessageBox::Show("Debe bajar la plataforma para continuar o existe un error con esta.", "Falta información", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
 
 			if (numeric_Peso_Vehiculo->Value <= 0) {
 				MessageBox::Show("Debe existir un peso válido para el vehículo.","Falta información", MessageBoxButtons::OK, MessageBoxIcon::Warning);
@@ -770,6 +779,7 @@ namespace View {
 		}
 		private: System::Void btn_Espacios_Disponibles_Click(System::Object^ sender, System::EventArgs^ e) {
 
+
 			cb_ID_Vehiculo_Dinamico->Items->Clear();
 
 			List<Espacio^>^ espacios_disponibles = controladorEspacios->ObtenerEspaciosDisponibles();
@@ -814,15 +824,25 @@ namespace View {
 
 		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			if (cb_ID_Vehiculo_Dinamico->SelectedIndex >= 0) {
+			try {
 
 
-				String^ numeroID = cb_ID_Vehiculo_Dinamico->Items[cb_ID_Vehiculo_Dinamico->SelectedIndex]->ToString();
+				if (cb_ID_Vehiculo_Dinamico->SelectedIndex >= 0) {
 
-				controladorEspacios->solicitarDescensoPlataforma( Convert::ToInt32(numeroID) );
+					String^ numeroID = cb_ID_Vehiculo_Dinamico->Items[cb_ID_Vehiculo_Dinamico->SelectedIndex]->ToString();
+
+					controladorEspacios->solicitarDescensoPlataforma(Convert::ToInt32(numeroID));
+
+					SeLogroBajarPlataforma = true;
+
+					return;
+				}
 			}
-
+			catch (Exception^e) {
+				MessageBox::Show(e->Message,"Error",MessageBoxButtons::OK,MessageBoxIcon::Error);
+			}
 			
+			SeLogroBajarPlataforma = false;
 
 		}
 };

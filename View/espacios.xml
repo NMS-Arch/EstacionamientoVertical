@@ -21,13 +21,13 @@
   <Espacio>
     <ocupado>false</ocupado>
     <estado>1</estado>
-    <estaEnSuelo>false</estaEnSuelo>
+    <estaEnSuelo>true</estaEnSuelo>
     <id>4</id>
   </Espacio>
   <Espacio>
     <ocupado>true</ocupado>
     <estado>1</estado>
-    <estaEnSuelo>true</estaEnSuelo>
+    <estaEnSuelo>false</estaEnSuelo>
     <id>5</id>
   </Espacio>
   <Espacio>

@@ -10,6 +10,10 @@ namespace View {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for Operador_Registrar_Falla_Form
 	/// </summary>
@@ -18,14 +22,21 @@ namespace View {
 	private:
 
 		Form^ FormularioForm;
+		controller^ controlador_GUI;
+		ControlEspacios^ controladorEspacios;
+
+
 
 	public:
-		Operador_Registrar_Falla_Form(Form^ entrada_FormularioForm)
+		Operador_Registrar_Falla_Form(Form^ entrada_FormularioForm, controller^ controlador_entrada_GUI, ControlEspacios^ controladorEspacios_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			FormularioForm = entrada_FormularioForm;
+
+			controlador_GUI = controlador_entrada_GUI;
+			controladorEspacios = controladorEspacios_entrada;
 			//
 		}
 
@@ -139,30 +150,29 @@ namespace View {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(19, 271);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(25, 334);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(77, 13);
+			this->label1->Size = System::Drawing::Size(97, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Datos Registro";
 			// 
 			// btn_Inhabilitar_Espacio
 			// 
-			this->btn_Inhabilitar_Espacio->Location = System::Drawing::Point(52, 105);
-			this->btn_Inhabilitar_Espacio->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_Inhabilitar_Espacio->Location = System::Drawing::Point(69, 129);
+			this->btn_Inhabilitar_Espacio->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_Inhabilitar_Espacio->Name = L"btn_Inhabilitar_Espacio";
-			this->btn_Inhabilitar_Espacio->Size = System::Drawing::Size(106, 32);
+			this->btn_Inhabilitar_Espacio->Size = System::Drawing::Size(141, 39);
 			this->btn_Inhabilitar_Espacio->TabIndex = 1;
 			this->btn_Inhabilitar_Espacio->Text = L"Inhabilitar Espacio";
 			this->btn_Inhabilitar_Espacio->UseVisualStyleBackColor = true;
+			this->btn_Inhabilitar_Espacio->Click += gcnew System::EventHandler(this, &Operador_Registrar_Falla_Form::btn_Inhabilitar_Espacio_Click);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(21, 75);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label2->Location = System::Drawing::Point(28, 92);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(154, 13);
+			this->label2->Size = System::Drawing::Size(194, 16);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"ID Espacio de estacionamiento";
 			// 
@@ -174,28 +184,27 @@ namespace View {
 				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
 					L"9", L"10"
 			});
-			this->cb_ID_Espacio->Location = System::Drawing::Point(179, 72);
-			this->cb_ID_Espacio->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cb_ID_Espacio->Location = System::Drawing::Point(239, 89);
+			this->cb_ID_Espacio->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cb_ID_Espacio->Name = L"cb_ID_Espacio";
-			this->cb_ID_Espacio->Size = System::Drawing::Size(92, 21);
+			this->cb_ID_Espacio->Size = System::Drawing::Size(121, 24);
 			this->cb_ID_Espacio->TabIndex = 3;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(33, 174);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(44, 214);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(77, 13);
+			this->label3->Size = System::Drawing::Size(96, 16);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Motor Principal";
 			// 
 			// btn_Detener_Motor
 			// 
-			this->btn_Detener_Motor->Location = System::Drawing::Point(110, 162);
-			this->btn_Detener_Motor->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_Detener_Motor->Location = System::Drawing::Point(147, 199);
+			this->btn_Detener_Motor->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_Detener_Motor->Name = L"btn_Detener_Motor";
-			this->btn_Detener_Motor->Size = System::Drawing::Size(161, 32);
+			this->btn_Detener_Motor->Size = System::Drawing::Size(215, 39);
 			this->btn_Detener_Motor->TabIndex = 5;
 			this->btn_Detener_Motor->Text = L"Detener Motor Principal";
 			this->btn_Detener_Motor->UseVisualStyleBackColor = true;
@@ -203,74 +212,69 @@ namespace View {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(22, 32);
-			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label4->Location = System::Drawing::Point(29, 39);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(116, 13);
+			this->label4->Size = System::Drawing::Size(143, 16);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Seleccione una accion";
 			// 
 			// numeric_ID_Solicitante
 			// 
-			this->numeric_ID_Solicitante->Location = System::Drawing::Point(442, 512);
-			this->numeric_ID_Solicitante->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->numeric_ID_Solicitante->Location = System::Drawing::Point(589, 630);
+			this->numeric_ID_Solicitante->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->numeric_ID_Solicitante->Name = L"numeric_ID_Solicitante";
-			this->numeric_ID_Solicitante->Size = System::Drawing::Size(90, 20);
+			this->numeric_ID_Solicitante->Size = System::Drawing::Size(120, 22);
 			this->numeric_ID_Solicitante->TabIndex = 54;
 			// 
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(402, 513);
-			this->label15->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label15->Location = System::Drawing::Point(536, 631);
 			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(18, 13);
+			this->label15->Size = System::Drawing::Size(20, 16);
 			this->label15->TabIndex = 53;
 			this->label15->Text = L"ID";
 			// 
 			// tb_Rol_Solicitante
 			// 
-			this->tb_Rol_Solicitante->Location = System::Drawing::Point(255, 508);
-			this->tb_Rol_Solicitante->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_Rol_Solicitante->Location = System::Drawing::Point(340, 625);
+			this->tb_Rol_Solicitante->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Rol_Solicitante->Name = L"tb_Rol_Solicitante";
-			this->tb_Rol_Solicitante->Size = System::Drawing::Size(90, 20);
+			this->tb_Rol_Solicitante->Size = System::Drawing::Size(119, 22);
 			this->tb_Rol_Solicitante->TabIndex = 52;
 			// 
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(204, 513);
-			this->label14->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label14->Location = System::Drawing::Point(272, 631);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(23, 13);
+			this->label14->Size = System::Drawing::Size(28, 16);
 			this->label14->TabIndex = 51;
 			this->label14->Text = L"Rol";
 			// 
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(20, 513);
-			this->label13->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label13->Location = System::Drawing::Point(27, 631);
 			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(44, 13);
+			this->label13->Size = System::Drawing::Size(56, 16);
 			this->label13->TabIndex = 50;
 			this->label13->Text = L"Nombre";
 			// 
 			// tb_Nompre_Solicitante
 			// 
-			this->tb_Nompre_Solicitante->Location = System::Drawing::Point(71, 511);
-			this->tb_Nompre_Solicitante->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_Nompre_Solicitante->Location = System::Drawing::Point(95, 629);
+			this->tb_Nompre_Solicitante->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Nompre_Solicitante->Name = L"tb_Nompre_Solicitante";
-			this->tb_Nompre_Solicitante->Size = System::Drawing::Size(76, 20);
+			this->tb_Nompre_Solicitante->Size = System::Drawing::Size(100, 22);
 			this->tb_Nompre_Solicitante->TabIndex = 49;
 			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(20, 481);
-			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label12->Location = System::Drawing::Point(27, 592);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(105, 13);
+			this->label12->Size = System::Drawing::Size(132, 16);
 			this->label12->TabIndex = 48;
 			this->label12->Text = L"Quien registro la falla";
 			// 
@@ -279,55 +283,52 @@ namespace View {
 			this->cb_Estado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Estado->FormattingEnabled = true;
 			this->cb_Estado->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Pendiente", L"Solucionado", L"En Mantenimiento" });
-			this->cb_Estado->Location = System::Drawing::Point(442, 428);
-			this->cb_Estado->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cb_Estado->Location = System::Drawing::Point(589, 527);
+			this->cb_Estado->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cb_Estado->Name = L"cb_Estado";
-			this->cb_Estado->Size = System::Drawing::Size(91, 21);
+			this->cb_Estado->Size = System::Drawing::Size(120, 24);
 			this->cb_Estado->TabIndex = 47;
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(400, 433);
-			this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label9->Location = System::Drawing::Point(533, 533);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(40, 13);
+			this->label9->Size = System::Drawing::Size(50, 16);
 			this->label9->TabIndex = 46;
 			this->label9->Text = L"Estado";
 			// 
 			// tb_Hora
 			// 
-			this->tb_Hora->Location = System::Drawing::Point(255, 428);
-			this->tb_Hora->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_Hora->Location = System::Drawing::Point(340, 527);
+			this->tb_Hora->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Hora->Name = L"tb_Hora";
-			this->tb_Hora->Size = System::Drawing::Size(90, 20);
+			this->tb_Hora->Size = System::Drawing::Size(119, 22);
 			this->tb_Hora->TabIndex = 45;
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(204, 433);
-			this->label8->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label8->Location = System::Drawing::Point(272, 533);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(30, 13);
+			this->label8->Size = System::Drawing::Size(37, 16);
 			this->label8->TabIndex = 44;
 			this->label8->Text = L"Hora";
 			// 
 			// tb_Fecha
 			// 
-			this->tb_Fecha->Location = System::Drawing::Point(71, 428);
-			this->tb_Fecha->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_Fecha->Location = System::Drawing::Point(95, 527);
+			this->tb_Fecha->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Fecha->Name = L"tb_Fecha";
-			this->tb_Fecha->Size = System::Drawing::Size(76, 20);
+			this->tb_Fecha->Size = System::Drawing::Size(100, 22);
 			this->tb_Fecha->TabIndex = 43;
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(20, 430);
-			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label7->Location = System::Drawing::Point(27, 529);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(37, 13);
+			this->label7->Size = System::Drawing::Size(45, 16);
 			this->label7->TabIndex = 42;
 			this->label7->Text = L"Fecha";
 			// 
@@ -336,19 +337,18 @@ namespace View {
 			this->cb_Tipo->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Tipo->FormattingEnabled = true;
 			this->cb_Tipo->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Mecanica", L"Electrica", L"Limpieza", L"Desconocida" });
-			this->cb_Tipo->Location = System::Drawing::Point(441, 311);
-			this->cb_Tipo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cb_Tipo->Location = System::Drawing::Point(588, 383);
+			this->cb_Tipo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cb_Tipo->Name = L"cb_Tipo";
-			this->cb_Tipo->Size = System::Drawing::Size(92, 21);
+			this->cb_Tipo->Size = System::Drawing::Size(121, 24);
 			this->cb_Tipo->TabIndex = 41;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(400, 313);
-			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label6->Location = System::Drawing::Point(533, 385);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(28, 13);
+			this->label6->Size = System::Drawing::Size(35, 16);
 			this->label6->TabIndex = 40;
 			this->label6->Text = L"Tipo";
 			// 
@@ -357,19 +357,18 @@ namespace View {
 			this->cb_Prioridad->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Prioridad->FormattingEnabled = true;
 			this->cb_Prioridad->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Alta", L"Media", L"Baja", L"Desconocida" });
-			this->cb_Prioridad->Location = System::Drawing::Point(255, 311);
-			this->cb_Prioridad->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cb_Prioridad->Location = System::Drawing::Point(340, 383);
+			this->cb_Prioridad->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cb_Prioridad->Name = L"cb_Prioridad";
-			this->cb_Prioridad->Size = System::Drawing::Size(90, 21);
+			this->cb_Prioridad->Size = System::Drawing::Size(119, 24);
 			this->cb_Prioridad->TabIndex = 39;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(204, 313);
-			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label5->Location = System::Drawing::Point(272, 385);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(48, 13);
+			this->label5->Size = System::Drawing::Size(62, 16);
 			this->label5->TabIndex = 38;
 			this->label5->Text = L"Prioridad";
 			// 
@@ -381,47 +380,45 @@ namespace View {
 				L"Motor Principal", L"Espacio 1", L"Espacio 2",
 					L"Espacio 3", L"Espacio 4", L"Espacio 5", L"Espacio 6", L"Espacio 7", L"Espacio 8", L"Espacio 9", L"Espacio 10"
 			});
-			this->cb_Afectado->Location = System::Drawing::Point(71, 311);
-			this->cb_Afectado->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cb_Afectado->Location = System::Drawing::Point(95, 383);
+			this->cb_Afectado->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cb_Afectado->Name = L"cb_Afectado";
-			this->cb_Afectado->Size = System::Drawing::Size(102, 21);
+			this->cb_Afectado->Size = System::Drawing::Size(135, 24);
 			this->cb_Afectado->TabIndex = 37;
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(20, 313);
-			this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label10->Location = System::Drawing::Point(27, 385);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(50, 13);
+			this->label10->Size = System::Drawing::Size(61, 16);
 			this->label10->TabIndex = 36;
 			this->label10->Text = L"Afectado";
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(20, 364);
-			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label11->Location = System::Drawing::Point(27, 448);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(63, 13);
+			this->label11->Size = System::Drawing::Size(79, 16);
 			this->label11->TabIndex = 35;
 			this->label11->Text = L"Descripcion";
 			// 
 			// tb_Descripcion
 			// 
-			this->tb_Descripcion->Location = System::Drawing::Point(23, 380);
-			this->tb_Descripcion->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_Descripcion->Location = System::Drawing::Point(31, 468);
+			this->tb_Descripcion->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Descripcion->Name = L"tb_Descripcion";
 			this->tb_Descripcion->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->tb_Descripcion->Size = System::Drawing::Size(510, 20);
+			this->tb_Descripcion->Size = System::Drawing::Size(679, 22);
 			this->tb_Descripcion->TabIndex = 34;
 			// 
 			// btn_Registrar_Falla
 			// 
-			this->btn_Registrar_Falla->Location = System::Drawing::Point(581, 340);
-			this->btn_Registrar_Falla->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_Registrar_Falla->Location = System::Drawing::Point(775, 418);
+			this->btn_Registrar_Falla->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_Registrar_Falla->Name = L"btn_Registrar_Falla";
-			this->btn_Registrar_Falla->Size = System::Drawing::Size(90, 60);
+			this->btn_Registrar_Falla->Size = System::Drawing::Size(120, 74);
 			this->btn_Registrar_Falla->TabIndex = 55;
 			this->btn_Registrar_Falla->Text = L"Registrar Falla";
 			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
@@ -429,10 +426,10 @@ namespace View {
 			// 
 			// btn_Regresar_Sin_Cambios
 			// 
-			this->btn_Regresar_Sin_Cambios->Location = System::Drawing::Point(581, 445);
-			this->btn_Regresar_Sin_Cambios->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_Regresar_Sin_Cambios->Location = System::Drawing::Point(775, 548);
+			this->btn_Regresar_Sin_Cambios->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_Regresar_Sin_Cambios->Name = L"btn_Regresar_Sin_Cambios";
-			this->btn_Regresar_Sin_Cambios->Size = System::Drawing::Size(90, 60);
+			this->btn_Regresar_Sin_Cambios->Size = System::Drawing::Size(120, 74);
 			this->btn_Regresar_Sin_Cambios->TabIndex = 56;
 			this->btn_Regresar_Sin_Cambios->Text = L"Regresar sin hacer cambios";
 			this->btn_Regresar_Sin_Cambios->UseVisualStyleBackColor = true;
@@ -440,18 +437,19 @@ namespace View {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(378, 21);
+			this->pictureBox1->Location = System::Drawing::Point(504, 26);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(201, 263);
+			this->pictureBox1->Size = System::Drawing::Size(268, 324);
 			this->pictureBox1->TabIndex = 57;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Operador_Registrar_Falla_Form::pictureBox1_Paint);
 			// 
 			// Operador_Registrar_Falla_Form
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(694, 571);
+			this->ClientSize = System::Drawing::Size(925, 703);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btn_Regresar_Sin_Cambios);
 			this->Controls->Add(this->btn_Registrar_Falla);
@@ -483,7 +481,7 @@ namespace View {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->btn_Inhabilitar_Espacio);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"Operador_Registrar_Falla_Form";
 			this->Text = L"Operador_Registrar_Falla_Form";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Solicitante))->EndInit();
@@ -535,6 +533,17 @@ namespace View {
 				g->DrawString((i + 1).ToString(), DefaultFont, Brushes::Black, x - 5, y - 5);
 			}
 
+		}
+
+		private: System::Void btn_Inhabilitar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (cb_ID_Espacio->SelectedIndex >= 0) {
+
+				String^ numeroID = cb_ID_Espacio->Items[cb_ID_Espacio->SelectedIndex]->ToString();
+				controladorEspacios->solicitarDescensoPlataforma(Convert::ToInt32(numeroID));
+			}
+
+			
 		}
 };
 }
