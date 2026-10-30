@@ -20,7 +20,7 @@
   </Espacio>
   <Espacio>
     <ocupado>false</ocupado>
-    <estado>1</estado>
+    <estado>2</estado>
     <estaEnSuelo>true</estaEnSuelo>
     <id>4</id>
   </Espacio>
