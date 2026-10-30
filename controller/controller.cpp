@@ -246,7 +246,9 @@ List<Falla^>^ controllerPrincipal::controller::cargarFallas() {
 	return persistance::cargarFallas();
 }
 
-//TICKETS
+////////////////////////
+///		TICKETS		////
+////////////////////////
 
 void controllerPrincipal::controller::agregarTicket(TicketAuto^ ticket_entrada) {
 
@@ -292,11 +294,42 @@ TicketAuto^ controllerPrincipal::controller::buscarTicket(int id_ticket) {
 	for (int i = 0; i < controller::Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			return Tickets[i];
-			persistance::guardarTickets(Tickets);
+			//persistance::guardarTickets(Tickets);
 		}
 	}
 	return nullptr;
 }
+
+
+TicketAuto^ controllerPrincipal::controller::buscarTicket_codigo(String^ codigo_entrada) {
+	for (int i = 0; i < controller::Tickets->Count; i++) {
+		if (Tickets[i]->codigoBarras == codigo_entrada) {
+			return Tickets[i];
+			//persistance::guardarTickets(Tickets);
+		}
+	}
+	return nullptr;
+}
+TicketAuto^ controllerPrincipal::controller::buscarTicket_dni(int dni_entrada) {
+	for (int i = 0; i < controller::Tickets->Count; i++) {
+		if (Tickets[i]->dni == dni_entrada) {
+			return Tickets[i];
+			//persistance::guardarTickets(Tickets);
+		}
+	}
+	return nullptr;
+}
+TicketAuto^ controllerPrincipal::controller::buscarTicket_placa(String^ placa_entrada) {
+	for (int i = 0; i < controller::Tickets->Count; i++) {
+		if (Tickets[i]->placa== placa_entrada) {
+			return Tickets[i];
+			//persistance::guardarTickets(Tickets);
+		}
+	}
+	return nullptr;
+}
+
+
 
 List<TicketAuto^>^ controllerPrincipal::controller::listarTickets() {
 	return Tickets;

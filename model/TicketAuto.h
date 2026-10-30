@@ -10,6 +10,7 @@ namespace modelPrincipal {
         String^ modeloAuto;
         String^ placa;
 		DateTime fechaIngreso;
+        DateTime fechaSalida;
 		//String^ horaIngreso;
 
         bool pagado;
@@ -34,7 +35,7 @@ namespace modelPrincipal {
             
             //bool RC, 
             
-            int Dni, String^codigoBarras) {
+            int Dni, String^codigoBarras, DateTime fecha_salida) {
 
 
 
@@ -50,6 +51,9 @@ namespace modelPrincipal {
             this->peso = peso;
 
             this->fechaIngreso = fecha;
+
+            this->fechaSalida= fecha_salida;
+
             //this->horaIngreso = hora;
             this->pagado = false;
 
@@ -57,6 +61,9 @@ namespace modelPrincipal {
 			this->dni = Dni;
 
             this->codigoBarras = codigoBarras;
+
+
+
         }
 
 
@@ -74,8 +81,8 @@ namespace modelPrincipal {
 
             codigoBarras=codigoFinal->ToUpper();
 
-            
-
         }
+
+        
     };
 }

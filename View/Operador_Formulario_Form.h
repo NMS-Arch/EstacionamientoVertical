@@ -36,6 +36,10 @@ namespace View {
 
 		double peso_vehiculo;
 		int ID_espacio_vehiculo;
+		double precio_hora;
+
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Ticket;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Espacio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Placa;
@@ -45,39 +49,6 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora_Entrada;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_DNI;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Codigo_B;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		   double precio_hora;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -119,7 +90,7 @@ namespace View {
 
 
 			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this);
-			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this);
+			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this,controlador_GUI,controladorEspacios);
 
 
 			RegistrarTicketForm = nullptr;

@@ -94,7 +94,14 @@ namespace controllerPrincipal {
 		static void agregarTicket(TicketAuto^ ticket);
 		static void eliminarTicket(int id_ticket);
 		static void modificarTicket(int id_ticket, TicketAuto^ ticket);
+
 		static TicketAuto^ buscarTicket(int id_ticket);
+
+		static TicketAuto^ buscarTicket_codigo(String^ codigo_entrada);
+		static TicketAuto^ buscarTicket_dni(int dni_entrada);
+		static TicketAuto^ buscarTicket_placa(String^ placa_entrada);
+
+
 		static List<TicketAuto^>^ listarTickets();
 
 		static void guardarTickets();
