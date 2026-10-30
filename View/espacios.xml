@@ -6,7 +6,7 @@
     <id>1</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
+    <ocupado>false</ocupado>
     <estado>true</estado>
     <id>2</id>
   </Espacio>
@@ -26,17 +26,17 @@
     <id>5</id>
   </Espacio>
   <Espacio>
-    <ocupado>false</ocupado>
+    <ocupado>true</ocupado>
     <estado>true</estado>
     <id>6</id>
   </Espacio>
   <Espacio>
-    <ocupado>false</ocupado>
+    <ocupado>true</ocupado>
     <estado>true</estado>
     <id>7</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
+    <ocupado>false</ocupado>
     <estado>true</estado>
     <id>8</id>
   </Espacio>

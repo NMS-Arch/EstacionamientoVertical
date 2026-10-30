@@ -92,10 +92,12 @@ namespace View {
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::TextBox^ tb_DNI;
+	private: System::Windows::Forms::Button^ btn_Generar_Codigo_Barras;
 
-	private: System::Windows::Forms::Button^ btn_Generar_ID_Ticket;
+
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::TextBox^ tb_ID_Generado;
+	private: System::Windows::Forms::TextBox^ tb_Codigo_Generado;
+
 	private: System::Windows::Forms::Button^ btn_Imprimir_y_Registrar_ID_Ticket;
 
 
@@ -131,9 +133,9 @@ namespace View {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->tb_DNI = (gcnew System::Windows::Forms::TextBox());
-			this->btn_Generar_ID_Ticket = (gcnew System::Windows::Forms::Button());
+			this->btn_Generar_Codigo_Barras = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->tb_ID_Generado = (gcnew System::Windows::Forms::TextBox());
+			this->tb_Codigo_Generado = (gcnew System::Windows::Forms::TextBox());
 			this->btn_Imprimir_y_Registrar_ID_Ticket = (gcnew System::Windows::Forms::Button());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->btn_Regresar_Formulario = (gcnew System::Windows::Forms::Button());
@@ -237,30 +239,31 @@ namespace View {
 			this->tb_DNI->Size = System::Drawing::Size(122, 22);
 			this->tb_DNI->TabIndex = 12;
 			// 
-			// btn_Generar_ID_Ticket
+			// btn_Generar_Codigo_Barras
 			// 
-			this->btn_Generar_ID_Ticket->Location = System::Drawing::Point(55, 530);
-			this->btn_Generar_ID_Ticket->Name = L"btn_Generar_ID_Ticket";
-			this->btn_Generar_ID_Ticket->Size = System::Drawing::Size(117, 38);
-			this->btn_Generar_ID_Ticket->TabIndex = 13;
-			this->btn_Generar_ID_Ticket->Text = L"Generar ID";
-			this->btn_Generar_ID_Ticket->UseVisualStyleBackColor = true;
+			this->btn_Generar_Codigo_Barras->Location = System::Drawing::Point(55, 530);
+			this->btn_Generar_Codigo_Barras->Name = L"btn_Generar_Codigo_Barras";
+			this->btn_Generar_Codigo_Barras->Size = System::Drawing::Size(117, 38);
+			this->btn_Generar_Codigo_Barras->TabIndex = 13;
+			this->btn_Generar_Codigo_Barras->Text = L"Generar Codigo";
+			this->btn_Generar_Codigo_Barras->UseVisualStyleBackColor = true;
+			this->btn_Generar_Codigo_Barras->Click += gcnew System::EventHandler(this, &Operador_Registrar_Ticket_Form::btn_Generar_Codigo_Barras_Click);
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
 			this->label9->Location = System::Drawing::Point(53, 499);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(134, 16);
+			this->label9->Size = System::Drawing::Size(143, 16);
 			this->label9->TabIndex = 14;
-			this->label9->Text = L"Generar ID del Ticket";
+			this->label9->Text = L"Generar codigo barras";
 			// 
-			// tb_ID_Generado
+			// tb_Codigo_Generado
 			// 
-			this->tb_ID_Generado->Location = System::Drawing::Point(204, 538);
-			this->tb_ID_Generado->Name = L"tb_ID_Generado";
-			this->tb_ID_Generado->Size = System::Drawing::Size(117, 22);
-			this->tb_ID_Generado->TabIndex = 15;
+			this->tb_Codigo_Generado->Location = System::Drawing::Point(204, 538);
+			this->tb_Codigo_Generado->Name = L"tb_Codigo_Generado";
+			this->tb_Codigo_Generado->Size = System::Drawing::Size(117, 22);
+			this->tb_Codigo_Generado->TabIndex = 15;
 			// 
 			// btn_Imprimir_y_Registrar_ID_Ticket
 			// 
@@ -392,9 +395,9 @@ namespace View {
 			this->Controls->Add(this->btn_Regresar_Formulario);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->btn_Imprimir_y_Registrar_ID_Ticket);
-			this->Controls->Add(this->tb_ID_Generado);
+			this->Controls->Add(this->tb_Codigo_Generado);
 			this->Controls->Add(this->label9);
-			this->Controls->Add(this->btn_Generar_ID_Ticket);
+			this->Controls->Add(this->btn_Generar_Codigo_Barras);
 			this->Controls->Add(this->tb_DNI);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
@@ -434,7 +437,7 @@ namespace View {
 			numeric_Precio_Hora->Value = (Decimal)precio_hora;
 			numeric_Precio_Hora->Enabled = false;
 
-
+			tb_Codigo_Generado->Enabled = false;
 
 
 			//Actualizar fecha y hora de ingreso
@@ -464,7 +467,7 @@ namespace View {
 			tb_Placa->Clear();
 			tb_Modelo->Clear();
 			tb_DNI->Clear();
-			
+			tb_Codigo_Generado->Clear();
 
 		}
 
@@ -478,6 +481,11 @@ namespace View {
 
 			if (String::IsNullOrWhiteSpace(tb_Modelo->Text)) {
 				MessageBox::Show("Es nesacrio que indique modelo del vehiculo", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			if (String::IsNullOrWhiteSpace(tb_Codigo_Generado->Text)) {
+				MessageBox::Show("Es nesacrio que genero el codigo", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
 
@@ -513,6 +521,7 @@ namespace View {
 				}
 			}
 
+			ticket_new->generar_codigo_barras();
 			
 
 			controlador_GUI->agregarTicket(ticket_new);
@@ -525,6 +534,41 @@ namespace View {
 			limpiar_registro();
 
 			FormularioForm->Show();
+
+		}
+
+		private: System::Void btn_Generar_Codigo_Barras_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			
+			if (String::IsNullOrWhiteSpace(tb_Placa->Text)) {
+				MessageBox::Show("Es nesacrio que indique placa del vehiculo", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			if (String::IsNullOrWhiteSpace(tb_Modelo->Text)) {
+				MessageBox::Show("Es nesacrio que indique modelo del vehiculo", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+			
+			TicketAuto^ ticket_new = gcnew TicketAuto();
+
+			ticket_new->placa = tb_Placa->Text;
+
+			ticket_new->modeloAuto = tb_Modelo->Text;
+
+			//ticket_new->RC = checkb_registro_completo->Checked;
+			ticket_new->fechaIngreso = fecha_ingreso;
+			
+			try {
+				ticket_new->generar_codigo_barras();
+			} 
+			catch (Exception^ e) {
+				MessageBox::Show("No se introdujo un valor de placa o modelo adecuado","Error Informacion",MessageBoxButtons::OK,MessageBoxIcon::Exclamation);
+			}
+			
+			tb_Codigo_Generado->Text = ticket_new->codigoBarras;
+			tb_Codigo_Generado->Enabled = false;
+			
 
 		}
 };

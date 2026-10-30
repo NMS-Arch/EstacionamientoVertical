@@ -4,6 +4,7 @@ using namespace System;
 
 namespace modelPrincipal {
     public ref class TicketAuto {
+
     public:
         Cliente^ clienteAsociado;
         String^ modeloAuto;
@@ -21,6 +22,7 @@ namespace modelPrincipal {
 
         //bool RC;
 
+        String^ codigoBarras;
 
         int dni;
 
@@ -32,7 +34,7 @@ namespace modelPrincipal {
             
             //bool RC, 
             
-            int Dni) {
+            int Dni, String^codigoBarras) {
 
 
 
@@ -53,6 +55,27 @@ namespace modelPrincipal {
 
 			//this->RC = RC;
 			this->dni = Dni;
+
+            this->codigoBarras = codigoBarras;
+        }
+
+
+        void generar_codigo_barras() {
+
+            //String^ parteID; 
+            String^ partePlaca; String^ parteModelo; String^ parteTiempo;
+
+            //parteID = id.ToString();
+            partePlaca = (placa->Length >= 3) ? placa->Substring(0, 3) : placa;
+            parteModelo = (modeloAuto->Length >= 2) ? modeloAuto->Substring(0, 2) : modeloAuto;
+            parteTiempo = fechaIngreso.ToString("HHmm");
+
+            String^ codigoFinal =  partePlaca + parteModelo + parteTiempo;
+
+            codigoBarras=codigoFinal->ToUpper();
+
+            
+
         }
     };
 }

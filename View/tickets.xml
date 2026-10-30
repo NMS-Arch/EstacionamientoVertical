@@ -2,35 +2,38 @@
 <ArrayOfTicketAuto xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TicketAuto>
     <modeloAuto>Toyota</modeloAuto>
-    <placa>AFGH</placa>
-    <fechaIngreso>2026-10-29T17:10:29.6105662-05:00</fechaIngreso>
+    <placa>NJK14L</placa>
+    <fechaIngreso>2026-10-29T19:56:10.664602-05:00</fechaIngreso>
     <pagado>false</pagado>
-    <precio>30.425555333693303</precio>
+    <precio>134.52</precio>
     <id>1</id>
-    <peso>10.836039560305</peso>
+    <peso>4.24</peso>
     <id_espacio>1</id_espacio>
+    <codigoBarras>NJKTO1956</codigoBarras>
     <dni>0</dni>
   </TicketAuto>
   <TicketAuto>
-    <modeloAuto>Toyota</modeloAuto>
-    <placa>ANM14J</placa>
-    <fechaIngreso>2026-10-29T18:15:43.9661941-05:00</fechaIngreso>
+    <modeloAuto>Honda</modeloAuto>
+    <placa>ZVK97G</placa>
+    <fechaIngreso>2026-10-29T19:56:53.7125971-05:00</fechaIngreso>
     <pagado>false</pagado>
-    <precio>53.147385210333105</precio>
+    <precio>62.45</precio>
     <id>2</id>
-    <peso>10.6524266622273</peso>
-    <id_espacio>2</id_espacio>
+    <peso>11.77</peso>
+    <id_espacio>7</id_espacio>
+    <codigoBarras>ZVKHO1956</codigoBarras>
     <dni>0</dni>
   </TicketAuto>
   <TicketAuto>
-    <modeloAuto>Ford</modeloAuto>
-    <placa>NHJK4</placa>
-    <fechaIngreso>2026-10-29T18:25:59.3662017-05:00</fechaIngreso>
+    <modeloAuto>Subaru</modeloAuto>
+    <placa>YUK771</placa>
+    <fechaIngreso>2026-10-29T19:58:41.4447806-05:00</fechaIngreso>
     <pagado>false</pagado>
-    <precio>78.110923645138229</precio>
+    <precio>83.77</precio>
     <id>3</id>
-    <peso>10.5942912151079</peso>
-    <id_espacio>8</id_espacio>
-    <dni>12345687</dni>
+    <peso>7.47</peso>
+    <id_espacio>6</id_espacio>
+    <codigoBarras>YUKSU1958</codigoBarras>
+    <dni>89745621</dni>
   </TicketAuto>
 </ArrayOfTicketAuto>
