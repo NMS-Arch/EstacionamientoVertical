@@ -49,12 +49,13 @@ namespace controllerPrincipal {
 		static void solicitarDescensoPlataforma(int idEspacio);
 
 		static void inhabiltarEspacio(int idEspacio);
-
 		static void habilitarEspacio(int idEspacio);
+		static void espacioEnMantenimiento(int idEspacio);
+
 
 		static void paraEmergenciaGeneral();
-
 		static void restablecerSistema();
+		static void MotorEnMantenimiento();
 
 	};
 }

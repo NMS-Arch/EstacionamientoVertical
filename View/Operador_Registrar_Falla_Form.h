@@ -208,6 +208,7 @@ namespace View {
 			this->btn_Detener_Motor->TabIndex = 5;
 			this->btn_Detener_Motor->Text = L"Detener Motor Principal";
 			this->btn_Detener_Motor->UseVisualStyleBackColor = true;
+			this->btn_Detener_Motor->Click += gcnew System::EventHandler(this, &Operador_Registrar_Falla_Form::btn_Detener_Motor_Click);
 			// 
 			// label4
 			// 
@@ -438,7 +439,7 @@ namespace View {
 			// pictureBox1
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(504, 26);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(268, 324);
 			this->pictureBox1->TabIndex = 57;
@@ -540,10 +541,17 @@ namespace View {
 			if (cb_ID_Espacio->SelectedIndex >= 0) {
 
 				String^ numeroID = cb_ID_Espacio->Items[cb_ID_Espacio->SelectedIndex]->ToString();
-				controladorEspacios->solicitarDescensoPlataforma(Convert::ToInt32(numeroID));
+				controladorEspacios->inhabiltarEspacio(Convert::ToInt32(numeroID));
 			}
 
+		}
+
+
+		private: System::Void btn_Detener_Motor_Click(System::Object^ sender, System::EventArgs^ e) {
+
 			
+				controladorEspacios->paraEmergenciaGeneral();
+
 		}
 };
 }

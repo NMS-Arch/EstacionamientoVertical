@@ -58,6 +58,11 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
     for each (Espacio^ esp in listaEspacios) {
 
         if (esp->id == idEspacio) {
+            
+            if (esp->estado==No_Operativo || esp->estado==En_Mantenimiento) {
+                throw gcnew Exception("No se puede descender la plataforma");
+                return;
+            }
 
 
             if (esp->estaEnSuelo == true) {
@@ -119,10 +124,31 @@ void controllerPrincipal::ControlEspacios::habilitarEspacio(int idEspacio) {
 
 }
 
-void controllerPrincipal::ControlEspacios::paraEmergenciaGeneral() {
 
+
+void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio) {
+    for each (Espacio ^ esp in listaEspacios) {
+        if (esp->id == idEspacio) {
+
+            esp->estado = En_Mantenimiento;
+
+            persistance::guardarEspacios(listaEspacios);
+            return;
+        }
+    }
+}
+
+
+
+
+void controllerPrincipal::ControlEspacios::paraEmergenciaGeneral() {
+    estadoMotorPrincipal = No_Operativo;
 }
 
 void controllerPrincipal::ControlEspacios::restablecerSistema() {
+    estadoMotorPrincipal = Operativo;
+}
 
+void controllerPrincipal::ControlEspacios::MotorEnMantenimiento() {
+    estadoMotorPrincipal = En_Mantenimiento;
 }
