@@ -600,6 +600,7 @@ namespace View {
 			this->numeric_Precio_Base->DecimalPlaces = 2;
 			this->numeric_Precio_Base->Location = System::Drawing::Point(888, 679);
 			this->numeric_Precio_Base->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->numeric_Precio_Base->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999999, 0, 0, 0 });
 			this->numeric_Precio_Base->Name = L"numeric_Precio_Base";
 			this->numeric_Precio_Base->Size = System::Drawing::Size(171, 22);
 			this->numeric_Precio_Base->TabIndex = 37;
@@ -609,6 +610,7 @@ namespace View {
 			this->numeric_Peso_Vehiculo->DecimalPlaces = 2;
 			this->numeric_Peso_Vehiculo->Location = System::Drawing::Point(168, 526);
 			this->numeric_Peso_Vehiculo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->numeric_Peso_Vehiculo->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999999, 0, 0, 0 });
 			this->numeric_Peso_Vehiculo->Name = L"numeric_Peso_Vehiculo";
 			this->numeric_Peso_Vehiculo->Size = System::Drawing::Size(145, 22);
 			this->numeric_Peso_Vehiculo->TabIndex = 38;
@@ -650,7 +652,7 @@ namespace View {
 			this->numeric_Precio_por_Estacionar->DecimalPlaces = 2;
 			this->numeric_Precio_por_Estacionar->Location = System::Drawing::Point(667, 495);
 			this->numeric_Precio_por_Estacionar->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->numeric_Precio_por_Estacionar->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
+			this->numeric_Precio_por_Estacionar->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999999, 0, 0, 0 });
 			this->numeric_Precio_por_Estacionar->Name = L"numeric_Precio_por_Estacionar";
 			this->numeric_Precio_por_Estacionar->Size = System::Drawing::Size(243, 22);
 			this->numeric_Precio_por_Estacionar->TabIndex = 42;
@@ -840,6 +842,9 @@ namespace View {
 			tb_Placa_Vehiculo->Text = Convert::ToString(ticket_encontrado->placa);
 			tb_Placa_Vehiculo->Enabled = false;
 
+			tb_Modelo_Vehiculo->Text = Convert::ToString(ticket_encontrado->modeloAuto);
+			tb_Modelo_Vehiculo->Enabled = false;
+
 			numeric_Peso_Vehiculo->Value= Convert::ToDecimal(ticket_encontrado->peso);
 			numeric_Peso_Vehiculo->Enabled = false;
 
@@ -860,6 +865,7 @@ namespace View {
 
 
 			numeric_Precio_Base->Value = Convert::ToDecimal(ticket_encontrado->precio);
+			numeric_Precio_Base->Enabled = false;
 
 			ticket_encontrado->fechaSalida = DateTime::Now;
 
@@ -870,6 +876,7 @@ namespace View {
 			tb_Hora_Salida->Enabled = false;
 
 			
+
 		}
 
 	};
