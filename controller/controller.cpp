@@ -1,14 +1,14 @@
 #include "pch.h"
 
 #include "controller.h"
-//using namespace controllerPrincipal;
+using namespace controllerPrincipal;
 //using namespace System;
 //using namespace System::Collections::Generic;
 
 
 //ESPACIO
 
-void controllerPrincipal::controller::agregarEspacio(bool ocupado, bool est, bool estaEnSuelo) {
+void controller::agregarEspacio(bool ocupado, int est, bool estaEnSuelo) {
 	int maxId = 0;
 	for each (Espacio ^ esp in Espacios) {
 		if (esp->id > maxId) {
@@ -20,7 +20,7 @@ void controllerPrincipal::controller::agregarEspacio(bool ocupado, bool est, boo
 	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est,estaEnSuelo);
 	Espacios->Add(nEspacio);
 }
-bool controllerPrincipal::controller::eliminarEspacio(int id) {
+bool controller::eliminarEspacio(int id) {
 	for (int i = 0; i < Espacios->Count; i++) {
 		if (Espacios[i]->id == id) {
 			Espacios->RemoveAt(i);
@@ -29,7 +29,7 @@ bool controllerPrincipal::controller::eliminarEspacio(int id) {
 	}
 	return false;
 }
-bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, bool est, bool estaEnSuelo) {
+bool controller::modificarEspacio(int id, bool ocupado, int est, bool estaEnSuelo) {
 	for (int i = 0; i < Espacios->Count; i++) {
 		if (Espacios[i]->id == id) {
 			Espacios[i]->ocupado = ocupado;
@@ -42,7 +42,7 @@ bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, boo
 
 	return false;
 }
-Espacio^ controllerPrincipal::controller::buscarEspacio(int id) {
+Espacio^ controller::buscarEspacio(int id) {
 	for (int i = 0; i < Espacios->Count; i++) {
 		if (Espacios[i]->id == id) {
 			Espacio^ esp = Espacios[i];
@@ -52,18 +52,18 @@ Espacio^ controllerPrincipal::controller::buscarEspacio(int id) {
 	return nullptr;
 }
 
-void controllerPrincipal::controller::guardarEspacios() {
+void controller::guardarEspacios() {
 	persistance::guardarEspacios(controller::Espacios);
 }
 
-List<Espacio^>^ controllerPrincipal::controller::cargarEspacios() {
+List<Espacio^>^ controller::cargarEspacios() {
 	return persistance::cargarEspacios();
 }
 
 
 //EMPLEADOS	
 
-void controllerPrincipal::controller::agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex) {
+void controller::agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex) {
 
 	int maxId = 0;
 	for each(Usuario ^ usu in controller::Usuarios) {
@@ -95,7 +95,7 @@ void controllerPrincipal::controller::agregarUsuario(String^ tipo, String^ nom, 
 }
 
 
-bool controllerPrincipal::controller::eliminarUsuario(int dni) {
+bool controller::eliminarUsuario(int dni) {
 	for (int i = 0; i < controller::Usuarios->Count; i++) {
 		if (controller::Usuarios[i]->DNI == dni) {
 			controller::Usuarios->RemoveAt(i);
@@ -105,7 +105,7 @@ bool controllerPrincipal::controller::eliminarUsuario(int dni) {
 	return false;
 }
 
-bool controllerPrincipal::controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex) {
+bool controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex) {
 	for (int i = 0; i < controller::Usuarios->Count; i++) {
 		if (controller::Usuarios[i]->DNI == dni) {
 			Usuario^ usuario = controller::Usuarios[i];
@@ -118,7 +118,7 @@ bool controllerPrincipal::controller::modificarUsuario(int dni, String^ nom, int
 	return false;
 }
 
-Usuario^ controllerPrincipal::controller::buscarUsuario(int dni) {
+Usuario^ controller::buscarUsuario(int dni) {
 	for (int i = 0; i < controller::Usuarios->Count; i++) {
 		if (controller::Usuarios[i]->DNI == dni) {
 			Usuario^ usuario = controller::Usuarios[i];
@@ -128,18 +128,18 @@ Usuario^ controllerPrincipal::controller::buscarUsuario(int dni) {
 	return nullptr;
 }
 
-void controllerPrincipal::controller::guardarUsuarios() {
+void controller::guardarUsuarios() {
 	persistance::guardarUsuarios(controller::Usuarios);
 }
 
-List<Usuario^>^ controllerPrincipal::controller::cargarUsuarios() {
+List<Usuario^>^ controller::cargarUsuarios() {
 	return persistance::cargarUsuarios();
 }
 
 
 //CLIENTES
 
-void controllerPrincipal::controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
+void controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
 
 	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, vip);
 
@@ -147,7 +147,7 @@ void controllerPrincipal::controller::agregarCliente(int dni, String^ nom, int e
 	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, vip {4}.\n", dni, nom, ed, sex, vip);
 }
 
-bool controllerPrincipal::controller::eliminarCliente(int dni) {
+bool controller::eliminarCliente(int dni) {
 	for (int i = 0; i < controller::Clientes->Count; i++) {
 		if (controller::Clientes[i]->DNI == dni) {
 			controller::Clientes->RemoveAt(i);
@@ -157,7 +157,7 @@ bool controllerPrincipal::controller::eliminarCliente(int dni) {
 	return false;
 }
 
-bool controllerPrincipal::controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
+bool controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
 	for (int i = 0; i < controller::Clientes->Count; i++) {
 		if (controller::Clientes[i]->DNI == dni) {
 			Cliente^ cliente = controller::Clientes[i];
@@ -171,7 +171,7 @@ bool controllerPrincipal::controller::modificarCliente(int dni, String^ nom, int
 	return false;
 }
 
-Cliente^ controllerPrincipal::controller::buscarCliente(int dni) {
+Cliente^ controller	::buscarCliente(int dni) {
 	for (int i = 0; i < controller::Clientes->Count; i++) {
 		if (controller::Clientes[i]->DNI == dni) {
 			Cliente^ cliente = controller::Clientes[i];
@@ -181,18 +181,18 @@ Cliente^ controllerPrincipal::controller::buscarCliente(int dni) {
 	return nullptr;
 }
 
-void controllerPrincipal::controller::guardarClientes() {
+void controller::guardarClientes() {
 	persistance::guardarClientes(controller::Clientes);
 }
 
-List<Cliente^>^ controllerPrincipal::controller::cargarClientes() {
+List<Cliente^>^ controller::cargarClientes() {
 	return persistance::cargarClientes();
 }
 
 
 //FALLAS
 
-void controllerPrincipal::controller::agregarFalla(String^ desc, int prio, String^ fec, String^ hor) {
+void controller::agregarFalla(String^ desc, int prio, String^ tipo, String^ fec, String^ hor, Espacio^ espacio, Usuario^ usuario) {
 
 	int maxId = 0;
 	for each (Falla ^ falla in controller::Fallas) {
@@ -202,11 +202,11 @@ void controllerPrincipal::controller::agregarFalla(String^ desc, int prio, Strin
 	}
 	int id = maxId + 1;
 
-	Falla^ nFalla = gcnew Falla(id, desc, prio, fec, hor);
+	Falla^ nFalla = gcnew Falla(id, desc, prio, tipo, fec, hor, espacio, usuario);
 	controller::Fallas->Add(nFalla);
 }
 
-bool controllerPrincipal::controller::eliminarFalla(int id) {
+bool controller::eliminarFalla(int id) {
 	for (int i = 0; i < controller::Fallas->Count; i++) {
 		if (controller::Fallas[i]->id == id) {
 			controller::Fallas->RemoveAt(i);
@@ -216,21 +216,20 @@ bool controllerPrincipal::controller::eliminarFalla(int id) {
 	return false;
 }
 
-bool controllerPrincipal::controller::modificarFalla(int id, String^ desc, int prio, String^ fec, String^ hor) {
+bool controller::modificarFalla(int id, String^ desc, int prio, String^ tipo) {
 	for (int i = 0; i < controller::Fallas->Count; i++) {
 		if (controller::Fallas[i]->id == id) {
 			Falla^ falla = controller::Fallas[i];
 			falla->descripcion = desc;
 			falla->prioridad = prio;
-			falla->fecha = fec;
-			falla->hora = hor;
+			falla->tipo = tipo;
 			return true;
 		}
 	}
 	return false;
 }
 
-Falla^ controllerPrincipal::controller::buscarFalla(int id) {
+Falla^ controller::buscarFalla(int id) {
 	for (int i = 0; i < controller::Fallas->Count; i++) {
 		if (controller::Fallas[i]->id == id) {
 			Falla^ falla = controller::Fallas[i];
@@ -240,7 +239,7 @@ Falla^ controllerPrincipal::controller::buscarFalla(int id) {
 	return nullptr;
 }
 
-void controllerPrincipal::controller::guardarFallas() {
+void controller::guardarFallas() {
 	persistance::guardarFallas(controller::Fallas);
 }
 
@@ -252,7 +251,7 @@ List<Falla^>^ controllerPrincipal::controller::cargarFallas() {
 ///		TICKETS		////
 ////////////////////////
 
-void controllerPrincipal::controller::agregarTicket(TicketAuto^ ticket_entrada) {
+void controller::agregarTicket(TicketAuto^ ticket_entrada) {
 
 	int maxId = 0;
 	for each (TicketAuto^ ticket in Tickets) {
@@ -269,7 +268,7 @@ void controllerPrincipal::controller::agregarTicket(TicketAuto^ ticket_entrada) 
 	persistance::guardarTickets(Tickets);
 }
 
-void controllerPrincipal::controller::eliminarTicket(int id_ticket) {
+void controller::eliminarTicket(int id_ticket) {
 	for (int i = 0; i < Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			Tickets->RemoveAt(i);
@@ -279,7 +278,7 @@ void controllerPrincipal::controller::eliminarTicket(int id_ticket) {
 
 }
 
-void controllerPrincipal::controller::modificarTicket(int id_ticket, TicketAuto^ ticket_modificado) {
+void controller::modificarTicket(int id_ticket, TicketAuto^ ticket_modificado) {
 	
 	for (int i = 0; i < Tickets->Count; i++) {
 
@@ -292,7 +291,7 @@ void controllerPrincipal::controller::modificarTicket(int id_ticket, TicketAuto^
 
 }
 
-TicketAuto^ controllerPrincipal::controller::buscarTicket(int id_ticket) {
+TicketAuto^ controller::buscarTicket(int id_ticket) {
 	for (int i = 0; i < controller::Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			return Tickets[i];
@@ -303,7 +302,7 @@ TicketAuto^ controllerPrincipal::controller::buscarTicket(int id_ticket) {
 }
 
 
-TicketAuto^ controllerPrincipal::controller::buscarTicket_codigo(String^ codigo_entrada) {
+TicketAuto^ controller::buscarTicket_codigo(String^ codigo_entrada) {
 	for (int i = 0; i < controller::Tickets->Count; i++) {
 		if (Tickets[i]->codigoBarras == codigo_entrada) {
 			return Tickets[i];
@@ -312,7 +311,7 @@ TicketAuto^ controllerPrincipal::controller::buscarTicket_codigo(String^ codigo_
 	}
 	return nullptr;
 }
-TicketAuto^ controllerPrincipal::controller::buscarTicket_dni(int dni_entrada) {
+TicketAuto^ controller::buscarTicket_dni(int dni_entrada) {
 	for (int i = 0; i < controller::Tickets->Count; i++) {
 		if (Tickets[i]->dni == dni_entrada) {
 			return Tickets[i];
@@ -321,7 +320,7 @@ TicketAuto^ controllerPrincipal::controller::buscarTicket_dni(int dni_entrada) {
 	}
 	return nullptr;
 }
-TicketAuto^ controllerPrincipal::controller::buscarTicket_placa(String^ placa_entrada) {
+TicketAuto^ controller::buscarTicket_placa(String^ placa_entrada) {
 	for (int i = 0; i < controller::Tickets->Count; i++) {
 		if (Tickets[i]->placa== placa_entrada) {
 			return Tickets[i];
@@ -333,23 +332,23 @@ TicketAuto^ controllerPrincipal::controller::buscarTicket_placa(String^ placa_en
 
 
 
-List<TicketAuto^>^ controllerPrincipal::controller::listarTickets() {
+List<TicketAuto^>^ controller::listarTickets() {
 	return Tickets;
 }
 
 
-void controllerPrincipal::controller::guardarTickets() {
+void controller::guardarTickets() {
 	persistance::guardarTickets(controller::Tickets);
 }
 
-List<TicketAuto^>^ controllerPrincipal::controller::cargarTickets() {
+List<TicketAuto^>^ controller::cargarTickets() {
 	return persistance::cargarTickets();
 }
 
 
 //RECLAMOS
 
-void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ hor, String^ desc) {
+void controller::agregarReclamo(String^ fec, String^ hor, String^ desc) {
 
 	int maxId = 0;
 	for each (Reclamo ^ reclamo in controller::Reclamos) {
@@ -363,7 +362,7 @@ void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ hor, S
 	controller::Reclamos->Add(nReclamo);
 }
 
-bool controllerPrincipal::controller::eliminarReclamo(int id_reclamo) {
+bool controller::eliminarReclamo(int id_reclamo) {
 	for (int i = 0; i < controller::Reclamos->Count; i++) {
 		if (controller::Reclamos[i]->id == id_reclamo) {
 			controller::Reclamos->RemoveAt(i);
@@ -373,7 +372,7 @@ bool controllerPrincipal::controller::eliminarReclamo(int id_reclamo) {
 	return false;
 }
 
-bool controllerPrincipal::controller::modificarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
+bool controller::modificarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
 	for (int i = 0; i < controller::Reclamos->Count; i++) {
 		if (controller::Reclamos[i]->id == id_reclamo) {
 			Reclamo^ reclamo = controller::Reclamos[i];
@@ -386,7 +385,7 @@ bool controllerPrincipal::controller::modificarReclamo(int id_reclamo, String^ f
 	return false;
 }
 
-Reclamo^ controllerPrincipal::controller::buscarReclamo(int id_reclamo) {
+Reclamo^ controller::buscarReclamo(int id_reclamo) {
 	for (int i = 0; i < controller::Reclamos->Count; i++) {
 		if (controller::Reclamos[i]->id == id_reclamo) {
 			Reclamo^ reclamo = controller::Reclamos[i];
@@ -396,10 +395,10 @@ Reclamo^ controllerPrincipal::controller::buscarReclamo(int id_reclamo) {
 	return nullptr;
 }
 
-void controllerPrincipal::controller::guardarReclamos() {
+void controller::guardarReclamos() {
 	persistance::guardarReclamos(controller::Reclamos);
 }
 
-List<Reclamo^>^ controllerPrincipal::controller::cargarReclamos() {
+List<Reclamo^>^ controller::cargarReclamos() {
 	return persistance::cargarReclamos();
 }

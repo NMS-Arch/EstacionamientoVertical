@@ -21,8 +21,6 @@ namespace controllerPrincipal {
 
 		static List<Espacio^>^ listaEspacios;
 
-		// Esta inializacion es algo agresiva, ya que introduce espacios por la fuerza
-		// recomiendo que borres o cambies en caso de aumentar o disminuir el numero de espacios
 		static void InicilizarEspaciosFisicos(int numeroEspacios);
 		
 		static int estadoMotorPrincipal;

@@ -90,17 +90,12 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
 }
 
 
-
-
-
-
-
 void controllerPrincipal::ControlEspacios::inhabiltarEspacio(int idEspacio) {
 
     for each (Espacio ^ esp in listaEspacios) {
         if (esp->id == idEspacio) {
 
-            esp->estado = No_Operativo;
+            esp->estado = 2;
 
             persistance::guardarEspacios(listaEspacios);
             return;
@@ -124,8 +119,6 @@ void controllerPrincipal::ControlEspacios::habilitarEspacio(int idEspacio) {
 
 }
 
-
-
 void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio) {
     for each (Espacio ^ esp in listaEspacios) {
         if (esp->id == idEspacio) {
@@ -137,8 +130,6 @@ void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio)
         }
     }
 }
-
-
 
 
 void controllerPrincipal::ControlEspacios::paraEmergenciaGeneral() {

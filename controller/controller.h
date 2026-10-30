@@ -15,20 +15,20 @@ namespace controllerPrincipal {
 	public:
 		controller() {
 			//cargar datos desde archivos XML
-			controller::Espacios = persistance::cargarEspacios();
-			controller::Fallas = persistance::cargarFallas();
-			controller::Tickets = persistance::cargarTickets();
-			controller::Reclamos = persistance::cargarReclamos();
-			controller::Clientes = persistance::cargarClientes();
-			controller::Usuarios = persistance::cargarUsuarios();
+			Espacios = persistance::cargarEspacios();
+			Fallas = persistance::cargarFallas();
+			Tickets = persistance::cargarTickets();
+			Reclamos = persistance::cargarReclamos();
+			Clientes = persistance::cargarClientes();
+			Usuarios = persistance::cargarUsuarios();
 		}
 	
 		//espacio
 		static List<Espacio^>^ Espacios = gcnew List<Espacio^>();
 
-		static void agregarEspacio(bool ocupado, bool est,bool suelo);
+		static void agregarEspacio(bool ocupado, int est,bool suelo);
 		static bool eliminarEspacio(int id);
-		static bool modificarEspacio(int id, bool ocupado, bool est,bool estaEnSuelo);
+		static bool modificarEspacio(int id, bool ocupado, int est, bool estaEnSuelo);
 		static Espacio^ buscarEspacio(int id);
 
 		static void guardarEspacios();
@@ -63,9 +63,9 @@ namespace controllerPrincipal {
 
 		static List<Falla^>^ Fallas = gcnew List<Falla^>();
 
-		static void agregarFalla(String^ desc, int prio, String^ fec, String^ hor);
+		static void agregarFalla(String^ desc, int prio, String^ tipo, String^ fec, String^ hor, Espacio^ espacio, Usuario^ usuario);
 		static bool eliminarFalla(int id_falla);
-		static bool modificarFalla(int id_falla, String^ desc, int prio, String^ fec, String^ hor);
+		static bool modificarFalla(int id_falla, String^ desc, int prio, String^ tipo);
 		static Falla^ buscarFalla(int id_falla);
 
 		static void guardarFallas();
