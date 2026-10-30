@@ -83,6 +83,23 @@ namespace modelPrincipal {
 
         }
 
+
+        Double tiempoTranscurrido() {
+            TimeSpan diferencia = fechaSalida - fechaIngreso;
+            double horasTotales = diferencia.TotalHours;
+
+
+            return Math::Round(horasTotales,2);
+        }
+
+        Double calcularMontoFinal() {
+
+            double horasTotalesEnterizadas = Math::Ceiling( tiempoTranscurrido() );
+
+            if (horasTotalesEnterizadas < 1.0) horasTotalesEnterizadas = 1.0;
+
+            return horasTotalesEnterizadas * precio;
+        }
         
     };
 }

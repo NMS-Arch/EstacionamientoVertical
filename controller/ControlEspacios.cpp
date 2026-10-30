@@ -7,7 +7,7 @@ void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos(int numeroE
     
     for (int i = 1; i <= numeroEspacios; i++) {
 
-        listaEspacios->Add(gcnew Espacio(i, false,true));
+        listaEspacios->Add(gcnew Espacio(i, false,true,false));
     }
 
     persistance::guardarEspacios(listaEspacios);
@@ -43,3 +43,37 @@ List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles
     }
     return libres;
 }
+
+
+
+void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEspacio) {
+
+    for each (Espacio^ esp in listaEspacios) {
+
+        if (esp->id == idEspacio) {
+
+
+            if (esp->estaEnSuelo == true) {
+                throw gcnew Exception("La plataforma ya se encuentra en el suelo");
+            }
+
+            ////////
+            // Se manda al hardware a bajar la plataforma
+            ///////
+
+
+            esp->estaEnSuelo = true;
+            
+        }
+        else {
+            esp->estaEnSuelo = false;
+        }
+        
+
+    }
+
+    persistance::guardarEspacios(listaEspacios);
+
+}
+
+

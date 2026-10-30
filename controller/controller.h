@@ -26,9 +26,9 @@ namespace controllerPrincipal {
 		//espacio
 		static List<Espacio^>^ Espacios = gcnew List<Espacio^>();
 
-		static void agregarEspacio(bool ocupado, bool est);
+		static void agregarEspacio(bool ocupado, bool est,bool suelo);
 		static bool eliminarEspacio(int id);
-		static bool modificarEspacio(int id, bool ocupado, bool est);
+		static bool modificarEspacio(int id, bool ocupado, bool est,bool estaEnSuelo);
 		static Espacio^ buscarEspacio(int id);
 
 		static void guardarEspacios();

@@ -37,6 +37,9 @@ namespace controllerPrincipal {
 		static List<Espacio^>^ ObtenerEspaciosDisponibles();
 
 
+		static void solicitarDescensoPlataforma(int idEspacio);
+
+
 
 	};
 }

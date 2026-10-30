@@ -8,32 +8,34 @@
 
 //ESPACIO
 
-void controllerPrincipal::controller::agregarEspacio(bool ocupado, bool est) {
+void controllerPrincipal::controller::agregarEspacio(bool ocupado, bool est, bool estaEnSuelo) {
 	int maxId = 0;
-	for each (Espacio ^ esp in controller::Espacios) {
+	for each (Espacio ^ esp in Espacios) {
 		if (esp->id > maxId) {
 			maxId = esp->id;
 		}
 	}
 	int id = maxId + 1;
 
-	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est);
-	controller::Espacios->Add(nEspacio);
+	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est,estaEnSuelo);
+	Espacios->Add(nEspacio);
 }
 bool controllerPrincipal::controller::eliminarEspacio(int id) {
-	for (int i = 0; i < controller::Espacios->Count; i++) {
-		if (controller::Espacios[i]->id == id) {
-			controller::Espacios->RemoveAt(i);
+	for (int i = 0; i < Espacios->Count; i++) {
+		if (Espacios[i]->id == id) {
+			Espacios->RemoveAt(i);
 			return true;
 		}
 	}
 	return false;
 }
-bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, bool est) {
-	for (int i = 0; i < controller::Espacios->Count; i++) {
-		if (controller::Espacios[i]->id == id) {
-			controller::Espacios[i]->ocupado = ocupado;
-			controller::Espacios[i]->estado = est;
+bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, bool est, bool estaEnSuelo) {
+	for (int i = 0; i < Espacios->Count; i++) {
+		if (Espacios[i]->id == id) {
+			Espacios[i]->ocupado = ocupado;
+			Espacios[i]->estado = est;
+			Espacios[i]->estaEnSuelo = estaEnSuelo;
+
 			return true;
 		}
 	}
@@ -41,9 +43,9 @@ bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, boo
 	return false;
 }
 Espacio^ controllerPrincipal::controller::buscarEspacio(int id) {
-	for (int i = 0; i < controller::Espacios->Count; i++) {
-		if (controller::Espacios[i]->id == id) {
-			Espacio^ esp = controller::Espacios[i];
+	for (int i = 0; i < Espacios->Count; i++) {
+		if (Espacios[i]->id == id) {
+			Espacio^ esp = Espacios[i];
 			return esp;
 		}
 	}

@@ -23,6 +23,7 @@ namespace View {
 		Form^ FormularioForm;
 		controller^ controlador_GUI;
 		ControlEspacios^ controladorEspacios;
+		TicketAuto^ ticket_temporal;
 
 	public:
 		Operador_Buscar_Auto_Form(Form^ entrada_FormularioForm,controller^ controler_GUI_entrada, ControlEspacios^ controladorEspacios_entrada)
@@ -33,6 +34,8 @@ namespace View {
 			FormularioForm = entrada_FormularioForm;
 			controlador_GUI = controler_GUI_entrada;
 			controladorEspacios = controladorEspacios_entrada;
+
+			ticket_temporal = nullptr;
 			//
 		}
 
@@ -462,6 +465,7 @@ namespace View {
 			this->btn_Obtener_Precio_por_Estacionar->TabIndex = 19;
 			this->btn_Obtener_Precio_por_Estacionar->Text = L"Obtener Precio por Estacionar";
 			this->btn_Obtener_Precio_por_Estacionar->UseVisualStyleBackColor = true;
+			this->btn_Obtener_Precio_por_Estacionar->Click += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::btn_Obtener_Precio_por_Estacionar_Click);
 			// 
 			// btn_Bajar_Espacio
 			// 
@@ -472,6 +476,7 @@ namespace View {
 			this->btn_Bajar_Espacio->TabIndex = 21;
 			this->btn_Bajar_Espacio->Text = L"Bajar Espacio";
 			this->btn_Bajar_Espacio->UseVisualStyleBackColor = true;
+			this->btn_Bajar_Espacio->Click += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::btn_Bajar_Espacio_Click);
 			// 
 			// btn_Imprimir_Boleta
 			// 
@@ -731,6 +736,8 @@ namespace View {
 		private: System::Void btn_Regresar_Formulario_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
+			
+			limpiar();
 
 			FormularioForm->Show();
 
@@ -740,6 +747,40 @@ namespace View {
 			MessageBox::Show("Se logro registrar el pago del vehiculo","Aviso Pago",MessageBoxButtons::OK,MessageBoxIcon::Information);
 
 		}
+
+
+		public: void limpiar() {
+
+			ticket_temporal = nullptr;
+
+			tb_ID_Espacio->Clear();
+
+			tb_Placa_Vehiculo->Clear();
+
+			tb_Modelo_Vehiculo->Clear();
+
+			numeric_Peso_Vehiculo->Value = false;
+
+			tb_Fecha_Entrada->Clear();
+
+			tb_Hora_Ingreso->Clear();
+
+			
+			tb_DNI->Clear();
+
+
+			numeric_Precio_Base->Value = false;
+
+
+			tb_Fecha_Salida->Clear();
+
+			tb_Hora_Salida->Clear();
+
+
+			tb_Tiempo_Transcurrido->Clear();
+
+		}
+
 
 		private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
@@ -876,8 +917,32 @@ namespace View {
 			tb_Hora_Salida->Enabled = false;
 
 			
+			tb_Tiempo_Transcurrido->Text = Convert::ToString(ticket_encontrado->tiempoTranscurrido());
+			tb_Tiempo_Transcurrido->Enabled = false;
+
+
+			ticket_temporal = ticket_encontrado;
+		}
+
+
+
+		private: System::Void btn_Obtener_Precio_por_Estacionar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			 double monto_a_pagar = ticket_temporal->calcularMontoFinal();
+
+			 numeric_Precio_por_Estacionar->Value = (Decimal)monto_a_pagar;
+			 numeric_Precio_por_Estacionar->Enabled = false;
 
 		}
 
-	};
+
+		
+
+		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		
+			controladorEspacios->solicitarDescensoPlataforma(ticket_temporal->id_espacio);
+
+		}
+};
 }

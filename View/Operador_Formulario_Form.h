@@ -185,6 +185,15 @@ namespace View {
 			this->btn_Precio_Hora = (gcnew System::Windows::Forms::Button());
 			this->numeric_Precio_Hora = (gcnew System::Windows::Forms::NumericUpDown());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Colum_ID_Ticket = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Espacio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Placa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Modelo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Peso = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Precio_Base = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Hora_Entrada = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Codigo_B = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btn_Listar_Historial = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->cb_ID_Vehiculo_Dinamico = (gcnew System::Windows::Forms::ComboBox());
@@ -202,15 +211,6 @@ namespace View {
 			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
-			this->Colum_ID_Ticket = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Espacio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Placa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Modelo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Peso = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Precio_Base = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Hora_Entrada = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Codigo_B = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->BeginInit();
@@ -306,6 +306,69 @@ namespace View {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(932, 310);
 			this->dataGridView1->TabIndex = 9;
+			// 
+			// Colum_ID_Ticket
+			// 
+			this->Colum_ID_Ticket->HeaderText = L"ID Ticket";
+			this->Colum_ID_Ticket->MinimumWidth = 6;
+			this->Colum_ID_Ticket->Name = L"Colum_ID_Ticket";
+			this->Colum_ID_Ticket->Width = 60;
+			// 
+			// Colum_Espacio
+			// 
+			this->Colum_Espacio->HeaderText = L"Espacio";
+			this->Colum_Espacio->MinimumWidth = 6;
+			this->Colum_Espacio->Name = L"Colum_Espacio";
+			this->Colum_Espacio->Width = 75;
+			// 
+			// Colum_Placa
+			// 
+			this->Colum_Placa->HeaderText = L"Placa";
+			this->Colum_Placa->MinimumWidth = 6;
+			this->Colum_Placa->Name = L"Colum_Placa";
+			this->Colum_Placa->Width = 75;
+			// 
+			// Colum_Modelo
+			// 
+			this->Colum_Modelo->HeaderText = L"Modelo";
+			this->Colum_Modelo->MinimumWidth = 6;
+			this->Colum_Modelo->Name = L"Colum_Modelo";
+			this->Colum_Modelo->Width = 110;
+			// 
+			// Colum_Peso
+			// 
+			this->Colum_Peso->HeaderText = L"Peso(tn)";
+			this->Colum_Peso->MinimumWidth = 6;
+			this->Colum_Peso->Name = L"Colum_Peso";
+			this->Colum_Peso->Width = 60;
+			// 
+			// Colum_Precio_Base
+			// 
+			this->Colum_Precio_Base->HeaderText = L"Precio Base";
+			this->Colum_Precio_Base->MinimumWidth = 6;
+			this->Colum_Precio_Base->Name = L"Colum_Precio_Base";
+			this->Colum_Precio_Base->Width = 75;
+			// 
+			// Colum_Hora_Entrada
+			// 
+			this->Colum_Hora_Entrada->HeaderText = L"Hora Entrada";
+			this->Colum_Hora_Entrada->MinimumWidth = 6;
+			this->Colum_Hora_Entrada->Name = L"Colum_Hora_Entrada";
+			this->Colum_Hora_Entrada->Width = 75;
+			// 
+			// Colum_DNI
+			// 
+			this->Colum_DNI->HeaderText = L"DNI";
+			this->Colum_DNI->MinimumWidth = 6;
+			this->Colum_DNI->Name = L"Colum_DNI";
+			this->Colum_DNI->Width = 125;
+			// 
+			// Colum_Codigo_B
+			// 
+			this->Colum_Codigo_B->HeaderText = L"Codigo B";
+			this->Colum_Codigo_B->MinimumWidth = 6;
+			this->Colum_Codigo_B->Name = L"Colum_Codigo_B";
+			this->Colum_Codigo_B->Width = 125;
 			// 
 			// btn_Listar_Historial
 			// 
@@ -422,6 +485,7 @@ namespace View {
 			this->btn_Bajar_Espacio->TabIndex = 21;
 			this->btn_Bajar_Espacio->Text = L"Bajar Espacio";
 			this->btn_Bajar_Espacio->UseVisualStyleBackColor = true;
+			this->btn_Bajar_Espacio->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Bajar_Espacio_Click);
 			// 
 			// btn_Cerrar_Sesion
 			// 
@@ -470,69 +534,6 @@ namespace View {
 			this->btn_Registrar_Falla->Text = L"Registrar Falla";
 			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
 			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Registrar_Falla_Click);
-			// 
-			// Colum_ID_Ticket
-			// 
-			this->Colum_ID_Ticket->HeaderText = L"ID Ticket";
-			this->Colum_ID_Ticket->MinimumWidth = 6;
-			this->Colum_ID_Ticket->Name = L"Colum_ID_Ticket";
-			this->Colum_ID_Ticket->Width = 60;
-			// 
-			// Colum_Espacio
-			// 
-			this->Colum_Espacio->HeaderText = L"Espacio";
-			this->Colum_Espacio->MinimumWidth = 6;
-			this->Colum_Espacio->Name = L"Colum_Espacio";
-			this->Colum_Espacio->Width = 75;
-			// 
-			// Colum_Placa
-			// 
-			this->Colum_Placa->HeaderText = L"Placa";
-			this->Colum_Placa->MinimumWidth = 6;
-			this->Colum_Placa->Name = L"Colum_Placa";
-			this->Colum_Placa->Width = 75;
-			// 
-			// Colum_Modelo
-			// 
-			this->Colum_Modelo->HeaderText = L"Modelo";
-			this->Colum_Modelo->MinimumWidth = 6;
-			this->Colum_Modelo->Name = L"Colum_Modelo";
-			this->Colum_Modelo->Width = 110;
-			// 
-			// Colum_Peso
-			// 
-			this->Colum_Peso->HeaderText = L"Peso(tn)";
-			this->Colum_Peso->MinimumWidth = 6;
-			this->Colum_Peso->Name = L"Colum_Peso";
-			this->Colum_Peso->Width = 60;
-			// 
-			// Colum_Precio_Base
-			// 
-			this->Colum_Precio_Base->HeaderText = L"Precio Base";
-			this->Colum_Precio_Base->MinimumWidth = 6;
-			this->Colum_Precio_Base->Name = L"Colum_Precio_Base";
-			this->Colum_Precio_Base->Width = 75;
-			// 
-			// Colum_Hora_Entrada
-			// 
-			this->Colum_Hora_Entrada->HeaderText = L"Hora Entrada";
-			this->Colum_Hora_Entrada->MinimumWidth = 6;
-			this->Colum_Hora_Entrada->Name = L"Colum_Hora_Entrada";
-			this->Colum_Hora_Entrada->Width = 75;
-			// 
-			// Colum_DNI
-			// 
-			this->Colum_DNI->HeaderText = L"DNI";
-			this->Colum_DNI->MinimumWidth = 6;
-			this->Colum_DNI->Name = L"Colum_DNI";
-			this->Colum_DNI->Width = 125;
-			// 
-			// Colum_Codigo_B
-			// 
-			this->Colum_Codigo_B->HeaderText = L"Codigo B";
-			this->Colum_Codigo_B->MinimumWidth = 6;
-			this->Colum_Codigo_B->Name = L"Colum_Codigo_B";
-			this->Colum_Codigo_B->Width = 125;
 			// 
 			// Operador_Formulario_Form
 			// 
@@ -809,6 +810,17 @@ namespace View {
 				
 				limpiar();
 			}
+		}
+
+		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (cb_ID_Vehiculo_Dinamico->SelectedIndex >= 0) {
+
+				controladorEspacios->solicitarDescensoPlataforma(cb_ID_Vehiculo_Dinamico->SelectedIndex);
+			}
+
+			
+
 		}
 };
 }
