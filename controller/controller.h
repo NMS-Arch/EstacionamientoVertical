@@ -16,7 +16,7 @@ namespace controllerPrincipal {
 		controller() {
 			//cargar datos desde archivos XML
 			controller::Espacios = persistance::cargarEspacios();
-			controller::Fallas = persistance::cargarFallas();
+			//controller::Fallas = persistance::cargarFallas();
 			controller::Tickets = persistance::cargarTickets();
 			controller::Reclamos = persistance::cargarReclamos();
 			controller::Clientes = persistance::cargarClientes();
@@ -61,7 +61,7 @@ namespace controllerPrincipal {
 
 		//fallas
 
-		static List<Falla^>^ Fallas = gcnew List<Falla^>();
+		/*static List<Falla^>^ Fallas = gcnew List<Falla^>();
 
 		static void agregarFalla(String^ desc, int prio, String^ fec, String^ hor);
 		static bool eliminarFalla(int id_falla);
@@ -69,7 +69,7 @@ namespace controllerPrincipal {
 		static Falla^ buscarFalla(int id_falla);
 
 		static void guardarFallas();
-		static List<Falla^>^ cargarFallas();
+		static List<Falla^>^ cargarFallas();*/
 
 
 		//reclamos

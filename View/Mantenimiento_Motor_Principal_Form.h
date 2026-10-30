@@ -9,6 +9,10 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for Mantenimiento_Motor_Principal_Form
 	/// </summary>
@@ -18,12 +22,21 @@ namespace View {
 	private:
 		Form^ MantenimientoMenuForm;
 
+
+		controller^ controller_GUI;
+		ControlEspacios^ controlEspacios;
+		//ControlFallas^ controlFallas;
+
 	public:
-		Mantenimiento_Motor_Principal_Form(Form^ entrada_MantenimientoMenuForm)
+		Mantenimiento_Motor_Principal_Form(Form^ entrada_MantenimientoMenuForm, controller^ controller_GUI_entrada, ControlEspacios^controlEspacios_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+
+			controller_GUI = controller_GUI_entrada;
+			controlEspacios = controlEspacios_entrada;
+
 			MantenimientoMenuForm = entrada_MantenimientoMenuForm;
 			//
 		}
@@ -40,8 +53,9 @@ namespace View {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::ComboBox^ cb_Motor_Estado;
 	protected:
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+
 	private: System::Windows::Forms::Button^ btn_Parada_Emergencia;
 
 	private: System::Windows::Forms::Button^ btn_Puesta_Marcha;
@@ -65,7 +79,7 @@ namespace View {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->cb_Motor_Estado = (gcnew System::Windows::Forms::ComboBox());
 			this->btn_Parada_Emergencia = (gcnew System::Windows::Forms::Button());
 			this->btn_Puesta_Marcha = (gcnew System::Windows::Forms::Button());
 			this->btn_Regresar = (gcnew System::Windows::Forms::Button());
@@ -83,14 +97,14 @@ namespace View {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Estado Motor Principal";
 			// 
-			// comboBox1
+			// cb_Motor_Estado
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"OPERATIVO", L"NO OPERATIVO", L"EN MANTENIMIENTO" });
-			this->comboBox1->Location = System::Drawing::Point(250, 76);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(196, 24);
-			this->comboBox1->TabIndex = 1;
+			this->cb_Motor_Estado->FormattingEnabled = true;
+			this->cb_Motor_Estado->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"OPERATIVO", L"NO OPERATIVO", L"EN MANTENIMIENTO" });
+			this->cb_Motor_Estado->Location = System::Drawing::Point(250, 76);
+			this->cb_Motor_Estado->Name = L"cb_Motor_Estado";
+			this->cb_Motor_Estado->Size = System::Drawing::Size(196, 24);
+			this->cb_Motor_Estado->TabIndex = 1;
 			// 
 			// btn_Parada_Emergencia
 			// 
@@ -100,6 +114,7 @@ namespace View {
 			this->btn_Parada_Emergencia->TabIndex = 2;
 			this->btn_Parada_Emergencia->Text = L"PARADA DE EMERGENCIA";
 			this->btn_Parada_Emergencia->UseVisualStyleBackColor = true;
+			this->btn_Parada_Emergencia->Click += gcnew System::EventHandler(this, &Mantenimiento_Motor_Principal_Form::btn_Parada_Emergencia_Click);
 			// 
 			// btn_Puesta_Marcha
 			// 
@@ -109,6 +124,7 @@ namespace View {
 			this->btn_Puesta_Marcha->TabIndex = 3;
 			this->btn_Puesta_Marcha->Text = L"PUESTA EN MARCHA";
 			this->btn_Puesta_Marcha->UseVisualStyleBackColor = true;
+			this->btn_Puesta_Marcha->Click += gcnew System::EventHandler(this, &Mantenimiento_Motor_Principal_Form::btn_Puesta_Marcha_Click);
 			// 
 			// btn_Regresar
 			// 
@@ -128,6 +144,7 @@ namespace View {
 			this->btn_En_Mantenimiento->TabIndex = 5;
 			this->btn_En_Mantenimiento->Text = L"EN MANTENIMIENTO";
 			this->btn_En_Mantenimiento->UseVisualStyleBackColor = true;
+			this->btn_En_Mantenimiento->Click += gcnew System::EventHandler(this, &Mantenimiento_Motor_Principal_Form::btn_En_Mantenimiento_Click);
 			// 
 			// Mantenimiento_Motor_Principal_Form
 			// 
@@ -138,10 +155,11 @@ namespace View {
 			this->Controls->Add(this->btn_Regresar);
 			this->Controls->Add(this->btn_Puesta_Marcha);
 			this->Controls->Add(this->btn_Parada_Emergencia);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->cb_Motor_Estado);
 			this->Controls->Add(this->label1);
 			this->Name = L"Mantenimiento_Motor_Principal_Form";
 			this->Text = L"Mantenimiento_Motor_Principal_Form";
+			this->Load += gcnew System::EventHandler(this, &Mantenimiento_Motor_Principal_Form::Mantenimiento_Motor_Principal_Form_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -154,5 +172,46 @@ namespace View {
 			MantenimientoMenuForm->Show();
 
 		}
+
+		private: void actualizar() {
+
+			cb_Motor_Estado->SelectedIndex = controlEspacios->obtenerEstadoMotorPrincipal()-1;
+			cb_Motor_Estado->Enabled = false;
+		}
+
+
+		private: System::Void Mantenimiento_Motor_Principal_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+			actualizar();
+		}
+
+
+		private: System::Void btn_Parada_Emergencia_Click(System::Object^ sender, System::EventArgs^ e) {
+			controlEspacios->paraEmergenciaGeneral();
+
+			cb_Motor_Estado->SelectedIndex = controlEspacios->obtenerEstadoMotorPrincipal() - 1;
+			cb_Motor_Estado->Enabled = false;
+		}
+
+
+		private: System::Void btn_Puesta_Marcha_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			controlEspacios->restablecerSistema();
+
+			cb_Motor_Estado->SelectedIndex = controlEspacios->obtenerEstadoMotorPrincipal() - 1;
+			cb_Motor_Estado->Enabled = false;
+		}
+
+
+
+		private: System::Void btn_En_Mantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			controlEspacios->MotorEnMantenimiento();
+
+			cb_Motor_Estado->SelectedIndex = controlEspacios->obtenerEstadoMotorPrincipal() - 1;
+			cb_Motor_Estado->Enabled = false;
+		}
+
+
+
 };
 }

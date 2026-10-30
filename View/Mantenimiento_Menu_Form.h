@@ -12,6 +12,10 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for Mantenimiento_Menu_Form
 	/// </summary>
@@ -20,6 +24,11 @@ namespace View {
 	private:
 		//Padre
 		Form^ loginForm;
+		
+		controller^ controller_GUI;
+		ControlEspacios^ controlEspacios;
+		ControlFallas^ controlFallas;
+
 		//hijos
 		Mantenimiento_Motor_Principal_Form^ MotorPrincipalForm;
 		Mantenimiento_Registro_Fallas_Form^ RegistroFallasForm;
@@ -30,9 +39,14 @@ namespace View {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+
+			controller_GUI = gcnew controller();
+			controlEspacios = gcnew ControlEspacios();
+			controlFallas = gcnew ControlFallas();
+
 			loginForm = entrada_loginForm;
-			MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this);
-			RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this);
+			MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this, controller_GUI, controlEspacios);
+			RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this, controller_GUI,controlFallas);
 			//
 		}
 
@@ -158,10 +172,12 @@ private: System::Windows::Forms::Button^ btn_Mantenimiento_Espacios;
 
 
 	private: System::Windows::Forms::Label^ label21;
-	private: System::Windows::Forms::ComboBox^ comboBox11;
+private: System::Windows::Forms::ComboBox^ cb_Motor_Principal;
+
 private: System::Windows::Forms::Label^ label22;
 private: System::Windows::Forms::Label^ label23;
-private: System::Windows::Forms::ComboBox^ comboBox1;
+private: System::Windows::Forms::ComboBox^ cb_Espacios_Para_Seleccion;
+
 
 	private:
 		/// <summary>
@@ -213,10 +229,10 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->btn_Cerrar_Sesion = (gcnew System::Windows::Forms::Button());
 			this->btn_Motor_Principal = (gcnew System::Windows::Forms::Button());
 			this->label21 = (gcnew System::Windows::Forms::Label());
-			this->comboBox11 = (gcnew System::Windows::Forms::ComboBox());
+			this->cb_Motor_Principal = (gcnew System::Windows::Forms::ComboBox());
 			this->label22 = (gcnew System::Windows::Forms::Label());
 			this->label23 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->cb_Espacios_Para_Seleccion = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -257,6 +273,7 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->btn_Habilitar_Espacios->TabIndex = 3;
 			this->btn_Habilitar_Espacios->Text = L"Habilitar";
 			this->btn_Habilitar_Espacios->UseVisualStyleBackColor = true;
+			this->btn_Habilitar_Espacios->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Habilitar_Espacios_Click);
 			// 
 			// btn_Inhabilitar_Espacios
 			// 
@@ -268,6 +285,7 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->btn_Inhabilitar_Espacios->TabIndex = 4;
 			this->btn_Inhabilitar_Espacios->Text = L"Inhabilitar";
 			this->btn_Inhabilitar_Espacios->UseVisualStyleBackColor = true;
+			this->btn_Inhabilitar_Espacios->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Inhabilitar_Espacios_Click);
 			// 
 			// cb_Espacio_2
 			// 
@@ -531,6 +549,7 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->btn_Mantenimiento_Espacios->TabIndex = 50;
 			this->btn_Mantenimiento_Espacios->Text = L"En Mantenimiento";
 			this->btn_Mantenimiento_Espacios->UseVisualStyleBackColor = true;
+			this->btn_Mantenimiento_Espacios->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Mantenimiento_Espacios_Click);
 			// 
 			// btn_Registrar_Falla
 			// 
@@ -575,14 +594,14 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->label21->TabIndex = 63;
 			this->label21->Text = L"Estado de Motor Principal";
 			// 
-			// comboBox11
+			// cb_Motor_Principal
 			// 
-			this->comboBox11->FormattingEnabled = true;
-			this->comboBox11->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"OPERATIVO", L"NO OPERATIVO", L"EN MANTENIMIENTO" });
-			this->comboBox11->Location = System::Drawing::Point(257, 60);
-			this->comboBox11->Name = L"comboBox11";
-			this->comboBox11->Size = System::Drawing::Size(278, 24);
-			this->comboBox11->TabIndex = 64;
+			this->cb_Motor_Principal->FormattingEnabled = true;
+			this->cb_Motor_Principal->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"OPERATIVO", L"NO OPERATIVO", L"EN MANTENIMIENTO" });
+			this->cb_Motor_Principal->Location = System::Drawing::Point(257, 60);
+			this->cb_Motor_Principal->Name = L"cb_Motor_Principal";
+			this->cb_Motor_Principal->Size = System::Drawing::Size(278, 24);
+			this->cb_Motor_Principal->TabIndex = 64;
 			// 
 			// label22
 			// 
@@ -606,30 +625,30 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->label23->TabIndex = 66;
 			this->label23->Text = L"ID del Espacio";
 			// 
-			// comboBox1
+			// cb_Espacios_Para_Seleccion
 			// 
-			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
-				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-					L"9", L"10"
+			this->cb_Espacios_Para_Seleccion->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacios_Para_Seleccion->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->cb_Espacios_Para_Seleccion->FormattingEnabled = true;
+			this->cb_Espacios_Para_Seleccion->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
+				L"1", L"2", L"3", L"4", L"5",
+					L"6", L"7", L"8", L"9", L"10"
 			});
-			this->comboBox1->Location = System::Drawing::Point(194, 511);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(155, 28);
-			this->comboBox1->TabIndex = 67;
+			this->cb_Espacios_Para_Seleccion->Location = System::Drawing::Point(194, 511);
+			this->cb_Espacios_Para_Seleccion->Name = L"cb_Espacios_Para_Seleccion";
+			this->cb_Espacios_Para_Seleccion->Size = System::Drawing::Size(155, 28);
+			this->cb_Espacios_Para_Seleccion->TabIndex = 67;
 			// 
 			// Mantenimiento_Menu_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1219, 727);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->cb_Espacios_Para_Seleccion);
 			this->Controls->Add(this->label23);
 			this->Controls->Add(this->label22);
-			this->Controls->Add(this->comboBox11);
+			this->Controls->Add(this->cb_Motor_Principal);
 			this->Controls->Add(this->label21);
 			this->Controls->Add(this->btn_Motor_Principal);
 			this->Controls->Add(this->btn_Cerrar_Sesion);
@@ -669,6 +688,8 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			this->Controls->Add(this->label1);
 			this->Name = L"Mantenimiento_Menu_Form";
 			this->Text = L"Mantenimiento_Menu_Form";
+			this->Load += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::Mantenimiento_Menu_Form_Load);
+			this->VisibleChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::Mantenimiento_Menu_Form_VisibleChanged);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -697,6 +718,97 @@ private: System::Windows::Forms::ComboBox^ comboBox1;
 			//Mantenimiento_Registro_Fallas_Form^ RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this);
 
 			RegistroFallasForm->Show();
+
+		}
+
+		private: void actualizar() {
+
+			List<Espacio^>^ lista_espacios = controlEspacios->ObtenerTodosEspacios();
+
+			//// si estado=1 , Operativo
+			//// si estado=2 , NO_Operativo
+			//// si estado=3 , En_Mantenimiento
+
+
+			//for (int index = 0; index < lista_espacios->Count; index++) {
+			//	cb_Espacio_1->SelectedIndex  =   lista_espacios[0]->estado;
+			//	cb_Espacio_1->Enabled = false;
+
+			//}
+
+
+
+			for (int index = 0; index < lista_espacios->Count; index++) {
+
+				// 1. Construir el nombre exacto del ComboBox (ej: "cb_Espacio_1", "cb_Espacio_2")
+				String^ nombreControl = "cb_Espacio_" + (index + 1).ToString();
+
+				// 2. Buscar el control en el formulario por su nombre
+				// El 'true' indica que busque también dentro de paneles o groupboxes
+				array<Control^>^ controlesEncontrados = this->Controls->Find(nombreControl, true);
+
+				// 3. Verificar si el control existe
+				if (controlesEncontrados->Length > 0) {
+
+					// 4. Convertir el Control genérico a un ComboBox
+					ComboBox^ cb_actual = dynamic_cast<ComboBox^>(controlesEncontrados[0]);
+
+					// Si la conversión fue exitosa, aplicamos los cambios
+					if (cb_actual != nullptr) {
+						cb_actual->SelectedIndex = lista_espacios[index]->estado - 1;
+						cb_actual->Enabled = false;
+					}
+				}
+			}
+
+			cb_Motor_Principal->SelectedIndex = controlEspacios->obtenerEstadoMotorPrincipal()-1;
+			cb_Motor_Principal->Enabled = false;
+		}
+
+		private: System::Void Mantenimiento_Menu_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+
+			actualizar();
+		}
+		private: System::Void Mantenimiento_Menu_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
+			actualizar();
+		}
+
+
+
+		private: System::Void btn_Habilitar_Espacios_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (cb_Espacios_Para_Seleccion->SelectedIndex > 0) {
+
+				int EspacioSeleccionado = cb_Espacios_Para_Seleccion->SelectedIndex + 1;
+
+				controlEspacios->habilitarEspacio(EspacioSeleccionado);
+
+				actualizar();
+			}
+
+
+		}
+		private: System::Void btn_Inhabilitar_Espacios_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (cb_Espacios_Para_Seleccion->SelectedIndex > 0) {
+
+				int EspacioSeleccionado = cb_Espacios_Para_Seleccion->SelectedIndex + 1;
+
+				controlEspacios->inhabiltarEspacio(EspacioSeleccionado);
+				actualizar();
+
+			}
+		}
+		private: System::Void btn_Mantenimiento_Espacios_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (cb_Espacios_Para_Seleccion->SelectedIndex > 0) {
+
+				int EspacioSeleccionado = cb_Espacios_Para_Seleccion->SelectedIndex + 1;
+
+				controlEspacios->espacioEnMantenimiento(EspacioSeleccionado);
+				actualizar();
+
+			}
 
 		}
 };

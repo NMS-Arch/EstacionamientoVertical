@@ -46,9 +46,18 @@ List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles
 
 
 
+List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerTodosEspacios() {
+
+    return listaEspacios;
+}
+
+
+
+
+
 void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEspacio) {
 
-    if (estadoMotorPrincipal==No_Operativo || estadoMotorPrincipal==En_Mantenimiento) {
+    if (estadoMotorPrincipal== No_Operativo || estadoMotorPrincipal== En_Mantenimiento) {
         
         throw gcnew Exception("El sistema se encuentra DETENIDO");
 
@@ -139,7 +148,10 @@ void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio)
 }
 
 
+int controllerPrincipal::ControlEspacios::obtenerEstadoMotorPrincipal() {
 
+    return estadoMotorPrincipal;
+}
 
 void controllerPrincipal::ControlEspacios::paraEmergenciaGeneral() {
     estadoMotorPrincipal = No_Operativo;

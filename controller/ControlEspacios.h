@@ -45,6 +45,7 @@ namespace controllerPrincipal {
 
 		static List<Espacio^>^ ObtenerEspaciosDisponibles();
 
+		static List<Espacio^>^ ObtenerTodosEspacios();
 
 		static void solicitarDescensoPlataforma(int idEspacio);
 
@@ -53,9 +54,11 @@ namespace controllerPrincipal {
 		static void espacioEnMantenimiento(int idEspacio);
 
 
+		static int obtenerEstadoMotorPrincipal();
 		static void paraEmergenciaGeneral();
 		static void restablecerSistema();
 		static void MotorEnMantenimiento();
+
 
 	};
 }

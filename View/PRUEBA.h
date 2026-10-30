@@ -23,7 +23,7 @@ namespace View {
 			controller::Espacios = controller::cargarEspacios();
 			controller::Usuarios = controller::cargarUsuarios();
 			controller::Clientes = controller::cargarClientes();
-			controller::Fallas = controller::cargarFallas();
+			//controller::Fallas = controller::cargarFallas();
 			controller::Tickets = controller::cargarTickets();
 			//
 			//TODO: agregar código de constructor aquí

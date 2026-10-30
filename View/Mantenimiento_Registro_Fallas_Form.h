@@ -9,6 +9,10 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for Mantenimiento_Registro_Fallas_Form
 	/// </summary>
@@ -18,13 +22,21 @@ namespace View {
 	private:
 		Form^ MantenimientoMenuForm;
 
+
+		controller^ controller_GUI;
+		//ControlEspacios^ controlEspacios;
+		ControlFallas^ controlFallas;
+
 	public:
-		Mantenimiento_Registro_Fallas_Form(Form^ entrada_MantenimientoMenuForm)
+		Mantenimiento_Registro_Fallas_Form(Form^ entrada_MantenimientoMenuForm, controller^ controller_GUI_entrada, ControlFallas^ controlFallas_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			MantenimientoMenuForm = entrada_MantenimientoMenuForm;
+
+			controller_GUI = controller_GUI_entrada;
+			controlFallas = controlFallas_entrada;
 			//
 		}
 

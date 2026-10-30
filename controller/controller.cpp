@@ -191,62 +191,62 @@ List<Cliente^>^ controllerPrincipal::controller::cargarClientes() {
 
 
 //FALLAS
-
-void controllerPrincipal::controller::agregarFalla(String^ desc, int prio, String^ fec, String^ hor) {
-
-	int maxId = 0;
-	for each (Falla ^ falla in controller::Fallas) {
-		if (falla->id > maxId) {
-			maxId = falla->id;
-		}
-	}
-	int id = maxId + 1;
-
-	Falla^ nFalla = gcnew Falla(id, desc, prio, fec, hor);
-	controller::Fallas->Add(nFalla);
-}
-
-bool controllerPrincipal::controller::eliminarFalla(int id) {
-	for (int i = 0; i < controller::Fallas->Count; i++) {
-		if (controller::Fallas[i]->id == id) {
-			controller::Fallas->RemoveAt(i);
-			return true;
-		}
-	}
-	return false;
-}
-
-bool controllerPrincipal::controller::modificarFalla(int id, String^ desc, int prio, String^ fec, String^ hor) {
-	for (int i = 0; i < controller::Fallas->Count; i++) {
-		if (controller::Fallas[i]->id == id) {
-			Falla^ falla = controller::Fallas[i];
-			falla->descripcion = desc;
-			falla->prioridad = prio;
-			falla->fecha = fec;
-			falla->hora = hor;
-			return true;
-		}
-	}
-	return false;
-}
-
-Falla^ controllerPrincipal::controller::buscarFalla(int id) {
-	for (int i = 0; i < controller::Fallas->Count; i++) {
-		if (controller::Fallas[i]->id == id) {
-			Falla^ falla = controller::Fallas[i];
-			return falla;
-		}
-	}
-	return nullptr;
-}
-
-void controllerPrincipal::controller::guardarFallas() {
-	persistance::guardarFallas(controller::Fallas);
-}
-
-List<Falla^>^ controllerPrincipal::controller::cargarFallas() {
-	return persistance::cargarFallas();
-}
+//
+//void controllerPrincipal::controller::agregarFalla(String^ desc, int prio, String^ fec, String^ hor) {
+//
+//	int maxId = 0;
+//	for each (Falla ^ falla in controller::Fallas) {
+//		if (falla->id > maxId) {
+//			maxId = falla->id;
+//		}
+//	}
+//	int id = maxId + 1;
+//
+//	Falla^ nFalla = gcnew Falla(id, desc, prio, fec, hor);
+//	controller::Fallas->Add(nFalla);
+//}
+//
+//bool controllerPrincipal::controller::eliminarFalla(int id) {
+//	for (int i = 0; i < controller::Fallas->Count; i++) {
+//		if (controller::Fallas[i]->id == id) {
+//			controller::Fallas->RemoveAt(i);
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//bool controllerPrincipal::controller::modificarFalla(int id, String^ desc, int prio, String^ fec, String^ hor) {
+//	for (int i = 0; i < controller::Fallas->Count; i++) {
+//		if (controller::Fallas[i]->id == id) {
+//			Falla^ falla = controller::Fallas[i];
+//			falla->descripcion = desc;
+//			falla->prioridad = prio;
+//			falla->fecha = fec;
+//			falla->hora = hor;
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//Falla^ controllerPrincipal::controller::buscarFalla(int id) {
+//	for (int i = 0; i < controller::Fallas->Count; i++) {
+//		if (controller::Fallas[i]->id == id) {
+//			Falla^ falla = controller::Fallas[i];
+//			return falla;
+//		}
+//	}
+//	return nullptr;
+//}
+//
+//void controllerPrincipal::controller::guardarFallas() {
+//	persistance::guardarFallas(controller::Fallas);
+//}
+//
+//List<Falla^>^ controllerPrincipal::controller::cargarFallas() {
+//	return persistance::cargarFallas();
+//}
 
 ////////////////////////
 ///		TICKETS		////
