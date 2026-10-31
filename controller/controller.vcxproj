@@ -134,6 +134,7 @@
     <ClInclude Include="ControlEspacios.h" />
     <ClInclude Include="ControlFallas.h" />
     <ClInclude Include="controller.h" />
+    <ClInclude Include="ControlReporteFinanciero.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
@@ -142,6 +143,7 @@
     <ClCompile Include="ControlEspacios.cpp" />
     <ClCompile Include="ControlFallas.cpp" />
     <ClCompile Include="controller.cpp" />
+    <ClCompile Include="ControlReporteFinanciero.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

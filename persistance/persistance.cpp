@@ -146,3 +146,31 @@ List<Usuario^>^ persistancePrincipal::persistance::cargarUsuarios() {
 
 	return lista;
 }
+
+
+
+// reportes me base en como hiciste los tickets
+
+void persistancePrincipal::persistance::guardarRegistros(List<RegistroFinanciero^>^ list_registro) {
+	
+	StreamWriter^ sw = gcnew StreamWriter(persistance::rutaRegistrosFinancieros);
+	XmlSerializer^ ser = gcnew XmlSerializer(List<RegistroFinanciero^>::typeid);
+	ser->Serialize(sw, list_registro);
+	sw->Close();
+}
+
+List<RegistroFinanciero^>^ persistancePrincipal::persistance::cargarRegistros() {
+	
+	List<RegistroFinanciero^>^ lista = gcnew List<RegistroFinanciero^>();
+
+	if (!File::Exists(rutaRegistrosFinancieros)) return lista;
+
+	StreamReader^ sr = gcnew StreamReader(rutaRegistrosFinancieros);
+	XmlSerializer^ ser = gcnew XmlSerializer(List<RegistroFinanciero^>::typeid);
+	lista = (List<RegistroFinanciero^>^)ser->Deserialize(sr);
+	sr->Close();
+
+	return lista;
+}
+
+

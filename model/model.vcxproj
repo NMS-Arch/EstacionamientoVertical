@@ -148,6 +148,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Peso.h" />
     <ClInclude Include="Reclamo.h" />
+    <ClInclude Include="RegistroFinanciero.h" />
     <ClInclude Include="ReporteFinanciero.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Sensor.h" />
@@ -178,6 +179,7 @@
     </ClCompile>
     <ClCompile Include="Peso.cpp" />
     <ClCompile Include="Reclamo.cpp" />
+    <ClCompile Include="RegistroFinanciero.cpp" />
     <ClCompile Include="ReporteFinanciero.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="TicketAuto.cpp" />

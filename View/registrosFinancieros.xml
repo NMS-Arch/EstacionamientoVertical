@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRegistroFinanciero xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RegistroFinanciero>
+    <id_registro>1</id_registro>
+    <monto_total>0</monto_total>
+    <id_Ticket>0</id_Ticket>
+    <id_espacio>0</id_espacio>
+    <idUserOperario>0</idUserOperario>
+    <DNI>0</DNI>
+    <peso>0</peso>
+    <precioBase>0</precioBase>
+    <tiempoTotal>0</tiempoTotal>
+    <fechaHoraIngreso>0001-01-01T00:00:00</fechaHoraIngreso>
+    <fechaHoraSalida>0001-01-01T00:00:00</fechaHoraSalida>
+    <sePago>false</sePago>
+  </RegistroFinanciero>
+  <RegistroFinanciero>
+    <id_registro>2</id_registro>
+    <monto_total>0</monto_total>
+    <id_Ticket>0</id_Ticket>
+    <id_espacio>0</id_espacio>
+    <idUserOperario>0</idUserOperario>
+    <DNI>0</DNI>
+    <peso>0</peso>
+    <precioBase>0</precioBase>
+    <tiempoTotal>0</tiempoTotal>
+    <fechaHoraIngreso>0001-01-01T00:00:00</fechaHoraIngreso>
+    <fechaHoraSalida>0001-01-01T00:00:00</fechaHoraSalida>
+    <sePago>false</sePago>
+  </RegistroFinanciero>
+</ArrayOfRegistroFinanciero>

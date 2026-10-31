@@ -42,6 +42,8 @@ namespace controllerPrincipal {
 		
 
 		static void OcuparEspacio(int idBuscado);
+		static void DesocuparEspacio(int idBuscado);
+
 
 		static List<Espacio^>^ ObtenerEspaciosDisponibles();
 

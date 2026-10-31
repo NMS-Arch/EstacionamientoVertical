@@ -47,5 +47,12 @@ namespace persistancePrincipal {
 		static List<Usuario^>^ cargarUsuarios();
 		static void guardarUsuarios(List<Usuario^>^ usuarios);
 
+		//reporteFinancieros
+
+		static String^ rutaRegistrosFinancieros = "registrosFinancieros.xml";
+		static List<RegistroFinanciero^>^ cargarRegistros();
+		static void guardarRegistros(List<RegistroFinanciero^>^ registros);
+
+
 	};
 }

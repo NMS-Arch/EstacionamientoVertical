@@ -703,7 +703,7 @@ namespace View {
 			for each (TicketAuto ^ ticket in tickets) {
 
 				String^ valueDNI;
-				//valor RIC
+				//valor DNI si no se coloca
 				if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
 					valueDNI = ticket->dni.ToString();
 				}

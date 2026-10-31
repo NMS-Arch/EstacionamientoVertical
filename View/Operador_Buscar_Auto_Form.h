@@ -25,6 +25,36 @@ namespace View {
 		ControlEspacios^ controladorEspacios;
 		TicketAuto^ ticket_temporal;
 
+
+		ControlReporteFinanciero^ controladorFinansas;
+
+		// Estados para guardar el ticket al registro
+		//bool est_descartarTicket;
+		bool est_pagoCompletado;
+		bool est_bajarPlataformaCompletado;
+		bool est_pagoAnulado;
+
+		String^ nombreOperaro;
+		int idOperario;
+
+	private: System::Windows::Forms::Label^ label20;
+	private: System::Windows::Forms::Label^ label21;
+
+
+	private: System::Windows::Forms::TextBox^ tb_Nombre_Operario;
+	private: System::Windows::Forms::NumericUpDown^ numeric_ID_Operario;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_ID_Ticket;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Codigo_B;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Espacio_ID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Placa;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Modelo;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_DNI;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Peso;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Precio_Base;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Tiempo_Transcurrido;
+		   
+
+
 	public:
 		Operador_Buscar_Auto_Form(Form^ entrada_FormularioForm,controller^ controler_GUI_entrada, ControlEspacios^ controladorEspacios_entrada)
 		{
@@ -36,6 +66,25 @@ namespace View {
 			controladorEspacios = controladorEspacios_entrada;
 
 			ticket_temporal = nullptr;
+
+
+			
+
+
+			// Estados para guardar el ticket al registro
+			//est_descartarTicket = false;
+
+			est_pagoCompletado = false;
+			est_bajarPlataformaCompletado = false;
+			est_pagoAnulado = false;
+
+
+			nombreOperaro;
+			idOperario;
+
+			// Generamos un controlador para ver si guardaremos o no o algo asi xd
+			controladorFinansas= gcnew ControlReporteFinanciero();
+
 			//
 		}
 
@@ -120,15 +169,15 @@ namespace View {
 
 	private: System::Windows::Forms::Button^ btn_Anular_Pago;
 	private: System::Windows::Forms::NumericUpDown^ numeric_Precio_por_Estacionar;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column9;
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
@@ -161,15 +210,15 @@ namespace View {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->tb_Dato_Busqueda = (gcnew System::Windows::Forms::TextBox());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column9 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column_ID_Ticket = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Codigo_B = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Espacio_ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Placa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Modelo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Peso = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Precio_Base = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Tiempo_Transcurrido = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btn_Buscar_Registro = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
@@ -206,11 +255,16 @@ namespace View {
 			this->btn_Anular_Pago = (gcnew System::Windows::Forms::Button());
 			this->numeric_Precio_por_Estacionar = (gcnew System::Windows::Forms::NumericUpDown());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->tb_Nombre_Operario = (gcnew System::Windows::Forms::TextBox());
+			this->numeric_ID_Operario = (gcnew System::Windows::Forms::NumericUpDown());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Base))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -265,79 +319,80 @@ namespace View {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
-				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8, this->Column9
+				this->Column_ID_Ticket,
+					this->Colum_Codigo_B, this->Colum_Espacio_ID, this->Colum_Placa, this->Colum_Modelo, this->Colum_DNI, this->Colum_Peso, this->Colum_Precio_Base,
+					this->Colum_Tiempo_Transcurrido
 			});
 			this->dataGridView1->Location = System::Drawing::Point(309, 94);
 			this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(1073, 214);
+			this->dataGridView1->Size = System::Drawing::Size(1073, 164);
 			this->dataGridView1->TabIndex = 5;
 			// 
-			// Column1
+			// Column_ID_Ticket
 			// 
-			this->Column1->HeaderText = L"ID";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 50;
+			this->Column_ID_Ticket->HeaderText = L"ID Ticket";
+			this->Column_ID_Ticket->MinimumWidth = 6;
+			this->Column_ID_Ticket->Name = L"Column_ID_Ticket";
+			this->Column_ID_Ticket->Width = 50;
 			// 
-			// Column2
+			// Colum_Codigo_B
 			// 
-			this->Column2->HeaderText = L"Ticket";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
+			this->Colum_Codigo_B->HeaderText = L"Codigo B";
+			this->Colum_Codigo_B->MinimumWidth = 6;
+			this->Colum_Codigo_B->Name = L"Colum_Codigo_B";
+			this->Colum_Codigo_B->Width = 125;
 			// 
-			// Column3
+			// Colum_Espacio_ID
 			// 
-			this->Column3->HeaderText = L"Espacio";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
+			this->Colum_Espacio_ID->HeaderText = L"Espacio";
+			this->Colum_Espacio_ID->MinimumWidth = 6;
+			this->Colum_Espacio_ID->Name = L"Colum_Espacio_ID";
+			this->Colum_Espacio_ID->Width = 125;
 			// 
-			// Column4
+			// Colum_Placa
 			// 
-			this->Column4->HeaderText = L"Placa";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 75;
+			this->Colum_Placa->HeaderText = L"Placa";
+			this->Colum_Placa->MinimumWidth = 6;
+			this->Colum_Placa->Name = L"Colum_Placa";
+			this->Colum_Placa->Width = 75;
 			// 
-			// Column5
+			// Colum_Modelo
 			// 
-			this->Column5->HeaderText = L"Modelo";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 125;
+			this->Colum_Modelo->HeaderText = L"Modelo";
+			this->Colum_Modelo->MinimumWidth = 6;
+			this->Colum_Modelo->Name = L"Colum_Modelo";
+			this->Colum_Modelo->Width = 125;
 			// 
-			// Column6
+			// Colum_DNI
 			// 
-			this->Column6->HeaderText = L"DNI";
-			this->Column6->MinimumWidth = 6;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 125;
+			this->Colum_DNI->HeaderText = L"DNI";
+			this->Colum_DNI->MinimumWidth = 6;
+			this->Colum_DNI->Name = L"Colum_DNI";
+			this->Colum_DNI->Width = 125;
 			// 
-			// Column7
+			// Colum_Peso
 			// 
-			this->Column7->HeaderText = L"Peso";
-			this->Column7->MinimumWidth = 6;
-			this->Column7->Name = L"Column7";
-			this->Column7->Width = 50;
+			this->Colum_Peso->HeaderText = L"Peso";
+			this->Colum_Peso->MinimumWidth = 6;
+			this->Colum_Peso->Name = L"Colum_Peso";
+			this->Colum_Peso->Width = 50;
 			// 
-			// Column8
+			// Colum_Precio_Base
 			// 
-			this->Column8->HeaderText = L"Precio Base";
-			this->Column8->MinimumWidth = 6;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 125;
+			this->Colum_Precio_Base->HeaderText = L"Precio Base";
+			this->Colum_Precio_Base->MinimumWidth = 6;
+			this->Colum_Precio_Base->Name = L"Colum_Precio_Base";
+			this->Colum_Precio_Base->Width = 125;
 			// 
-			// Column9
+			// Colum_Tiempo_Transcurrido
 			// 
-			this->Column9->HeaderText = L"Tiempo Transcurrido";
-			this->Column9->MinimumWidth = 6;
-			this->Column9->Name = L"Column9";
-			this->Column9->Width = 75;
+			this->Colum_Tiempo_Transcurrido->HeaderText = L"Tiempo Transcurrido";
+			this->Colum_Tiempo_Transcurrido->MinimumWidth = 6;
+			this->Colum_Tiempo_Transcurrido->Name = L"Colum_Tiempo_Transcurrido";
+			this->Colum_Tiempo_Transcurrido->Width = 75;
 			// 
 			// btn_Buscar_Registro
 			// 
@@ -651,6 +706,7 @@ namespace View {
 			this->btn_Anular_Pago->TabIndex = 41;
 			this->btn_Anular_Pago->Text = L"Anular Pago";
 			this->btn_Anular_Pago->UseVisualStyleBackColor = true;
+			this->btn_Anular_Pago->Click += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::btn_Anular_Pago_Click);
 			// 
 			// numeric_Precio_por_Estacionar
 			// 
@@ -672,12 +728,48 @@ namespace View {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Operador_Buscar_Auto_Form::pictureBox1_Paint);
 			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(405, 336);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(76, 16);
+			this->label20->TabIndex = 44;
+			this->label20->Text = L"ID Operario";
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(688, 336);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(112, 16);
+			this->label21->TabIndex = 45;
+			this->label21->Text = L"Nombre Operario";
+			// 
+			// tb_Nombre_Operario
+			// 
+			this->tb_Nombre_Operario->Location = System::Drawing::Point(806, 333);
+			this->tb_Nombre_Operario->Name = L"tb_Nombre_Operario";
+			this->tb_Nombre_Operario->Size = System::Drawing::Size(117, 22);
+			this->tb_Nombre_Operario->TabIndex = 47;
+			// 
+			// numeric_ID_Operario
+			// 
+			this->numeric_ID_Operario->Location = System::Drawing::Point(487, 334);
+			this->numeric_ID_Operario->Name = L"numeric_ID_Operario";
+			this->numeric_ID_Operario->Size = System::Drawing::Size(120, 22);
+			this->numeric_ID_Operario->TabIndex = 48;
+			// 
 			// Operador_Buscar_Auto_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoValidate = System::Windows::Forms::AutoValidate::EnablePreventFocusChange;
 			this->ClientSize = System::Drawing::Size(1440, 736);
+			this->Controls->Add(this->numeric_ID_Operario);
+			this->Controls->Add(this->tb_Nombre_Operario);
+			this->Controls->Add(this->label21);
+			this->Controls->Add(this->label20);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->numeric_Precio_por_Estacionar);
 			this->Controls->Add(this->btn_Anular_Pago);
@@ -723,11 +815,14 @@ namespace View {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"Operador_Buscar_Auto_Form";
 			this->Text = L"Operador_Buscar_Auto_Form";
+			this->Load += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::Operador_Buscar_Auto_Form_Load);
+			this->VisibleChanged += gcnew System::EventHandler(this, &Operador_Buscar_Auto_Form::Operador_Buscar_Auto_Form_VisibleChanged);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Base))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_por_Estacionar))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -735,18 +830,17 @@ namespace View {
 		#pragma endregion
 		private: System::Void btn_Regresar_Formulario_Click(System::Object^ sender, System::EventArgs^ e) {
 
+
 			this->Hide();
-			
+			actualizar_grilla();
 			limpiar();
+			
 
 			FormularioForm->Show();
 
 		}
-		private: System::Void btn_Procesar_Pago_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			MessageBox::Show("Se logro registrar el pago del vehiculo","Aviso Pago",MessageBoxButtons::OK,MessageBoxIcon::Information);
-
-		}
+		
 
 
 		public: void limpiar() {
@@ -756,13 +850,11 @@ namespace View {
 			tb_ID_Espacio->Clear();
 
 			tb_Placa_Vehiculo->Clear();
-
 			tb_Modelo_Vehiculo->Clear();
 
 			numeric_Peso_Vehiculo->Value = false;
 
 			tb_Fecha_Entrada->Clear();
-
 			tb_Hora_Ingreso->Clear();
 
 			
@@ -773,11 +865,13 @@ namespace View {
 
 
 			tb_Fecha_Salida->Clear();
-
 			tb_Hora_Salida->Clear();
 
 
 			tb_Tiempo_Transcurrido->Clear();
+
+			tb_Nombre_Operario->Clear();
+			numeric_ID_Operario->Value=false;
 
 		}
 
@@ -933,6 +1027,7 @@ namespace View {
 			 numeric_Precio_por_Estacionar->Value = (Decimal)monto_a_pagar;
 			 numeric_Precio_por_Estacionar->Enabled = false;
 
+
 		}
 
 
@@ -940,9 +1035,176 @@ namespace View {
 
 		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			
-			controladorEspacios->solicitarDescensoPlataforma(ticket_temporal->id_espacio);
+			try {
+				controladorEspacios->solicitarDescensoPlataforma(ticket_temporal->id_espacio);
 
+				est_bajarPlataformaCompletado = true;
+
+				guardarTicket_A_registroFin();
+			}
+			catch (Exception^e) {
+				MessageBox::Show(e->Message,"Error",MessageBoxButtons::OK,MessageBoxIcon::Error);
+			}
+			
+			guardarTicket_A_registroFin();
+			
+		}
+
+
+		private: void guardarTicket_A_registroFin() {
+
+			
+			if (ticket_temporal != nullptr && est_pagoCompletado && est_bajarPlataformaCompletado) {
+				
+				RegistroFinanciero^ new_regFin = gcnew RegistroFinanciero();
+
+				nombreOperaro= tb_Nombre_Operario->Text;
+				idOperario = Convert::ToInt32(numeric_ID_Operario->Value);
+
+
+				new_regFin->GenerarRegistroDesdeTicket(ticket_temporal, idOperario,nombreOperaro,true);
+				
+				controladorFinansas->agregarRegistroFin(new_regFin);
+
+				controlador_GUI->eliminarTicket(ticket_temporal->id);
+
+
+				controladorEspacios->DesocuparEspacio(ticket_temporal->id_espacio);
+				actualizar_grilla();
+
+				MessageBox::Show("Se logro registrar el pago del vehiculo", "Aviso Pago", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				
+
+				est_pagoCompletado = false;
+				est_bajarPlataformaCompletado = false;
+				ticket_temporal = nullptr;
+				
+			}
+			
+
+
+		}
+
+
+		private: void anular_Y_Guardar_TicketAnulado_A_registroFin() {
+
+
+			if (ticket_temporal != nullptr && est_pagoAnulado && est_bajarPlataformaCompletado) {
+
+				RegistroFinanciero^ new_regFin = gcnew RegistroFinanciero();
+
+				nombreOperaro = tb_Nombre_Operario->Text;
+				idOperario = Convert::ToInt32(numeric_ID_Operario->Value);
+
+
+
+
+				new_regFin->GenerarRegistroDesdeTicket(ticket_temporal, idOperario, nombreOperaro, false);
+
+
+				controladorFinansas->agregarRegistroFin(new_regFin);
+
+				controlador_GUI->eliminarTicket(ticket_temporal->id);
+
+
+				controladorEspacios->DesocuparEspacio(ticket_temporal->id_espacio);
+				actualizar_grilla();
+
+				MessageBox::Show("Se guardo que el pago se anulo", "Aviso Pago", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+				est_pagoAnulado = false;
+				est_bajarPlataformaCompletado = false;
+				ticket_temporal = nullptr;
+
+			}
+
+
+
+		}
+
+		private: System::Void btn_Anular_Pago_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (String::IsNullOrWhiteSpace(tb_Nombre_Operario->Text) || numeric_ID_Operario->Value <= 0) {
+				MessageBox::Show("Por favor, primero rellene su nombre y su ID de operario, y luego intente procesar el pago otra vez", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			est_pagoAnulado = true;
+
+			if (est_bajarPlataformaCompletado == false) {
+				MessageBox::Show("Se recomienda bajar la plataforma para terminar", "Aviso Pago", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+
+			anular_Y_Guardar_TicketAnulado_A_registroFin();
+
+		}
+
+
+		private: System::Void btn_Procesar_Pago_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if ( String::IsNullOrWhiteSpace(tb_Nombre_Operario->Text) || numeric_ID_Operario->Value <= 0) {
+				MessageBox::Show("Por favor, primero rellene su nombre y su ID de operario", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			est_pagoCompletado = true;
+
+			if (est_bajarPlataformaCompletado == false) {
+				MessageBox::Show("Se recomienda bajar la plataforma para finalizar el registro", "Aviso Pago", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+
+			guardarTicket_A_registroFin();
+
+		}
+
+
+		private: void actualizar_grilla() {
+
+			List<TicketAuto^>^ tickets = controlador_GUI->listarTickets();
+
+			dataGridView1->Rows->Clear();
+
+
+			for each (TicketAuto ^ ticket in tickets) {
+
+
+				String^ valueDNI;
+				//valor DNI si no se coloca
+				if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
+					valueDNI = ticket->dni.ToString();
+				}
+				else {
+					valueDNI = "No introducido";
+				}
+
+
+				int indiceFila = dataGridView1->Rows->Add();
+				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+
+				fila->Cells["Column_ID_Ticket"]->Value = ticket->id;
+				fila->Cells["Colum_Codigo_B"]->Value = ticket->codigoBarras;
+				fila->Cells["Colum_Espacio_ID"]->Value = ticket->id_espacio;
+				fila->Cells["Colum_Placa"]->Value = ticket->placa;
+				fila->Cells["Colum_Modelo"]->Value = ticket->modeloAuto;
+				fila->Cells["Colum_DNI"]->Value = valueDNI;
+				fila->Cells["Colum_Precio_Base"]->Value = ticket->precio;
+				//fila->Cells["Colum_Tiempo_Transcurrido"]->Value = valueDNI;
+
+
+			}
+
+
+		}
+		
+
+		
+
+		private: System::Void Operador_Buscar_Auto_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+			actualizar_grilla();
+			limpiar();
+		}
+		private: System::Void Operador_Buscar_Auto_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
+			actualizar_grilla();
 		}
 };
 }

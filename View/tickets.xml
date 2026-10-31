@@ -52,4 +52,30 @@
     <codigoBarras>7ZQFO0227</codigoBarras>
     <dni>0</dni>
   </TicketAuto>
+  <TicketAuto>
+    <modeloAuto>BLABLA</modeloAuto>
+    <placa>ASDASD</placa>
+    <fechaIngreso>2026-10-30T23:16:26.5751219-05:00</fechaIngreso>
+    <fechaSalida>0001-01-01T00:00:00</fechaSalida>
+    <pagado>false</pagado>
+    <precio>135.12</precio>
+    <id>5</id>
+    <peso>7.8</peso>
+    <id_espacio>6</id_espacio>
+    <codigoBarras>ASDBL2316</codigoBarras>
+    <dni>0</dni>
+  </TicketAuto>
+  <TicketAuto>
+    <modeloAuto>yhtyhtyh</modeloAuto>
+    <placa>rgthth</placa>
+    <fechaIngreso>2026-10-30T23:20:50.8934748-05:00</fechaIngreso>
+    <fechaSalida>0001-01-01T00:00:00</fechaSalida>
+    <pagado>false</pagado>
+    <precio>144.25</precio>
+    <id>6</id>
+    <peso>6.7</peso>
+    <id_espacio>1</id_espacio>
+    <codigoBarras>RGTYH2320</codigoBarras>
+    <dni>0</dni>
+  </TicketAuto>
 </ArrayOfTicketAuto>

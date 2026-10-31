@@ -32,6 +32,24 @@ void controllerPrincipal::ControlEspacios::OcuparEspacio(int idBuscado) {
 
 }
 
+void controllerPrincipal::ControlEspacios::DesocuparEspacio(int idBuscado) {
+
+    for each (Espacio ^ esp in listaEspacios) {
+        if (esp->id == idBuscado) {
+
+            esp->ocupado = false;
+
+
+            persistance::guardarEspacios(listaEspacios);
+            return;
+        }
+    }
+
+    //throw gcnew Exception("No hay espacios disponibles");
+
+}
+
+
 
 List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles() {
 
