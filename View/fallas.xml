@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfFalla xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Falla>
+    <espacioAfectado>4</espacioAfectado>
+    <idUserReportante>3</idUserReportante>
+    <nombreUserReportante>NMS</nombreUserReportante>
+    <rolUser>Programador</rolUser>
+    <descripcion>asdasdasdasdasdasdasdasdasdasdasd</descripcion>
+    <prioridad>Espacio 3</prioridad>
+    <id>1</id>
+    <estado>Pendiente</estado>
+    <tipo>Electrica</tipo>
+    <fecha>2026-10-30T20:28:55.2093647-05:00</fecha>
+  </Falla>
+  <Falla>
+    <espacioAfectado>5</espacioAfectado>
+    <idUserReportante>9</idUserReportante>
+    <nombreUserReportante>Holi</nombreUserReportante>
+    <rolUser>Limpiador</rolUser>
+    <descripcion>asdasdasdasd</descripcion>
+    <prioridad>Espacio 4</prioridad>
+    <id>2</id>
+    <estado>Pendiente</estado>
+    <tipo>Limpieza</tipo>
+    <fecha>2026-10-30T20:29:02.5982254-05:00</fecha>
+  </Falla>
+  <Falla>
+    <espacioAfectado>8</espacioAfectado>
+    <idUserReportante>9</idUserReportante>
+    <nombreUserReportante>Holi</nombreUserReportante>
+    <rolUser>Limpiador</rolUser>
+    <descripcion>asdasdasdasd</descripcion>
+    <prioridad>Baja</prioridad>
+    <id>3</id>
+    <estado>Pendiente</estado>
+    <tipo>Limpieza</tipo>
+    <fecha>2026-10-30T20:29:12.3354899-05:00</fecha>
+  </Falla>
+</ArrayOfFalla>

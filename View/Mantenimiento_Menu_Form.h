@@ -547,18 +547,20 @@ namespace View {
 
 		// Consiguiendo datos con TUS metodos
 		List<Espacio^>^ lista_espacios = controlEspacios->ObtenerTodosEspacios();
-		List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
-		List<int>^ idFalla = gcnew List<int>();
 
-		if (lista_fallas != nullptr) {
-			for each (Espacio ^ esp in lista_espacios) {
-				for each (Falla ^ falla in lista_fallas) {
-					if (falla->espacioAfectado != nullptr && falla->espacioAfectado->id == esp->id) {
-						idFalla->Add(esp->id);
-					}
-				}
-			}
-		}
+		//List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
+
+		//List<int>^ idFalla = gcnew List<int>();
+
+		//if (lista_fallas != nullptr) {
+		//	for each (Espacio ^ esp in lista_espacios) {
+		//		for each (Falla ^ falla in lista_fallas) {
+		//			if (falla->espacioAfectado != nullptr && falla->espacioAfectado->id == esp->id) {
+		//				idFalla->Add(esp->id);
+		//			}
+		//		}
+		//	}
+		//}
 
 		if (lista_espacios != nullptr) {
 			float x, y;
@@ -571,12 +573,16 @@ namespace View {
 				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
 				g->FillRectangle(Brushes::Green, int(x - 10), int(y - 10), 20, 20);
 			}
-			// 2. Fallas en Naranja
-			for each (Espacio ^ esp in lista_espacios) {
-				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
-				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
-				if (idFalla->Contains(esp->id)) g->FillRectangle(Brushes::Orange, int(x - 10), int(y - 10), 20, 20);
-			}
+
+
+			//// 2. Fallas en Naranja
+			//for each (Espacio ^ esp in lista_espacios) {
+			//	x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+			//	y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+			//	if (idFalla->Contains(esp->id)) g->FillRectangle(Brushes::Orange, int(x - 10), int(y - 10), 20, 20);
+			//}
+
+
 			// 3. Mantenimiento (Amarillo) y No Operativo (Rojo)
 			for each (Espacio ^ esp in lista_espacios) {
 				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);

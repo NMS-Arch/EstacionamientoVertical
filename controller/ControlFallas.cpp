@@ -48,6 +48,7 @@ void controllerPrincipal::ControlFallas::modificarFalla(int id, Falla^ falla_ent
 		}
 	}
 	
+	throw gcnew Exception("El registro de falla que se busca no se logra encontrar");
 
 }
 

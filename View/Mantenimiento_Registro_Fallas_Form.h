@@ -24,8 +24,20 @@ namespace View {
 
 
 		controller^ controller_GUI;
+
 		//ControlEspacios^ controlEspacios;
 		ControlFallas^ controlFallas;
+
+
+
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Falla;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Afectado;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Prioridad;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Tipo;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Fecha;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Estado;
+
 
 	public:
 		Mantenimiento_Registro_Fallas_Form(Form^ entrada_MantenimientoMenuForm, controller^ controller_GUI_entrada, ControlFallas^ controlFallas_entrada)
@@ -66,11 +78,13 @@ namespace View {
 
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::ComboBox^ cb_Tipo;
+	private: System::Windows::Forms::Label^ label_Fecha_Dinamica;
 
-	private: System::Windows::Forms::Label^ label7;
+
 	private: System::Windows::Forms::TextBox^ tb_Fecha;
+	private: System::Windows::Forms::Label^ label_Hora_Dinamica;
 
-	private: System::Windows::Forms::Label^ label8;
+
 	private: System::Windows::Forms::TextBox^ tb_Hora;
 
 	private: System::Windows::Forms::Button^ btn_Regresar_Menu_Mantenimiento;
@@ -108,13 +122,13 @@ namespace View {
 
 	private: System::Windows::Forms::Label^ label15;
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_rol;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+
+
+
+
+
+
+
 
 
 
@@ -122,7 +136,7 @@ namespace View {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -132,13 +146,13 @@ namespace View {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_ID_Falla = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Afectado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Prioridad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Tipo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Fecha = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Hora = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tb_Descripcion = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -149,9 +163,9 @@ namespace View {
 			this->cb_Prioridad = (gcnew System::Windows::Forms::ComboBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->cb_Tipo = (gcnew System::Windows::Forms::ComboBox());
-			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label_Fecha_Dinamica = (gcnew System::Windows::Forms::Label());
 			this->tb_Fecha = (gcnew System::Windows::Forms::TextBox());
-			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label_Hora_Dinamica = (gcnew System::Windows::Forms::Label());
 			this->tb_Hora = (gcnew System::Windows::Forms::TextBox());
 			this->btn_Regresar_Menu_Mantenimiento = (gcnew System::Windows::Forms::Button());
 			this->btn_Agregar = (gcnew System::Windows::Forms::Button());
@@ -180,8 +194,8 @@ namespace View {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7
+				this->Colum_ID_Falla,
+					this->Colum_Afectado, this->Colum_Prioridad, this->Colum_Tipo, this->Colum_Fecha, this->Colum_Hora, this->Colum_Estado
 			});
 			this->dataGridView1->Location = System::Drawing::Point(45, 108);
 			this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -191,54 +205,54 @@ namespace View {
 			this->dataGridView1->Size = System::Drawing::Size(901, 351);
 			this->dataGridView1->TabIndex = 0;
 			// 
-			// Column1
+			// Colum_ID_Falla
 			// 
-			this->Column1->HeaderText = L"ID";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 50;
+			this->Colum_ID_Falla->HeaderText = L"ID";
+			this->Colum_ID_Falla->MinimumWidth = 6;
+			this->Colum_ID_Falla->Name = L"Colum_ID_Falla";
+			this->Colum_ID_Falla->Width = 50;
 			// 
-			// Column2
+			// Colum_Afectado
 			// 
-			this->Column2->HeaderText = L"Afectado";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
+			this->Colum_Afectado->HeaderText = L"Afectado";
+			this->Colum_Afectado->MinimumWidth = 6;
+			this->Colum_Afectado->Name = L"Colum_Afectado";
+			this->Colum_Afectado->Width = 125;
 			// 
-			// Column3
+			// Colum_Prioridad
 			// 
-			this->Column3->HeaderText = L"Prioridad";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
+			this->Colum_Prioridad->HeaderText = L"Prioridad";
+			this->Colum_Prioridad->MinimumWidth = 6;
+			this->Colum_Prioridad->Name = L"Colum_Prioridad";
+			this->Colum_Prioridad->Width = 125;
 			// 
-			// Column4
+			// Colum_Tipo
 			// 
-			this->Column4->HeaderText = L"Tipo";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
+			this->Colum_Tipo->HeaderText = L"Tipo";
+			this->Colum_Tipo->MinimumWidth = 6;
+			this->Colum_Tipo->Name = L"Colum_Tipo";
+			this->Colum_Tipo->Width = 125;
 			// 
-			// Column5
+			// Colum_Fecha
 			// 
-			this->Column5->HeaderText = L"Fecha";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 125;
+			this->Colum_Fecha->HeaderText = L"Fecha";
+			this->Colum_Fecha->MinimumWidth = 6;
+			this->Colum_Fecha->Name = L"Colum_Fecha";
+			this->Colum_Fecha->Width = 125;
 			// 
-			// Column6
+			// Colum_Hora
 			// 
-			this->Column6->HeaderText = L"Hora";
-			this->Column6->MinimumWidth = 6;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 75;
+			this->Colum_Hora->HeaderText = L"Hora";
+			this->Colum_Hora->MinimumWidth = 6;
+			this->Colum_Hora->Name = L"Colum_Hora";
+			this->Colum_Hora->Width = 75;
 			// 
-			// Column7
+			// Colum_Estado
 			// 
-			this->Column7->HeaderText = L"Estado";
-			this->Column7->MinimumWidth = 6;
-			this->Column7->Name = L"Column7";
-			this->Column7->Width = 125;
+			this->Colum_Estado->HeaderText = L"Estado";
+			this->Colum_Estado->MinimumWidth = 6;
+			this->Colum_Estado->Name = L"Colum_Estado";
+			this->Colum_Estado->Width = 125;
 			// 
 			// label1
 			// 
@@ -298,6 +312,7 @@ namespace View {
 			this->cb_Afectado->Name = L"cb_Afectado";
 			this->cb_Afectado->Size = System::Drawing::Size(135, 24);
 			this->cb_Afectado->TabIndex = 6;
+			this->cb_Afectado->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Registro_Fallas_Form::cb_Afectado_SelectedIndexChanged);
 			// 
 			// label5
 			// 
@@ -339,14 +354,14 @@ namespace View {
 			this->cb_Tipo->Size = System::Drawing::Size(121, 24);
 			this->cb_Tipo->TabIndex = 10;
 			// 
-			// label7
+			// label_Fecha_Dinamica
 			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(43, 689);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(45, 16);
-			this->label7->TabIndex = 11;
-			this->label7->Text = L"Fecha";
+			this->label_Fecha_Dinamica->AutoSize = true;
+			this->label_Fecha_Dinamica->Location = System::Drawing::Point(43, 689);
+			this->label_Fecha_Dinamica->Name = L"label_Fecha_Dinamica";
+			this->label_Fecha_Dinamica->Size = System::Drawing::Size(45, 16);
+			this->label_Fecha_Dinamica->TabIndex = 11;
+			this->label_Fecha_Dinamica->Text = L"Fecha";
 			// 
 			// tb_Fecha
 			// 
@@ -356,14 +371,14 @@ namespace View {
 			this->tb_Fecha->Size = System::Drawing::Size(100, 22);
 			this->tb_Fecha->TabIndex = 12;
 			// 
-			// label8
+			// label_Hora_Dinamica
 			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(288, 692);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(37, 16);
-			this->label8->TabIndex = 13;
-			this->label8->Text = L"Hora";
+			this->label_Hora_Dinamica->AutoSize = true;
+			this->label_Hora_Dinamica->Location = System::Drawing::Point(288, 692);
+			this->label_Hora_Dinamica->Name = L"label_Hora_Dinamica";
+			this->label_Hora_Dinamica->Size = System::Drawing::Size(37, 16);
+			this->label_Hora_Dinamica->TabIndex = 13;
+			this->label_Hora_Dinamica->Text = L"Hora";
 			// 
 			// tb_Hora
 			// 
@@ -404,6 +419,7 @@ namespace View {
 			this->btn_Modificar->TabIndex = 17;
 			this->btn_Modificar->Text = L"Modificar";
 			this->btn_Modificar->UseVisualStyleBackColor = true;
+			this->btn_Modificar->Click += gcnew System::EventHandler(this, &Mantenimiento_Registro_Fallas_Form::btn_Modificar_Click);
 			// 
 			// label9
 			// 
@@ -434,6 +450,7 @@ namespace View {
 			this->btn_Consultar->TabIndex = 20;
 			this->btn_Consultar->Text = L"Consultar";
 			this->btn_Consultar->UseVisualStyleBackColor = true;
+			this->btn_Consultar->Click += gcnew System::EventHandler(this, &Mantenimiento_Registro_Fallas_Form::btn_Consultar_Click);
 			// 
 			// label10
 			// 
@@ -487,7 +504,7 @@ namespace View {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(43, 759);
+			this->label12->Location = System::Drawing::Point(43, 787);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(132, 16);
 			this->label12->TabIndex = 27;
@@ -495,7 +512,7 @@ namespace View {
 			// 
 			// tb_Nombre
 			// 
-			this->tb_Nombre->Location = System::Drawing::Point(109, 796);
+			this->tb_Nombre->Location = System::Drawing::Point(109, 824);
 			this->tb_Nombre->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Nombre->Name = L"tb_Nombre";
 			this->tb_Nombre->Size = System::Drawing::Size(100, 22);
@@ -504,7 +521,7 @@ namespace View {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(43, 799);
+			this->label13->Location = System::Drawing::Point(43, 827);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(56, 16);
 			this->label13->TabIndex = 29;
@@ -513,7 +530,7 @@ namespace View {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(288, 799);
+			this->label14->Location = System::Drawing::Point(288, 827);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(28, 16);
 			this->label14->TabIndex = 30;
@@ -521,7 +538,7 @@ namespace View {
 			// 
 			// tb_Rol
 			// 
-			this->tb_Rol->Location = System::Drawing::Point(356, 793);
+			this->tb_Rol->Location = System::Drawing::Point(356, 821);
 			this->tb_Rol->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Rol->Name = L"tb_Rol";
 			this->tb_Rol->Size = System::Drawing::Size(119, 22);
@@ -530,7 +547,7 @@ namespace View {
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(552, 799);
+			this->label15->Location = System::Drawing::Point(552, 827);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(20, 16);
 			this->label15->TabIndex = 32;
@@ -538,7 +555,7 @@ namespace View {
 			// 
 			// numeric_ID_rol
 			// 
-			this->numeric_ID_rol->Location = System::Drawing::Point(605, 798);
+			this->numeric_ID_rol->Location = System::Drawing::Point(605, 826);
 			this->numeric_ID_rol->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->numeric_ID_rol->Name = L"numeric_ID_rol";
 			this->numeric_ID_rol->Size = System::Drawing::Size(120, 22);
@@ -548,7 +565,7 @@ namespace View {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1147, 881);
+			this->ClientSize = System::Drawing::Size(1147, 895);
 			this->Controls->Add(this->numeric_ID_rol);
 			this->Controls->Add(this->label15);
 			this->Controls->Add(this->tb_Rol);
@@ -568,9 +585,9 @@ namespace View {
 			this->Controls->Add(this->btn_Agregar);
 			this->Controls->Add(this->btn_Regresar_Menu_Mantenimiento);
 			this->Controls->Add(this->tb_Hora);
-			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label_Hora_Dinamica);
 			this->Controls->Add(this->tb_Fecha);
-			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label_Fecha_Dinamica);
 			this->Controls->Add(this->cb_Tipo);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->cb_Prioridad);
@@ -585,6 +602,7 @@ namespace View {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"Mantenimiento_Registro_Fallas_Form";
 			this->Text = L"Mantenimiento_Registro_Fallas_Form";
+			this->Load += gcnew System::EventHandler(this, &Mantenimiento_Registro_Fallas_Form::Mantenimiento_Registro_Fallas_Form_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Registro))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_rol))->EndInit();
@@ -592,7 +610,7 @@ namespace View {
 			this->PerformLayout();
 
 		}
-		#pragma endregion
+	#pragma endregion
 		private: System::Void btn_Regresar_Menu_Mantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
@@ -602,18 +620,213 @@ namespace View {
 		}
 
 		private: System::Void btn_Agregar_Click(System::Object^ sender, System::EventArgs^ e) {
-		
-			//Falla^ new_falla = gcnew Falla();
-
-			//new_falla->espacioAfectado = cb_Afectado->SelectedItem->ToString();
 
 
 
-			//controlFallas->agregarFalla
+			Falla^ new_falla = gcnew Falla();
+
+			new_falla->espacioAfectado = Convert::ToUInt32(cb_Afectado->SelectedIndex)+1;
+
+			new_falla->prioridad = cb_Prioridad->SelectedItem->ToString();
+
+			new_falla->tipo = cb_Tipo->SelectedItem->ToString();
+
+			new_falla->descripcion = tb_Descripcion->Text;
+
+			DateTime fechaHora = DateTime::Now;
+
+			new_falla->fecha = fechaHora;
+
+			new_falla->estado = cb_Estado->SelectedItem->ToString();
 
 
+			new_falla->idUserReportante = Convert::ToInt32(numeric_ID_rol->Value);
+			new_falla->nombreUserReportante = tb_Nombre->Text;
+			new_falla->rolUser = tb_Rol->Text;
 
-		
+			controlFallas->agregarFalla(new_falla);
+
+			actualizar();
+
+
 		}
+
+
+		private: void actualizar() {
+
+			List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
+
+
+			dataGridView1->Rows->Clear();
+
+			for each (Falla ^ falla in lista_fallas) {
+
+
+				int indiceFila = dataGridView1->Rows->Add();
+				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+				String^ afectado;
+
+				if (falla->espacioAfectado != 11) {
+					afectado = "Espacio " + falla->espacioAfectado.ToString();
+				}
+				else {
+					afectado = "Motor Principal";
+				}
+
+				fila->Cells["Colum_ID_Falla"]->Value = falla->id;
+				fila->Cells["Colum_Afectado"]->Value = afectado;
+
+				fila->Cells["Colum_Prioridad"]->Value = falla->prioridad;
+
+				fila->Cells["Colum_Tipo"]->Value = falla->tipo;
+
+				fila->Cells["Colum_Fecha"]->Value = falla->fecha.ToString("dd/MM/yyyy");
+				fila->Cells["Colum_Hora"]->Value = falla->fecha.ToString("HH:mm:ss");
+
+				fila->Cells["Colum_Estado"]->Value = falla->estado;
+
+
+			}
+
+			
+
+		}	/*private: System::Void cb_Estado_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+			}*/
+
+
+		private: void ocultar_Hora_Fecha() {
+			//
+			label_Fecha_Dinamica->Visible = false;
+			label_Fecha_Dinamica->Enabled = false;
+
+			label_Hora_Dinamica->Visible = false;
+			label_Hora_Dinamica->Enabled = false;
+
+			tb_Fecha->Visible = false;
+			tb_Fecha->Enabled = false;
+
+			tb_Hora->Visible = false;
+			tb_Hora->Enabled = false;
+
+		}
+
+		private: void mostrar_fecha_hora() {
+			//
+			label_Fecha_Dinamica->Visible = true;
+			label_Fecha_Dinamica->Enabled = false;
+
+			label_Hora_Dinamica->Visible = true;
+			label_Hora_Dinamica->Enabled = false;
+
+			tb_Fecha->Visible = true;
+			tb_Fecha->Enabled = false;
+
+			tb_Hora->Visible = true;
+			tb_Hora->Enabled = false;
+
+		}
+
+
+
+		private: System::Void Mantenimiento_Registro_Fallas_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+
+			ocultar_Hora_Fecha();
+			actualizar();
+		}
+
+
+
+
+		private: System::Void btn_Consultar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+			int id_consultado = Convert::ToInt32(numeric_ID_Registro->Value);
+
+
+			Falla^ consultada_falla = controlFallas->buscarFalla(id_consultado);
+
+
+			//cb_Prioridad->SelectedIndex = cb_Prioridad->FindStringExact(consultada_falla->espacioAfectado);
+
+			if (consultada_falla != nullptr) {
+
+				cb_Afectado->SelectedIndex = consultada_falla->espacioAfectado;
+
+				cb_Prioridad->SelectedIndex = cb_Prioridad->FindStringExact(consultada_falla->prioridad);
+
+				cb_Tipo->SelectedIndex = cb_Tipo->FindStringExact(consultada_falla->tipo);
+
+				tb_Descripcion->Text = consultada_falla->descripcion;
+
+				cb_Estado->SelectedIndex = cb_Estado->FindStringExact(consultada_falla->estado);
+			
+				tb_Fecha->Text = consultada_falla->fecha.ToString("dd/MM/yyyy");
+				tb_Hora->Text = consultada_falla->fecha.ToString("HH:mm:ss");
+
+				numeric_ID_rol->Value = Convert::ToDecimal(consultada_falla->idUserReportante);
+
+				tb_Nombre->Text = consultada_falla->nombreUserReportante;
+
+				tb_Rol->Text = consultada_falla->rolUser;
+
+				mostrar_fecha_hora();
+			}
+
+
+			actualizar();
+
+		}
+
+
+
+
+	private: System::Void cb_Afectado_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		ocultar_Hora_Fecha();
+	}
+
+
+
+
+	private: System::Void btn_Modificar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		int id_consultado = Convert::ToInt32(numeric_ID_Registro->Value);
+
+
+		Falla^ falla_consultada = gcnew Falla();
+
+		try{
+
+		
+			falla_consultada->espacioAfectado = Convert::ToUInt32(cb_Afectado->SelectedIndex) + 1;
+
+			falla_consultada->prioridad = cb_Prioridad->SelectedItem->ToString();
+
+			falla_consultada->tipo = cb_Tipo->SelectedItem->ToString();
+
+			falla_consultada->descripcion = tb_Descripcion->Text;
+
+			DateTime fechaHora = DateTime::Now;
+
+			falla_consultada->fecha = fechaHora;
+
+			falla_consultada->estado = cb_Estado->SelectedItem->ToString();
+
+
+			falla_consultada->idUserReportante = Convert::ToInt32(numeric_ID_rol->Value);
+			falla_consultada->nombreUserReportante = tb_Nombre->Text;
+			falla_consultada->rolUser = tb_Rol->Text;
+
+			controlFallas->modificarFalla(id_consultado, falla_consultada);
+			actualizar();
+		}
+		catch (Exception^e) {
+			MessageBox::Show(e->Message,"Error",MessageBoxButtons::OK,MessageBoxIcon::Error);
+		}
+
+
+		
+	}
 };
+	
+
 }

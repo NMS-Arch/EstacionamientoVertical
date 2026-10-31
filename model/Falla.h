@@ -6,30 +6,55 @@ using namespace System;
 namespace modelPrincipal {
     public ref class Falla {
     public:
-        Espacio^ espacioAfectado;
-        Usuario^ usuarioReportante;
+        //Espacio^ espacioAfectado;
+        //Usuario^ usuarioReportante;
+
+        int espacioAfectado;
+
+        int idUserReportante;
+        String^ nombreUserReportante;
+        String^ rolUser;
+
         String^ descripcion;
-        int prioridad;
+        String^ prioridad;
+
         int id;
+
+        String^ estado;
+
         String^ tipo;
         DateTime fecha;
         String^ hora;
 
         Falla() {};
 
-        Falla(int id_falla, String^ desc, int prio, String^ tipo, DateTime fec, 
+        Falla(int id_falla, String^ desc, String^ prio, String^ tipo, DateTime fec, 
             
-            String^ hor, 
+            //String^ hor, 
             
-            Espacio^ esp, Usuario^ usr) {
+            //Espacio^ esp, Usuario^ usr
+            
+            String^ estado,
+        
+            int idUserReportante, String^ nombreUserReportante,String^ rolUser, int espacioAfectado) {
+
             this->id = id_falla;
             this->descripcion = desc;
             this->prioridad = prio;
             this->tipo = tipo;
             this->fecha = fec;
-            this->hora = hor;
-            this->espacioAfectado = esp;
-            this->usuarioReportante = usr;
+            
+            //this->hora = hor;
+            this->estado = estado;
+
+            this->espacioAfectado = espacioAfectado;
+            
+            this->idUserReportante=idUserReportante;
+            this->nombreUserReportante=nombreUserReportante;
+            this->rolUser =rolUser;
+
+            //this->espacioAfectado = esp;
+            //this->usuarioReportante = usr;
         }
     };
 }
