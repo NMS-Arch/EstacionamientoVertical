@@ -830,12 +830,33 @@ namespace View {
 		#pragma endregion
 		private: System::Void btn_Regresar_Formulario_Click(System::Object^ sender, System::EventArgs^ e) {
 
+			if (est_bajarPlataformaCompletado == true) {
+				// 1. Guardar la respuesta del usuario en la variable 'respuesta'
+				System::Windows::Forms::DialogResult respuesta = MessageBox::Show(
+					"La plataforma ha sido bajada, tiene que procesar el pago, de lo contrario se anulara. ¿Quiere continuar?",
+					"Alerta",
+					MessageBoxButtons::YesNo,
+					MessageBoxIcon::Warning
+				);
+
+				// 2. Evaluar qué botón presionó
+				if (respuesta == System::Windows::Forms::DialogResult::Yes) {
+					// El usuario hizo clic en "Sí"
+					// Coloca aquí el código para procesar el pago
+					est_pagoAnulado = true;
+					anular_Y_Guardar_TicketAnulado_A_registroFin();
+				}
+				else if (respuesta == System::Windows::Forms::DialogResult::No) {
+					// El usuario hizo clic en "No"
+					// Coloca aquí el código para anular el proceso
+					return;
+				}
+			}
 
 			this->Hide();
 			actualizar_grilla();
 			limpiar();
 			
-
 			FormularioForm->Show();
 
 		}
@@ -860,13 +881,10 @@ namespace View {
 			
 			tb_DNI->Clear();
 
-
 			numeric_Precio_Base->Value = false;
-
 
 			tb_Fecha_Salida->Clear();
 			tb_Hora_Salida->Clear();
-
 
 			tb_Tiempo_Transcurrido->Clear();
 
@@ -1035,18 +1053,27 @@ namespace View {
 
 		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
 
+
+
+
 			try {
 				controladorEspacios->solicitarDescensoPlataforma(ticket_temporal->id_espacio);
+
+				if (est_pagoCompletado == false) {
+					MessageBox::Show("Se recomienda procesar el pago para finalizar el registro", "Aviso Pago", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
 
 				est_bajarPlataformaCompletado = true;
 
 				guardarTicket_A_registroFin();
+
+
 			}
 			catch (Exception^e) {
 				MessageBox::Show(e->Message,"Error",MessageBoxButtons::OK,MessageBoxIcon::Error);
 			}
 			
-			guardarTicket_A_registroFin();
+			//guardarTicket_A_registroFin();
 			
 		}
 
@@ -1101,11 +1128,9 @@ namespace View {
 
 				new_regFin->GenerarRegistroDesdeTicket(ticket_temporal, idOperario, nombreOperaro, false);
 
-
 				controladorFinansas->agregarRegistroFin(new_regFin);
 
 				controlador_GUI->eliminarTicket(ticket_temporal->id);
-
 
 				controladorEspacios->DesocuparEspacio(ticket_temporal->id_espacio);
 				actualizar_grilla();
@@ -1197,11 +1222,13 @@ namespace View {
 		}
 		
 
-		
 
 		private: System::Void Operador_Buscar_Auto_Form_Load(System::Object^ sender, System::EventArgs^ e) {
 			actualizar_grilla();
 			limpiar();
+
+
+
 		}
 		private: System::Void Operador_Buscar_Auto_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
 			actualizar_grilla();
