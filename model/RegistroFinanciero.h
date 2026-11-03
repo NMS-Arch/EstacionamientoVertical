@@ -8,6 +8,7 @@ using namespace System::Collections::Generic;
 
 
 namespace modelPrincipal {
+
     public ref class RegistroFinanciero {
     public:
         int id_registro;

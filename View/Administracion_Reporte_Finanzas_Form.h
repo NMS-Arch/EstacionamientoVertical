@@ -9,6 +9,10 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
 	/// <summary>
 	/// Summary for Administracion_Reporte_Finanzas_Form
 	/// </summary>
@@ -16,13 +20,17 @@ namespace View {
 	{
 	private:
 		Form^ MenuAdminForm;
+
+		ControlReporteFinanciero^ controladorFinanzas;
+
 	public:
-		Administracion_Reporte_Finanzas_Form(Form^ entrada_MenuAdminForm)
+		Administracion_Reporte_Finanzas_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			MenuAdminForm = entrada_MenuAdminForm;
+			controladorFinanzas = entrada_ControladorFinanzas;
 			//
 		}
 

@@ -35,7 +35,7 @@ namespace controllerPrincipal {
 		//static TicketAuto^ buscarTicket_placa(String^ placa_entrada);
 
 
-		static List<RegistroFinanciero^>^ listarRegistroFin();
+		static List<RegistroFinanciero^>^ ObtenerRegistrosFin();
 
 		//static void guardarReporte();
 		//static List<TicketAuto^>^ cargarTReporte();

@@ -12,6 +12,11 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+
+	using namespace controllerPrincipal;
+	using namespace modelPrincipal;
+	using namespace System::Collections::Generic;
+
 	/// <summary>
 	/// Summary for Administrador_Interfaz_Principal_Form
 	/// </summary>
@@ -24,6 +29,18 @@ namespace View {
 		Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm;
 		Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios;
 		Administracion_Tarifas_y_Auditoria_Form^ AdminTarifasAuditoriaForm;
+		ControlReporteFinanciero^ controladorFinanzas;
+
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Registro;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Monto_Total;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Ticket;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Placa;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Precio_Base;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Tiempo_Total;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Operario;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Nombre_Ope;
+
+		
 
 	public:
 		Administrador_Interfaz_Principal_Form(Form^ entrada_loginForm)
@@ -33,9 +50,11 @@ namespace View {
 			//TODO: Add the constructor code here
 			loginForm = entrada_loginForm;
 
-			AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this);
-			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this);
-			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this);
+			controladorFinanzas = gcnew ControlReporteFinanciero();
+
+			AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this, controladorFinanzas);
+			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this, controladorFinanzas);
+			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this, controladorFinanzas);
 
 
 			//
@@ -77,14 +96,14 @@ namespace View {
 	private: System::Windows::Forms::NumericUpDown^ numeric_Ingresos_Hoy;
 	private: System::Windows::Forms::NumericUpDown^ numeric_Autos_Atendidos_Hoy;
 	private: System::Windows::Forms::NumericUpDown^ numeric_Espacios_Ocupados;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+
+
+
+
+
+
+
+
 	protected:
 
 	private:
@@ -115,14 +134,14 @@ namespace View {
 			this->numeric_Ingresos_Hoy = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_Autos_Atendidos_Hoy = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numeric_Espacios_Ocupados = (gcnew System::Windows::Forms::NumericUpDown());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_ID_Registro = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Monto_Total = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Ticket = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Placa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Precio_Base = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Tiempo_Total = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_ID_Operario = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Nombre_Ope = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Ingresos_Hoy))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Autos_Atendidos_Hoy))->BeginInit();
@@ -196,8 +215,9 @@ namespace View {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
-				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8
+				this->Colum_ID_Registro,
+					this->Colum_Monto_Total, this->Colum_Ticket, this->Colum_Placa, this->Colum_Precio_Base, this->Colum_Tiempo_Total, this->Colum_ID_Operario,
+					this->Colum_Nombre_Ope
 			});
 			this->dataGridView1->Location = System::Drawing::Point(46, 264);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -269,61 +289,61 @@ namespace View {
 			this->numeric_Espacios_Ocupados->Size = System::Drawing::Size(120, 22);
 			this->numeric_Espacios_Ocupados->TabIndex = 17;
 			// 
-			// Column1
+			// Colum_ID_Registro
 			// 
-			this->Column1->HeaderText = L"ID Registro";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 125;
+			this->Colum_ID_Registro->HeaderText = L"ID Registro";
+			this->Colum_ID_Registro->MinimumWidth = 6;
+			this->Colum_ID_Registro->Name = L"Colum_ID_Registro";
+			this->Colum_ID_Registro->Width = 125;
 			// 
-			// Column2
+			// Colum_Monto_Total
 			// 
-			this->Column2->HeaderText = L"Monto Total";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
+			this->Colum_Monto_Total->HeaderText = L"Monto Total";
+			this->Colum_Monto_Total->MinimumWidth = 6;
+			this->Colum_Monto_Total->Name = L"Colum_Monto_Total";
+			this->Colum_Monto_Total->Width = 125;
 			// 
-			// Column3
+			// Colum_Ticket
 			// 
-			this->Column3->HeaderText = L"Ticket";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
+			this->Colum_Ticket->HeaderText = L"Ticket";
+			this->Colum_Ticket->MinimumWidth = 6;
+			this->Colum_Ticket->Name = L"Colum_Ticket";
+			this->Colum_Ticket->Width = 125;
 			// 
-			// Column4
+			// Colum_Placa
 			// 
-			this->Column4->HeaderText = L"Placa";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
+			this->Colum_Placa->HeaderText = L"Placa";
+			this->Colum_Placa->MinimumWidth = 6;
+			this->Colum_Placa->Name = L"Colum_Placa";
+			this->Colum_Placa->Width = 125;
 			// 
-			// Column5
+			// Colum_Precio_Base
 			// 
-			this->Column5->HeaderText = L"Precio Base";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 125;
+			this->Colum_Precio_Base->HeaderText = L"Precio Base";
+			this->Colum_Precio_Base->MinimumWidth = 6;
+			this->Colum_Precio_Base->Name = L"Colum_Precio_Base";
+			this->Colum_Precio_Base->Width = 125;
 			// 
-			// Column6
+			// Colum_Tiempo_Total
 			// 
-			this->Column6->HeaderText = L"Tiempo Total";
-			this->Column6->MinimumWidth = 6;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 125;
+			this->Colum_Tiempo_Total->HeaderText = L"Tiempo Total";
+			this->Colum_Tiempo_Total->MinimumWidth = 6;
+			this->Colum_Tiempo_Total->Name = L"Colum_Tiempo_Total";
+			this->Colum_Tiempo_Total->Width = 125;
 			// 
-			// Column7
+			// Colum_ID_Operario
 			// 
-			this->Column7->HeaderText = L"ID Operario";
-			this->Column7->MinimumWidth = 6;
-			this->Column7->Name = L"Column7";
-			this->Column7->Width = 125;
+			this->Colum_ID_Operario->HeaderText = L"ID Operario";
+			this->Colum_ID_Operario->MinimumWidth = 6;
+			this->Colum_ID_Operario->Name = L"Colum_ID_Operario";
+			this->Colum_ID_Operario->Width = 125;
 			// 
-			// Column8
+			// Colum_Nombre_Ope
 			// 
-			this->Column8->HeaderText = L"Nombre Ope.";
-			this->Column8->MinimumWidth = 6;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 125;
+			this->Colum_Nombre_Ope->HeaderText = L"Nombre Ope.";
+			this->Colum_Nombre_Ope->MinimumWidth = 6;
+			this->Colum_Nombre_Ope->Name = L"Colum_Nombre_Ope";
+			this->Colum_Nombre_Ope->Width = 125;
 			// 
 			// Administrador_Interfaz_Principal_Form
 			// 
@@ -347,6 +367,7 @@ namespace View {
 			this->Controls->Add(this->label1);
 			this->Name = L"Administrador_Interfaz_Principal_Form";
 			this->Text = L"Administrador_Interfaz_Principal_Form";
+			this->Load += gcnew System::EventHandler(this, &Administrador_Interfaz_Principal_Form::Administrador_Interfaz_Principal_Form_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Ingresos_Hoy))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Autos_Atendidos_Hoy))->EndInit();
@@ -362,23 +383,71 @@ namespace View {
 			this->Close();
 			this->loginForm->Show();
 		}
+
 		private: System::Void btn_ver_Reportes_Financieros_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
 			//Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this);
 			this->AdminReportesFinanForm->Show();
 		}
+
 		private: System::Void btn_ver_Gestion_Personal_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
 			//Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this);
 			this->AdminGestionUsuarios->Show();
 		}
+
 		private: System::Void btn_Configurar_Pagos_Auditoria_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide();
 			//Administracion_Tarifas_y_Auditoria_Form^ AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this);
 			this->AdminTarifasAuditoriaForm->Show();
 		}
+
+
+		private: void  actualizar() {
+
+			List<RegistroFinanciero^>^ registros = controladorFinanzas->ObtenerRegistrosFin();
+
+			dataGridView1->Rows->Clear();
+
+
+
+			for each(RegistroFinanciero ^ registroFin in registros) {
+
+				String^ valueDNI;
+
+				//valor DNI si no se coloca
+				/*if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
+					valueDNI = ticket->dni.ToString();
+				}
+				else {
+					valueDNI = "No introducido";
+				}*/
+
+
+				int indiceFila = dataGridView1->Rows->Add();
+				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+
+
+				fila->Cells["Colum_ID_Registro"]->Value = registroFin->id_registro;
+				fila->Cells["Colum_Monto_Total"]->Value = registroFin->monto_total;
+				fila->Cells["Colum_Ticket"]->Value = registroFin->id_Ticket;
+				fila->Cells["Colum_Placa"]->Value = registroFin->placa;
+				fila->Cells["Colum_Precio_Base"]->Value = registroFin->precioBase;
+				fila->Cells["Colum_Tiempo_Total"]->Value = registroFin->tiempoTotal;
+				fila->Cells["Colum_ID_Operario"]->Value = registroFin->idUserOperario;
+				fila->Cells["Colum_Nombre_Ope"]->Value = registroFin->nombreUserOperario;
+			}
+
+
+		}
+
+		private: System::Void Administrador_Interfaz_Principal_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+			actualizar();
+		}
+	//private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	//}
 };
 }

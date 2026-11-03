@@ -86,7 +86,7 @@ RegistroFinanciero^ controllerPrincipal::ControlReporteFinanciero::buscarRegistr
 
 
 
-List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::listarRegistroFin() {
+List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::ObtenerRegistrosFin() {
 	return listaRegistrosFinancieros;
 }
 

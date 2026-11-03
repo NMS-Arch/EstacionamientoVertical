@@ -39,8 +39,6 @@ namespace View {
 
 	private: System::Windows::Forms::Label^ label20;
 	private: System::Windows::Forms::Label^ label21;
-
-
 	private: System::Windows::Forms::TextBox^ tb_Nombre_Operario;
 	private: System::Windows::Forms::NumericUpDown^ numeric_ID_Operario;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column_ID_Ticket;
@@ -79,11 +77,14 @@ namespace View {
 			est_pagoAnulado = false;
 
 
+			// Generamos un controlador para ver si guardaremos o no o algo asi xd
+			controladorFinansas = gcnew ControlReporteFinanciero();
+
+
 			nombreOperaro;
 			idOperario;
 
-			// Generamos un controlador para ver si guardaremos o no o algo asi xd
-			controladorFinansas= gcnew ControlReporteFinanciero();
+			
 
 			//
 		}
@@ -989,6 +990,8 @@ namespace View {
 				return;
 			}
 
+			ticket_temporal = ticket_encontrado;
+
 			tb_ID_Espacio->Text = Convert::ToString(ticket_encontrado->id_espacio);
 			tb_ID_Espacio->Enabled = false;
 
@@ -1033,12 +1036,17 @@ namespace View {
 			tb_Tiempo_Transcurrido->Enabled = false;
 
 
-			ticket_temporal = ticket_encontrado;
+			
 		}
 
 
 
 		private: System::Void btn_Obtener_Precio_por_Estacionar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (ticket_temporal == nullptr) {
+				MessageBox::Show("Debe seleccionar un ticket antes de continuar", "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+				return;
+			}
 
 			 double monto_a_pagar = ticket_temporal->calcularMontoFinal();
 
@@ -1054,7 +1062,10 @@ namespace View {
 		private: System::Void btn_Bajar_Espacio_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
-
+			if(ticket_temporal == nullptr) {
+				MessageBox::Show("No se ha seleccionado un ticket para bajar el espacio", "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+				return;
+			}
 
 			try {
 				controladorEspacios->solicitarDescensoPlataforma(ticket_temporal->id_espacio);
@@ -1080,20 +1091,34 @@ namespace View {
 
 		private: void guardarTicket_A_registroFin() {
 
-			
+			//Comprobar si el ticket no esta vacio
+			Console::WriteLine("Antes de introducirse en el guardado");
+			Console::WriteLine("Ticket temporal: {0}, {1},{2},{3}", ticket_temporal->id, ticket_temporal->id_espacio, ticket_temporal->fechaIngreso, ticket_temporal->fechaSalida);
+
 			if (ticket_temporal != nullptr && est_pagoCompletado && est_bajarPlataformaCompletado) {
 				
 				RegistroFinanciero^ new_regFin = gcnew RegistroFinanciero();
 
 				nombreOperaro= tb_Nombre_Operario->Text;
 				idOperario = Convert::ToInt32(numeric_ID_Operario->Value);
+				//Comprobar si el ticket no esta vacio
+				Console::WriteLine("Antes de generar el registro financiero");
+				Console::WriteLine("Ticket temporal: {0}, {1},{2},{3}", ticket_temporal->id,ticket_temporal->id_espacio, ticket_temporal->fechaIngreso, ticket_temporal->fechaSalida);
 
+				new_regFin=new_regFin->GenerarRegistroDesdeTicket(ticket_temporal, idOperario,nombreOperaro,true);
 
-				new_regFin->GenerarRegistroDesdeTicket(ticket_temporal, idOperario,nombreOperaro,true);
+				//vamos a comprobar si logro generar el registro financiero correctamente
+				Console::WriteLine("{0},{1},{2}",new_regFin->monto_total, new_regFin->id_Ticket, new_regFin->id_espacio);
+
 				
 				controladorFinansas->agregarRegistroFin(new_regFin);
+				Console::WriteLine("Se agrego");
+				Console::WriteLine("{0},{1},{2},{3}",new_regFin->id_registro, new_regFin->monto_total, new_regFin->id_Ticket, new_regFin->id_espacio);
+
+
 
 				controlador_GUI->eliminarTicket(ticket_temporal->id);
+				Console::WriteLine("Se elimino el ticket");
 
 
 				controladorEspacios->DesocuparEspacio(ticket_temporal->id_espacio);
@@ -1107,8 +1132,6 @@ namespace View {
 				ticket_temporal = nullptr;
 				
 			}
-			
-
 
 		}
 
@@ -1149,6 +1172,12 @@ namespace View {
 
 		private: System::Void btn_Anular_Pago_Click(System::Object^ sender, System::EventArgs^ e) {
 
+			if (ticket_temporal == nullptr) {
+				MessageBox::Show("Debe seleccionar un ticket antes de continuar", "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+				return;
+			}
+
+
 			if (String::IsNullOrWhiteSpace(tb_Nombre_Operario->Text) || numeric_ID_Operario->Value <= 0) {
 				MessageBox::Show("Por favor, primero rellene su nombre y su ID de operario, y luego intente procesar el pago otra vez", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
@@ -1166,6 +1195,12 @@ namespace View {
 
 
 		private: System::Void btn_Procesar_Pago_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (ticket_temporal == nullptr) {
+				MessageBox::Show("Debe seleccionar un ticket antes de continuar", "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+				return;
+			}
+
 
 			if ( String::IsNullOrWhiteSpace(tb_Nombre_Operario->Text) || numeric_ID_Operario->Value <= 0) {
 				MessageBox::Show("Por favor, primero rellene su nombre y su ID de operario", "Falta Informacion", MessageBoxButtons::OK, MessageBoxIcon::Information);
@@ -1192,7 +1227,6 @@ namespace View {
 
 			for each (TicketAuto ^ ticket in tickets) {
 
-
 				String^ valueDNI;
 				//valor DNI si no se coloca
 				if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
@@ -1214,8 +1248,6 @@ namespace View {
 				fila->Cells["Colum_DNI"]->Value = valueDNI;
 				fila->Cells["Colum_Precio_Base"]->Value = ticket->precio;
 				//fila->Cells["Colum_Tiempo_Transcurrido"]->Value = valueDNI;
-
-
 			}
 
 
@@ -1228,10 +1260,10 @@ namespace View {
 			limpiar();
 
 
-
 		}
+
 		private: System::Void Operador_Buscar_Auto_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
 			actualizar_grilla();
 		}
-};
+	};
 }
