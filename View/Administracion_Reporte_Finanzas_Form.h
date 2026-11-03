@@ -25,6 +25,8 @@ namespace View {
 
 		bool seAplicoFiltro;
 
+		List<RegistroFinanciero^>^ registrosFinancieros;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Monto_Total;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Ticket;
@@ -55,6 +57,9 @@ namespace View {
 
 
 			seAplicoFiltro= false;
+
+			registrosFinancieros = gcnew List<RegistroFinanciero^>();
+
 			//
 		}
 
@@ -379,86 +384,72 @@ namespace View {
 		}
 
 
-		private: void actualizar_segun_filtro() {
+		//private: void actualizar_segun_filtro() {
 
-			dataGridView1->Rows->Clear();
+		//	dataGridView1->Rows->Clear();
 
+		//	if (registrosFinancieros == nullptr) {
 
-
-			List<TicketAuto^>^ tickets = controlador_GUI->listarTickets();
-
-
-			dataGridView1->Rows->Clear();
-
-			for each (TicketAuto ^ ticket in tickets) {
-
-				String^ valueDNI;
-				//valor DNI si no se coloca
-				if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
-					valueDNI = ticket->dni.ToString();
-				}
-				else {
-					valueDNI = "No introducido";
-				}
+		//		registrosFinancieros
+		//	}
 
 
-				//dataGridView1->Rows->Add(
-				//	ticket->id,
-				//	ticket->id_espacio,
-				//	ticket->placa,
-				//	ticket->modeloAuto,
-				//	ticket->peso,
-				//	ticket->precio,
-				//	ticket->fechaIngreso.ToString("HH:mm:ss"),
-				//	valueDNI
-				//);
-
-				int indiceFila = dataGridView1->Rows->Add();
-				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+		//	List<TicketAuto^>^ tickets = controlador_GUI->listarTickets();
 
 
-				//Colum_ID_Ticket;
-				//Colum_Espacio;
-				//Colum_Placa;
-				//Colum_Modelo;
-				//Colum_Peso;
-				//Colum_Precio_Base;
-				//Colum_Hora_Entrada;
-				//Colum_DNI;
-				//Colum_Codigo_B;
+		//	dataGridView1->Rows->Clear();
+
+		//	for each (TicketAuto ^ ticket in tickets) {
+
+		//		String^ valueDNI;
+		//		//valor DNI si no se coloca
+		//		if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
+		//			valueDNI = ticket->dni.ToString();
+		//		}
+		//		else {
+		//			valueDNI = "No introducido";
+		//		}
 
 
-				fila->Cells["Colum_ID_Ticket"]->Value = ticket->id;
-				fila->Cells["Colum_Espacio"]->Value = ticket->id_espacio;
-				fila->Cells["Colum_Placa"]->Value = ticket->placa;
-				fila->Cells["Colum_Modelo"]->Value = ticket->modeloAuto;
-				fila->Cells["Colum_Peso"]->Value = ticket->peso;
-				fila->Cells["Colum_Precio_Base"]->Value = ticket->precio;
-				fila->Cells["Colum_Hora_Entrada"]->Value = ticket->fechaIngreso.ToString("HH:mm:ss");
-				fila->Cells["Colum_DNI"]->Value = valueDNI;
-				fila->Cells["Colum_Codigo_B"]->Value = ticket->codigoBarras;//ticket->id;
+		//		//dataGridView1->Rows->Add(
+		//		//	ticket->id,
+		//		//	ticket->id_espacio,
+		//		//	ticket->placa,
+		//		//	ticket->modeloAuto,
+		//		//	ticket->peso,
+		//		//	ticket->precio,
+		//		//	ticket->fechaIngreso.ToString("HH:mm:ss"),
+		//		//	valueDNI
+		//		//);
 
-			}
-
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Monto_Total;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Ticket;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Espacio;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Placa;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Modelo;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_DNI;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Peso;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Precio_Base;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Tiempo_Total;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Fecha_Entrada;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora_Entrada;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Fecha_Salida;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora_Salida;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Operario;
-		//private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Nombre_Ope;
+		//		int indiceFila = dataGridView1->Rows->Add();
+		//		DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
 
 
-		}
+
+		//		fila->Cells["Colum_ID"]->Value = ticket->id;
+		//		fila->Cells["Colum_Monto_Total"]->Value = ticket->id_espacio;
+		//		fila->Cells["Colum_Ticket"]->Value = ticket->placa;
+		//		fila->Cells["Colum_Espacio"]->Value = ticket->modeloAuto;
+		//		fila->Cells["Colum_Placa"]->Value = ticket->peso;
+		//		fila->Cells["Colum_Modelo"]->Value = ticket->precio;
+		//		fila->Cells["Colum_DNI"]->Value = ticket->fechaIngreso.ToString("HH:mm:ss");
+		//		fila->Cells["Colum_Peso"]->Value = valueDNI;
+		//		fila->Cells["Colum_Precio_Base"]->Value = ticket->codigoBarras;//ticket->id;
+		//		fila->Cells["Colum_Tiempo_Total"]->Value = ticket->codigoBarras;
+		//		fila->Cells["Colum_Fecha_Entrada"]->Value = ticket->codigoBarras;
+		//		fila->Cells["Colum_Hora_Entrada"]->Value = ticket->codigoBarras;
+		//		fila->Cells["Colum_Fecha_Salida"]->Value = ticket->codigoBarras;
+		//		fila->Cells["Colum_Hora_Salida"]->Value = ticket->codigoBarras;
+		//		fila->Cells["Colum_ID_Operario"]->Value = ticket->codigoBarras;
+		//		fila->Cells["Colum_Nombre_Operario"]->Value = ticket->codigoBarras;
+
+
+		//	}
+
+
+
+		//}
 
 
 		
@@ -466,7 +457,7 @@ namespace View {
 		private: System::Void tb_Aplicar_Filtro_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			
-			int seleccionado = cb_Filtro->SelectedIndex; String^ periodo;
+			/*int seleccionado = cb_Filtro->SelectedIndex; String^ periodo;
 
 			if (seleccionado == 0) {
 				periodo = "Hoy";
@@ -489,10 +480,10 @@ namespace View {
 			}
 
 			if (seAplicoFiltro==true) {
-				controladorFinanzas->filtrarRegistrosPorPeriodo(periodo);
+				registrosFinancieros = controladorFinanzas->filtrarRegistrosPorPeriodo(periodo);
 			}
 			
-
+			registrosFinancieros = controladorFinanzas->ObtenerRegistrosFin();*/
 		}
 };
 }

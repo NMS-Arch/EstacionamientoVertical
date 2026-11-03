@@ -40,16 +40,29 @@
     <dni>0</dni>
   </TicketAuto>
   <TicketAuto>
-    <modeloAuto>Ford</modeloAuto>
-    <placa>7ZQ5O1</placa>
-    <fechaIngreso>2026-10-30T02:27:01.3331768-05:00</fechaIngreso>
+    <modeloAuto>toyota</modeloAuto>
+    <placa>asdasd</placa>
+    <fechaIngreso>2026-11-02T20:22:43.1917351-05:00</fechaIngreso>
     <fechaSalida>0001-01-01T00:00:00</fechaSalida>
     <pagado>false</pagado>
-    <precio>50.35</precio>
-    <id>4</id>
-    <peso>11.49</peso>
-    <id_espacio>5</id_espacio>
-    <codigoBarras>7ZQFO0227</codigoBarras>
+    <precio>83.75</precio>
+    <id>5</id>
+    <peso>11.77</peso>
+    <id_espacio>6</id_espacio>
+    <codigoBarras>ASDTO2022</codigoBarras>
+    <dni>0</dni>
+  </TicketAuto>
+  <TicketAuto>
+    <modeloAuto>Chevrolet</modeloAuto>
+    <placa>JKL238</placa>
+    <fechaIngreso>2026-11-02T20:34:15.7970628-05:00</fechaIngreso>
+    <fechaSalida>0001-01-01T00:00:00</fechaSalida>
+    <pagado>false</pagado>
+    <precio>149.96</precio>
+    <id>6</id>
+    <peso>8.54</peso>
+    <id_espacio>8</id_espacio>
+    <codigoBarras>JKLCH2034</codigoBarras>
     <dni>0</dni>
   </TicketAuto>
 </ArrayOfTicketAuto>
