@@ -30,36 +30,17 @@ namespace controllerPrincipal {
 
 		static RegistroFinanciero^ buscarRegistroFin(int id_registroFin);
 
-		//static TicketAuto^ buscarTicket_codigo(String^ codigo_entrada);
-		//static TicketAuto^ buscarTicket_dni(int dni_entrada);
-		//static TicketAuto^ buscarTicket_placa(String^ placa_entrada);
+		
 
 
 		static List<RegistroFinanciero^>^ ObtenerRegistrosFin();
 
-		//static void guardarReporte();
-		//static List<TicketAuto^>^ cargarTReporte();
+		
+		static List<RegistroFinanciero^>^ filtrarRegistrosPorPeriodo(String^ periodo);
 
+		static double calcularGananciasTotales(List<RegistroFinanciero^>^ lista);
 
-
-		//static void OcuparEspacio(int idBuscado);
-
-		//static List<Espacio^>^ ObtenerEspaciosDisponibles();
-
-		//static List<Espacio^>^ ObtenerTodosEspacios();
-
-		//static void solicitarDescensoPlataforma(int idEspacio);
-
-		//static void inhabiltarEspacio(int idEspacio);
-		//static void habilitarEspacio(int idEspacio);
-		//static void espacioEnMantenimiento(int idEspacio);
-
-
-		//static int obtenerEstadoMotorPrincipal();
-		//static void paraEmergenciaGeneral();
-		//static void restablecerSistema();
-		//static void MotorEnMantenimiento();
-
+		static List<RegistroFinanciero^>^ filtrarPorFechaExacta(DateTime fechaBuscada);
 
 	};
 }

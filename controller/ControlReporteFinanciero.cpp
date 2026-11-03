@@ -55,35 +55,6 @@ RegistroFinanciero^ controllerPrincipal::ControlReporteFinanciero::buscarRegistr
 	return nullptr;
 }
 
-//
-//TicketAuto^ controllerPrincipal::ControlReporteFinanciero::buscarTicket_codigo(String^ codigo_entrada) {
-//	for (int i = 0; i < controller::Tickets->Count; i++) {
-//		if (Tickets[i]->codigoBarras == codigo_entrada) {
-//			return Tickets[i];
-//			//persistance::guardarTickets(Tickets);
-//		}
-//	}
-//	return nullptr;
-//}
-//TicketAuto^ controllerPrincipal::ControlReporteFinanciero::buscarTicket_dni(int dni_entrada) {
-//	for (int i = 0; i < controller::Tickets->Count; i++) {
-//		if (Tickets[i]->dni == dni_entrada) {
-//			return Tickets[i];
-//			//persistance::guardarTickets(Tickets);
-//		}
-//	}
-//	return nullptr;
-//}
-//TicketAuto^ controllerPrincipal::ControlReporteFinanciero::buscarTicket_placa(String^ placa_entrada) {
-//	for (int i = 0; i < controller::Tickets->Count; i++) {
-//		if (Tickets[i]->placa == placa_entrada) {
-//			return Tickets[i];
-//			//persistance::guardarTickets(Tickets);
-//		}
-//	}
-//	return nullptr;
-//}
-
 
 
 List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::ObtenerRegistrosFin() {
@@ -91,10 +62,62 @@ List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::Obtene
 }
 
 
-//void controllerPrincipal::ControlReporteFinanciero::guardarTickets() {
-//	persistance::guardarTickets(controller::Tickets);
-//}
-//
-//List<TicketAuto^>^ controllerPrincipal::ControlReporteFinanciero::cargarTickets() {
-//	return persistance::cargarTickets();
-//}
+List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::filtrarRegistrosPorPeriodo(String^ periodo) {
+	List<RegistroFinanciero^>^ listaFiltrada = gcnew List<RegistroFinanciero^>();
+	DateTime hoy = DateTime::Now.Date; // Obtiene la fecha actual a las 00:00:00
+
+	for each (RegistroFinanciero ^ reg in listaRegistrosFinancieros) {
+		DateTime fechaSalida = reg->fechaHoraSalida.Date;
+
+		if (periodo == "Hoy" && fechaSalida == hoy) {
+			listaFiltrada->Add(reg);
+		}
+		else if (periodo == "Ayer" && fechaSalida == hoy.AddDays(-1)) {
+			listaFiltrada->Add(reg);
+		}
+		else if (periodo == "Esta Semana") {
+			// Calcula cuál fue el lunes de esta semana
+			int diasRestar = (int)hoy.DayOfWeek - (int)DayOfWeek::Monday;
+			if (diasRestar < 0) diasRestar += 7; // Ajuste si hoy es domingo
+
+			DateTime inicioSemana = hoy.AddDays(-diasRestar);
+			if (fechaSalida >= inicioSemana && fechaSalida <= hoy) {
+				listaFiltrada->Add(reg);
+			}
+		}
+		else if (periodo == "Este Mes") {
+			if (fechaSalida.Month == hoy.Month && fechaSalida.Year == hoy.Year) {
+				listaFiltrada->Add(reg);
+			}
+		}
+	}
+	return listaFiltrada;
+}
+
+
+
+
+
+double controllerPrincipal::ControlReporteFinanciero::calcularGananciasTotales(List<RegistroFinanciero^>^ lista) {
+	double totalAcumulado = 0.0;
+
+	for each (RegistroFinanciero ^ reg in lista) {
+		if (reg->sePago == true) { // Solo suma si realmente se pagó
+			totalAcumulado += reg->monto_total;
+		}
+	}
+
+	return totalAcumulado;
+}
+
+
+List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::filtrarPorFechaExacta(DateTime fechaBuscada) {
+	List<RegistroFinanciero^>^ listaFiltrada = gcnew List<RegistroFinanciero^>();
+
+	for each (RegistroFinanciero ^ reg in listaRegistrosFinancieros) {
+		if (reg->fechaHoraSalida.Date == fechaBuscada.Date) {
+			listaFiltrada->Add(reg);
+		}
+	}
+	return listaFiltrada;
+}
