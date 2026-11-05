@@ -24,8 +24,13 @@ namespace View {
 		Form^ FormularioForm;
 		controller^ controlador_GUI;
 		ControlEspacios^ controladorEspacios;
+		ControlFallas^ controladorFallas;
 
+		bool seInhabilitoEspacio;
+		bool seInhabilitoMotor;
+	private: System::Windows::Forms::Button^ btn_Restablecer_Elecciones;
 
+		String^ numID_Espacio;
 
 	public:
 		Operador_Registrar_Falla_Form(Form^ entrada_FormularioForm, controller^ controlador_entrada_GUI, ControlEspacios^ controladorEspacios_entrada)
@@ -37,7 +42,15 @@ namespace View {
 
 			controlador_GUI = controlador_entrada_GUI;
 			controladorEspacios = controladorEspacios_entrada;
+
+			controladorFallas = gcnew ControlFallas();
 			//
+
+
+			seInhabilitoEspacio=false;
+			seInhabilitoMotor=false;
+
+			numID_Espacio = nullptr;
 		}
 
 	protected:
@@ -143,6 +156,7 @@ namespace View {
 			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
 			this->btn_Regresar_Sin_Cambios = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->btn_Restablecer_Elecciones = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Solicitante))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -158,7 +172,7 @@ namespace View {
 			// 
 			// btn_Inhabilitar_Espacio
 			// 
-			this->btn_Inhabilitar_Espacio->Location = System::Drawing::Point(69, 129);
+			this->btn_Inhabilitar_Espacio->Location = System::Drawing::Point(32, 120);
 			this->btn_Inhabilitar_Espacio->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_Inhabilitar_Espacio->Name = L"btn_Inhabilitar_Espacio";
 			this->btn_Inhabilitar_Espacio->Size = System::Drawing::Size(141, 39);
@@ -193,7 +207,7 @@ namespace View {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(44, 214);
+			this->label3->Location = System::Drawing::Point(29, 214);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(96, 16);
 			this->label3->TabIndex = 4;
@@ -201,10 +215,10 @@ namespace View {
 			// 
 			// btn_Detener_Motor
 			// 
-			this->btn_Detener_Motor->Location = System::Drawing::Point(147, 199);
+			this->btn_Detener_Motor->Location = System::Drawing::Point(32, 243);
 			this->btn_Detener_Motor->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_Detener_Motor->Name = L"btn_Detener_Motor";
-			this->btn_Detener_Motor->Size = System::Drawing::Size(215, 39);
+			this->btn_Detener_Motor->Size = System::Drawing::Size(163, 39);
 			this->btn_Detener_Motor->TabIndex = 5;
 			this->btn_Detener_Motor->Text = L"Detener Motor Principal";
 			this->btn_Detener_Motor->UseVisualStyleBackColor = true;
@@ -376,6 +390,7 @@ namespace View {
 			// cb_Afectado
 			// 
 			this->cb_Afectado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Afectado->Enabled = false;
 			this->cb_Afectado->FormattingEnabled = true;
 			this->cb_Afectado->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
 				L"Motor Principal", L"Espacio 1", L"Espacio 2",
@@ -446,11 +461,22 @@ namespace View {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Operador_Registrar_Falla_Form::pictureBox1_Paint);
 			// 
+			// btn_Restablecer_Elecciones
+			// 
+			this->btn_Restablecer_Elecciones->Location = System::Drawing::Point(255, 172);
+			this->btn_Restablecer_Elecciones->Name = L"btn_Restablecer_Elecciones";
+			this->btn_Restablecer_Elecciones->Size = System::Drawing::Size(105, 42);
+			this->btn_Restablecer_Elecciones->TabIndex = 58;
+			this->btn_Restablecer_Elecciones->Text = L"Deshacer Elecciones";
+			this->btn_Restablecer_Elecciones->UseVisualStyleBackColor = true;
+			this->btn_Restablecer_Elecciones->Click += gcnew System::EventHandler(this, &Operador_Registrar_Falla_Form::btn_Restablecer_Elecciones_Click);
+			// 
 			// Operador_Registrar_Falla_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(925, 703);
+			this->Controls->Add(this->btn_Restablecer_Elecciones);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btn_Regresar_Sin_Cambios);
 			this->Controls->Add(this->btn_Registrar_Falla);
@@ -494,14 +520,23 @@ namespace View {
 		#pragma endregion
 		private: System::Void btn_Regresar_Sin_Cambios_Click(System::Object^ sender, System::EventArgs^ e) {
 
+			deshacerInhabilitacion_Espacio();
+			deshacerInhabilitacion_Motor();
+			mostrar_botones();
+
+			seInhabilitoEspacio = false;
+			seInhabilitoMotor = false;
+
 			this->Hide();
-			
 			FormularioForm->Show();
 		}
 		private: System::Void btn_Registrar_Falla_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			this->Hide();
+			mostrar_botones();
+			seInhabilitoEspacio = false;
+			seInhabilitoMotor = false;
 
+			this->Hide();
 			FormularioForm->Show();
 		}
 		private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
@@ -540,8 +575,34 @@ namespace View {
 
 			if (cb_ID_Espacio->SelectedIndex >= 0) {
 
-				String^ numeroID = cb_ID_Espacio->Items[cb_ID_Espacio->SelectedIndex]->ToString();
-				controladorEspacios->inhabiltarEspacio(Convert::ToInt32(numeroID));
+				seInhabilitoEspacio = true;
+
+				
+
+				numID_Espacio = cb_ID_Espacio->Items[cb_ID_Espacio->SelectedIndex]->ToString();
+				
+
+				int estadoEspacio = controladorEspacios->obtenerEstadoEspacio(Convert::ToInt32(numID_Espacio));
+
+				//Operativo = 1;
+				//No_Operativo = 2;
+				//En_Mantenimiento = 3;
+
+				if (estadoEspacio == 1) {
+
+					controladorEspacios->inhabiltarEspacio(Convert::ToInt32(numID_Espacio));
+
+					cb_Afectado->SelectedIndex = Convert::ToInt32(numID_Espacio);
+					cb_Afectado->Enabled = false;
+
+					ocultar_botones();
+				}
+				else {
+					MessageBox::Show("Este espacio no se puede seleccionar debido a que ya esta inoperativo o en mantenimiento");
+				}
+
+				
+
 			}
 
 		}
@@ -549,9 +610,72 @@ namespace View {
 
 		private: System::Void btn_Detener_Motor_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			
+				
+				seInhabilitoMotor = true;
 				controladorEspacios->paraEmergenciaGeneral();
 
+				// El combo box tiene el motor principal como posicion 10 (u 11 si cuentas desde 1)
+				cb_Afectado->SelectedIndex = 0;
+				cb_Afectado->Enabled=false;
+
+				ocultar_botones();
+
 		}
-};
+
+		private:void deshacerInhabilitacion_Espacio() {
+
+			controladorEspacios->habilitarEspacio(Convert::ToInt32(numID_Espacio));
+			cb_Afectado->SelectedIndex = -1;
+			cb_Afectado->Enabled = false;
+
+		}
+
+		private:void deshacerInhabilitacion_Motor() {
+
+			controladorEspacios->restablecerSistema();
+
+			cb_Afectado->SelectedIndex = -1;
+			cb_Afectado->Enabled = false;
+		}
+
+		private:void ocultar_botones() {
+
+			cb_ID_Espacio->Enabled = false;
+			btn_Inhabilitar_Espacio->Visible = false;
+			btn_Inhabilitar_Espacio->Enabled = false;
+
+			btn_Detener_Motor->Visible = false;
+			btn_Detener_Motor->Enabled = false;
+		}
+
+		private:void mostrar_botones() {
+
+			cb_ID_Espacio->Enabled = true;
+			btn_Inhabilitar_Espacio->Visible = true;
+			btn_Inhabilitar_Espacio->Enabled = true;
+
+			btn_Detener_Motor->Visible = true;
+			btn_Detener_Motor->Enabled = true;
+
+
+		}
+
+
+		private: System::Void btn_Restablecer_Elecciones_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+			deshacerInhabilitacion_Espacio();
+
+			deshacerInhabilitacion_Motor();
+			mostrar_botones();
+
+
+		}
+
+
+
+
+
+
+	};
 }

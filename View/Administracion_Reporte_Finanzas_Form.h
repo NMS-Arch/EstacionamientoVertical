@@ -479,5 +479,6 @@ namespace View {
 		private: System::Void Administracion_Reporte_Finanzas_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
 			actualizar_segun_filtro();
 		}
-};
+
+	};
 }

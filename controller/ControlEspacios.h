@@ -54,9 +54,11 @@ namespace controllerPrincipal {
 		static void inhabiltarEspacio(int idEspacio);
 		static void habilitarEspacio(int idEspacio);
 		static void espacioEnMantenimiento(int idEspacio);
+		static int obtenerEstadoEspacio(int idEspacio);
 
 
 		static int obtenerEstadoMotorPrincipal();
+
 		static void paraEmergenciaGeneral();
 		static void restablecerSistema();
 		static void MotorEnMantenimiento();

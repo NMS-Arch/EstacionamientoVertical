@@ -117,8 +117,15 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
 }
 
 
+int controllerPrincipal::ControlEspacios::obtenerEstadoEspacio(int idEspacio) {
+    
+    for each (Espacio ^ esp in listaEspacios) {
+        if (esp->id == idEspacio) {
 
-
+             return esp->estado;
+        }
+    }
+}
 
 
 

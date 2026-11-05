@@ -842,13 +842,12 @@ namespace View {
 				// 2. Evaluar qué botón presionó
 				if (respuesta == System::Windows::Forms::DialogResult::Yes) {
 					// El usuario hizo clic en "Sí"
-					// Coloca aquí el código para procesar el pago
+
 					est_pagoAnulado = true;
 					anular_Y_Guardar_TicketAnulado_A_registroFin();
 				}
 				else if (respuesta == System::Windows::Forms::DialogResult::No) {
 					// El usuario hizo clic en "No"
-					// Coloca aquí el código para anular el proceso
 					return;
 				}
 			}
