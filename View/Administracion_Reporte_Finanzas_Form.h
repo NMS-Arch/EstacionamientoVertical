@@ -58,7 +58,7 @@ namespace View {
 
 			seAplicoFiltro= false;
 
-			registrosFinancieros = gcnew List<RegistroFinanciero^>();
+			registrosFinancieros = controladorFinanzas->ObtenerRegistrosFin();
 
 			//
 		}
@@ -175,8 +175,9 @@ namespace View {
 			// 
 			// cb_Filtro
 			// 
+			this->cb_Filtro->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Filtro->FormattingEnabled = true;
-			this->cb_Filtro->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Hoy", L"Ayer", L"Esta Semana", L"Este Mes" });
+			this->cb_Filtro->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"Hoy", L"Ayer", L"Esta Semana", L"Este Mes", L"Todo" });
 			this->cb_Filtro->Location = System::Drawing::Point(147, 70);
 			this->cb_Filtro->Name = L"cb_Filtro";
 			this->cb_Filtro->Size = System::Drawing::Size(121, 24);
@@ -371,6 +372,8 @@ namespace View {
 			this->Controls->Add(this->cb_Filtro);
 			this->Name = L"Administracion_Reporte_Finanzas_Form";
 			this->Text = L"Administracion_Reporte_Finanzas_Form";
+			this->Load += gcnew System::EventHandler(this, &Administracion_Reporte_Finanzas_Form::Administracion_Reporte_Finanzas_Form_Load);
+			this->VisibleChanged += gcnew System::EventHandler(this, &Administracion_Reporte_Finanzas_Form::Administracion_Reporte_Finanzas_Form_VisibleChanged);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Ganancias_En_Tiempo))->EndInit();
 			this->ResumeLayout(false);
@@ -384,72 +387,49 @@ namespace View {
 		}
 
 
-		//private: void actualizar_segun_filtro() {
-
-		//	dataGridView1->Rows->Clear();
-
-		//	if (registrosFinancieros == nullptr) {
-
-		//		registrosFinancieros
-		//	}
+		private: void actualizar_segun_filtro() {
 
 
-		//	List<TicketAuto^>^ tickets = controlador_GUI->listarTickets();
+			dataGridView1->Rows->Clear();
+
+			for each (RegistroFinanciero ^ registroFin  in registrosFinancieros) {
 
 
-		//	dataGridView1->Rows->Clear();
-
-		//	for each (TicketAuto ^ ticket in tickets) {
-
-		//		String^ valueDNI;
-		//		//valor DNI si no se coloca
-		//		if (ticket->dni != 0 && ticket->dni >= 10000000 && ticket->dni <= 99999999) {
-		//			valueDNI = ticket->dni.ToString();
-		//		}
-		//		else {
-		//			valueDNI = "No introducido";
-		//		}
-
-
-		//		//dataGridView1->Rows->Add(
-		//		//	ticket->id,
-		//		//	ticket->id_espacio,
-		//		//	ticket->placa,
-		//		//	ticket->modeloAuto,
-		//		//	ticket->peso,
-		//		//	ticket->precio,
-		//		//	ticket->fechaIngreso.ToString("HH:mm:ss"),
-		//		//	valueDNI
-		//		//);
-
-		//		int indiceFila = dataGridView1->Rows->Add();
-		//		DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+				int indiceFila = dataGridView1->Rows->Add();
+				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
 
 
 
-		//		fila->Cells["Colum_ID"]->Value = ticket->id;
-		//		fila->Cells["Colum_Monto_Total"]->Value = ticket->id_espacio;
-		//		fila->Cells["Colum_Ticket"]->Value = ticket->placa;
-		//		fila->Cells["Colum_Espacio"]->Value = ticket->modeloAuto;
-		//		fila->Cells["Colum_Placa"]->Value = ticket->peso;
-		//		fila->Cells["Colum_Modelo"]->Value = ticket->precio;
-		//		fila->Cells["Colum_DNI"]->Value = ticket->fechaIngreso.ToString("HH:mm:ss");
-		//		fila->Cells["Colum_Peso"]->Value = valueDNI;
-		//		fila->Cells["Colum_Precio_Base"]->Value = ticket->codigoBarras;//ticket->id;
-		//		fila->Cells["Colum_Tiempo_Total"]->Value = ticket->codigoBarras;
-		//		fila->Cells["Colum_Fecha_Entrada"]->Value = ticket->codigoBarras;
-		//		fila->Cells["Colum_Hora_Entrada"]->Value = ticket->codigoBarras;
-		//		fila->Cells["Colum_Fecha_Salida"]->Value = ticket->codigoBarras;
-		//		fila->Cells["Colum_Hora_Salida"]->Value = ticket->codigoBarras;
-		//		fila->Cells["Colum_ID_Operario"]->Value = ticket->codigoBarras;
-		//		fila->Cells["Colum_Nombre_Operario"]->Value = ticket->codigoBarras;
+				fila->Cells["Colum_ID"]->Value = registroFin->id_registro;
+				fila->Cells["Colum_Monto_Total"]->Value = registroFin->monto_total;
+				fila->Cells["Colum_Ticket"]->Value = registroFin->id_Ticket;
+				fila->Cells["Colum_Espacio"]->Value = registroFin->id_espacio;
+				fila->Cells["Colum_Placa"]->Value = registroFin->placa;
+				fila->Cells["Colum_Modelo"]->Value = registroFin->modelo;
+				fila->Cells["Colum_DNI"]->Value = registroFin->DNI;
+				fila->Cells["Colum_Peso"]->Value = registroFin->peso;
+				fila->Cells["Colum_Precio_Base"]->Value = registroFin->precioBase;//ticket->id;
+				fila->Cells["Colum_Tiempo_Total"]->Value = registroFin->tiempoTotal;
+				fila->Cells["Colum_Fecha_Entrada"]->Value = registroFin->fechaHoraIngreso.ToString("dd/MM/yyyy");
+				fila->Cells["Colum_Hora_Entrada"]->Value = registroFin->fechaHoraIngreso.ToString("HH:mm:ss");
+				fila->Cells["Colum_Fecha_Salida"]->Value = registroFin->fechaHoraSalida.ToString("dd/MM/yyyy");
+				fila->Cells["Colum_Hora_Salida"]->Value = registroFin->fechaHoraSalida.ToString("HH:mm:ss");
+				fila->Cells["Colum_ID_Operario"]->Value = registroFin->idUserOperario;
+				fila->Cells["Colum_Nombre_Ope"]->Value = registroFin->nombreUserOperario;
 
 
-		//	}
+			}
 
 
+			actualizar_dinero_obtenido();
+		}
 
-		//}
+		private: void actualizar_dinero_obtenido() {
+
+			double dinero_obtenido = controladorFinanzas->calcularGananciasTotales(registrosFinancieros);
+			numeric_Ganancias_En_Tiempo->Value = Convert::ToDecimal(dinero_obtenido);
+
+		}
 
 
 		
@@ -457,7 +437,7 @@ namespace View {
 		private: System::Void tb_Aplicar_Filtro_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			
-			/*int seleccionado = cb_Filtro->SelectedIndex; String^ periodo;
+			int seleccionado = cb_Filtro->SelectedIndex; String^ periodo;
 
 			if (seleccionado == 0) {
 				periodo = "Hoy";
@@ -482,8 +462,22 @@ namespace View {
 			if (seAplicoFiltro==true) {
 				registrosFinancieros = controladorFinanzas->filtrarRegistrosPorPeriodo(periodo);
 			}
+			else {
+				registrosFinancieros = controladorFinanzas->ObtenerRegistrosFin();
+			}
 			
-			registrosFinancieros = controladorFinanzas->ObtenerRegistrosFin();*/
+			actualizar_segun_filtro();
+			
+		}
+
+
+		private: System::Void Administracion_Reporte_Finanzas_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+			actualizar_segun_filtro();
+		}
+
+
+		private: System::Void Administracion_Reporte_Finanzas_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
+			actualizar_segun_filtro();
 		}
 };
 }
