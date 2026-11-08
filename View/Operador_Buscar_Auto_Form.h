@@ -898,6 +898,21 @@ namespace View {
 
 			int ancho = pictureBox1->Width;
 			int alto = pictureBox1->Height;
+			List<Espacio^>^ espaciosDisponibles = ControlEspacios::ObtenerEspaciosDisponibles();
+			List<Espacio^>^ espacios = ControlEspacios::ObtenerTodosEspacios();
+			List<Falla^>^ lista_fallas = ControlFallas::obtener_todos_Falla();
+
+			List<int>^ idFalla = gcnew List<int>();
+
+			if (lista_fallas != nullptr) {
+				for each (Espacio ^ esp in espacios) {
+					for each (Falla ^ falla in lista_fallas) {
+						if (falla->espacioAfectado == esp->id) {
+							idFalla->Add(esp->id);
+						}
+					}
+				}
+			}
 
 			// bordes
 
@@ -905,23 +920,46 @@ namespace View {
 			g->FillRectangle(Brushes::White, 1, 1, ancho - 2, alto - 2);
 
 			array<PointF>^ points = gcnew array<PointF>(100);
-
 			for (int i = 0; i < 100; i++) {
 				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 100);
 				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 100);
 				points[i] = PointF(x, y);
 			}
-
 			g->DrawLines(Pens::Black, points);
 
-			for (int i = 0; i < 10; i++) {
-				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 10);
-				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 10);
+			float x, y;
 
-				g->FillRectangle(Brushes::Green, int(x - 10), int(y - 10), 20, 20);
-
-				g->DrawString((i + 1).ToString(), DefaultFont, Brushes::Black, x - 5, y - 5);
+			for each (Espacio ^ esp in espacios) {
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				g->FillRectangle(Brushes::LightBlue, int(x - 10), int(y - 10), 20, 20);
 			}
+
+			for each (Espacio ^ esp in espaciosDisponibles) {
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				g->FillRectangle(Brushes::Green, int(x - 10), int(y - 10), 20, 20);
+			}
+
+			for each (Espacio ^ esp in espacios) {
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				if (idFalla->Contains(esp->id)) g->FillRectangle(Brushes::Orange, int(x - 10), int(y - 10), 20, 20);
+			}
+
+			for each (Espacio ^ esp in espacios) {
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				if ((int)esp->estado == 3) g->FillRectangle(Brushes::Yellow, int(x - 10), int(y - 10), 20, 20);
+				if ((int)esp->estado == 2) g->FillRectangle(Brushes::Red, int(x - 10), int(y - 10), 20, 20);
+			}
+
+			for each (Espacio ^ esp in espacios) {
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				g->DrawString((esp->id).ToString(), DefaultFont, Brushes::Black, x - 5, y - 5);
+			}
+				
 		}
 
 		private: System::Void btn_Buscar_Registro_Click(System::Object^ sender, System::EventArgs^ e) {

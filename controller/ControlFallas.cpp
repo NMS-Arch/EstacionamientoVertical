@@ -41,7 +41,11 @@ void controllerPrincipal::ControlFallas::modificarFalla(int id, Falla^ falla_ent
 		
 		if (lista_fallas[i]->id == id) {
 			
-			lista_fallas[i] = falla_entrada;
+			lista_fallas[i]->espacioAfectado = falla_entrada->espacioAfectado;
+			lista_fallas[i]->descripcion = falla_entrada->descripcion;
+			lista_fallas[i]->prioridad = falla_entrada->prioridad;
+			lista_fallas[i]->estado = falla_entrada->estado;
+			lista_fallas[i]->tipo = falla_entrada->tipo;
 
 			persistance::guardarFallas(lista_fallas);
 			return;
@@ -64,7 +68,6 @@ Falla^ controllerPrincipal::ControlFallas::buscarFalla(int id) {
 }
 
 List<Falla^>^ controllerPrincipal::ControlFallas::obtener_todos_Falla() {
-
 	return lista_fallas;
 }
 

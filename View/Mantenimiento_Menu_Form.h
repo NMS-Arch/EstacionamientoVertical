@@ -447,7 +447,6 @@ namespace View {
 
 	private: void cambiarEstadoBaseDeDatos(int idEspacio, int indexCB) {
 		if (actualizandoUI) return;
-		// Usando TUS metodos en lugar del metodo estatico general
 		if (indexCB == 0) controlEspacios->habilitarEspacio(idEspacio);
 		else if (indexCB == 1) controlEspacios->inhabiltarEspacio(idEspacio);
 		else if (indexCB == 2) controlEspacios->espacioEnMantenimiento(idEspacio);
@@ -455,7 +454,6 @@ namespace View {
 		pictureBox1->Invalidate();
 	}
 
-	//Activa el metodo cambiar estado cada vez que se detecta un cambio en los comboBox
 	private: System::Void cb_Espacio_1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
 		cambiarEstadoBaseDeDatos(1, cb_Espacio_1->SelectedIndex);
 	}
@@ -524,10 +522,6 @@ namespace View {
 		else if (sel == 2) controlEspacios->MotorEnMantenimiento();
 	}*/
 
-
-	
-
-
 	private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		Graphics^ g = e->Graphics;
 		int ancho = pictureBox1->Width;
@@ -545,22 +539,21 @@ namespace View {
 		}
 		g->DrawLines(Pens::Black, points);
 
-		// Consiguiendo datos con TUS metodos
 		List<Espacio^>^ lista_espacios = controlEspacios->ObtenerTodosEspacios();
 
-		//List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
+		List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
 
-		//List<int>^ idFalla = gcnew List<int>();
+		List<int>^ idFalla = gcnew List<int>();
 
-		//if (lista_fallas != nullptr) {
-		//	for each (Espacio ^ esp in lista_espacios) {
-		//		for each (Falla ^ falla in lista_fallas) {
-		//			if (falla->espacioAfectado != nullptr && falla->espacioAfectado->id == esp->id) {
-		//				idFalla->Add(esp->id);
-		//			}
-		//		}
-		//	}
-		//}
+		if (lista_fallas != nullptr) {
+			for each (Espacio ^ esp in lista_espacios) {
+				for each (Falla ^ falla in lista_fallas) {
+					if (falla->espacioAfectado == esp->id) {
+						idFalla->Add(esp->id);
+					}
+				}
+			}
+		}
 
 		if (lista_espacios != nullptr) {
 			float x, y;
@@ -575,12 +568,12 @@ namespace View {
 			}
 
 
-			//// 2. Fallas en Naranja
-			//for each (Espacio ^ esp in lista_espacios) {
-			//	x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
-			//	y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
-			//	if (idFalla->Contains(esp->id)) g->FillRectangle(Brushes::Orange, int(x - 10), int(y - 10), 20, 20);
-			//}
+			// 2. Fallas en Naranja
+			for each (Espacio ^ esp in lista_espacios) {
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				if (idFalla->Contains(esp->id)) g->FillRectangle(Brushes::Orange, int(x - 10), int(y - 10), 20, 20);
+			}
 
 
 			// 3. Mantenimiento (Amarillo) y No Operativo (Rojo)

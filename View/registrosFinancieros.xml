@@ -17,4 +17,21 @@
     <fechaHoraSalida>2026-11-02T20:24:31.4443682-05:00</fechaHoraSalida>
     <sePago>true</sePago>
   </RegistroFinanciero>
+  <RegistroFinanciero>
+    <id_registro>2</id_registro>
+    <monto_total>11306.25</monto_total>
+    <id_Ticket>5</id_Ticket>
+    <id_espacio>6</id_espacio>
+    <idUserOperario>1</idUserOperario>
+    <nombreUserOperario>12</nombreUserOperario>
+    <placa>asdasd</placa>
+    <modelo>toyota</modelo>
+    <DNI>0</DNI>
+    <peso>11.77</peso>
+    <precioBase>83.75</precioBase>
+    <tiempoTotal>134.39</tiempoTotal>
+    <fechaHoraIngreso>2026-11-02T20:22:43.1917351-05:00</fechaHoraIngreso>
+    <fechaHoraSalida>2026-11-08T10:46:22.6826048-05:00</fechaHoraSalida>
+    <sePago>true</sePago>
+  </RegistroFinanciero>
 </ArrayOfRegistroFinanciero>

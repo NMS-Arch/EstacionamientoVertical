@@ -34,9 +34,7 @@ namespace modelPrincipal {
             
             //Espacio^ esp, Usuario^ usr
             
-            String^ estado,
-        
-            int idUserReportante, String^ nombreUserReportante,String^ rolUser, int espacioAfectado) {
+            String^ estado, int idUserReportante, String^ nombreUserReportante,String^ rolUser, int espacioAfectado) {
 
             this->id = id_falla;
             this->descripcion = desc;

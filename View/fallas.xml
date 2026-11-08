@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfFalla xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Falla>
-    <espacioAfectado>2</espacioAfectado>
-    <idUserReportante>8</idUserReportante>
-    <nombreUserReportante>Miguelito</nombreUserReportante>
-    <rolUser>Mecanico</rolUser>
-    <descripcion>cualquier cosa no lo se </descripcion>
-    <prioridad>Media</prioridad>
+    <espacioAfectado>4</espacioAfectado>
+    <idUserReportante>3</idUserReportante>
+    <nombreUserReportante>akio</nombreUserReportante>
+    <rolUser>mecanico</rolUser>
+    <descripcion>123</descripcion>
+    <prioridad>Baja</prioridad>
     <id>1</id>
     <estado>Pendiente</estado>
-    <tipo>Desconocida</tipo>
-    <fecha>2026-11-05T12:31:24.0763172-05:00</fecha>
+    <tipo>Electrica</tipo>
+    <fecha>2026-11-08T11:44:54.4630828-05:00</fecha>
+  </Falla>
+  <Falla>
+    <espacioAfectado>1</espacioAfectado>
+    <idUserReportante>0</idUserReportante>
+    <nombreUserReportante />
+    <rolUser />
+    <descripcion>falla4</descripcion>
+    <prioridad>Baja</prioridad>
+    <id>2</id>
+    <estado>En Mantenimiento</estado>
+    <tipo>Mecanica</tipo>
+    <fecha>2026-11-08T11:49:05.8399953-05:00</fecha>
   </Falla>
   <Falla>
     <espacioAfectado>6</espacioAfectado>
-    <idUserReportante>3</idUserReportante>
-    <nombreUserReportante>Filipino</nombreUserReportante>
-    <rolUser>Limpiador</rolUser>
-    <descripcion>cualquier cosa no lo se </descripcion>
-    <prioridad>Baja</prioridad>
-    <id>0</id>
-    <estado>Solucionado</estado>
-    <tipo>Limpieza</tipo>
-    <fecha>2026-11-05T12:32:15.1116531-05:00</fecha>
+    <idUserReportante>0</idUserReportante>
+    <nombreUserReportante />
+    <rolUser />
+    <descripcion>123</descripcion>
+    <prioridad>Media</prioridad>
+    <id>3</id>
+    <estado>En Mantenimiento</estado>
+    <tipo>Mecanica</tipo>
+    <fecha>2026-11-08T11:50:17.9245671-05:00</fecha>
   </Falla>
 </ArrayOfFalla>
