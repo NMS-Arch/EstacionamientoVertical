@@ -92,6 +92,7 @@ void controllerPrincipal::controller::agregarUsuario(String^ tipo, String^ nom, 
 	}
 
 	controller::Usuarios->Add(nUsuario);
+	persistance::GuardarEmpleadosBD(nUsuario);
 }
 
 
@@ -99,6 +100,7 @@ bool controllerPrincipal::controller::eliminarUsuario(int dni) {
 	for (int i = 0; i < controller::Usuarios->Count; i++) {
 		if (controller::Usuarios[i]->DNI == dni) {
 			controller::Usuarios->RemoveAt(i);
+			persistance::EliminarEmpleadosBD(dni);
 			return true;
 		}
 	}
@@ -112,6 +114,7 @@ bool controllerPrincipal::controller::modificarUsuario(int dni, String^ nom, int
 			usuario->nombre = nom;
 			usuario->edad = ed;
 			usuario->sexo = sex;
+			persistance::ActualizarEmpleadosBD(usuario);
 			return true;
 		}
 	}
@@ -133,7 +136,7 @@ void controllerPrincipal::controller::guardarUsuarios() {
 }
 
 List<Usuario^>^ controllerPrincipal::controller::cargarUsuarios() {
-	return persistance::cargarUsuarios();
+	return persistance::CargarEmpleadosBD();
 }
 
 
@@ -144,6 +147,7 @@ void controllerPrincipal::controller::agregarCliente(int dni, String^ nom, int e
 	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, vip);
 
 	controller::Clientes->Add(nCliente);
+	persistance::GuardarClientesBD(nCliente);
 	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, vip {4}.\n", dni, nom, ed, sex, vip);
 }
 
@@ -151,6 +155,7 @@ bool controllerPrincipal::controller::eliminarCliente(int dni) {
 	for (int i = 0; i < controller::Clientes->Count; i++) {
 		if (controller::Clientes[i]->DNI == dni) {
 			controller::Clientes->RemoveAt(i);
+			persistance::EliminarClientesBD(dni);
 			return true;
 		}
 	}
@@ -165,6 +170,7 @@ bool controllerPrincipal::controller::modificarCliente(int dni, String^ nom, int
 			cliente->edad = ed;
 			cliente->sexo = sex;
 			cliente->esVIP = vip;
+			persistance::ActualizarClientesBD(cliente);
 			return true;
 		}
 	}
@@ -186,7 +192,7 @@ void controllerPrincipal::controller::guardarClientes() {
 }
 
 List<Cliente^>^ controllerPrincipal::controller::cargarClientes() {
-	return persistance::cargarClientes();
+	return persistance::CargarClientesBD();
 }
 
 

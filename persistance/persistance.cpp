@@ -608,6 +608,113 @@ List<Cliente^>^ persistancePrincipal::persistance::cargarClientes() {
 	return lista;
 }
 
+void persistance::GuardarClientesBD(Cliente^ cliente) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddClientes", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@ClienteDNI", cliente->DNI);
+		comando->Parameters->AddWithValue("@Nombre", cliente->nombre);
+		comando->Parameters->AddWithValue("@Edad", cliente->edad);
+		comando->Parameters->AddWithValue("@Sexo", cliente->sexo);
+		comando->Parameters->AddWithValue("@Vip", cliente->esVIP);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar los clientes en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarClientesBD(Cliente^ cliente) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateClientes", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@ClienteDNI", cliente->DNI);
+		comando->Parameters->AddWithValue("@Nombre", cliente->nombre);
+		comando->Parameters->AddWithValue("@Edad", cliente->edad);
+		comando->Parameters->AddWithValue("@Sexo", cliente->sexo);
+		comando->Parameters->AddWithValue("@Vip", cliente->esVIP);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar el cliente en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarClientesBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteClientes", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@ClienteDNI", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar el cliente en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<Cliente^>^ persistance::CargarClientesBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<Cliente^>^ lista = gcnew List<Cliente^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllClientes", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int idCliente = reader->GetInt32(reader->GetOrdinal("ClienteDNI"));
+			String^ nombre = reader->GetString(reader->GetOrdinal("Nombre"));
+			int edad = reader->GetInt32(reader->GetOrdinal("Edad"));
+			String^ sexo = reader->GetString(reader->GetOrdinal("Sexo"));
+			bool esVIP = reader->GetBoolean(reader->GetOrdinal("Vip"));
+			lista->Add(gcnew Cliente(idCliente, nombre, edad, sexo, esVIP));
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar los clientes de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return lista;
+}
+
 //empleados
 
 void persistancePrincipal::persistance::guardarUsuarios(List<Usuario^>^ usuarios) {
@@ -631,7 +738,119 @@ List<Usuario^>^ persistancePrincipal::persistance::cargarUsuarios() {
 	return lista;
 }
 
+void persistance::GuardarEmpleadosBD(Usuario^ usuario) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
 
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddEmpleados", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@Tipo", usuario->GetType()->Name);
+		comando->Parameters->AddWithValue("@EmpleadoDNI", usuario->DNI);
+		comando->Parameters->AddWithValue("@Nombre", usuario->nombre);
+		comando->Parameters->AddWithValue("@Edad", usuario->edad);
+		comando->Parameters->AddWithValue("@Sexo", usuario->sexo);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar los empleados en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarEmpleadosBD(Usuario^ usuario) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateEmpleados", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@EmpleadoDNI", usuario->DNI);
+		comando->Parameters->AddWithValue("@Nombre", usuario->nombre);
+		comando->Parameters->AddWithValue("@Edad", usuario->edad);
+		comando->Parameters->AddWithValue("@Sexo", usuario->sexo);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar el empleado en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarEmpleadosBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteEmpleados", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@EmpleadoDNI", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar el empleado en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<Usuario^>^ persistance::CargarEmpleadosBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<Usuario^>^ lista = gcnew List<Usuario^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllEmpleados", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int idEmpleado = reader->GetInt32(reader->GetOrdinal("EmpleadoDNI"));
+			String^ nombre = reader->GetString(reader->GetOrdinal("Nombre"));
+			int edad = reader->GetInt32(reader->GetOrdinal("Edad"));
+			String^ sexo = reader->GetString(reader->GetOrdinal("Sexo"));
+			String^ tipo = reader->GetString(reader->GetOrdinal("Tipo"));
+			if (tipo == "Administrador") {
+				lista->Add(gcnew Administrador(idEmpleado, nombre, edad, sexo));
+			}
+			else if (tipo == "Operador") {
+				lista->Add(gcnew Operador(idEmpleado, nombre, edad, sexo));
+			}
+			else if (tipo == "Mantenimiento") {
+				lista->Add(gcnew Mantenimiento(idEmpleado, nombre, edad, sexo));
+			}
+			
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar los empleados de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return lista;
+}
 
 // reportes me base en como hiciste los tickets
 

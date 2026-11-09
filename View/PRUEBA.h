@@ -258,30 +258,31 @@ namespace View {
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	Reclamo^ reclamo = gcnew Reclamo(1, DateTime::Now, "descripcion", 21);
-	controller::agregarReclamo(DateTime::Now, "descripcion", 21);
-	
+	Usuario^ empleado = gcnew Administrador(1, "Juan Pérez", 30, "Masculino");
+	controller::agregarUsuario("Operador", "Juan Pérez", 30, "Masculino");
+
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	for each (Reclamo ^ reclamo in controller::Reclamos) {
+	for each (Usuario ^ empleado in controller::Usuarios) {
 		Console::WriteLine(
-			"ID Reclamo: " + reclamo->id +
-			" | Fecha: " + reclamo->fecha +
-			" | Descripción: " + reclamo->descripcion +
-			" | ID Usuario: " + reclamo->idUser
+			"ID Empleado: " + empleado->DNI +
+			" | Nombre: " + empleado->nombre +
+			" | Edad: " + empleado->edad +
+			" | Sexo: " + empleado->sexo +
+			" | Tipo: " + empleado->GetType()->Name
 		);
 	}
 }
 
 
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	controller::eliminarReclamo(1);
+	controller::eliminarUsuario(1);
 }
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	Reclamo^ reclamo = gcnew Reclamo(1, DateTime::Now, "descripcion actualizada", 42);
-	controller::modificarReclamo(1, DateTime::Now, "descripcion actualizada", 42);
+	Usuario^ empleado = gcnew Administrador(1, "Juan Martinez", 25, "Masculino");
+	controller::modificarUsuario(3, "Juan Martinez", 25, "Masculino");
 }
 
 };

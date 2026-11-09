@@ -60,12 +60,20 @@ namespace persistancePrincipal {
 		static String^ rutaClientes = "clientes.xml";
 		static List<Cliente^>^ cargarClientes();
 		static void guardarClientes(List<Cliente^>^ clientes);
+		static void GuardarClientesBD(Cliente^ cliente);
+		static void ActualizarClientesBD(Cliente^ cliente);
+		static void EliminarClientesBD(int id);
+		static List<Cliente^>^ CargarClientesBD();
 
 		//empleados
 
 		static String^ rutaUsuarios = "empleados.xml";
 		static List<Usuario^>^ cargarUsuarios();
 		static void guardarUsuarios(List<Usuario^>^ usuarios);
+		static void GuardarEmpleadosBD(Usuario^ usuario);
+		static void ActualizarEmpleadosBD(Usuario^ usuario);
+		static void EliminarEmpleadosBD(int id);
+		static List<Usuario^>^ CargarEmpleadosBD();
 
 		//reporteFinancieros
 
