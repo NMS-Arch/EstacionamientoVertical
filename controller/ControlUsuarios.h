@@ -16,14 +16,14 @@ using namespace System::Xml;
 
 namespace controllerPrincipal {
 
-    public ref class UsuarioController {
+    public ref class ControlUsuario {
     private:
         // Nuestra base de datos en RAM
         static List<Usuario^>^ listaUsuarios;
 
     public:
         // Constructor: Cumple el requisito de cargar automáticamente al iniciar
-        static UsuarioController() {
+        static ControlUsuario() {
             // "Al iniciar la aplicación, cargar automáticamente..." 
             listaUsuarios = persistance::cargarUsuarios();
 
@@ -47,5 +47,9 @@ namespace controllerPrincipal {
 
         // 4. MODIFICAR (Recibe el DNI original y el objeto con los nuevos datos)
         static bool ModificarUsuario(int dniOriginal, Usuario^ datosNuevos);
+
+        List<Usuario^>^ FiltrarPorTipo(String^ tipoBuscado);
+
+        Usuario^ BuscarAvanzado(String^ criterio, int valorBuscado);
     };
 }

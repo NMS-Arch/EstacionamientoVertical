@@ -29,7 +29,9 @@ namespace View {
 		Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm;
 		Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios;
 		Administracion_Tarifas_y_Auditoria_Form^ AdminTarifasAuditoriaForm;
+
 		ControlReporteFinanciero^ controladorFinanzas;
+		ControlUsuario^ controladorUsuarios;
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Registro;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Monto_Total;
@@ -53,7 +55,7 @@ namespace View {
 			controladorFinanzas = gcnew ControlReporteFinanciero();
 
 			AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this, controladorFinanzas);
-			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this, controladorFinanzas);
+			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this, controladorFinanzas, controladorUsuarios);
 			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this, controladorFinanzas);
 
 
