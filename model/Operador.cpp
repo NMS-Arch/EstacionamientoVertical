@@ -4,14 +4,14 @@
 using namespace modelPrincipal;
 
 
-void Operador::registrarTicket() {
-    
-}
-
-void Operador::hacerReclamo() {
-    
-}
-
-void Operador::realizarPago() {
-    
-}
+//void Operador::registrarTicket() {
+//    
+//}
+//
+//void Operador::hacerReclamo() {
+//    
+//}
+//
+//void Operador::realizarPago() {
+//    
+//}

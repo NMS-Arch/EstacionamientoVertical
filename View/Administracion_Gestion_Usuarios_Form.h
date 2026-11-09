@@ -21,7 +21,15 @@ namespace View {
 	{
 	private:
 		Form^ MenuAdminForm;
-		ControlReporteFinanciero^ controladorFinanzas;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Nombre;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Rol;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Turno;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_DNI;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Estado;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Name_User;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Password_User;
+		   ControlReporteFinanciero^ controladorFinanzas;
 	public:
 		Administracion_Gestion_Usuarios_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas)
 		{
@@ -59,12 +67,15 @@ namespace View {
 	private: System::Windows::Forms::Button^ btn_Modificar;
 
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::ComboBox^ cb_Estado;
+
 	private: System::Windows::Forms::TextBox^ tb_Nombre_Personal;
 	private: System::Windows::Forms::ComboBox^ cb_Rol_Personal;
 	private: System::Windows::Forms::TextBox^ tb_DNI_Personal;
-	private: System::Windows::Forms::TextBox^ tb_Usuario;
-	private: System::Windows::Forms::TextBox^ tb_Contra;
+	private: System::Windows::Forms::TextBox^ tb_nombre_Usuario;
+	private: System::Windows::Forms::TextBox^ tb_password_Usuario;
+
+
 
 
 
@@ -85,15 +96,16 @@ namespace View {
 	private: System::Windows::Forms::Label^ label13;
 	private: System::Windows::Forms::Button^ btn_Regresar_Menu_Administracion;
 	private: System::Windows::Forms::Label^ label14;
-	private: System::Windows::Forms::ComboBox^ comboBox3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column8;
+	private: System::Windows::Forms::ComboBox^ cb_Turno;
+
+
+
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -121,12 +133,12 @@ namespace View {
 			this->btn_Agregar = (gcnew System::Windows::Forms::Button());
 			this->btn_Modificar = (gcnew System::Windows::Forms::Button());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->cb_Estado = (gcnew System::Windows::Forms::ComboBox());
 			this->tb_Nombre_Personal = (gcnew System::Windows::Forms::TextBox());
 			this->cb_Rol_Personal = (gcnew System::Windows::Forms::ComboBox());
 			this->tb_DNI_Personal = (gcnew System::Windows::Forms::TextBox());
-			this->tb_Usuario = (gcnew System::Windows::Forms::TextBox());
-			this->tb_Contra = (gcnew System::Windows::Forms::TextBox());
+			this->tb_nombre_Usuario = (gcnew System::Windows::Forms::TextBox());
+			this->tb_password_Usuario = (gcnew System::Windows::Forms::TextBox());
 			this->btn_Consultar = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->cb_Tipo_Datos_Consultar = (gcnew System::Windows::Forms::ComboBox());
@@ -139,15 +151,15 @@ namespace View {
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->btn_Regresar_Menu_Administracion = (gcnew System::Windows::Forms::Button());
 			this->label14 = (gcnew System::Windows::Forms::Label());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column8 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->cb_Turno = (gcnew System::Windows::Forms::ComboBox());
+			this->Colum_ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Rol = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Turno = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Estado = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Name_User = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Password_User = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->SuspendLayout();
@@ -165,8 +177,8 @@ namespace View {
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
-				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5, this->Column6, this->Column7, this->Column8
+				this->Colum_ID,
+					this->Colum_Nombre, this->Colum_Rol, this->Colum_Turno, this->Colum_DNI, this->Colum_Estado, this->Colum_Name_User, this->Colum_Password_User
 			});
 			this->dataGridView1->Location = System::Drawing::Point(404, 146);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -256,6 +268,7 @@ namespace View {
 			this->btn_Agregar->TabIndex = 10;
 			this->btn_Agregar->Text = L"Agregar";
 			this->btn_Agregar->UseVisualStyleBackColor = true;
+			this->btn_Agregar->Click += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::btn_Agregar_Click);
 			// 
 			// btn_Modificar
 			// 
@@ -265,6 +278,7 @@ namespace View {
 			this->btn_Modificar->TabIndex = 11;
 			this->btn_Modificar->Text = L"Modificar";
 			this->btn_Modificar->UseVisualStyleBackColor = true;
+			this->btn_Modificar->Click += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::btn_Modificar_Click);
 			// 
 			// label8
 			// 
@@ -275,15 +289,15 @@ namespace View {
 			this->label8->TabIndex = 12;
 			this->label8->Text = L"Estado";
 			// 
-			// comboBox2
+			// cb_Estado
 			// 
-			this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Trabajando", L"Descansando", L"De Baja", L"Despedido" });
-			this->comboBox2->Location = System::Drawing::Point(174, 381);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(130, 24);
-			this->comboBox2->TabIndex = 13;
+			this->cb_Estado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Estado->FormattingEnabled = true;
+			this->cb_Estado->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Trabajando", L"Descansando", L"De Baja", L"Despedido" });
+			this->cb_Estado->Location = System::Drawing::Point(174, 381);
+			this->cb_Estado->Name = L"cb_Estado";
+			this->cb_Estado->Size = System::Drawing::Size(130, 24);
+			this->cb_Estado->TabIndex = 13;
 			// 
 			// tb_Nombre_Personal
 			// 
@@ -309,19 +323,19 @@ namespace View {
 			this->tb_DNI_Personal->Size = System::Drawing::Size(130, 22);
 			this->tb_DNI_Personal->TabIndex = 16;
 			// 
-			// tb_Usuario
+			// tb_nombre_Usuario
 			// 
-			this->tb_Usuario->Location = System::Drawing::Point(174, 450);
-			this->tb_Usuario->Name = L"tb_Usuario";
-			this->tb_Usuario->Size = System::Drawing::Size(128, 22);
-			this->tb_Usuario->TabIndex = 17;
+			this->tb_nombre_Usuario->Location = System::Drawing::Point(174, 450);
+			this->tb_nombre_Usuario->Name = L"tb_nombre_Usuario";
+			this->tb_nombre_Usuario->Size = System::Drawing::Size(128, 22);
+			this->tb_nombre_Usuario->TabIndex = 17;
 			// 
-			// tb_Contra
+			// tb_password_Usuario
 			// 
-			this->tb_Contra->Location = System::Drawing::Point(174, 490);
-			this->tb_Contra->Name = L"tb_Contra";
-			this->tb_Contra->Size = System::Drawing::Size(130, 22);
-			this->tb_Contra->TabIndex = 18;
+			this->tb_password_Usuario->Location = System::Drawing::Point(174, 490);
+			this->tb_password_Usuario->Name = L"tb_password_Usuario";
+			this->tb_password_Usuario->Size = System::Drawing::Size(130, 22);
+			this->tb_password_Usuario->TabIndex = 18;
 			// 
 			// btn_Consultar
 			// 
@@ -331,6 +345,7 @@ namespace View {
 			this->btn_Consultar->TabIndex = 19;
 			this->btn_Consultar->Text = L"Consultar";
 			this->btn_Consultar->UseVisualStyleBackColor = true;
+			this->btn_Consultar->Click += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::btn_Consultar_Click);
 			// 
 			// label9
 			// 
@@ -359,6 +374,7 @@ namespace View {
 			this->btn_Eliminar->TabIndex = 22;
 			this->btn_Eliminar->Text = L"Eliminar";
 			this->btn_Eliminar->UseVisualStyleBackColor = true;
+			this->btn_Eliminar->Click += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::btn_Eliminar_Click);
 			// 
 			// label10
 			// 
@@ -429,78 +445,78 @@ namespace View {
 			this->label14->TabIndex = 30;
 			this->label14->Text = L"Turno";
 			// 
-			// comboBox3
+			// cb_Turno
 			// 
-			this->comboBox3->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Manana", L"Tarde", L"Noche" });
-			this->comboBox3->Location = System::Drawing::Point(172, 296);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(131, 24);
-			this->comboBox3->TabIndex = 31;
+			this->cb_Turno->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Turno->FormattingEnabled = true;
+			this->cb_Turno->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Manana", L"Tarde", L"Noche" });
+			this->cb_Turno->Location = System::Drawing::Point(172, 296);
+			this->cb_Turno->Name = L"cb_Turno";
+			this->cb_Turno->Size = System::Drawing::Size(131, 24);
+			this->cb_Turno->TabIndex = 31;
 			// 
-			// Column1
+			// Colum_ID
 			// 
-			this->Column1->HeaderText = L"ID";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 125;
+			this->Colum_ID->HeaderText = L"ID";
+			this->Colum_ID->MinimumWidth = 6;
+			this->Colum_ID->Name = L"Colum_ID";
+			this->Colum_ID->Width = 125;
 			// 
-			// Column2
+			// Colum_Nombre
 			// 
-			this->Column2->HeaderText = L"Nombre";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 125;
+			this->Colum_Nombre->HeaderText = L"Nombre";
+			this->Colum_Nombre->MinimumWidth = 6;
+			this->Colum_Nombre->Name = L"Colum_Nombre";
+			this->Colum_Nombre->Width = 125;
 			// 
-			// Column3
+			// Colum_Rol
 			// 
-			this->Column3->HeaderText = L"Rol";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 125;
+			this->Colum_Rol->HeaderText = L"Rol";
+			this->Colum_Rol->MinimumWidth = 6;
+			this->Colum_Rol->Name = L"Colum_Rol";
+			this->Colum_Rol->Width = 125;
 			// 
-			// Column4
+			// Colum_Turno
 			// 
-			this->Column4->HeaderText = L"Turno";
-			this->Column4->MinimumWidth = 6;
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 125;
+			this->Colum_Turno->HeaderText = L"Turno";
+			this->Colum_Turno->MinimumWidth = 6;
+			this->Colum_Turno->Name = L"Colum_Turno";
+			this->Colum_Turno->Width = 125;
 			// 
-			// Column5
+			// Colum_DNI
 			// 
-			this->Column5->HeaderText = L"DNI";
-			this->Column5->MinimumWidth = 6;
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 125;
+			this->Colum_DNI->HeaderText = L"DNI";
+			this->Colum_DNI->MinimumWidth = 6;
+			this->Colum_DNI->Name = L"Colum_DNI";
+			this->Colum_DNI->Width = 125;
 			// 
-			// Column6
+			// Colum_Estado
 			// 
-			this->Column6->HeaderText = L"Estado";
-			this->Column6->MinimumWidth = 6;
-			this->Column6->Name = L"Column6";
-			this->Column6->Width = 125;
+			this->Colum_Estado->HeaderText = L"Estado";
+			this->Colum_Estado->MinimumWidth = 6;
+			this->Colum_Estado->Name = L"Colum_Estado";
+			this->Colum_Estado->Width = 125;
 			// 
-			// Column7
+			// Colum_Name_User
 			// 
-			this->Column7->HeaderText = L"Name User";
-			this->Column7->MinimumWidth = 6;
-			this->Column7->Name = L"Column7";
-			this->Column7->Width = 125;
+			this->Colum_Name_User->HeaderText = L"Name User";
+			this->Colum_Name_User->MinimumWidth = 6;
+			this->Colum_Name_User->Name = L"Colum_Name_User";
+			this->Colum_Name_User->Width = 125;
 			// 
-			// Column8
+			// Colum_Password_User
 			// 
-			this->Column8->HeaderText = L"Contraseña";
-			this->Column8->MinimumWidth = 6;
-			this->Column8->Name = L"Column8";
-			this->Column8->Width = 125;
+			this->Colum_Password_User->HeaderText = L"Contraseña";
+			this->Colum_Password_User->MinimumWidth = 6;
+			this->Colum_Password_User->Name = L"Colum_Password_User";
+			this->Colum_Password_User->Width = 125;
 			// 
 			// Administracion_Gestion_Usuarios_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1327, 751);
-			this->Controls->Add(this->comboBox3);
+			this->Controls->Add(this->cb_Turno);
 			this->Controls->Add(this->label14);
 			this->Controls->Add(this->btn_Regresar_Menu_Administracion);
 			this->Controls->Add(this->label13);
@@ -513,12 +529,12 @@ namespace View {
 			this->Controls->Add(this->cb_Tipo_Datos_Consultar);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->btn_Consultar);
-			this->Controls->Add(this->tb_Contra);
-			this->Controls->Add(this->tb_Usuario);
+			this->Controls->Add(this->tb_password_Usuario);
+			this->Controls->Add(this->tb_nombre_Usuario);
 			this->Controls->Add(this->tb_DNI_Personal);
 			this->Controls->Add(this->cb_Rol_Personal);
 			this->Controls->Add(this->tb_Nombre_Personal);
-			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->cb_Estado);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->btn_Modificar);
 			this->Controls->Add(this->btn_Agregar);
@@ -546,6 +562,28 @@ namespace View {
 			this->Hide();
 			MenuAdminForm->Show();
 
+		}
+
+		private: System::Void btn_Agregar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			
+			
+
+		}
+
+
+
+		private: System::Void btn_Modificar_Click(System::Object^ sender, System::EventArgs^ e) {
+		}
+
+
+
+		private: System::Void btn_Consultar_Click(System::Object^ sender, System::EventArgs^ e) {
+		}
+
+
+
+		private: System::Void btn_Eliminar_Click(System::Object^ sender, System::EventArgs^ e) {
 		}
 };
 }

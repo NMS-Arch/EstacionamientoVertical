@@ -19,8 +19,8 @@ namespace controllerPrincipal {
 			//controller::Fallas = persistance::cargarFallas();
 			controller::Tickets = persistance::cargarTickets();
 			controller::Reclamos = persistance::cargarReclamos();
-			controller::Clientes = persistance::cargarClientes();
-			controller::Usuarios = persistance::cargarUsuarios();
+			//controller::Clientes = persistance::cargarClientes();
+			//controller::Usuarios = persistance::cargarUsuarios();
 		}
 	
 		//espacio
@@ -34,30 +34,30 @@ namespace controllerPrincipal {
 		static void guardarEspacios();
 		static List<Espacio^>^ cargarEspacios();
 
-		//empleados
+		////empleados
 
-		static List<Usuario^>^ Usuarios = gcnew List<Usuario^>();
+		//static List<Usuario^>^ Usuarios = gcnew List<Usuario^>();
 
-		static void agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex);
-		static bool eliminarUsuario(int dni);
-		static bool modificarUsuario(int dni, String^ nom, int ed, String^ sex);
-		static Usuario^ buscarUsuario(int dni);
+		//static void agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex);
+		//static bool eliminarUsuario(int dni);
+		//static bool modificarUsuario(int dni, String^ nom, int ed, String^ sex);
+		//static Usuario^ buscarUsuario(int dni);
 
-		static void guardarUsuarios();
-		static List<Usuario^>^ cargarUsuarios();
+		//static void guardarUsuarios();
+		//static List<Usuario^>^ cargarUsuarios();
 
 
-		//clientes
+		////clientes
 
-		static List<Cliente^>^ Clientes = gcnew List<Cliente^>();
+		//static List<Cliente^>^ Clientes = gcnew List<Cliente^>();
 
-		static void agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip);
-		static bool eliminarCliente(int dni);
-		static bool modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip);
-		static Cliente^ buscarCliente(int dni);
+		//static void agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip);
+		//static bool eliminarCliente(int dni);
+		//static bool modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip);
+		//static Cliente^ buscarCliente(int dni);
 
-		static void guardarClientes();
-		static List<Cliente^>^ cargarClientes();
+		//static void guardarClientes();
+		//static List<Cliente^>^ cargarClientes();
 
 		//fallas
 

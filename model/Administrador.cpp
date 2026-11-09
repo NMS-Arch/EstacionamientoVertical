@@ -3,14 +3,14 @@
 
 using namespace modelPrincipal;
 
-
-void Administrador::finalizarReclamo(Reclamo^ id) {
-    
-}
-void Administrador::verReclamos() {
-   
-}
-
-void Administrador::verFinanzas() {
-   
-}
+//
+//void Administrador::finalizarReclamo(Reclamo^ id) {
+//    
+//}
+//void Administrador::verReclamos() {
+//   
+//}
+//
+//void Administrador::verFinanzas() {
+//   
+//}

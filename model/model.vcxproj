@@ -134,6 +134,7 @@
     <ClInclude Include="Administrador.h" />
     <ClInclude Include="Camara.h" />
     <ClInclude Include="Cliente.h" />
+    <ClInclude Include="Empleado.h" />
     <ClInclude Include="Espacio.h" />
     <ClInclude Include="Estacionamiento.h" />
     <ClInclude Include="Falla.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Camara.cpp" />
     <ClCompile Include="Cliente.cpp" />
+    <ClCompile Include="Empleado.cpp" />
     <ClCompile Include="Espacio.cpp" />
     <ClCompile Include="Estacionamiento.cpp" />
     <ClCompile Include="Falla.cpp" />

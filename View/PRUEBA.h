@@ -21,8 +21,8 @@ namespace View {
 		{
 			InitializeComponent();
 			controller::Espacios = controller::cargarEspacios();
-			controller::Usuarios = controller::cargarUsuarios();
-			controller::Clientes = controller::cargarClientes();
+			//controller::Usuarios = controller::cargarUsuarios();
+			//controller::Clientes = controller::cargarClientes();
 			//controller::Fallas = controller::cargarFallas();
 			controller::Tickets = controller::cargarTickets();
 			//
@@ -245,7 +245,7 @@ namespace View {
 
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	try {
+	/*try {
 
 		
 		int dni = Int32::Parse(textBox1->Text);
@@ -265,39 +265,39 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	catch (Exception^ ex) {
 		MessageBox::Show("Error: " + ex->Message);
-	}
+	}*/
 
 }
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	try {
-		/*if (comboBox1->SelectedIndex == -1) {
-			throw gcnew Exception("Por favor, seleccione una opción en ambos ComboBox.");
-		}*/
-		int dni = Int32::Parse(textBox1->Text);
-		String^ nombre = textBox2->Text;
-		int edad = Int32::Parse(textBox3->Text);
-		String^ sexo = textBox4->Text;
-		int autorizacion = Int32::Parse(textBox5->Text);
-		bool vip = comboBox1->SelectedIndex == 0 ? true : false;
-		
-		
-		String^ descripcion = textBox6->Text;
-		
+	//try {
+	//	/*if (comboBox1->SelectedIndex == -1) {
+	//		throw gcnew Exception("Por favor, seleccione una opción en ambos ComboBox.");
+	//	}*/
+	//	int dni = Int32::Parse(textBox1->Text);
+	//	String^ nombre = textBox2->Text;
+	//	int edad = Int32::Parse(textBox3->Text);
+	//	String^ sexo = textBox4->Text;
+	//	int autorizacion = Int32::Parse(textBox5->Text);
+	//	bool vip = comboBox1->SelectedIndex == 0 ? true : false;
+	//	
+	//	
+	//	String^ descripcion = textBox6->Text;
+	//	
 
-		String^ fecha = DateTime::Now.ToString("dd/MM/yyyy");
-		String^ hora = DateTime::Now.ToString("HH:mm:ss");
+	//	String^ fecha = DateTime::Now.ToString("dd/MM/yyyy");
+	//	String^ hora = DateTime::Now.ToString("HH:mm:ss");
 
-		Cliente^ pruebaCliente = gcnew Cliente(123, "norm", 21, "M", true);
+	//	Cliente^ pruebaCliente = gcnew Cliente(123, "norm", 21, "M", true);
 
-		controller::agregarUsuario(descripcion, nombre, edad, sexo);
+	//	controller::agregarUsuario(descripcion, nombre, edad, sexo);
 
-		controller::guardarUsuarios();
-	}
-	catch (Exception^ ex) {
-		MessageBox::Show("Error: " + ex->Message);
-	}
+	//	controller::guardarUsuarios();
+	//}
+	//catch (Exception^ ex) {
+	//	MessageBox::Show("Error: " + ex->Message);
+	//}
 }
 
 };

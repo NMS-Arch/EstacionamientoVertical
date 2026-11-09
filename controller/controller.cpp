@@ -62,132 +62,132 @@ List<Espacio^>^ controllerPrincipal::controller::cargarEspacios() {
 
 
 //EMPLEADOS	
-
-void controllerPrincipal::controller::agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex) {
-
-	int maxId = 0;
-	for each(Usuario ^ usu in controller::Usuarios) {
-		if (usu->DNI > maxId) {
-			maxId = usu->DNI;
-		}
-	}
-	int id = maxId + 1;
-
-	Usuario^ nUsuario = nullptr;
-
-	if (tipo == "Administrador") {
-		Console::WriteLine("Creando un Administrador");
-		nUsuario = gcnew Administrador(id, nom, ed, sex);
-	}
-	else if (tipo == "Mantenimiento") {
-		Console::WriteLine("Creando un Mantenimiento");
-		nUsuario = gcnew Mantenimiento(id, nom, ed, sex);
-	}
-	else if (tipo == "Operador") {
-		Console::WriteLine("Creando un Operador");
-		nUsuario = gcnew Operador(id, nom, ed, sex);
-	}
-	else {
-		return;
-	}
-
-	controller::Usuarios->Add(nUsuario);
-}
-
-
-bool controllerPrincipal::controller::eliminarUsuario(int dni) {
-	for (int i = 0; i < controller::Usuarios->Count; i++) {
-		if (controller::Usuarios[i]->DNI == dni) {
-			controller::Usuarios->RemoveAt(i);
-			return true;
-		}
-	}
-	return false;
-}
-
-bool controllerPrincipal::controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex) {
-	for (int i = 0; i < controller::Usuarios->Count; i++) {
-		if (controller::Usuarios[i]->DNI == dni) {
-			Usuario^ usuario = controller::Usuarios[i];
-			usuario->nombre = nom;
-			usuario->edad = ed;
-			usuario->sexo = sex;
-			return true;
-		}
-	}
-	return false;
-}
-
-Usuario^ controllerPrincipal::controller::buscarUsuario(int dni) {
-	for (int i = 0; i < controller::Usuarios->Count; i++) {
-		if (controller::Usuarios[i]->DNI == dni) {
-			Usuario^ usuario = controller::Usuarios[i];
-			return usuario;
-		}
-	}
-	return nullptr;
-}
-
-void controllerPrincipal::controller::guardarUsuarios() {
-	persistance::guardarUsuarios(controller::Usuarios);
-}
-
-List<Usuario^>^ controllerPrincipal::controller::cargarUsuarios() {
-	return persistance::cargarUsuarios();
-}
+//
+//void controllerPrincipal::controller::agregarUsuario(String^ tipo, String^ nom, int ed, String^ sex) {
+//
+//	int maxId = 0;
+//	for each(Usuario ^ usu in controller::Usuarios) {
+//		if (usu->DNI > maxId) {
+//			maxId = usu->DNI;
+//		}
+//	}
+//	int id = maxId + 1;
+//
+//	Usuario^ nUsuario = nullptr;
+//
+//	if (tipo == "Administrador") {
+//		Console::WriteLine("Creando un Administrador");
+//		nUsuario = gcnew Administrador(id, nom, ed, sex);
+//	}
+//	else if (tipo == "Mantenimiento") {
+//		Console::WriteLine("Creando un Mantenimiento");
+//		nUsuario = gcnew Mantenimiento(id, nom, ed, sex);
+//	}
+//	else if (tipo == "Operador") {
+//		Console::WriteLine("Creando un Operador");
+//		nUsuario = gcnew Operador(id, nom, ed, sex);
+//	}
+//	else {
+//		return;
+//	}
+//
+//	controller::Usuarios->Add(nUsuario);
+//}
+//
+//
+//bool controllerPrincipal::controller::eliminarUsuario(int dni) {
+//	for (int i = 0; i < controller::Usuarios->Count; i++) {
+//		if (controller::Usuarios[i]->DNI == dni) {
+//			controller::Usuarios->RemoveAt(i);
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//bool controllerPrincipal::controller::modificarUsuario(int dni, String^ nom, int ed, String^ sex) {
+//	for (int i = 0; i < controller::Usuarios->Count; i++) {
+//		if (controller::Usuarios[i]->DNI == dni) {
+//			Usuario^ usuario = controller::Usuarios[i];
+//			usuario->nombre = nom;
+//			usuario->edad = ed;
+//			usuario->sexo = sex;
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//Usuario^ controllerPrincipal::controller::buscarUsuario(int dni) {
+//	for (int i = 0; i < controller::Usuarios->Count; i++) {
+//		if (controller::Usuarios[i]->DNI == dni) {
+//			Usuario^ usuario = controller::Usuarios[i];
+//			return usuario;
+//		}
+//	}
+//	return nullptr;
+//}
+//
+//void controllerPrincipal::controller::guardarUsuarios() {
+//	persistance::guardarUsuarios(controller::Usuarios);
+//}
+//
+//List<Usuario^>^ controllerPrincipal::controller::cargarUsuarios() {
+//	return persistance::cargarUsuarios();
+//}
 
 
 //CLIENTES
 
-void controllerPrincipal::controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
-
-	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, vip);
-
-	controller::Clientes->Add(nCliente);
-	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, vip {4}.\n", dni, nom, ed, sex, vip);
-}
-
-bool controllerPrincipal::controller::eliminarCliente(int dni) {
-	for (int i = 0; i < controller::Clientes->Count; i++) {
-		if (controller::Clientes[i]->DNI == dni) {
-			controller::Clientes->RemoveAt(i);
-			return true;
-		}
-	}
-	return false;
-}
-
-bool controllerPrincipal::controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
-	for (int i = 0; i < controller::Clientes->Count; i++) {
-		if (controller::Clientes[i]->DNI == dni) {
-			Cliente^ cliente = controller::Clientes[i];
-			cliente->nombre = nom;
-			cliente->edad = ed;
-			cliente->sexo = sex;
-			cliente->esVIP = vip;
-			return true;
-		}
-	}
-	return false;
-}
-
-Cliente^ controllerPrincipal::controller::buscarCliente(int dni) {
-	for (int i = 0; i < controller::Clientes->Count; i++) {
-		if (controller::Clientes[i]->DNI == dni) {
-			Cliente^ cliente = controller::Clientes[i];
-			return cliente;
-		}
-	}
-	return nullptr;
-}
-
-void controllerPrincipal::controller::guardarClientes() {
-	persistance::guardarClientes(controller::Clientes);
-}
-
-List<Cliente^>^ controllerPrincipal::controller::cargarClientes() {
-	return persistance::cargarClientes();
-}
+//void controllerPrincipal::controller::agregarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
+//
+//	Cliente^ nCliente = gcnew Cliente(dni, nom, ed, sex, vip);
+//
+//	controller::Clientes->Add(nCliente);
+//	//Console::WriteLine("Se añadió el cliente: dni {0}, nombre {1}, edad {2}, sexo {3}, vip {4}.\n", dni, nom, ed, sex, vip);
+//}
+//
+//bool controllerPrincipal::controller::eliminarCliente(int dni) {
+//	for (int i = 0; i < controller::Clientes->Count; i++) {
+//		if (controller::Clientes[i]->DNI == dni) {
+//			controller::Clientes->RemoveAt(i);
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//bool controllerPrincipal::controller::modificarCliente(int dni, String^ nom, int ed, String^ sex, bool vip) {
+//	for (int i = 0; i < controller::Clientes->Count; i++) {
+//		if (controller::Clientes[i]->DNI == dni) {
+//			Cliente^ cliente = controller::Clientes[i];
+//			cliente->nombre = nom;
+//			cliente->edad = ed;
+//			cliente->sexo = sex;
+//			cliente->esVIP = vip;
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//
+//Cliente^ controllerPrincipal::controller::buscarCliente(int dni) {
+//	for (int i = 0; i < controller::Clientes->Count; i++) {
+//		if (controller::Clientes[i]->DNI == dni) {
+//			Cliente^ cliente = controller::Clientes[i];
+//			return cliente;
+//		}
+//	}
+//	return nullptr;
+//}
+//
+//void controllerPrincipal::controller::guardarClientes() {
+//	persistance::guardarClientes(controller::Clientes);
+//}
+//
+//List<Cliente^>^ controllerPrincipal::controller::cargarClientes() {
+//	return persistance::cargarClientes();
+//}
 
 
 //FALLAS
