@@ -12,36 +12,21 @@ namespace modelPrincipal {
     public ref class RegistroFinanciero {
     public:
         int id_registro;
-
         double monto_total;
-
-
         int id_Ticket;
         int id_espacio;
-
         int idUserOperario;
         String^ nombreUserOperario;
-
         String^ placa;
         String^ modelo;
-        int DNI;
-        
+        int DNI;        
         double peso;
         double precioBase;
-
         double tiempoTotal;
-
         DateTime fechaHoraIngreso;
         DateTime fechaHoraSalida;
-
-
-       // double totalPagado;
-        
+       // double totalPagado; //Akio: Si lo vas a implementar avisa para actualizar el sql    
         bool sePago;
-
-
-
-    
 
         RegistroFinanciero() {}
 

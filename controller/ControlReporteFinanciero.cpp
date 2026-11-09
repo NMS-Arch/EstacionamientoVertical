@@ -17,16 +17,16 @@ void controllerPrincipal::ControlReporteFinanciero::agregarRegistroFin(RegistroF
 	registroFin_entrada->id_registro = maxId + 1;
 
 	listaRegistrosFinancieros->Add(registroFin_entrada);
-
-	persistance::guardarRegistros(listaRegistrosFinancieros);
+	persistance::GuardarRegistrosBD(registroFin_entrada);
+	//persistance::guardarRegistros(listaRegistrosFinancieros);
 }
 
 void controllerPrincipal::ControlReporteFinanciero::eliminarRegistroFin(int id_registroFin_entrada) {
 	for (int i = 0; i < listaRegistrosFinancieros->Count; i++) {
 		if (listaRegistrosFinancieros[i]->id_registro == id_registroFin_entrada) {
 			listaRegistrosFinancieros->RemoveAt(i);
-
-			persistance::guardarRegistros(listaRegistrosFinancieros);
+			persistance::EliminarRegistrosBD(id_registroFin_entrada);
+			//persistance::guardarRegistros(listaRegistrosFinancieros);
 		}
 	}
 
@@ -37,9 +37,10 @@ void controllerPrincipal::ControlReporteFinanciero::modificarRegistroFin(int id_
 	for (int i = 0; i < listaRegistrosFinancieros->Count; i++) {
 
 		if (listaRegistrosFinancieros[i]->id_registro == id_registroFin_entrada) {
-
+			registroFin_modificado->id_registro = id_registroFin_entrada;
 			listaRegistrosFinancieros[i] = registroFin_modificado;
-			persistance::guardarRegistros(listaRegistrosFinancieros);
+			persistance::ActualizarRegistrosBD(registroFin_modificado);
+			//persistance::guardarRegistros(listaRegistrosFinancieros);
 		}
 	}
 

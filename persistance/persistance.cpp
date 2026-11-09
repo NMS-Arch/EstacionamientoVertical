@@ -344,7 +344,12 @@ void persistance::GuardarTicketsBD(TicketAuto^ ticket) {
 		comando->Parameters->AddWithValue("@EspacioId", ticket->id_espacio);
 		comando->Parameters->AddWithValue("@DNI", ticket->dni);
 		comando->Parameters->AddWithValue("@CodigoBarras", ticket->codigoBarras);
-		comando->Parameters->AddWithValue("@FechaSalida", ticket->fechaSalida);
+		if (ticket->fechaSalida == DateTime::MinValue) {
+			comando->Parameters->AddWithValue("@FechaSalida", DBNull::Value);
+		}
+		else {
+			comando->Parameters->AddWithValue("@FechaSalida", ticket->fechaSalida);
+		}
 		comando->ExecuteNonQuery();
 
 		transaccion->Commit();
@@ -377,8 +382,13 @@ void persistance::ActualizarTicketsBD(TicketAuto^ ticket) {
 		comando->Parameters->AddWithValue("@Peso", ticket->peso);
 		comando->Parameters->AddWithValue("@EspacioId", ticket->id_espacio);
 		comando->Parameters->AddWithValue("@DNI", ticket->dni);
-		comando->Parameters->AddWithValue("@CodigoBarras", ticket->codigoBarras);
-		comando->Parameters->AddWithValue("@FechaSalida", ticket->fechaSalida);
+		comando->Parameters->AddWithValue("@CodigoBarras", ticket->codigoBarras); 
+		if (ticket->fechaSalida == DateTime::MinValue) {
+			comando->Parameters->AddWithValue("@FechaSalida", DBNull::Value);
+		}
+		else {
+			comando->Parameters->AddWithValue("@FechaSalida", ticket->fechaSalida);
+		}
 		comando->ExecuteNonQuery();
 
 		transaccion->Commit();
@@ -434,7 +444,14 @@ List<TicketAuto^>^ persistance::CargarTicketsBD() {
 			int idEspacio = reader->GetInt32(reader->GetOrdinal("EspacioId"));
 			int dni = reader->GetInt32(reader->GetOrdinal("DNI"));
 			String^ codigoBarras = reader->GetString(reader->GetOrdinal("CodigoBarras"));
-			DateTime fechaSalida = reader->GetDateTime(reader->GetOrdinal("FechaSalida"));
+			DateTime fechaSalida;
+			if (reader->IsDBNull(reader->GetOrdinal("FechaSalida")))
+			{
+				fechaSalida = DateTime::MinValue;
+			}
+			else {
+				fechaSalida = reader->GetDateTime(reader->GetOrdinal("FechaSalida"));
+			}
 
 			lista->Add(gcnew TicketAuto(idTicket, idCliente, modelo, placa, precio, fechaIngreso, peso, idEspacio, dni, codigoBarras, fechaSalida));
 		}
@@ -876,4 +893,157 @@ List<RegistroFinanciero^>^ persistancePrincipal::persistance::cargarRegistros() 
 	return lista;
 }
 
+void persistance::GuardarRegistrosBD(RegistroFinanciero^ registro) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
 
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddRegistroFinanciero", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@IdRegistro", registro->id_registro);
+		comando->Parameters->AddWithValue("@MontoTotal", registro->monto_total);
+		comando->Parameters->AddWithValue("@IdTicket", registro->id_Ticket);
+		comando->Parameters->AddWithValue("@IdEspacio", registro->id_espacio);
+		comando->Parameters->AddWithValue("@IdOperario", registro->idUserOperario);
+		comando->Parameters->AddWithValue("@NombreOperario", registro->nombreUserOperario);
+		comando->Parameters->AddWithValue("@Placa", registro->placa);
+		comando->Parameters->AddWithValue("@Modelo", registro->modelo);
+		comando->Parameters->AddWithValue("@DNI", registro->DNI);
+		comando->Parameters->AddWithValue("@Peso", registro->peso);
+		comando->Parameters->AddWithValue("@PrecioBase", registro->precioBase);
+		comando->Parameters->AddWithValue("@TiempoTotal", registro->tiempoTotal);
+		comando->Parameters->AddWithValue("@FechaIngreso", registro->fechaHoraIngreso);
+		if (registro->fechaHoraSalida == DateTime::MinValue) {
+			comando->Parameters->AddWithValue("@FechaSalida", DBNull::Value);
+		}
+		else {
+			comando->Parameters->AddWithValue("@FechaSalida", registro->fechaHoraSalida);
+		}
+		comando->Parameters->AddWithValue("@SePago", registro->sePago);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar los registros en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarRegistrosBD(RegistroFinanciero^ registro) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateRegistrosFinancieros", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@IdRegistro", registro->id_registro);
+		comando->Parameters->AddWithValue("@MontoTotal", registro->monto_total);
+		comando->Parameters->AddWithValue("@IdTicket", registro->id_Ticket);
+		comando->Parameters->AddWithValue("@IdEspacio", registro->id_espacio);
+		comando->Parameters->AddWithValue("@IdOperario", registro->idUserOperario);
+		comando->Parameters->AddWithValue("@NombreOperario", registro->nombreUserOperario);
+		comando->Parameters->AddWithValue("@Placa", registro->placa);
+		comando->Parameters->AddWithValue("@Modelo", registro->modelo);
+		comando->Parameters->AddWithValue("@DNI", registro->DNI);
+		comando->Parameters->AddWithValue("@Peso", registro->peso);
+		comando->Parameters->AddWithValue("@PrecioBase", registro->precioBase);
+		comando->Parameters->AddWithValue("@TiempoTotal", registro->tiempoTotal);
+		comando->Parameters->AddWithValue("@FechaIngreso", registro->fechaHoraIngreso);
+		if (registro->fechaHoraSalida == DateTime::MinValue) {
+			comando->Parameters->AddWithValue("@FechaSalida", DBNull::Value);
+		}
+		else {
+			comando->Parameters->AddWithValue("@FechaSalida", registro->fechaHoraSalida);
+		}
+		comando->Parameters->AddWithValue("@SePago", registro->sePago);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar el registro en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarRegistrosBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteRegistrosFinancieros", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@IdRegistro", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar el registro en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<RegistroFinanciero^>^ persistance::CargarRegistrosBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<RegistroFinanciero^>^ lista = gcnew List<RegistroFinanciero^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllRegistros", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int idRegistro = reader->GetInt32(reader->GetOrdinal("IdRegistro"));
+			double montoTotal = reader->GetDouble(reader->GetOrdinal("MontoTotal"));
+			int idTicket = reader->GetInt32(reader->GetOrdinal("IdTicket"));
+			int idEspacio = reader->GetInt32(reader->GetOrdinal("IdEspacio"));
+			int idOperario = reader->GetInt32(reader->GetOrdinal("IdOperario"));
+			String^ nombreOperario = reader->GetString(reader->GetOrdinal("NombreOperario"));
+			String^ placa = reader->GetString(reader->GetOrdinal("Placa"));
+			String^ modelo = reader->GetString(reader->GetOrdinal("Modelo"));
+			int DNI = reader->GetInt32(reader->GetOrdinal("DNI"));
+			double peso = reader->GetDouble(reader->GetOrdinal("Peso"));
+			double precioBase = reader->GetDouble(reader->GetOrdinal("PrecioBase"));
+			double tiempoTotal = reader->GetDouble(reader->GetOrdinal("PiempoTotal"));
+			DateTime fechaIngreso = reader->GetDateTime(reader->GetOrdinal("FechaIngreso"));
+			DateTime fechaSalida;
+			if (reader->IsDBNull(reader->GetOrdinal("FechaSalida")))
+			{
+				fechaSalida = DateTime::MinValue;
+			}
+			else{
+				fechaSalida = reader->GetDateTime(reader->GetOrdinal("FechaSalida"));
+			}
+			bool sePago = reader->GetBoolean(reader->GetOrdinal("SePago"));
+			lista->Add(gcnew RegistroFinanciero(idRegistro, montoTotal, idTicket, idEspacio, idOperario, 
+				nombreOperario, placa, modelo, DNI, peso, precioBase, tiempoTotal, fechaIngreso, fechaSalida, sePago));
+			 
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar los registros de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return lista;
+}

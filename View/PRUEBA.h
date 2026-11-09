@@ -19,6 +19,7 @@ namespace View {
 	private:
 		ControlEspacios^ controladorEspacios;
 		ControlFallas^ controladorFallas;
+		ControlReporteFinanciero^ controladorReporteFinanciero;
 	public:
 		PRUEBA(void)
 		{
@@ -32,6 +33,7 @@ namespace View {
 
 			controladorEspacios = gcnew ControlEspacios();
 			controladorFallas = gcnew ControlFallas();
+			controladorReporteFinanciero = gcnew ControlReporteFinanciero();
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -258,31 +260,39 @@ namespace View {
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	Usuario^ empleado = gcnew Administrador(1, "Juan Pérez", 30, "Masculino");
-	controller::agregarUsuario("Operador", "Juan Pérez", 30, "Masculino");
+	TicketAuto^ ticket = gcnew TicketAuto(1, 1, "toyota", "ABC123", 123.5, DateTime::Now, 1500.0, 10, 12333, DateTime::MinValue);
+	controller::agregarTicket(ticket);
 
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	for each (Usuario ^ empleado in controller::Usuarios) {
-		Console::WriteLine(
-			"ID Empleado: " + empleado->DNI +
-			" | Nombre: " + empleado->nombre +
-			" | Edad: " + empleado->edad +
-			" | Sexo: " + empleado->sexo +
-			" | Tipo: " + empleado->GetType()->Name
-		);
+	for each(TicketAuto ^ ticket in controller::Tickets) {
+		Console::WriteLine("=========================================================================");
+		Console::WriteLine(" [1] Id Ticket:       " + ticket->id);
+		Console::WriteLine(" [2] Cliente Id:      " + ticket->clienteAsociado);
+		Console::WriteLine(" [3] Modelo:          " + ticket->modeloAuto);
+		Console::WriteLine(" [4] Placa:           " + ticket->placa);
+		Console::WriteLine(" [5] Precio:          " + ticket->precio);
+		Console::WriteLine(" [6] Fecha Ingreso:   " + ticket->fechaIngreso.ToString());
+		Console::WriteLine(" [7] Peso:            " + ticket->peso);
+		Console::WriteLine(" [8] Id Espacio:      " + ticket->id_espacio);
+		Console::WriteLine(" [9] DNI:             " + ticket->dni);
+		Console::WriteLine("[10] Código Barras:   " + ticket->codigoBarras);
+		Console::WriteLine("[11] Fecha Salida:    " + ticket->fechaSalida.ToString());
+		Console::WriteLine("[12] ¿Se Pagó?:       " + ticket->pagado.ToString());
+		Console::WriteLine("      Tipo de Clase:  " + ticket->GetType()->Name);
+		Console::WriteLine("=========================================================================");
 	}
 }
 
 
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	controller::eliminarUsuario(1);
+	controller::eliminarTicket(1);
 }
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	Usuario^ empleado = gcnew Administrador(1, "Juan Martinez", 25, "Masculino");
-	controller::modificarUsuario(3, "Juan Martinez", 25, "Masculino");
+	TicketAuto^ ticket = gcnew TicketAuto(1, 44, "toyota", "ABC123", 2.565, DateTime::Now, 1500.0, 3, 33332, DateTime::Now.AddHours(4));
+	controller::modificarTicket(1, ticket);
 }
 
 };

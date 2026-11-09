@@ -20,7 +20,7 @@ namespace controllerPrincipal {
 
 	public:
 		static ControlReporteFinanciero() {
-			listaRegistrosFinancieros = persistance::cargarRegistros();
+			listaRegistrosFinancieros = persistance::CargarRegistrosBD();
 
 		}
 

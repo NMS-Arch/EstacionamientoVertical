@@ -21,32 +21,40 @@ namespace modelPrincipal {
 
         TicketAuto() {};
 
-        TicketAuto(int id_ticket, int cli, String^ mod, String^ pla, double prec, DateTime fecha, 
-            double peso,int id_espacio,
-            int Dni, String^codigoBarras, DateTime fecha_salida) {
-
-
-
+        //Sin codigo de barras (generico)
+        TicketAuto(int id_ticket, int cli, String^ mod, String^ pla, double prec, DateTime fecha,
+            double peso, int id_espacio,
+            int Dni, DateTime fecha_salida) {
             this->id = id_ticket;
-
             this->clienteAsociado = cli;
-
             this->modeloAuto = mod;
             this->placa = pla;
             this->precio = prec;
-
             this->id_espacio = id_espacio;
             this->peso = peso;
-
             this->fechaIngreso = fecha;
+            this->fechaSalida = fecha_salida;
+            this->pagado = false;
+            this->dni = Dni;
+            this->codigoBarras = generar_codigo_barras();
 
+        }
+        //Con codigo de barras (para sql)
+        TicketAuto(int id_ticket, int cli, String^ mod, String^ pla, double prec, DateTime fecha, 
+            double peso,int id_espacio,
+            int Dni, String^codigoBarras, DateTime fecha_salida) {
+            this->id = id_ticket;            
+            this->clienteAsociado = cli;
+            this->modeloAuto = mod;
+            this->placa = pla;
+            this->precio = prec;
+            this->id_espacio = id_espacio;
+            this->peso = peso;
+            this->fechaIngreso = fecha;
             this->fechaSalida= fecha_salida;
             this->pagado = false;
 			this->dni = Dni;
-
-            this->codigoBarras = generar_codigo_barras();
-
-
+            this->codigoBarras = codigoBarras;
 
         }
 
@@ -72,7 +80,7 @@ namespace modelPrincipal {
             TimeSpan diferencia = fechaSalida - fechaIngreso;
             double horasTotales = diferencia.TotalHours;
 
-
+			if (horasTotales > 24) horasTotales = 0.0; //Si es mas de un dia no es valido, voy a poner un valor predeterminado para cuando aun no paga
             return Math::Round(horasTotales,2);
         }
 

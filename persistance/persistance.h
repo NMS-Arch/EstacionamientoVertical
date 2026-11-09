@@ -80,7 +80,10 @@ namespace persistancePrincipal {
 		static String^ rutaRegistrosFinancieros = "registrosFinancieros.xml";
 		static List<RegistroFinanciero^>^ cargarRegistros();
 		static void guardarRegistros(List<RegistroFinanciero^>^ registros);
-
+		static void GuardarRegistrosBD(RegistroFinanciero^ registro);
+		static void ActualizarRegistrosBD(RegistroFinanciero^ registro);
+		static void EliminarRegistrosBD(int id);
+		static List<RegistroFinanciero^>^ CargarRegistrosBD();
 
 	};
 }
