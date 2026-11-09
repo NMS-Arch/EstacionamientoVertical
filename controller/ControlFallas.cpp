@@ -17,8 +17,8 @@ void controllerPrincipal::ControlFallas::agregarFalla(Falla^ new_falla) {
 	new_falla->id = maxId + 1;
 
 	lista_fallas->Add(new_falla);
-
-	persistance::guardarFallas(lista_fallas);
+	persistance::GuardarFallasBD(new_falla);
+	//persistance::guardarFallas(lista_fallas);
 }
 
 void controllerPrincipal::ControlFallas::eliminarFalla(int id) {
@@ -27,7 +27,8 @@ void controllerPrincipal::ControlFallas::eliminarFalla(int id) {
 
 		if (lista_fallas[i]->id == id) {
 			lista_fallas->RemoveAt(i);
-			persistance::guardarFallas(lista_fallas);
+			persistance::EliminarFallasBD(id);
+			//persistance::guardarFallas(lista_fallas);
 			return;
 		}
 	}
@@ -47,7 +48,8 @@ void controllerPrincipal::ControlFallas::modificarFalla(int id, Falla^ falla_ent
 			lista_fallas[i]->estado = falla_entrada->estado;
 			lista_fallas[i]->tipo = falla_entrada->tipo;
 
-			persistance::guardarFallas(lista_fallas);
+			persistance::ActualizarFallasBD(lista_fallas[i]);
+			//persistance::guardarFallas(lista_fallas);
 			return;
 		}
 	}
@@ -73,9 +75,12 @@ List<Falla^>^ controllerPrincipal::ControlFallas::obtener_todos_Falla() {
 
 
 void controllerPrincipal::ControlFallas::guardarFallas() {
-	persistance::guardarFallas(lista_fallas);
+	for each (Falla ^ falla in lista_fallas) {
+		persistance::ActualizarFallasBD(falla);
+	}
+	//persistance::guardarFallas(lista_fallas);
 }
 
 List<Falla^>^ controllerPrincipal::ControlFallas::cargarFallas() {
-	return persistance::cargarFallas();
+	return persistance::CargarFallasBD();
 }

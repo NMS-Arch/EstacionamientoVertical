@@ -265,15 +265,16 @@ void controllerPrincipal::controller::agregarTicket(TicketAuto^ ticket_entrada) 
 	ticket_entrada->id = maxId + 1;
 
 	Tickets->Add(ticket_entrada);
-
-	persistance::guardarTickets(Tickets);
+	persistance::GuardarTicketsBD(ticket_entrada);
+	//persistance::guardarTickets(Tickets);
 }
 
 void controllerPrincipal::controller::eliminarTicket(int id_ticket) {
 	for (int i = 0; i < Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			Tickets->RemoveAt(i);
-			persistance::guardarTickets(Tickets);
+			persistance::EliminarTicketsBD(id_ticket);
+			//persistance::guardarTickets(Tickets);
 		}
 	}
 
@@ -284,9 +285,10 @@ void controllerPrincipal::controller::modificarTicket(int id_ticket, TicketAuto^
 	for (int i = 0; i < Tickets->Count; i++) {
 
 		if (Tickets[i]->id == id_ticket) {
-			
+			ticket_modificado->id = id_ticket;
 			Tickets[i] = ticket_modificado;
-			persistance::guardarTickets(Tickets);
+			persistance::ActualizarTicketsBD(ticket_modificado);
+			//persistance::guardarTickets(Tickets);
 		}
 	}
 
@@ -343,13 +345,13 @@ void controllerPrincipal::controller::guardarTickets() {
 }
 
 List<TicketAuto^>^ controllerPrincipal::controller::cargarTickets() {
-	return persistance::cargarTickets();
+	return persistance::CargarTicketsBD();
 }
 
 
 //RECLAMOS
 
-void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ hor, String^ desc) {
+void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ desc, int id_user) {
 
 	int maxId = 0;
 	for each (Reclamo ^ reclamo in controller::Reclamos) {
@@ -359,7 +361,7 @@ void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ hor, S
 	}
 	int id = maxId + 1;
 
-	Reclamo^ nReclamo = gcnew Reclamo(id, fec, hor, desc);
+	Reclamo^ nReclamo = gcnew Reclamo(id, fec, desc, id_user);
 	controller::Reclamos->Add(nReclamo);
 }
 
@@ -373,13 +375,13 @@ bool controllerPrincipal::controller::eliminarReclamo(int id_reclamo) {
 	return false;
 }
 
-bool controllerPrincipal::controller::modificarReclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
+bool controllerPrincipal::controller::modificarReclamo(int id_reclamo, String^ fec, String^ desc, int id_user) {
 	for (int i = 0; i < controller::Reclamos->Count; i++) {
 		if (controller::Reclamos[i]->id == id_reclamo) {
 			Reclamo^ reclamo = controller::Reclamos[i];
 			reclamo->fecha = fec;
-			reclamo->hora = hor;
 			reclamo->descripcion = desc;
+			reclamo->idUser = id_user;
 			return true;
 		}
 	}

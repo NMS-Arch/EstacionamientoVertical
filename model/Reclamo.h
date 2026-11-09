@@ -5,17 +5,17 @@ namespace modelPrincipal {
     public ref class Reclamo {
     public:
         String^ fecha;
-        String^ hora;
         String^ descripcion;
         int id;
+        int idUser;
 
         Reclamo() {};
 
-        Reclamo(int id_reclamo, String^ fec, String^ hor, String^ desc) {
+        Reclamo(int id_reclamo, String^ fec, String^ desc, int id_user) {
             this->id = id_reclamo;
             this->fecha = fec;
-            this->hora = hor;
             this->descripcion = desc;
+            this->idUser = id_user;
         }
     };
 }

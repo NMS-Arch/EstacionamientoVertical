@@ -9,8 +9,14 @@ void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos(int numeroE
 
         listaEspacios->Add(gcnew Espacio(i, false,Operativo,false));
     }
-
     persistance::guardarEspacios(listaEspacios);
+
+	List<Espacio^>^ espaciosBD = persistance::CargarEspaciosBD();
+
+	for each (Espacio ^ esp in listaEspacios) {
+        persistance::GuardarEspaciosBD(esp);
+	}
+
 }
 
 
@@ -22,7 +28,7 @@ void controllerPrincipal::ControlEspacios::OcuparEspacio(int idBuscado) {
             
             esp->ocupado = true; 
 
-            
+            persistance::ActualizarEspaciosBD(esp);
             persistance::guardarEspacios(listaEspacios);
             return;
         }
@@ -39,7 +45,7 @@ void controllerPrincipal::ControlEspacios::DesocuparEspacio(int idBuscado) {
 
             esp->ocupado = false;
 
-
+            persistance::ActualizarEspaciosBD(esp);
             persistance::guardarEspacios(listaEspacios);
             return;
         }
@@ -91,7 +97,6 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
                 return;
             }
 
-
             if (esp->estaEnSuelo == true) {
                 //Tal vez sea bueno devolver un string e impirmir un mensaje si logro bajar la plataforma o no
                 return;
@@ -101,19 +106,15 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
             // Se manda al hardware a bajar la plataforma
             ///////
 
-
             esp->estaEnSuelo = true;
-            
+        
         }
         else {
             esp->estaEnSuelo = false;
         }
-        
-
+        persistance::ActualizarEspaciosBD(esp);
     }
-
     persistance::guardarEspacios(listaEspacios);
-
 }
 
 
@@ -135,7 +136,7 @@ void controllerPrincipal::ControlEspacios::inhabiltarEspacio(int idEspacio) {
         if (esp->id == idEspacio) {
 
             esp->estado = No_Operativo;
-
+            persistance::ActualizarEspaciosBD(esp);
             persistance::guardarEspacios(listaEspacios);
             return;
         }
@@ -151,6 +152,7 @@ void controllerPrincipal::ControlEspacios::habilitarEspacio(int idEspacio) {
 
             esp->estado = Operativo;
 
+            persistance::ActualizarEspaciosBD(esp);
             persistance::guardarEspacios(listaEspacios);
             return;
         }
@@ -165,7 +167,7 @@ void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio)
         if (esp->id == idEspacio) {
 
             esp->estado = En_Mantenimiento;
-
+            persistance::ActualizarEspaciosBD(esp);
             persistance::guardarEspacios(listaEspacios);
             return;
         }
@@ -174,7 +176,6 @@ void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio)
 
 
 int controllerPrincipal::ControlEspacios::obtenerEstadoMotorPrincipal() {
-
     return estadoMotorPrincipal;
 }
 

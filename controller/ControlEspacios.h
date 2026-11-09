@@ -28,7 +28,7 @@ namespace controllerPrincipal {
 
 	public:
 		static ControlEspacios() {
-			listaEspacios = persistance::cargarEspacios();
+			listaEspacios = persistance::CargarEspaciosBD();
 
 			if (listaEspacios->Count == 0 || listaEspacios->Count < numeroEspacios ) {
 				InicilizarEspaciosFisicos(numeroEspacios);

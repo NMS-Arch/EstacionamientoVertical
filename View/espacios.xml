@@ -3,19 +3,19 @@
   <Espacio>
     <ocupado>false</ocupado>
     <estado>1</estado>
-    <estaEnSuelo>true</estaEnSuelo>
+    <estaEnSuelo>false</estaEnSuelo>
     <id>1</id>
   </Espacio>
   <Espacio>
     <ocupado>false</ocupado>
-    <estado>2</estado>
+    <estado>1</estado>
     <estaEnSuelo>false</estaEnSuelo>
     <id>2</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
-    <estado>2</estado>
-    <estaEnSuelo>false</estaEnSuelo>
+    <ocupado>false</ocupado>
+    <estado>3</estado>
+    <estaEnSuelo>true</estaEnSuelo>
     <id>3</id>
   </Espacio>
   <Espacio>
@@ -37,13 +37,13 @@
     <id>6</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
+    <ocupado>false</ocupado>
     <estado>1</estado>
     <estaEnSuelo>false</estaEnSuelo>
     <id>7</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
+    <ocupado>false</ocupado>
     <estado>1</estado>
     <estaEnSuelo>false</estaEnSuelo>
     <id>8</id>
@@ -55,7 +55,7 @@
     <id>9</id>
   </Espacio>
   <Espacio>
-    <ocupado>true</ocupado>
+    <ocupado>false</ocupado>
     <estado>1</estado>
     <estaEnSuelo>false</estaEnSuelo>
     <id>10</id>

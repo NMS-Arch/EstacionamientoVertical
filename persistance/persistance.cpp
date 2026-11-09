@@ -2,12 +2,31 @@
 
 #include "persistance.h"
 
-//using namespace persistancePrincipal;
-//using namespace System;
-//using namespace System::Collections::Generic;
-//using namespace modelPrincipal;
-//using namespace System::IO;
-//using namespace System::Xml::Serialization;
+using namespace persistancePrincipal;
+using namespace System;
+using namespace System::Collections::Generic;
+using namespace modelPrincipal;
+using namespace System::IO;
+using namespace System::Xml::Serialization;
+using namespace System::Data;
+using namespace System::Data::SqlClient;
+using namespace System::Windows::Forms;
+
+//conexion
+
+SqlConnection^ persistance::obtenerConexion() {
+	if (!File::Exists(RUTA_CONFIGURACION_DB)) {
+		MessageBox::Show("Archivo de configuración de base de datos no encontrado. Creando uno con valores predeterminados.");
+		StreamWriter^ writer = gcnew StreamWriter(RUTA_CONFIGURACION_DB, false);
+		writer->WriteLine("Server=localhost;Database=default;User ID=True;Password=password;");
+		writer->Close();
+	}
+	StreamReader^ reader = gcnew StreamReader(RUTA_CONFIGURACION_DB);
+	String^ connectionString = reader->ReadLine();
+
+	reader->Close();
+	return gcnew SqlConnection(connectionString);
+}
 
 //espacios
 
@@ -29,6 +48,111 @@ List<Espacio^>^ persistancePrincipal::persistance::cargarEspacios() {
 	lista = (List<Espacio^>^)ser->Deserialize(sr);
 	sr->Close();
 
+	return lista;
+}
+
+void persistance::GuardarEspaciosBD(Espacio^ espacio) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddEspacio", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@Id", espacio->id);
+		comando->Parameters->AddWithValue("@Ocupado", espacio->ocupado);
+		comando->Parameters->AddWithValue("@Estado", espacio->estado);
+		comando->Parameters->AddWithValue("@EstaEnPiso", espacio->estaEnSuelo);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar los espacios en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarEspaciosBD(Espacio^ espacio) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateEspacio", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@Id", espacio->id);
+		comando->Parameters->AddWithValue("@Ocupado", espacio->ocupado);
+		comando->Parameters->AddWithValue("@Estado", espacio->estado);
+		comando->Parameters->AddWithValue("@EstaEnPiso", espacio->estaEnSuelo);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar el espacio en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarEspaciosBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteEspacio", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@Id", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar el espacio en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<Espacio^>^ persistance::CargarEspaciosBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<Espacio^>^ lista = gcnew List<Espacio^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllEspacios", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int id = reader->GetInt32(reader->GetOrdinal("Id"));
+			bool ocupado= reader->GetBoolean(reader->GetOrdinal("Ocupado"));
+			int estado = reader->GetInt32(reader->GetOrdinal("Estado"));
+			bool estaEnSuelo = reader->GetBoolean(reader->GetOrdinal("EstaEnPiso"));
+
+			lista->Add(gcnew Espacio(id, ocupado, estado, estaEnSuelo));
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar los espacios de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
 	return lista;
 }
 
@@ -55,6 +179,129 @@ List<Falla^>^ persistancePrincipal::persistance::cargarFallas() {
 	return lista;
 }
 
+void persistance::GuardarFallasBD(Falla^ falla) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddFallas", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@FallaId", falla->id);
+		comando->Parameters->AddWithValue("@Descripcion", falla->descripcion);
+		comando->Parameters->AddWithValue("@Prioridad", falla->prioridad);
+		comando->Parameters->AddWithValue("@Tipo", falla->tipo);
+		comando->Parameters->AddWithValue("@Fecha", falla->fecha);
+		comando->Parameters->AddWithValue("@Estado", falla->estado);
+		comando->Parameters->AddWithValue("@IdUsuario", falla->idUserReportante);
+		comando->Parameters->AddWithValue("@NombreUsuario", falla->nombreUserReportante);
+		comando->Parameters->AddWithValue("@RolUsuario", falla->rolUser);
+		comando->Parameters->AddWithValue("@EspacioAfectado", falla->espacioAfectado);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar las fallas en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarFallasBD(Falla^ falla) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateFallas", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@FallaId", falla->id);
+		comando->Parameters->AddWithValue("@Descripcion", falla->descripcion);
+		comando->Parameters->AddWithValue("@Prioridad", falla->prioridad);
+		comando->Parameters->AddWithValue("@Tipo", falla->tipo);
+		comando->Parameters->AddWithValue("@Fecha", falla->fecha);
+		comando->Parameters->AddWithValue("@Estado", falla->estado);
+		comando->Parameters->AddWithValue("@IdUsuario", falla->idUserReportante);
+		comando->Parameters->AddWithValue("@NombreUsuario", falla->nombreUserReportante);
+		comando->Parameters->AddWithValue("@RolUsuario", falla->rolUser);
+		comando->Parameters->AddWithValue("@EspacioAfectado", falla->espacioAfectado);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar la falla en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarFallasBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteFallas", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@FallaId", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar la falla en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<Falla^>^ persistance::CargarFallasBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<Falla^>^ lista = gcnew List<Falla^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllFallas", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int idFalla = reader->GetInt32(reader->GetOrdinal("FallaId"));
+			String^ desc = reader->GetString(reader->GetOrdinal("Descripcion"));
+			String^ prio = reader->GetString(reader->GetOrdinal("Prioridad"));
+			String^ tipo = reader->GetString(reader->GetOrdinal("Tipo"));
+			DateTime fecha = reader->GetDateTime(reader->GetOrdinal("Fecha"));
+			String^ est = reader->GetString(reader->GetOrdinal("Estado"));
+			int idUsuario = reader->GetInt32(reader->GetOrdinal("IdUsuario"));
+			String^ nombreU = reader->GetString(reader->GetOrdinal("NombreUsuario"));
+			String^ RolU = reader->GetString(reader->GetOrdinal("RolUsuario"));
+			int espacioAfectado = reader->GetInt32(reader->GetOrdinal("EspacioAfectado"));
+
+			lista->Add(gcnew Falla(idFalla, desc, prio, tipo, fecha, est, idUsuario, nombreU, RolU, espacioAfectado));
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar las fallas de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return lista;
+}
+
 //tickets
 
 void persistancePrincipal::persistance::guardarTickets(List<TicketAuto^>^ tickets) {
@@ -75,6 +322,132 @@ List<TicketAuto^>^ persistancePrincipal::persistance::cargarTickets() {
 	lista = (List<TicketAuto^>^)ser->Deserialize(sr);
 	sr->Close();
 
+	return lista;
+}
+
+void persistance::GuardarTicketsBD(TicketAuto^ ticket) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddTickets", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@TicketId", ticket->id);
+		comando->Parameters->AddWithValue("@ClienteId", ticket->clienteAsociado);
+		comando->Parameters->AddWithValue("@Modelo", ticket->modeloAuto);
+		comando->Parameters->AddWithValue("@Placa", ticket->placa);
+		comando->Parameters->AddWithValue("@Precio", ticket->precio);
+		comando->Parameters->AddWithValue("@FechaIngreso", ticket->fechaIngreso);
+		comando->Parameters->AddWithValue("@Peso", ticket->peso);
+		comando->Parameters->AddWithValue("@EspacioId", ticket->id_espacio);
+		comando->Parameters->AddWithValue("@DNI", ticket->dni);
+		comando->Parameters->AddWithValue("@CodigoBarras", ticket->codigoBarras);
+		comando->Parameters->AddWithValue("@FechaSalida", ticket->fechaSalida);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar laos tickets en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarTicketsBD(TicketAuto^ ticket) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateTickets", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@TicketId", ticket->id);
+		comando->Parameters->AddWithValue("@ClienteId", ticket->clienteAsociado);
+		comando->Parameters->AddWithValue("@Modelo", ticket->modeloAuto);
+		comando->Parameters->AddWithValue("@Placa", ticket->placa);
+		comando->Parameters->AddWithValue("@Precio", ticket->precio);
+		comando->Parameters->AddWithValue("@FechaIngreso", ticket->fechaIngreso);
+		comando->Parameters->AddWithValue("@Peso", ticket->peso);
+		comando->Parameters->AddWithValue("@EspacioId", ticket->id_espacio);
+		comando->Parameters->AddWithValue("@DNI", ticket->dni);
+		comando->Parameters->AddWithValue("@CodigoBarras", ticket->codigoBarras);
+		comando->Parameters->AddWithValue("@FechaSalida", ticket->fechaSalida);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar el ticket en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarTicketsBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteTickets", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@TicketId", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar el ticket en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<TicketAuto^>^ persistance::CargarTicketsBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<TicketAuto^>^ lista = gcnew List<TicketAuto^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllTickets", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int idTicket = reader->GetInt32(reader->GetOrdinal("TicketId"));
+			int idCliente = reader->GetInt32(reader->GetOrdinal("ClienteId"));
+			String^ modelo = reader->GetString(reader->GetOrdinal("Modelo"));
+			String^ placa = reader->GetString(reader->GetOrdinal("Placa"));
+			double precio = reader->GetDouble(reader->GetOrdinal("Precio"));
+			DateTime fechaIngreso = reader->GetDateTime(reader->GetOrdinal("FechaIngreso"));
+			double peso = reader->GetDouble(reader->GetOrdinal("Peso"));
+			int idEspacio = reader->GetInt32(reader->GetOrdinal("EspacioId"));
+			int dni = reader->GetInt32(reader->GetOrdinal("DNI"));
+			String^ codigoBarras = reader->GetString(reader->GetOrdinal("CodigoBarras"));
+			DateTime fechaSalida = reader->GetDateTime(reader->GetOrdinal("FechaSalida"));
+
+			lista->Add(gcnew TicketAuto(idTicket, idCliente, modelo, placa, precio, fechaIngreso, peso, idEspacio, dni, codigoBarras, fechaSalida));
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar los tickets de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
 	return lista;
 }
 

@@ -19,7 +19,7 @@ namespace controllerPrincipal {
 	public:
 
 		static ControlFallas() {
-			lista_fallas = persistance::cargarFallas();
+			lista_fallas = persistance::CargarFallasBD();
 		}
 
 

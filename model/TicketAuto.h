@@ -6,35 +6,23 @@ namespace modelPrincipal {
     public ref class TicketAuto {
 
     public:
-        Cliente^ clienteAsociado;
+        int clienteAsociado;
         String^ modeloAuto;
         String^ placa;
 		DateTime fechaIngreso;
         DateTime fechaSalida;
-		//String^ horaIngreso;
-
         bool pagado;
-
         double precio;
         int id;
-
         double peso;
         int id_espacio;
-
-        //bool RC;
-
         String^ codigoBarras;
-
         int dni;
 
         TicketAuto() {};
 
-        TicketAuto(int id_ticket, Cliente^ cli, String^ mod, String^ pla, double prec, DateTime fecha, 
-            //String^ hora,
+        TicketAuto(int id_ticket, int cli, String^ mod, String^ pla, double prec, DateTime fecha, 
             double peso,int id_espacio,
-            
-            //bool RC, 
-            
             int Dni, String^codigoBarras, DateTime fecha_salida) {
 
 
@@ -53,21 +41,17 @@ namespace modelPrincipal {
             this->fechaIngreso = fecha;
 
             this->fechaSalida= fecha_salida;
-
-            //this->horaIngreso = hora;
             this->pagado = false;
-
-			//this->RC = RC;
 			this->dni = Dni;
 
-            this->codigoBarras = codigoBarras;
+            this->codigoBarras = generar_codigo_barras();
 
 
 
         }
 
 
-        void generar_codigo_barras() {
+        String^ generar_codigo_barras() {
 
             //String^ parteID; 
             String^ partePlaca; String^ parteModelo; String^ parteTiempo;
@@ -80,7 +64,7 @@ namespace modelPrincipal {
             String^ codigoFinal =  partePlaca + parteModelo + parteTiempo;
 
             codigoBarras=codigoFinal->ToUpper();
-
+			return codigoBarras;
         }
 
 

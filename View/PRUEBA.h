@@ -16,6 +16,9 @@ namespace View {
 	/// </summary>
 	public ref class PRUEBA : public System::Windows::Forms::Form
 	{
+	private:
+		ControlEspacios^ controladorEspacios;
+		ControlFallas^ controladorFallas;
 	public:
 		PRUEBA(void)
 		{
@@ -25,10 +28,15 @@ namespace View {
 			controller::Clientes = controller::cargarClientes();
 			//controller::Fallas = controller::cargarFallas();
 			controller::Tickets = controller::cargarTickets();
+
+			controladorEspacios = gcnew ControlEspacios();
+			controladorFallas = gcnew ControlFallas();
 			//
 			//TODO: agregar código de constructor aquí
 			//
 		}
+
+		
 
 	protected:
 		/// <summary>
@@ -160,6 +168,7 @@ namespace View {
 			this->button2->TabIndex = 7;
 			this->button2->Text = L"modificar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &PRUEBA::button2_Click);
 			// 
 			// button3
 			// 
@@ -179,6 +188,7 @@ namespace View {
 			this->button4->TabIndex = 9;
 			this->button4->Text = L"eliminar";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &PRUEBA::button4_Click);
 			// 
 			// textBox2
 			// 
@@ -243,61 +253,41 @@ namespace View {
 		}
 #pragma endregion
 
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	TicketAuto^ ticket = gcnew TicketAuto(1, 21,"toyota", "asdfg", 233.4, DateTime::Now, 233.4, 2, 21, "nada", DateTime::Now.AddHours(3));
+	controller::agregarTicket(ticket);
+	
+}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	try {
-
-		
-		int dni = Int32::Parse(textBox1->Text);
-		
-		Usuario^ esp = controller::buscarUsuario(dni);
-
-		if (esp != nullptr) {
-			Console::WriteLine("Usuario encontrado:");
-			Console::WriteLine("Tipo: {0}", esp->GetType()->Name);
-			Console::WriteLine("ID: {0}", esp->DNI);
-			Console::WriteLine("Nombre: {0}", esp->nombre);
-			Console::WriteLine("Edad: {0}", esp->edad);
-			Console::WriteLine("Sexo: {0}", esp->sexo);
-
-		}
-			
-	}
-	catch (Exception^ ex) {
-		MessageBox::Show("Error: " + ex->Message);
+	for each (TicketAuto ^ ticket in controller::Tickets) {
+		Console::WriteLine(
+			"ID Ticket: " + ticket->id +
+			" | Cliente ID: " + ticket->clienteAsociado +
+			" | Modelo: " + ticket->modeloAuto +
+			" | Placa: " + ticket->placa +
+			" | Precio: " + ticket->precio +
+			" | Fecha Ingreso: " + ticket->fechaIngreso +
+			" | Peso: " + ticket->peso +
+			" | Espacio ID: " + ticket->id_espacio +
+			" | DNI: " + ticket->dni +
+			" | Código de Barras: " + ticket->codigoBarras +
+			" | Fecha Salida: " + ticket->fechaSalida
+		);
 	}
 
 }
 
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	controller::eliminarTicket(1);
+}
 
-	try {
-		/*if (comboBox1->SelectedIndex == -1) {
-			throw gcnew Exception("Por favor, seleccione una opción en ambos ComboBox.");
-		}*/
-		int dni = Int32::Parse(textBox1->Text);
-		String^ nombre = textBox2->Text;
-		int edad = Int32::Parse(textBox3->Text);
-		String^ sexo = textBox4->Text;
-		int autorizacion = Int32::Parse(textBox5->Text);
-		bool vip = comboBox1->SelectedIndex == 0 ? true : false;
-		
-		
-		String^ descripcion = textBox6->Text;
-		
-
-		String^ fecha = DateTime::Now.ToString("dd/MM/yyyy");
-		String^ hora = DateTime::Now.ToString("HH:mm:ss");
-
-		Cliente^ pruebaCliente = gcnew Cliente(123, "norm", 21, "M", true);
-
-		controller::agregarUsuario(descripcion, nombre, edad, sexo);
-
-		controller::guardarUsuarios();
-	}
-	catch (Exception^ ex) {
-		MessageBox::Show("Error: " + ex->Message);
-	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	TicketAuto^ ticket = gcnew TicketAuto(5, 2, "cualquiera", "ñlkjh", 3.4, DateTime::Now, 233.4, 10, 21, "nada", DateTime::Now.AddHours(5));
+	controller::modificarTicket(1, ticket);
 }
 
 };
