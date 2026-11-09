@@ -76,9 +76,9 @@ namespace controllerPrincipal {
 
 		static List<Reclamo^>^ Reclamos = gcnew List<Reclamo^>();
 
-		static void agregarReclamo(String^ fec, String^ desc, int id_user);
+		static void agregarReclamo(DateTime fec, String^ desc, int id_user);
 		static bool eliminarReclamo(int id_reclamo);
-		static bool modificarReclamo(int id_reclamo, String^ fec, String^ desc, int id_user);
+		static bool modificarReclamo(int id_reclamo, DateTime fec, String^ desc, int id_user);
 		static Reclamo^ buscarReclamo(int id_reclamo);
 
 		static void guardarReclamos();

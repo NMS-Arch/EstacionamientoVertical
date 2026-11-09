@@ -28,6 +28,7 @@ namespace View {
 			controller::Clientes = controller::cargarClientes();
 			//controller::Fallas = controller::cargarFallas();
 			controller::Tickets = controller::cargarTickets();
+			controller::Reclamos = controller::cargarReclamos();
 
 			controladorEspacios = gcnew ControlEspacios();
 			controladorFallas = gcnew ControlFallas();
@@ -257,37 +258,30 @@ namespace View {
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	TicketAuto^ ticket = gcnew TicketAuto(1, 21,"toyota", "asdfg", 233.4, DateTime::Now, 233.4, 2, 21, "nada", DateTime::Now.AddHours(3));
-	controller::agregarTicket(ticket);
+	Reclamo^ reclamo = gcnew Reclamo(1, DateTime::Now, "descripcion", 21);
+	controller::agregarReclamo(DateTime::Now, "descripcion", 21);
 	
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	for each (TicketAuto ^ ticket in controller::Tickets) {
+	for each (Reclamo ^ reclamo in controller::Reclamos) {
 		Console::WriteLine(
-			"ID Ticket: " + ticket->id +
-			" | Cliente ID: " + ticket->clienteAsociado +
-			" | Modelo: " + ticket->modeloAuto +
-			" | Placa: " + ticket->placa +
-			" | Precio: " + ticket->precio +
-			" | Fecha Ingreso: " + ticket->fechaIngreso +
-			" | Peso: " + ticket->peso +
-			" | Espacio ID: " + ticket->id_espacio +
-			" | DNI: " + ticket->dni +
-			" | Código de Barras: " + ticket->codigoBarras +
-			" | Fecha Salida: " + ticket->fechaSalida
+			"ID Reclamo: " + reclamo->id +
+			" | Fecha: " + reclamo->fecha +
+			" | Descripción: " + reclamo->descripcion +
+			" | ID Usuario: " + reclamo->idUser
 		);
 	}
-
 }
 
+
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	controller::eliminarTicket(1);
+	controller::eliminarReclamo(1);
 }
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	TicketAuto^ ticket = gcnew TicketAuto(5, 2, "cualquiera", "ñlkjh", 3.4, DateTime::Now, 233.4, 10, 21, "nada", DateTime::Now.AddHours(5));
-	controller::modificarTicket(1, ticket);
+	Reclamo^ reclamo = gcnew Reclamo(1, DateTime::Now, "descripcion actualizada", 42);
+	controller::modificarReclamo(1, DateTime::Now, "descripcion actualizada", 42);
 }
 
 };

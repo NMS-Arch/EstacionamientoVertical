@@ -50,6 +50,10 @@ namespace persistancePrincipal {
 		static String^ rutaReclamos = "reclamos.xml";
 		static List<Reclamo^>^ cargarReclamos();
 		static void guardarReclamos(List<Reclamo^>^ reclamos);
+		static void GuardarReclamosBD(Reclamo^ reclamo);
+		static void ActualizarReclamosBD(Reclamo^ reclamo);
+		static void EliminarReclamosBD(int id);
+		static List<Reclamo^>^ CargarReclamosBD();
 
 		//clientes
 

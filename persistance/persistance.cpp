@@ -474,6 +474,117 @@ List<Reclamo^>^ persistancePrincipal::persistance::cargarReclamos() {
 	return lista;
 }
 
+void persistance::GuardarReclamosBD(Reclamo^ reclamo) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_AddReclamos", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@ReclamoId", reclamo->id);
+		comando->Parameters->AddWithValue("@Fecha", reclamo->fecha);
+		comando->Parameters->AddWithValue("@Descripcion", reclamo->descripcion);
+		comando->Parameters->AddWithValue("@ClienteId", reclamo->idUser);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al guardar los reclamos en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::ActualizarReclamosBD(Reclamo^ reclamo) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_UpdateReclamos", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+
+		comando->Parameters->AddWithValue("@ReclamoId", reclamo->id);
+		comando->Parameters->AddWithValue("@Fecha", reclamo->fecha);
+		comando->Parameters->AddWithValue("@Descripcion", reclamo->descripcion);
+		comando->Parameters->AddWithValue("@ClienteId", reclamo->idUser);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al actualizar el reclamo en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+void persistance::EliminarReclamosBD(int id) {
+	SqlConnection^ conexion = obtenerConexion();
+	try {
+		conexion->Open();
+		SqlTransaction^ transaccion = conexion->BeginTransaction();
+
+		SqlCommand^ comando = gcnew SqlCommand("usp_DeleteReclamos", conexion, transaccion);
+		comando->CommandType = CommandType::StoredProcedure;
+		comando->Parameters->AddWithValue("@ReclamoId", id);
+		comando->ExecuteNonQuery();
+
+		transaccion->Commit();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al eliminar el reclamo en la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+List<Reclamo^>^ persistance::CargarReclamosBD() {
+	SqlConnection^ conexion = obtenerConexion();
+	List<Reclamo^>^ lista = gcnew List<Reclamo^>();
+	try {
+		conexion->Open();
+		SqlCommand^ comando = gcnew SqlCommand("usp_QueryAllReclamos", conexion);
+		SqlDataReader^ reader = comando->ExecuteReader();
+		while (reader->Read()) {
+			int idReclamo = reader->GetInt32(reader->GetOrdinal("ReclamoId"));
+			DateTime fecha = reader->GetDateTime(reader->GetOrdinal("Fecha"));
+			String^ descripcion;
+			if (reader->IsDBNull(reader->GetOrdinal("Descripcion"))) {
+				descripcion = "-";
+			}
+			else {
+				descripcion = reader->GetString(reader->GetOrdinal("Descripcion"));
+			}
+			int idCliente = reader->GetInt32(reader->GetOrdinal("ClienteId"));
+
+			lista->Add(gcnew Reclamo(idReclamo, fecha, descripcion, idCliente));
+		}
+		reader->Close();
+	}
+	catch (Exception^ ex) {
+		Console::WriteLine("Error al cargar los reclamos de la base de datos: {0}", ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return lista;
+}
+
 //clientes
 
 void persistancePrincipal::persistance::guardarClientes(List<Cliente^>^ clientes) {

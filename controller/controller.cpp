@@ -351,7 +351,7 @@ List<TicketAuto^>^ controllerPrincipal::controller::cargarTickets() {
 
 //RECLAMOS
 
-void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ desc, int id_user) {
+void controllerPrincipal::controller::agregarReclamo(DateTime fec, String^ desc, int id_user) {
 
 	int maxId = 0;
 	for each (Reclamo ^ reclamo in controller::Reclamos) {
@@ -363,25 +363,28 @@ void controllerPrincipal::controller::agregarReclamo(String^ fec, String^ desc, 
 
 	Reclamo^ nReclamo = gcnew Reclamo(id, fec, desc, id_user);
 	controller::Reclamos->Add(nReclamo);
+	persistance::GuardarReclamosBD(nReclamo);
 }
 
 bool controllerPrincipal::controller::eliminarReclamo(int id_reclamo) {
 	for (int i = 0; i < controller::Reclamos->Count; i++) {
 		if (controller::Reclamos[i]->id == id_reclamo) {
 			controller::Reclamos->RemoveAt(i);
+			persistance::EliminarReclamosBD(id_reclamo);
 			return true;
 		}
 	}
 	return false;
 }
 
-bool controllerPrincipal::controller::modificarReclamo(int id_reclamo, String^ fec, String^ desc, int id_user) {
+bool controllerPrincipal::controller::modificarReclamo(int id_reclamo, DateTime fec, String^ desc, int id_user) {
 	for (int i = 0; i < controller::Reclamos->Count; i++) {
 		if (controller::Reclamos[i]->id == id_reclamo) {
 			Reclamo^ reclamo = controller::Reclamos[i];
 			reclamo->fecha = fec;
 			reclamo->descripcion = desc;
 			reclamo->idUser = id_user;
+			persistance::ActualizarReclamosBD(reclamo);
 			return true;
 		}
 	}
@@ -403,5 +406,5 @@ void controllerPrincipal::controller::guardarReclamos() {
 }
 
 List<Reclamo^>^ controllerPrincipal::controller::cargarReclamos() {
-	return persistance::cargarReclamos();
+	return persistance::CargarReclamosBD();
 }
