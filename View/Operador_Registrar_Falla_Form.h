@@ -27,6 +27,7 @@ namespace View {
 		ControlFallas^ controladorFallas;
 
 		bool seInhabilitoEspacio;
+		array<bool>^ espaciosConFalla;
 		bool seInhabilitoMotor;
 	private: System::Windows::Forms::Button^ btn_Restablecer_Elecciones;
 
@@ -46,7 +47,7 @@ namespace View {
 			controladorFallas = gcnew ControlFallas();
 			//
 
-
+			espaciosConFalla = gcnew array<bool>(10);
 			seInhabilitoEspacio=false;
 			seInhabilitoMotor=false;
 
@@ -459,6 +460,7 @@ namespace View {
 			this->pictureBox1->Size = System::Drawing::Size(268, 324);
 			this->pictureBox1->TabIndex = 57;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &Operador_Registrar_Falla_Form::pictureBox1_Click);
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Operador_Registrar_Falla_Form::pictureBox1_Paint);
 			// 
 			// btn_Restablecer_Elecciones
@@ -532,7 +534,19 @@ namespace View {
 		}
 		private: System::Void btn_Registrar_Falla_Click(System::Object^ sender, System::EventArgs^ e) {
 
+			// Registrar visualmente el espacio que presentó la falla
+			if (seInhabilitoEspacio && numID_Espacio != nullptr) {
+
+				int id = Convert::ToInt32(numID_Espacio);
+
+				if (id >= 1 && id <= 10) {
+					espaciosConFalla[id - 1] = true;
+					pictureBox1->Invalidate();
+				}
+			}
+
 			mostrar_botones();
+
 			seInhabilitoEspacio = false;
 			seInhabilitoMotor = false;
 
@@ -564,7 +578,9 @@ namespace View {
 				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 10);
 				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 10);
 
-				g->FillRectangle(Brushes::Green, int(x -10), int(y - 10), 20, 20);
+				Brush^ color = espaciosConFalla[i] ? Brushes::Red : Brushes::Green;
+
+				g->FillRectangle(color, int(x - 10), int(y - 10), 20, 20);
 
 				g->DrawString((i + 1).ToString(), DefaultFont, Brushes::Black, x - 5, y - 5);
 			}
@@ -575,20 +591,14 @@ namespace View {
 
 			if (cb_ID_Espacio->SelectedIndex >= 0) {
 
-				seInhabilitoEspacio = true;
-
-				
-
 				numID_Espacio = cb_ID_Espacio->Items[cb_ID_Espacio->SelectedIndex]->ToString();
-				
 
 				int estadoEspacio = controladorEspacios->obtenerEstadoEspacio(Convert::ToInt32(numID_Espacio));
 
-				//Operativo = 1;
-				//No_Operativo = 2;
-				//En_Mantenimiento = 3;
-
+				// Verificar si el espacio se encuentra operativo
 				if (estadoEspacio == 1) {
+
+					seInhabilitoEspacio = true;
 
 					controladorEspacios->inhabiltarEspacio(Convert::ToInt32(numID_Espacio));
 
@@ -598,13 +608,11 @@ namespace View {
 					ocultar_botones();
 				}
 				else {
+
 					MessageBox::Show("Este espacio no se puede seleccionar debido a que ya esta inoperativo o en mantenimiento");
+
 				}
-
-				
-
 			}
-
 		}
 
 
@@ -677,5 +685,7 @@ namespace View {
 
 
 
-	};
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
