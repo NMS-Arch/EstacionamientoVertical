@@ -17,7 +17,7 @@ namespace controllerPrincipal {
 			//cargar datos desde archivos XML
 			controller::Espacios = persistance::cargarEspacios();
 			//controller::Fallas = persistance::cargarFallas();
-			controller::Tickets = persistance::cargarTickets();
+			controller::Tickets = persistance::CargarTicketsBD();
 			controller::Reclamos = persistance::cargarReclamos();
 			controller::Clientes = persistance::cargarClientes();
 			controller::Usuarios = persistance::cargarUsuarios();

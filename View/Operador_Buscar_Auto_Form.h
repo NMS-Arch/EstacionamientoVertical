@@ -1186,7 +1186,6 @@ namespace View {
 
 
 				new_regFin->GenerarRegistroDesdeTicket(ticket_temporal, idOperario, nombreOperaro, false);
-
 				controladorFinansas->agregarRegistroFin(new_regFin);
 
 				controlador_GUI->eliminarTicket(ticket_temporal->id);

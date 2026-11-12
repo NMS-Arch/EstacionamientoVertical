@@ -87,7 +87,7 @@ namespace modelPrincipal {
 
                 //, pagadoPorCliente         // Pasado por parámetro   , Aun no se me ocurre la forma logica de este atributo o para que seria
             );
-
+			
             return nuevoRegistro;
         }
 

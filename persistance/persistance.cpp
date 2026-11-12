@@ -906,15 +906,35 @@ void persistance::GuardarRegistrosBD(RegistroFinanciero^ registro) {
 		comando->Parameters->AddWithValue("@IdTicket", registro->id_Ticket);
 		comando->Parameters->AddWithValue("@IdEspacio", registro->id_espacio);
 		comando->Parameters->AddWithValue("@IdOperario", registro->idUserOperario);
-		comando->Parameters->AddWithValue("@NombreOperario", registro->nombreUserOperario);
-		comando->Parameters->AddWithValue("@Placa", registro->placa);
-		comando->Parameters->AddWithValue("@Modelo", registro->modelo);
+		if (registro->nombreUserOperario == nullptr) {
+			comando->Parameters->AddWithValue("@NombreOperario", "-");
+		}
+		else {
+			comando->Parameters->AddWithValue("@NombreOperario", registro->nombreUserOperario);
+		}
+		if (registro->placa == nullptr) {
+			comando->Parameters->AddWithValue("@Placa", "-");
+		}
+		else {
+			comando->Parameters->AddWithValue("@Placa", registro->placa);
+		}
+		if (registro->modelo == nullptr) {
+			comando->Parameters->AddWithValue("@Modelo", "-");
+		}
+		else {
+			comando->Parameters->AddWithValue("@Modelo", registro->modelo);
+		}
 		comando->Parameters->AddWithValue("@DNI", registro->DNI);
 		comando->Parameters->AddWithValue("@Peso", registro->peso);
 		comando->Parameters->AddWithValue("@PrecioBase", registro->precioBase);
 		comando->Parameters->AddWithValue("@TiempoTotal", registro->tiempoTotal);
-		comando->Parameters->AddWithValue("@FechaIngreso", registro->fechaHoraIngreso);
-		if (registro->fechaHoraSalida == DateTime::MinValue) {
+		if (registro->fechaHoraIngreso == DateTime::MinValue) {
+			comando->Parameters->AddWithValue("@FechaIngreso", DateTime::Now);
+		}
+		else {
+			comando->Parameters->AddWithValue("@FechaIngreso", registro->fechaHoraIngreso);
+		}
+		if (registro->fechaHoraSalida == DateTime::MinValue ) {
 			comando->Parameters->AddWithValue("@FechaSalida", DBNull::Value);
 		}
 		else {
