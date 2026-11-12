@@ -42,6 +42,7 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Fecha_Salida;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora_Salida;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Operario;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Nombre_Ope;
 
 		
@@ -169,8 +170,10 @@ namespace View {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->numeric_Ganancias_En_Tiempo = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btn_Regresar_Menu_Administracion = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Ganancias_En_Tiempo))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// cb_Filtro
@@ -178,25 +181,28 @@ namespace View {
 			this->cb_Filtro->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Filtro->FormattingEnabled = true;
 			this->cb_Filtro->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"Hoy", L"Ayer", L"Esta Semana", L"Este Mes", L"Todo" });
-			this->cb_Filtro->Location = System::Drawing::Point(147, 70);
+			this->cb_Filtro->Location = System::Drawing::Point(110, 57);
+			this->cb_Filtro->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->cb_Filtro->Name = L"cb_Filtro";
-			this->cb_Filtro->Size = System::Drawing::Size(121, 24);
+			this->cb_Filtro->Size = System::Drawing::Size(92, 21);
 			this->cb_Filtro->TabIndex = 0;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(65, 73);
+			this->label1->Location = System::Drawing::Point(49, 59);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(66, 16);
+			this->label1->Size = System::Drawing::Size(53, 13);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Filtrar por ";
 			// 
 			// tb_Aplicar_Filtro
 			// 
-			this->tb_Aplicar_Filtro->Location = System::Drawing::Point(315, 62);
+			this->tb_Aplicar_Filtro->Location = System::Drawing::Point(236, 50);
+			this->tb_Aplicar_Filtro->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->tb_Aplicar_Filtro->Name = L"tb_Aplicar_Filtro";
-			this->tb_Aplicar_Filtro->Size = System::Drawing::Size(138, 38);
+			this->tb_Aplicar_Filtro->Size = System::Drawing::Size(104, 31);
 			this->tb_Aplicar_Filtro->TabIndex = 2;
 			this->tb_Aplicar_Filtro->Text = L"Aplicar Filtro";
 			this->tb_Aplicar_Filtro->UseVisualStyleBackColor = true;
@@ -211,11 +217,12 @@ namespace View {
 					this->Colum_Precio_Base, this->Colum_Tiempo_Total, this->Colum_Fecha_Entrada, this->Colum_Hora_Entrada, this->Colum_Fecha_Salida,
 					this->Colum_Hora_Salida, this->Colum_ID_Operario, this->Colum_Nombre_Ope
 			});
-			this->dataGridView1->Location = System::Drawing::Point(68, 167);
+			this->dataGridView1->Location = System::Drawing::Point(18, 180);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(1554, 352);
+			this->dataGridView1->Size = System::Drawing::Size(1166, 238);
 			this->dataGridView1->TabIndex = 3;
 			// 
 			// Colum_ID
@@ -333,36 +340,49 @@ namespace View {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(65, 542);
+			this->label2->Location = System::Drawing::Point(49, 440);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(216, 16);
+			this->label2->Size = System::Drawing::Size(170, 13);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Total Recaudado por este Periodo";
 			// 
 			// numeric_Ganancias_En_Tiempo
 			// 
 			this->numeric_Ganancias_En_Tiempo->DecimalPlaces = 2;
-			this->numeric_Ganancias_En_Tiempo->Location = System::Drawing::Point(315, 540);
+			this->numeric_Ganancias_En_Tiempo->Location = System::Drawing::Point(236, 439);
+			this->numeric_Ganancias_En_Tiempo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->numeric_Ganancias_En_Tiempo->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
 			this->numeric_Ganancias_En_Tiempo->Name = L"numeric_Ganancias_En_Tiempo";
-			this->numeric_Ganancias_En_Tiempo->Size = System::Drawing::Size(204, 22);
+			this->numeric_Ganancias_En_Tiempo->Size = System::Drawing::Size(153, 20);
 			this->numeric_Ganancias_En_Tiempo->TabIndex = 5;
 			// 
 			// btn_Regresar_Menu_Administracion
 			// 
-			this->btn_Regresar_Menu_Administracion->Location = System::Drawing::Point(1409, 40);
+			this->btn_Regresar_Menu_Administracion->Location = System::Drawing::Point(1057, 32);
+			this->btn_Regresar_Menu_Administracion->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btn_Regresar_Menu_Administracion->Name = L"btn_Regresar_Menu_Administracion";
-			this->btn_Regresar_Menu_Administracion->Size = System::Drawing::Size(169, 60);
+			this->btn_Regresar_Menu_Administracion->Size = System::Drawing::Size(127, 49);
 			this->btn_Regresar_Menu_Administracion->TabIndex = 6;
 			this->btn_Regresar_Menu_Administracion->Text = L"Regresar al Menu de Administracion";
 			this->btn_Regresar_Menu_Administracion->UseVisualStyleBackColor = true;
 			this->btn_Regresar_Menu_Administracion->Click += gcnew System::EventHandler(this, &Administracion_Reporte_Finanzas_Form::btn_Regresar_Menu_Administracion_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Location = System::Drawing::Point(427, 12);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(542, 148);
+			this->pictureBox1->TabIndex = 7;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Administracion_Reporte_Finanzas_Form::pictureBox1_Paint);
+			// 
 			// Administracion_Reporte_Finanzas_Form
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1701, 601);
+			this->ClientSize = System::Drawing::Size(1203, 488);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btn_Regresar_Menu_Administracion);
 			this->Controls->Add(this->numeric_Ganancias_En_Tiempo);
 			this->Controls->Add(this->label2);
@@ -370,12 +390,14 @@ namespace View {
 			this->Controls->Add(this->tb_Aplicar_Filtro);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->cb_Filtro);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"Administracion_Reporte_Finanzas_Form";
 			this->Text = L"Administracion_Reporte_Finanzas_Form";
 			this->Load += gcnew System::EventHandler(this, &Administracion_Reporte_Finanzas_Form::Administracion_Reporte_Finanzas_Form_Load);
 			this->VisibleChanged += gcnew System::EventHandler(this, &Administracion_Reporte_Finanzas_Form::Administracion_Reporte_Finanzas_Form_VisibleChanged);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Ganancias_En_Tiempo))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -480,5 +502,79 @@ namespace View {
 			actualizar_segun_filtro();
 		}
 
-	};
+		private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Graphics^ g = e->Graphics;
+
+			int ancho = pictureBox1->Width;
+			int alto = pictureBox1->Height;
+
+			g->DrawRectangle(Pens::Black, 0, 0, ancho - 1, alto - 1);
+			g->FillRectangle(Brushes::White, 1, 1, ancho - 2, alto - 2);
+
+			g->DrawLine(Pens::Black, (int)(ancho * .1 + 25), (int)(alto * .8), (int)(ancho * .9 + 25), (int)(alto * .8));
+			g->DrawLine(Pens::Black, (int)(ancho * .1 + 25), (int)(alto * .1), (int)(ancho * .1 + 25), (int)(alto * .8));
+
+			g->DrawString("Hora", DefaultFont, Brushes::Black, (int)(ancho * .5), (int)(alto * .9));
+
+			System::Drawing::StringFormat^ formatoVertical = gcnew System::Drawing::StringFormat();
+			formatoVertical->FormatFlags = System::Drawing::StringFormatFlags::DirectionVertical;
+			formatoVertical->Alignment = System::Drawing::StringAlignment::Center;     
+			formatoVertical->LineAlignment = System::Drawing::StringAlignment::Center; 
+
+			System::Drawing::RectangleF rectIngresos(0, (int)(alto * .1), (int)(ancho * .09), (int)(alto * .8));
+			g->DrawString("Ingreso de autos", DefaultFont, Brushes::Black, rectIngresos, formatoVertical);
+
+			for (int i = 0; i <= 12; i++) {
+				int x = (int)((ancho + 25) * .1) + (int)(((ancho) * .72) / 12.0 * i) + 50;
+				g->DrawLine(Pens::Black, x, (int)(alto * .8), x, (int)(alto * .8) + 5);
+
+				g->DrawString(Convert::ToString(i*2), DefaultFont, Brushes::Black, x - 10, (int)(alto * .8) + 5);
+			}
+
+			for (int j = 0; j <= 5; j++) {
+				int y = (int)((alto * .8) - ((alto * .7) / 5 * j));
+				g->DrawLine(Pens::Black, (int)(ancho * .1 + 25) - 5, y, (int)(ancho * .1 + 25), y);
+				g->DrawString(Convert::ToString(j), DefaultFont, Brushes::Black, (int)(ancho * .1 + 25) - 40, y - 10);
+			}
+
+			array<int>^ ingresosPorHora = gcnew array<int>(24);
+
+			for each (RegistroFinanciero ^ reg in registrosFinancieros) {
+				int hora = reg->fechaHoraIngreso.Hour;
+				int indice = hora / 1;
+				if (reg->id_espacio != 0) ingresosPorHora[indice]++;
+			}
+
+			for (int i = 0; i < 24; i++) {
+				int x = (int)((ancho + 25) * .1) + (int)(((ancho) * .72) / 12.0 * (i / 2.0)) + 50;
+				int y = (int)((alto * .8) - ((alto * .7) / 5 * ingresosPorHora[i]));
+				g->FillRectangle(Brushes::LightBlue, x - 7, y, 14, (int)((alto * .8) - y));
+			}
+
+			Console::WriteLine("1: {0}", ingresosPorHora[0]);
+			Console::WriteLine("2: {0}", ingresosPorHora[1]);
+			Console::WriteLine("3: {0}", ingresosPorHora[2]);
+			Console::WriteLine("4: {0}", ingresosPorHora[3]);
+			Console::WriteLine("5: {0}", ingresosPorHora[4]);
+			Console::WriteLine("6: {0}", ingresosPorHora[5]);
+			Console::WriteLine("7: {0}", ingresosPorHora[6]);
+			Console::WriteLine("8: {0}", ingresosPorHora[7]);
+			Console::WriteLine("9: {0}", ingresosPorHora[8]);
+			Console::WriteLine("10: {0}", ingresosPorHora[9]);
+			Console::WriteLine("11: {0}", ingresosPorHora[10]);
+			Console::WriteLine("12: {0}", ingresosPorHora[11]);
+			Console::WriteLine("13: {0}", ingresosPorHora[12]);
+			Console::WriteLine("14: {0}", ingresosPorHora[13]);
+			Console::WriteLine("15: {0}", ingresosPorHora[14]);
+			Console::WriteLine("16: {0}", ingresosPorHora[15]);
+			Console::WriteLine("17: {0}", ingresosPorHora[16]);
+			Console::WriteLine("18: {0}", ingresosPorHora[17]);
+			Console::WriteLine("19: {0}", ingresosPorHora[18]);
+			Console::WriteLine("20: {0}", ingresosPorHora[19]);
+			Console::WriteLine("21: {0}", ingresosPorHora[20]);
+			Console::WriteLine("22: {0}", ingresosPorHora[21]);
+			Console::WriteLine("23: {0}", ingresosPorHora[22]);
+			Console::WriteLine("24: {0}", ingresosPorHora[23]);
+		}
+};
 }
