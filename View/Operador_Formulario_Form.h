@@ -60,12 +60,19 @@ namespace View {
 	public:
 		Operador_Formulario_Form(Form^ entrada_loginForm, Operador^ ope_entrada)
 		{
+			operador_informacion = ope_entrada;
 			InitializeComponent();
+
+			if (this->operador_informacion != nullptr) {
+				this->numeric_ID_Operario_Cuenta->Value = Convert::ToDecimal(this->operador_informacion->Id);
+				this->numeric_ID_Operario_Cuenta->Enabled = false;
+			}
+
 			//
 			//TODO: Add the constructor code here
 			
 			this->IsMdiContainer = true;
-			operador_informacion = ope_entrada;
+			
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////
 			//  Al convertir en MDI se volvio gris y la IA dijo que colocara esto, ni idea como funcina este bloque
@@ -176,7 +183,7 @@ namespace View {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
-#pragma region Windows Form Designer generated code
+		#pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -584,6 +591,8 @@ namespace View {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario_Cuenta))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
+			
 
 		}
 

@@ -66,11 +66,29 @@ namespace View {
 	public:
 		Operador_Buscar_Auto_Form(Form^ entrada_FormularioForm,controller^ controler_GUI_entrada, ControlEspacios^ controladorEspacios_entrada, Operador^ ope_entrada)
 		{
+
+			operador_informacion = ope_entrada;
+
 			InitializeComponent();
+
+			
+
+			if (this->operador_informacion != nullptr) {
+				this->tb_Nombre_Operario->Text = operador_informacion->Nombre;
+				this->tb_Nombre_Operario->Enabled = false;
+
+				this->numeric_ID_Operario->Value = Convert::ToDecimal(operador_informacion->Id);
+				this->numeric_ID_Operario->Enabled = false;
+
+
+				nombreOperaro= operador_informacion->Nombre;
+				idOperario= operador_informacion->Id;
+			}
+
 			//
 			//TODO: Add the constructor code here
 
-			operador_informacion = ope_entrada;
+			
 
 			FormularioForm = entrada_FormularioForm;
 			controlador_GUI = controler_GUI_entrada;
@@ -94,8 +112,7 @@ namespace View {
 			controladorFinansas = gcnew ControlReporteFinanciero();
 
 
-			nombreOperaro;
-			idOperario;
+			
 
 			
 
@@ -831,6 +848,7 @@ namespace View {
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
+			
 		}
 		#pragma endregion
 		private: System::Void btn_Regresar_Formulario_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -892,8 +910,8 @@ namespace View {
 
 			tb_Tiempo_Transcurrido->Clear();
 
-			tb_Nombre_Operario->Clear();
-			numeric_ID_Operario->Value=false;
+			//tb_Nombre_Operario->Clear();
+			//numeric_ID_Operario->Value=false;
 
 		}
 

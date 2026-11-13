@@ -37,16 +37,38 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Tipo;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Fecha;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ tb_Especialidad;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Estado;
 
 
 	public:
 		Mantenimiento_Registro_Fallas_Form(Form^ entrada_MantenimientoMenuForm, controller^ controller_GUI_entrada, ControlFallas^ controlFallas_entrada, Mantenimiento^ mant_entrada)
 		{
+			mantenimiento_informacion = mant_entrada;
 			InitializeComponent();
+
+
+			if (this->mantenimiento_informacion != nullptr) {
+
+				this->tb_Nombre->Text = mantenimiento_informacion->Nombre;
+				this->tb_Nombre->Enabled = false;
+
+				this->numeric_ID_rol->Value = Convert::ToDecimal(mantenimiento_informacion->Id);
+				this->numeric_ID_rol->Enabled = false;
+
+				this->tb_Rol->Text = mantenimiento_informacion->ObtenerTipo();
+				this->tb_Rol->Enabled = false;
+
+				this->tb_Especialidad->Text = mantenimiento_informacion->EspecialidadTecnica;
+				this->tb_Especialidad->Enabled = false;
+			}
+
+
+
 			//
 			//TODO: Add the constructor code here
-			mantenimiento_informacion = mant_entrada;
+			
 			MantenimientoMenuForm = entrada_MantenimientoMenuForm;
 
 			controller_GUI = controller_GUI_entrada;
@@ -187,6 +209,8 @@ namespace View {
 			this->tb_Rol = (gcnew System::Windows::Forms::TextBox());
 			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->numeric_ID_rol = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->tb_Especialidad = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Registro))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_rol))->BeginInit();
@@ -540,7 +564,7 @@ namespace View {
 			// 
 			// tb_Rol
 			// 
-			this->tb_Rol->Location = System::Drawing::Point(356, 821);
+			this->tb_Rol->Location = System::Drawing::Point(322, 824);
 			this->tb_Rol->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_Rol->Name = L"tb_Rol";
 			this->tb_Rol->Size = System::Drawing::Size(119, 22);
@@ -549,7 +573,7 @@ namespace View {
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(552, 827);
+			this->label15->Location = System::Drawing::Point(533, 827);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(20, 16);
 			this->label15->TabIndex = 32;
@@ -557,17 +581,35 @@ namespace View {
 			// 
 			// numeric_ID_rol
 			// 
-			this->numeric_ID_rol->Location = System::Drawing::Point(605, 826);
+			this->numeric_ID_rol->Location = System::Drawing::Point(568, 825);
 			this->numeric_ID_rol->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->numeric_ID_rol->Name = L"numeric_ID_rol";
-			this->numeric_ID_rol->Size = System::Drawing::Size(120, 22);
+			this->numeric_ID_rol->Size = System::Drawing::Size(88, 22);
 			this->numeric_ID_rol->TabIndex = 33;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(729, 829);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(87, 16);
+			this->label7->TabIndex = 34;
+			this->label7->Text = L"Especialidad";
+			// 
+			// tb_Especialidad
+			// 
+			this->tb_Especialidad->Location = System::Drawing::Point(822, 827);
+			this->tb_Especialidad->Name = L"tb_Especialidad";
+			this->tb_Especialidad->Size = System::Drawing::Size(160, 22);
+			this->tb_Especialidad->TabIndex = 35;
 			// 
 			// Mantenimiento_Registro_Fallas_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1147, 895);
+			this->Controls->Add(this->tb_Especialidad);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->numeric_ID_rol);
 			this->Controls->Add(this->label15);
 			this->Controls->Add(this->tb_Rol);
