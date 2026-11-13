@@ -1,12 +1,4 @@
 
-//// Importamos TODOS los modelos necesarios
-//#include "Usuario.h"
-//#include "Cliente.h"
-//#include "Operador.h"
-//#include "Administrador.h"
-//#include "Mantenimiento.h"
-//// Importamos la Persistencia Estricta
-//#include "GestorArchivo.h"
 #pragma once
 
 using namespace System;
@@ -21,6 +13,16 @@ namespace controllerPrincipal {
     public:
         // Consultas directas a SQL Server (Stateless)
         static List<Usuario^>^ ObtenerTodos();
+        static List<Empleado^>^ ObtenerEmpleados(); // Nuevo: Retorna Operadores, Administradores y Mantenimiento
+        static List<Cliente^>^ ObtenerClientes();   // Nuevo: Retorna únicamente Clientes Externos
+
+
+        static Empleado^ ValidarCredenciales(String^ usuario, String^ password);
+
+        static void cambiarEstadoEmpleado(int idEmpleado, String^ nuevoEstado);
+
+        List<Empleado^>^ ObtenerEmpleadosActivos();
+
         static Usuario^ BuscarUsuario(int idBuscado);
         static Usuario^ BuscarAvanzado(String^ criterio, int valorBuscado);
         static List<Usuario^>^ FiltrarPorTipo(String^ tipoBuscado);

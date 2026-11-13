@@ -13,17 +13,27 @@ namespace View {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	using namespace System::Collections::Generic;
+	using namespace modelPrincipal;
+	using namespace controllerPrincipal;
+
 	/// <summary>
 	/// Summary for LoginForm
 	/// </summary>
 	public ref class LoginForm : public System::Windows::Forms::Form
 	{
+
+	private:
+
+		ControlUsuario^ controlador_Usuarios;
+		
 	public:
 		LoginForm(void)
 		{
 			InitializeComponent();
 			//
-			//TODO: Add the constructor code here
+
+			controlador_Usuarios = gcnew ControlUsuario();
 			//
 		}
 
@@ -140,44 +150,111 @@ namespace View {
 		#pragma endregion
 		private: System::Void btn_Ingresar_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			String^ usuario = tb_Usuario->Text;
+			//String^ usuario = tb_Usuario->Text;
+			//String^ contra = tb_Clave->Text;
+
+
+			//// Rol: OPERADOR 
+			//if (usuario == "operador" && contra == "ope123") {
+
+			//	this->Hide();
+
+			//	Operador_Formulario_Form^ FormularioForm = gcnew Operador_Formulario_Form(this);
+			//	FormularioForm->Show();
+
+
+			//}
+			//// Rol: ADMINISTRADOR 
+			//else if (usuario == "admin" && contra == "admin123") {
+
+			//	this->Hide();
+
+			//	Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this);
+			//	MenuAdminForm->Show();
+
+			//}
+			//// Rol: MECANICO /MANTENIMIENTO 
+			//else if (usuario == "mecanico" && contra == "mec123") {
+
+			//	this->Hide();
+
+			//	Mantenimiento_Menu_Form^ MantenimientoMenuForm = gcnew Mantenimiento_Menu_Form(this);
+			//	MantenimientoMenuForm->Show();
+
+			//	
+			//}
+			//else {
+			//	MessageBox::Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			//}
+
+
+
+			// 1. Validación de frontera en la Vista (Evitar viajes innecesarios a SQL Server)
+			String^ usuario = tb_Usuario->Text->Trim();
 			String^ contra = tb_Clave->Text;
 
-
-			// Rol: OPERADOR 
-			if (usuario == "operador" && contra == "ope123") {
-
-				this->Hide();
-
-				Operador_Formulario_Form^ FormularioForm = gcnew Operador_Formulario_Form(this);
-				FormularioForm->Show();
-
-
+			if (String::IsNullOrWhiteSpace(usuario) || String::IsNullOrWhiteSpace(contra)) {
+				MessageBox::Show("Por favor, ingrese su nombre de usuario y contraseña.", "Campos Vacíos", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
 			}
-			// Rol: ADMINISTRADOR 
-			else if (usuario == "admin" && contra == "admin123") {
 
-				this->Hide();
+			try {
+				// 2. Delegamos la validación de credenciales al Controlador (consulta SQL Server)
+				Empleado^ empleadoLogueado = controlador_Usuarios->ValidarCredenciales(usuario, contra);
 
-				Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this);
-				MenuAdminForm->Show();
+				if (empleadoLogueado != nullptr) {
+					// Limpiamos las cajas de texto por seguridad antes de ocultar el Login
+					tb_Usuario->Clear();
+					tb_Clave->Clear();
 
+					// 3. Despacho Dinámico Puro: Le preguntamos al objeto quién es en tiempo de ejecución
+					String^ rol = empleadoLogueado->ObtenerTipo();
+
+					if (rol == "Operador") {
+						// Opcional: Si necesitas leer su estación asignada antes de abrir el formulario
+						Operador^ op = dynamic_cast<Operador^>(empleadoLogueado);
+						MessageBox::Show("Bienvenido Operador " + op->Nombre + "\nEstacion: " + op->EstacionAsignada, "Acceso Concedido", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+						this->Hide();
+						Operador_Formulario_Form^ FormularioForm = gcnew Operador_Formulario_Form(this);
+						FormularioForm->Show();
+					}
+					else if (rol == "Administrador") {
+						Administrador^ admin = dynamic_cast<Administrador^>(empleadoLogueado);
+						MessageBox::Show("Bienvenido Administrador " + admin->Nombre + "\nNivel: " + admin->NivelAcceso, "Acceso Concedido", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+						this->Hide();
+						Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this);
+						MenuAdminForm->Show();
+					}
+					else if (rol == "Mantenimiento") {
+						Mantenimiento^ mant = dynamic_cast<Mantenimiento^>(empleadoLogueado);
+						MessageBox::Show("Bienvenido Tecnico " + mant->Nombre + "\nEspecialidad: " + mant->EspecialidadTecnica, "Acceso Concedido", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+						this->Hide();
+						Mantenimiento_Menu_Form^ MantenimientoMenuForm = gcnew Mantenimiento_Menu_Form(this);
+						MantenimientoMenuForm->Show();
+					}
+				}
+				else {
+					MessageBox::Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					tb_Clave->Clear();
+					tb_Clave->Focus();
+				}
 			}
-			// Rol: MECANICO /MANTENIMIENTO 
-			else if (usuario == "mecanico" && contra == "mec123") {
-
-				this->Hide();
-
-				Mantenimiento_Menu_Form^ MantenimientoMenuForm = gcnew Mantenimiento_Menu_Form(this);
-				MantenimientoMenuForm->Show();
-
-				
+			catch (Exception^ ex) {
+				// Captura excepciones de negocio (ej. usuario Inactivo) o errores de conexión a SQL Server
+				MessageBox::Show(ex->Message, "Aviso del Sistema", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			}
-			else {
-				MessageBox::Show("Usuario o contraseña incorrectos.", "Error de Acceso", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			}
+			
+
+
 
 
 		}
+
+
+		//List<Empleado^>^ lista_usuarios = controlador_Usuarios->ObtenerEmpleados();
+
 };
 }

@@ -7,6 +7,108 @@ List<Usuario^>^ controllerPrincipal::ControlUsuario::ObtenerTodos() {
     return persistance::CargarUsuariosBD();
 }
 
+
+
+List<Empleado^>^ controllerPrincipal::ControlUsuario::ObtenerEmpleados() {
+    List<Empleado^>^ listaEmpleados = gcnew List<Empleado^>();
+    List<Usuario^>^ todos = ObtenerTodos();
+
+    for each (Usuario ^ usu in todos) {
+        // Inspección polimórfica: Si 'usu' es Operador, Administrador o Mantenimiento,
+        // el downcast a la clase base intermedia Empleado^ tendrá éxito.
+        Empleado^ emp = dynamic_cast<Empleado^>(usu);
+        if (emp != nullptr) {
+            listaEmpleados->Add(emp);
+        }
+    }
+
+    return listaEmpleados;
+}
+
+List<Cliente^>^ controllerPrincipal::ControlUsuario::ObtenerClientes() {
+    List<Cliente^>^ listaClientes = gcnew List<Cliente^>();
+    List<Usuario^>^ todos = ObtenerTodos();
+
+    for each (Usuario ^ usu in todos) {
+        // Inspección polimórfica: Filtra y convierte únicamente las instancias de Cliente^
+        Cliente^ cli = dynamic_cast<Cliente^>(usu);
+        if (cli != nullptr) {
+            listaClientes->Add(cli);
+        }
+    }
+
+    return listaClientes;
+}
+
+
+
+
+
+Empleado^ controllerPrincipal::ControlUsuario::ValidarCredenciales(String^ usuario, String^ password) {
+    if (String::IsNullOrWhiteSpace(usuario) || String::IsNullOrWhiteSpace(password)) {
+        return nullptr;
+    }
+
+    // Traemos únicamente a los Empleados (Operadores, Administradores y Mantenimiento) desde SQL Server
+    List<Empleado^>^ empleados = ObtenerEmpleados();
+
+    for each (Empleado ^ emp in empleados) {
+        // Verificamos coincidencia exacta de credenciales
+        if (emp->NombreUsuario == usuario && emp->PasswordUsuario == password) {
+
+            // Regla de Negocio adicional: Un empleado Inactivo o Suspendido no puede entrar al sistema
+            // Validación de Estado de Cuenta
+            if (emp->Estado == "De Baja") {
+                throw gcnew Exception("Acceso suspendido: El usuario '" + usuario + "' se encuentra actualmente De Baja.");
+            }
+            else if (emp->Estado == "Despedido") {
+                throw gcnew Exception("Acceso denegado: Esta cuenta ha sido deshabilitada permanentemente.");
+            }
+            else if (emp->Estado != "Activo") {
+                throw gcnew Exception("Acceso denegado: Estado de usuario no válido (" + emp->Estado + ").");
+            }
+
+            return emp; // Retorna el objeto polimórfico real (Operador^, Administrador^ o Mantenimiento^)
+        }
+    }
+
+    return nullptr; // Credenciales no coinciden con ningún registro en SQL Server
+}
+
+
+
+
+void controllerPrincipal::ControlUsuario::cambiarEstadoEmpleado(int idEmpleado, String^ nuevoEstado) {
+    Usuario^ usu = BuscarUsuario(idEmpleado);
+    Empleado^ emp = dynamic_cast<Empleado^>(usu);
+
+    if (emp == nullptr) {
+        throw gcnew Exception("El ID seleccionado no corresponde a un empleado.");
+    }
+
+    // Mutamos el estado en memoria y sincronizamos inmediatamente en SQL Server
+    emp->Estado = nuevoEstado;
+    persistance::ActualizarUsuariosBD(emp);
+}
+
+
+
+
+List<Empleado^>^ controllerPrincipal::ControlUsuario::ObtenerEmpleadosActivos() {
+    List<Empleado^>^ activos = gcnew List<Empleado^>();
+    for each (Empleado^ emp in ObtenerEmpleados()) {
+        if (emp->Estado == "Activo") {
+            activos->Add(emp);
+        }
+    }
+    return activos;
+}
+
+
+
+
+
+
 Usuario^ controllerPrincipal::ControlUsuario::BuscarUsuario(int idBuscado) {
     List<Usuario^>^ actuales = ObtenerTodos();
     for each (Usuario ^ usu in actuales) {

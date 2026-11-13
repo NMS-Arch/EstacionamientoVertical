@@ -378,7 +378,7 @@ namespace View {
 			// 
 			this->cb_Estado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Estado->FormattingEnabled = true;
-			this->cb_Estado->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"Trabajando", L"Descansando", L"De Baja", L"Despedido" });
+			this->cb_Estado->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Activo", L"De Baja", L"Despedido" });
 			this->cb_Estado->Location = System::Drawing::Point(172, 381);
 			this->cb_Estado->Name = L"cb_Estado";
 			this->cb_Estado->Size = System::Drawing::Size(130, 24);
