@@ -21,6 +21,7 @@ namespace View {
 
 	private:
 		Form^ MantenimientoMenuForm;
+		Mantenimiento^ mantenimiento_informacion;
 
 
 		controller^ controller_GUI;
@@ -40,11 +41,12 @@ namespace View {
 
 
 	public:
-		Mantenimiento_Registro_Fallas_Form(Form^ entrada_MantenimientoMenuForm, controller^ controller_GUI_entrada, ControlFallas^ controlFallas_entrada)
+		Mantenimiento_Registro_Fallas_Form(Form^ entrada_MantenimientoMenuForm, controller^ controller_GUI_entrada, ControlFallas^ controlFallas_entrada, Mantenimiento^ mant_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			mantenimiento_informacion = mant_entrada;
 			MantenimientoMenuForm = entrada_MantenimientoMenuForm;
 
 			controller_GUI = controller_GUI_entrada;

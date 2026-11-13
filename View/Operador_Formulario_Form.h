@@ -26,6 +26,8 @@ namespace View {
 	private:
 		//Padre
 		Form^ loginForm;
+		Operador^ operador_informacion;
+
 		//hijos
 		Operador_Registrar_Falla_Form^ RegistrarFallaForm;
 		Operador_Buscar_Auto_Form^ BuscarVehiculoForm;
@@ -56,14 +58,14 @@ namespace View {
 
 
 	public:
-		Operador_Formulario_Form(Form^ entrada_loginForm)
+		Operador_Formulario_Form(Form^ entrada_loginForm, Operador^ ope_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			
 			this->IsMdiContainer = true;
-
+			operador_informacion = ope_entrada;
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////
 			//  Al convertir en MDI se volvio gris y la IA dijo que colocara esto, ni idea como funcina este bloque
@@ -93,8 +95,8 @@ namespace View {
 			SeLogroBajarPlataforma=false;
 
 
-			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this, controlador_GUI,controladorEspacios);
-			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this,controlador_GUI,controladorEspacios);
+			RegistrarFallaForm = gcnew Operador_Registrar_Falla_Form(this, controlador_GUI,controladorEspacios,operador_informacion);
+			BuscarVehiculoForm = gcnew Operador_Buscar_Auto_Form(this,controlador_GUI,controladorEspacios,operador_informacion);
 
 
 			RegistrarTicketForm = nullptr;
@@ -623,7 +625,7 @@ namespace View {
 
 			if (RegistrarTicketForm == nullptr || RegistrarTicketForm->IsDisposed) {
 
-				RegistrarTicketForm = gcnew Operador_Registrar_Ticket_Form(this, controlador_GUI, controladorEspacios,peso_vehiculo, ID_espacio_vehiculo, precio_hora);
+				RegistrarTicketForm = gcnew Operador_Registrar_Ticket_Form(this, controlador_GUI, controladorEspacios,peso_vehiculo, ID_espacio_vehiculo, precio_hora, operador_informacion);
 			}
 				
 			RegistrarTicketForm->Actualizar_datos(peso_vehiculo, ID_espacio_vehiculo, precio_hora);
@@ -711,31 +713,8 @@ namespace View {
 					valueDNI = "No introducido";
 				}
 
-
-				//dataGridView1->Rows->Add(
-				//	ticket->id,
-				//	ticket->id_espacio,
-				//	ticket->placa,
-				//	ticket->modeloAuto,
-				//	ticket->peso,
-				//	ticket->precio,
-				//	ticket->fechaIngreso.ToString("HH:mm:ss"),
-				//	valueDNI
-				//);
-
 				int indiceFila = dataGridView1->Rows->Add();
 				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
-
-
-				//Colum_ID_Ticket;
-				//Colum_Espacio;
-				//Colum_Placa;
-				//Colum_Modelo;
-				//Colum_Peso;
-				//Colum_Precio_Base;
-				//Colum_Hora_Entrada;
-				//Colum_DNI;
-				//Colum_Codigo_B;
 
 
 				fila->Cells["Colum_ID_Ticket"]->Value = ticket->id;

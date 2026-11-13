@@ -20,6 +20,7 @@ namespace View {
 	{
 	private:
 		Form^ FormularioForm;
+		Operador^ operador_informacion;
 
 		double peso_vehiculo;
 		int ID_espacio_vehiculo;
@@ -42,11 +43,12 @@ namespace View {
 		ControlEspacios^ controladorEspacios;
 
 	public:
-		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, controller^ controlador,ControlEspacios^ controladorEspacios_entrada, double peso, int ID_espacio, double precio)
+		Operador_Registrar_Ticket_Form(Form^ entrada_FormularioForm, controller^ controlador,ControlEspacios^ controladorEspacios_entrada, double peso, int ID_espacio, double precio, Operador^ ope_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			operador_informacion = ope_entrada;
 
 			peso_vehiculo = peso;
 			ID_espacio_vehiculo = ID_espacio;

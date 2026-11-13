@@ -21,6 +21,8 @@ namespace View {
 
 	private:
 		Form^ FormularioForm;
+		Operador^ operador_informacion;
+
 		controller^ controlador_GUI;
 		ControlEspacios^ controladorEspacios;
 		TicketAuto^ ticket_temporal;
@@ -62,11 +64,14 @@ namespace View {
 
 
 	public:
-		Operador_Buscar_Auto_Form(Form^ entrada_FormularioForm,controller^ controler_GUI_entrada, ControlEspacios^ controladorEspacios_entrada)
+		Operador_Buscar_Auto_Form(Form^ entrada_FormularioForm,controller^ controler_GUI_entrada, ControlEspacios^ controladorEspacios_entrada, Operador^ ope_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+
+			operador_informacion = ope_entrada;
+
 			FormularioForm = entrada_FormularioForm;
 			controlador_GUI = controler_GUI_entrada;
 			controladorEspacios = controladorEspacios_entrada;

@@ -21,6 +21,10 @@ namespace View {
 	{
 	private:
 		Form^ MenuAdminForm;
+
+		Administrador^ administrador_informacion;
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Rol;
@@ -46,11 +50,13 @@ namespace View {
 		   int id_consultado;
 
 	public:
-		Administracion_Gestion_Usuarios_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas, ControlUsuario^ controladorUsuarios_entrada)
+		Administracion_Gestion_Usuarios_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas, ControlUsuario^ controladorUsuarios_entrada, Administrador^ admin_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			administrador_informacion = admin_entrada;
+
 			MenuAdminForm = entrada_MenuAdminForm;
 			controladorFinanzas = entrada_ControladorFinanzas;
 			controladorUsuarios = controladorUsuarios_entrada;

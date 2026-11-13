@@ -22,6 +22,8 @@ namespace View {
 	private:
 
 		Form^ FormularioForm;
+		Operador^ operador_informacion;
+
 		controller^ controlador_GUI;
 		ControlEspacios^ controladorEspacios;
 		ControlFallas^ controladorFallas;
@@ -33,12 +35,13 @@ namespace View {
 		String^ numID_Espacio;
 
 	public:
-		Operador_Registrar_Falla_Form(Form^ entrada_FormularioForm, controller^ controlador_entrada_GUI, ControlEspacios^ controladorEspacios_entrada)
+		Operador_Registrar_Falla_Form(Form^ entrada_FormularioForm, controller^ controlador_entrada_GUI, ControlEspacios^ controladorEspacios_entrada, Operador^ ope_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			FormularioForm = entrada_FormularioForm;
+			operador_informacion = ope_entrada;
 
 			controlador_GUI = controlador_entrada_GUI;
 			controladorEspacios = controladorEspacios_entrada;

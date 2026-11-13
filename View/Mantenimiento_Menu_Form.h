@@ -18,6 +18,9 @@ namespace View {
 	{
 	private:
 		Form^ loginForm;
+
+		Mantenimiento^ mantenimiento_informacion;
+
 		controller^ controller_GUI;
 		ControlEspacios^ controlEspacios;
 		ControlFallas^ controlFallas;
@@ -28,18 +31,21 @@ namespace View {
 		bool actualizandoUI = false; // Bandera para evitar que los eventos salten al iniciar
 
 	public:
-		Mantenimiento_Menu_Form(Form^ entrada_loginForm)
+		Mantenimiento_Menu_Form(Form^ entrada_loginForm, Mantenimiento^ mantenimiento_entrada)
 		{
 			InitializeComponent();
 
 			// Inicializamos TUS clases de control
+
+			mantenimiento_informacion = mantenimiento_entrada;
+
 			controller_GUI = gcnew controller();
 			controlEspacios = gcnew ControlEspacios();
 			controlFallas = gcnew ControlFallas();
 
 			loginForm = entrada_loginForm;
-			MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this, controller_GUI, controlEspacios);
-			RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this, controller_GUI, controlFallas);
+			MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this, controller_GUI, controlEspacios, mantenimiento_informacion);
+			RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this, controller_GUI, controlFallas, mantenimiento_informacion);
 
 			actualizarUI();
 		}

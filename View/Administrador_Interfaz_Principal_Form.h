@@ -24,7 +24,10 @@ namespace View {
 	{
 	private:
 		//Padre
-		Form^ loginForm;  
+		Form^ loginForm;
+		Administrador^ administrador_informacion;
+
+
 		//Hijos
 		Administracion_Reporte_Finanzas_Form^ AdminReportesFinanForm;
 		Administracion_Gestion_Usuarios_Form^ AdminGestionUsuarios;
@@ -45,18 +48,19 @@ namespace View {
 		
 
 	public:
-		Administrador_Interfaz_Principal_Form(Form^ entrada_loginForm)
+		Administrador_Interfaz_Principal_Form(Form^ entrada_loginForm, Administrador^ admin_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			loginForm = entrada_loginForm;
+			administrador_informacion = admin_entrada;
 
 			controladorFinanzas = gcnew ControlReporteFinanciero();
 
-			AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this, controladorFinanzas);
-			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this, controladorFinanzas, controladorUsuarios);
-			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this, controladorFinanzas);
+			AdminReportesFinanForm = gcnew Administracion_Reporte_Finanzas_Form(this, controladorFinanzas,administrador_informacion);
+			AdminGestionUsuarios = gcnew Administracion_Gestion_Usuarios_Form(this, controladorFinanzas, controladorUsuarios,administrador_informacion);
+			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this, controladorFinanzas,administrador_informacion);
 
 
 			//

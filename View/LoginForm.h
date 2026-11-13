@@ -216,7 +216,7 @@ namespace View {
 						MessageBox::Show("Bienvenido Operador " + op->Nombre + "\nEstacion: " + op->EstacionAsignada, "Acceso Concedido", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 						this->Hide();
-						Operador_Formulario_Form^ FormularioForm = gcnew Operador_Formulario_Form(this);
+						Operador_Formulario_Form^ FormularioForm = gcnew Operador_Formulario_Form(this, op);
 						FormularioForm->Show();
 					}
 					else if (rol == "Administrador") {
@@ -224,7 +224,7 @@ namespace View {
 						MessageBox::Show("Bienvenido Administrador " + admin->Nombre + "\nNivel: " + admin->NivelAcceso, "Acceso Concedido", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 						this->Hide();
-						Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this);
+						Administrador_Interfaz_Principal_Form^ MenuAdminForm = gcnew Administrador_Interfaz_Principal_Form(this, admin);
 						MenuAdminForm->Show();
 					}
 					else if (rol == "Mantenimiento") {
@@ -232,7 +232,7 @@ namespace View {
 						MessageBox::Show("Bienvenido Tecnico " + mant->Nombre + "\nEspecialidad: " + mant->EspecialidadTecnica, "Acceso Concedido", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
 						this->Hide();
-						Mantenimiento_Menu_Form^ MantenimientoMenuForm = gcnew Mantenimiento_Menu_Form(this);
+						Mantenimiento_Menu_Form^ MantenimientoMenuForm = gcnew Mantenimiento_Menu_Form(this, mant);
 						MantenimientoMenuForm->Show();
 					}
 				}

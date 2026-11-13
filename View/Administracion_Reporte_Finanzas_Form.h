@@ -20,6 +20,7 @@ namespace View {
 	{
 	private:
 		Form^ MenuAdminForm;
+		Administrador^ administrador_informacion;
 
 		ControlReporteFinanciero^ controladorFinanzas;
 
@@ -47,12 +48,14 @@ namespace View {
 		
 
 	public:
-		Administracion_Reporte_Finanzas_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas)
+		Administracion_Reporte_Finanzas_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas, Administrador^ admin_entrada)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			MenuAdminForm = entrada_MenuAdminForm;
+			administrador_informacion = admin_entrada;
+			
 			controladorFinanzas = entrada_ControladorFinanzas;
 
 
