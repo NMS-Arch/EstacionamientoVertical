@@ -5,60 +5,64 @@
 //using namespace System;
 //using namespace System::Collections::Generic;
 
-
+//using namespace controllerPrincipal;
 //ESPACIO
 
-void controllerPrincipal::controller::agregarEspacio(bool ocupado, bool est, bool estaEnSuelo) {
-	int maxId = 0;
-	for each (Espacio ^ esp in Espacios) {
-		if (esp->id > maxId) {
-			maxId = esp->id;
-		}
-	}
-	int id = maxId + 1;
 
-	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est,estaEnSuelo);
-	Espacios->Add(nEspacio);
-}
-bool controllerPrincipal::controller::eliminarEspacio(int id) {
-	for (int i = 0; i < Espacios->Count; i++) {
-		if (Espacios[i]->id == id) {
-			Espacios->RemoveAt(i);
-			return true;
-		}
-	}
-	return false;
-}
-bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, bool est, bool estaEnSuelo) {
-	for (int i = 0; i < Espacios->Count; i++) {
-		if (Espacios[i]->id == id) {
-			Espacios[i]->ocupado = ocupado;
-			Espacios[i]->estado = est;
-			Espacios[i]->estaEnSuelo = estaEnSuelo;
+//
+//void controllerPrincipal::controller::agregarEspacio(bool ocupado, bool est, bool estaEnSuelo) {
+//	int maxId = 0;
+//	for each (Espacio ^ esp in Espacios) {
+//		if (esp->id > maxId) {
+//			maxId = esp->id;
+//		}
+//	}
+//	int id = maxId + 1;
+//
+//	Espacio^ nEspacio = gcnew Espacio(id, ocupado, est,estaEnSuelo);
+//	Espacios->Add(nEspacio);
+//}
+//bool controllerPrincipal::controller::eliminarEspacio(int id) {
+//	for (int i = 0; i < Espacios->Count; i++) {
+//		if (Espacios[i]->id == id) {
+//			Espacios->RemoveAt(i);
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+//bool controllerPrincipal::controller::modificarEspacio(int id, bool ocupado, bool est, bool estaEnSuelo) {
+//	for (int i = 0; i < Espacios->Count; i++) {
+//		if (Espacios[i]->id == id) {
+//			Espacios[i]->ocupado = ocupado;
+//			Espacios[i]->estado = est;
+//			Espacios[i]->estaEnSuelo = estaEnSuelo;
+//
+//			return true;
+//		}
+//	}
+//
+//	return false;
+//}
 
-			return true;
-		}
-	}
-
-	return false;
-}
-Espacio^ controllerPrincipal::controller::buscarEspacio(int id) {
-	for (int i = 0; i < Espacios->Count; i++) {
-		if (Espacios[i]->id == id) {
-			Espacio^ esp = Espacios[i];
-			return esp;
-		}
-	}
-	return nullptr;
-}
-
-void controllerPrincipal::controller::guardarEspacios() {
-	persistance::guardarEspacios(controller::Espacios);
-}
-
-List<Espacio^>^ controllerPrincipal::controller::cargarEspacios() {
-	return persistance::cargarEspacios();
-}
+//
+//Espacio^ controllerPrincipal::controller::buscarEspacio(int id) {
+//	for (int i = 0; i < Espacios->Count; i++) {
+//		if (Espacios[i]->id == id) {
+//			Espacio^ esp = Espacios[i];
+//			return esp;
+//		}
+//	}
+//	return nullptr;
+//}
+//
+//void controllerPrincipal::controller::guardarEspacios() {
+//	persistance::guardarEspacios(controller::Espacios);
+//}
+//
+//List<Espacio^>^ controllerPrincipal::controller::cargarEspacios() {
+//	return persistance::cargarEspacios();
+//}
 
 
 //EMPLEADOS	
@@ -252,99 +256,94 @@ List<Espacio^>^ controllerPrincipal::controller::cargarEspacios() {
 ///		TICKETS		////
 ////////////////////////
 
+
+
+
 void controllerPrincipal::controller::agregarTicket(TicketAuto^ ticket_entrada) {
-
-	int maxId = 0;
-	for each (TicketAuto^ ticket in Tickets) {
-
-		if (ticket->id > maxId) {
-			maxId = ticket->id;
-		}
-	}
 	
-	ticket_entrada->id = maxId + 1;
-
-	Tickets->Add(ticket_entrada);
-
-	persistance::guardarTickets(Tickets);
+	persistance::GuardarTicketsBD(ticket_entrada); // Guarda e inyecta el ID generado por SQL Server
+	
 }
 
 void controllerPrincipal::controller::eliminarTicket(int id_ticket) {
+
+	List<TicketAuto^>^ Tickets = persistance::CargarTicketsBD();
+
 	for (int i = 0; i < Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
 			Tickets->RemoveAt(i);
-			persistance::guardarTickets(Tickets);
+			persistance::EliminarTicketsBD(id_ticket);
+			return;
 		}
 	}
-
 }
 
 void controllerPrincipal::controller::modificarTicket(int id_ticket, TicketAuto^ ticket_modificado) {
 	
-	for (int i = 0; i < Tickets->Count; i++) {
+	List<TicketAuto^>^ Tickets = persistance::CargarTicketsBD();
 
+	for (int i = 0; i < Tickets->Count; i++) {
 		if (Tickets[i]->id == id_ticket) {
-			
 			Tickets[i] = ticket_modificado;
-			persistance::guardarTickets(Tickets);
+			persistance::ActualizarTicketsBD(ticket_modificado);
+			return;
 		}
 	}
-
 }
+
+
 
 TicketAuto^ controllerPrincipal::controller::buscarTicket(int id_ticket) {
-	for (int i = 0; i < controller::Tickets->Count; i++) {
-		if (Tickets[i]->id == id_ticket) {
-			return Tickets[i];
-			//persistance::guardarTickets(Tickets);
-		}
+	
+	List<TicketAuto^>^ Tickets = persistance::CargarTicketsBD();
+	
+	for (int i = 0; i < Tickets->Count; i++) {
+		if (Tickets[i]->id == id_ticket) return Tickets[i];
 	}
 	return nullptr;
 }
-
 
 TicketAuto^ controllerPrincipal::controller::buscarTicket_codigo(String^ codigo_entrada) {
-	for (int i = 0; i < controller::Tickets->Count; i++) {
-		if (Tickets[i]->codigoBarras == codigo_entrada) {
-			return Tickets[i];
-			//persistance::guardarTickets(Tickets);
-		}
+	
+	List<TicketAuto^>^ Tickets = persistance::CargarTicketsBD();
+	
+	for (int i = 0; i < Tickets->Count; i++) {
+		if (Tickets[i]->codigoBarras == codigo_entrada) return Tickets[i];
 	}
 	return nullptr;
 }
+
 TicketAuto^ controllerPrincipal::controller::buscarTicket_dni(int dni_entrada) {
-	for (int i = 0; i < controller::Tickets->Count; i++) {
-		if (Tickets[i]->dni == dni_entrada) {
-			return Tickets[i];
-			//persistance::guardarTickets(Tickets);
-		}
+	
+	List<TicketAuto^>^ Tickets = persistance::CargarTicketsBD();
+	
+	for (int i = 0; i < Tickets->Count; i++) {
+		if (Tickets[i]->dni == dni_entrada) return Tickets[i];
 	}
 	return nullptr;
 }
+
 TicketAuto^ controllerPrincipal::controller::buscarTicket_placa(String^ placa_entrada) {
-	for (int i = 0; i < controller::Tickets->Count; i++) {
-		if (Tickets[i]->placa== placa_entrada) {
-			return Tickets[i];
-			//persistance::guardarTickets(Tickets);
-		}
+	
+	List<TicketAuto^>^ Tickets = persistance::CargarTicketsBD();
+	
+	for (int i = 0; i < Tickets->Count; i++) {
+		if (Tickets[i]->placa == placa_entrada) return Tickets[i];
 	}
 	return nullptr;
-}
-
-
-
-List<TicketAuto^>^ controllerPrincipal::controller::listarTickets() {
-	return Tickets;
-}
-
-
-void controllerPrincipal::controller::guardarTickets() {
-	persistance::guardarTickets(controller::Tickets);
 }
 
 List<TicketAuto^>^ controllerPrincipal::controller::cargarTickets() {
-	return persistance::cargarTickets();
+	return persistance::CargarTicketsBD();
 }
+
+List<TicketAuto^>^ controllerPrincipal::controller::listarTickets() {
+	return persistance::CargarTicketsBD();;
+}
+
+
+
+
 
 
 //RECLAMOS

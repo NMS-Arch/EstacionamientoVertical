@@ -1,4 +1,4 @@
-#pragma once
+
 //// Importamos TODOS los modelos necesarios
 //#include "Usuario.h"
 //#include "Cliente.h"
@@ -7,6 +7,7 @@
 //#include "Mantenimiento.h"
 //// Importamos la Persistencia Estricta
 //#include "GestorArchivo.h"
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -17,39 +18,19 @@ using namespace System::Xml;
 namespace controllerPrincipal {
 
     public ref class ControlUsuario {
-    private:
-        // Nuestra base de datos en RAM
-        static List<Usuario^>^ listaUsuarios;
-
     public:
-        // Constructor: Cumple el requisito de cargar automáticamente al iniciar
-        static ControlUsuario() {
-            // "Al iniciar la aplicación, cargar automáticamente..." 
-            listaUsuarios = persistance::cargarUsuarios();
-
-            // Si el archivo no existía, aseguramos que la lista no sea nula
-            if (listaUsuarios == nullptr) {
-                listaUsuarios = gcnew List<Usuario^>();
-            }
-        }
-
-        // Método de Consulta General
+        // Consultas directas a SQL Server (Stateless)
         static List<Usuario^>^ ObtenerTodos();
+        static Usuario^ BuscarUsuario(int idBuscado);
+        static Usuario^ BuscarAvanzado(String^ criterio, int valorBuscado);
+        static List<Usuario^>^ FiltrarPorTipo(String^ tipoBuscado);
 
-        // 1. AGREGAR (Recibe el objeto ya instanciado desde la GUI polimórficamente)
+        // Operaciones CRUD con reglas de negocio
         static void RegistrarUsuario(Usuario^ nuevoUsuario);
+        static bool ModificarUsuario(int idOriginal, Usuario^ datosNuevos);
+        static bool EliminarUsuario(int idBuscado);
 
-        // 2. BUSCAR
-        static Usuario^ BuscarUsuario(int dniBuscado);
-
-        // 3. ELIMINAR
-        static bool EliminarUsuario(int dni);
-
-        // 4. MODIFICAR (Recibe el DNI original y el objeto con los nuevos datos)
-        static bool ModificarUsuario(int dniOriginal, Usuario^ datosNuevos);
-
-        List<Usuario^>^ FiltrarPorTipo(String^ tipoBuscado);
-
-        Usuario^ BuscarAvanzado(String^ criterio, int valorBuscado);
+        // Método Mutador de Negocio (Ej. Fidelización de Clientes o Suspensión de Empleados)
+        static void SumarPuntosCliente(int idCliente, int puntosGanados);
     };
 }

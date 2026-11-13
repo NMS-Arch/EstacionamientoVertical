@@ -20,11 +20,11 @@ namespace View {
 		PRUEBA(void)
 		{
 			InitializeComponent();
-			controller::Espacios = controller::cargarEspacios();
+			//controller::Espacios = controller::cargarEspacios();
 			//controller::Usuarios = controller::cargarUsuarios();
 			//controller::Clientes = controller::cargarClientes();
 			//controller::Fallas = controller::cargarFallas();
-			controller::Tickets = controller::cargarTickets();
+			//controller::Tickets = controller::cargarTickets();
 			//
 			//TODO: agregar código de constructor aquí
 			//

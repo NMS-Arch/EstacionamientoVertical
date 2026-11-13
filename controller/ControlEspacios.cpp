@@ -3,29 +3,44 @@
 
 
 
-void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos(int numeroEspacios) {
-    
-    for (int i = 1; i <= numeroEspacios; i++) {
+void controllerPrincipal::ControlEspacios::InicilizarEspaciosFisicos(int totalEspacios) {
+    List<Espacio^>^ espaciosExistentes = ObtenerTodosEspacios();
 
-        listaEspacios->Add(gcnew Espacio(i, false,Operativo,false));
+    for (int i = 1; i <= totalEspacios; i++) {
+        bool yaExiste = false;
+        for each (Espacio ^ esp in espaciosExistentes) {
+            if (esp->id == i) {
+                yaExiste = true;
+                break;
+            }
+        }
+
+        // Solo insertamos en SQL si el ID físico aún no existe (evita violación de Primary Key)
+        if (!yaExiste) {
+            Espacio^ nuevo = gcnew Espacio(i, false, Operativo, false);
+            persistance::GuardarEspaciosBD(nuevo);
+        }
     }
-
-    persistance::guardarEspacios(listaEspacios);
 }
 
+
+Espacio^ controllerPrincipal::ControlEspacios::BuscarEspacio(int idBuscado) {
+    List<Espacio^>^ espacios = ObtenerTodosEspacios();
+    for each (Espacio ^ esp in espacios) {
+        if (esp->id == idBuscado) {
+            return esp;
+        }
+    }
+    return nullptr;
+}
 
 
 void controllerPrincipal::ControlEspacios::OcuparEspacio(int idBuscado) {
 
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->id == idBuscado) {
-            
-            esp->ocupado = true; 
-
-            
-            persistance::guardarEspacios(listaEspacios);
-            return;
-        }
+    Espacio^ esp = BuscarEspacio(idBuscado);
+    if (esp != nullptr) {
+        esp->ocupado = true;
+        persistance::ActualizarEspaciosBD(esp);
     }
 
     //throw gcnew Exception("No hay espacios disponibles");
@@ -34,15 +49,10 @@ void controllerPrincipal::ControlEspacios::OcuparEspacio(int idBuscado) {
 
 void controllerPrincipal::ControlEspacios::DesocuparEspacio(int idBuscado) {
 
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->id == idBuscado) {
-
-            esp->ocupado = false;
-
-
-            persistance::guardarEspacios(listaEspacios);
-            return;
-        }
+    Espacio^ esp = BuscarEspacio(idBuscado);
+    if (esp != nullptr) {
+        esp->ocupado = false;
+        persistance::ActualizarEspaciosBD(esp);
     }
 
     //throw gcnew Exception("No hay espacios disponibles");
@@ -54,8 +64,10 @@ void controllerPrincipal::ControlEspacios::DesocuparEspacio(int idBuscado) {
 List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles() {
 
     List<Espacio^>^ libres = gcnew List<Espacio^>();
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->ocupado == false && esp->estado == Operativo ) {
+    List<Espacio^>^ todos = ObtenerTodosEspacios();
+
+    for each (Espacio ^ esp in todos) {
+        if (esp->ocupado == false && esp->estado == Operativo) {
             libres->Add(esp);
         }
     }
@@ -66,7 +78,7 @@ List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles
 
 List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerTodosEspacios() {
 
-    return listaEspacios;
+    return persistance::CargarEspaciosBD();
 }
 
 
@@ -82,63 +94,62 @@ void controllerPrincipal::ControlEspacios::solicitarDescensoPlataforma(int idEsp
         return;
     }
 
-    for each (Espacio^ esp in listaEspacios) {
+    // 1. Traemos la instantánea fresca de todos los espacios desde SQL
+    List<Espacio^>^ todos = ObtenerTodosEspacios();
+    Espacio^ espacioObjetivo = nullptr;
 
+    // 2. Validamos reglas de negocio sobre el espacio solicitado
+    for each (Espacio ^ esp in todos) {
         if (esp->id == idEspacio) {
-            
-            if (esp->estado==No_Operativo || esp->estado==En_Mantenimiento) {
-                throw gcnew Exception("No se puede descender la plataforma");
-                return;
+            if (esp->estado == No_Operativo || esp->estado == En_Mantenimiento) {
+                throw gcnew Exception("No se puede descender la plataforma: Espacio inhabilitado o en mantenimiento.");
             }
-
-
             if (esp->estaEnSuelo == true) {
-                //Tal vez sea bueno devolver un string e impirmir un mensaje si logro bajar la plataforma o no
-                return;
+                return; // La plataforma ya está en el nivel de suelo, no requiere movimiento
             }
-
-            ////////
-            // Se manda al hardware a bajar la plataforma
-            ///////
-
-
-            esp->estaEnSuelo = true;
-            
+            espacioObjetivo = esp;
+            break;
         }
-        else {
-            esp->estaEnSuelo = false;
-        }
-        
-
     }
 
-    persistance::guardarEspacios(listaEspacios);
+    if (espacioObjetivo == nullptr) {
+        throw gcnew Exception("El espacio solicitado no existe en el sistema.");
+    }
+
+    // 3. Ejecutamos el movimiento y actualizamos SOLO las filas afectadas en SQL Server
+    for each (Espacio ^ esp in todos) {
+        if (esp->id == idEspacio) {
+            // ////// Aquí se enviaría la señal al hardware/PLC para bajar la plataforma //////
+            esp->estaEnSuelo = true;
+            persistance::ActualizarEspaciosBD(esp);
+        }
+        else if (esp->estaEnSuelo == true) {
+            // La plataforma que estaba abajo anteriormente ahora sube
+            esp->estaEnSuelo = false;
+            persistance::ActualizarEspaciosBD(esp);
+        }
+    }
 
 }
 
 
 int controllerPrincipal::ControlEspacios::obtenerEstadoEspacio(int idEspacio) {
     
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->id == idEspacio) {
-
-             return esp->estado;
-        }
+    Espacio^ esp = BuscarEspacio(idEspacio);
+    if (esp != nullptr) {
+        return esp->estado;
     }
+    
 }
 
 
 
 void controllerPrincipal::ControlEspacios::inhabiltarEspacio(int idEspacio) {
 
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->id == idEspacio) {
-
-            esp->estado = No_Operativo;
-
-            persistance::guardarEspacios(listaEspacios);
-            return;
-        }
+    Espacio^ esp = BuscarEspacio(idEspacio);
+    if (esp != nullptr) {
+        esp->estado = No_Operativo;
+        persistance::ActualizarEspaciosBD(esp);
     }
 
 
@@ -146,14 +157,10 @@ void controllerPrincipal::ControlEspacios::inhabiltarEspacio(int idEspacio) {
 
 void controllerPrincipal::ControlEspacios::habilitarEspacio(int idEspacio) {
 
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->id == idEspacio) {
-
-            esp->estado = Operativo;
-
-            persistance::guardarEspacios(listaEspacios);
-            return;
-        }
+    Espacio^ esp = BuscarEspacio(idEspacio);
+    if (esp != nullptr) {
+        esp->estado = Operativo;
+        persistance::ActualizarEspaciosBD(esp);
     }
 
 }
@@ -161,14 +168,10 @@ void controllerPrincipal::ControlEspacios::habilitarEspacio(int idEspacio) {
 
 
 void controllerPrincipal::ControlEspacios::espacioEnMantenimiento(int idEspacio) {
-    for each (Espacio ^ esp in listaEspacios) {
-        if (esp->id == idEspacio) {
-
-            esp->estado = En_Mantenimiento;
-
-            persistance::guardarEspacios(listaEspacios);
-            return;
-        }
+    Espacio^ esp = BuscarEspacio(idEspacio);
+    if (esp != nullptr) {
+        esp->estado = En_Mantenimiento;
+        persistance::ActualizarEspaciosBD(esp);
     }
 }
 

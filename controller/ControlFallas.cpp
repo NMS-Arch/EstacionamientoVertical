@@ -7,72 +7,56 @@
 
 void controllerPrincipal::ControlFallas::agregarFalla(Falla^ new_falla) {
 
-	int maxId = 0;
-
-	for each (Falla ^ falla in lista_fallas) {
-		if (falla->id > maxId) {
-			maxId = falla->id;
-		}
-	}
-	new_falla->id = maxId + 1;
-
-	lista_fallas->Add(new_falla);
-
-	persistance::guardarFallas(lista_fallas);
+	persistance::GuardarFallasBD(new_falla);
 }
 
-void controllerPrincipal::ControlFallas::eliminarFalla(int id) {
+void controllerPrincipal::ControlFallas::eliminarFalla(int id_falla) {
 
-	for (int i = 0; i < lista_fallas->Count; i++) {
-
-		if (lista_fallas[i]->id == id) {
-			lista_fallas->RemoveAt(i);
-			persistance::guardarFallas(lista_fallas);
-			return;
-		}
-	}
+	persistance::EliminarFallasBD(id_falla);
 	
 
 }
 
-void controllerPrincipal::ControlFallas::modificarFalla(int id, Falla^ falla_entrada) {
+void controllerPrincipal::ControlFallas::modificarFalla(int id_falla, Falla^ falla_entrada) {
 	
-	for (int i = 0; i < lista_fallas->Count; i++) {
-		
-		if (lista_fallas[i]->id == id) {
-			
-			lista_fallas[i] = falla_entrada;
-
-			persistance::guardarFallas(lista_fallas);
-			return;
-		}
+	Falla^ existente = buscarFalla(id_falla);
+	if (existente == nullptr) {
+		throw gcnew Exception("El registro de falla que se busca no se logra encontrar.");
 	}
-	
-	throw gcnew Exception("El registro de falla que se busca no se logra encontrar");
+
+	falla_entrada->id = id_falla;
+	persistance::ActualizarFallasBD(falla_entrada);
 
 }
 
-Falla^ controllerPrincipal::ControlFallas::buscarFalla(int id) {
-	for (int i = 0; i < lista_fallas->Count; i++) {
-		if (lista_fallas[i]->id == id) {
-			return lista_fallas[i];
-			
+Falla^ controllerPrincipal::ControlFallas::buscarFalla(int id_falla) {
+	List<Falla^>^ actuales = obtener_todos_Falla();
+	for each (Falla ^ f in actuales) {
+		if (f->id == id_falla) {
+			return f;
 		}
 	}
-
 	return nullptr;
 }
 
 List<Falla^>^ controllerPrincipal::ControlFallas::obtener_todos_Falla() {
 
-	return lista_fallas;
+	return persistance::CargarFallasBD();
 }
 
 
-void controllerPrincipal::ControlFallas::guardarFallas() {
-	persistance::guardarFallas(lista_fallas);
-}
+/// Este metodo no esta probado, me lo sugirio la IA, la verdad le vi cierta plausibilidad, aunque lo normal es que con modificar ya se hace esto.
+/// Igual lo decidi dejar por si en algun momento que remos usar algo como esto:
 
-List<Falla^>^ controllerPrincipal::ControlFallas::cargarFallas() {
-	return persistance::cargarFallas();
+void controllerPrincipal::ControlFallas::cambiarEstadoFalla(int id_falla, String^ nuevoEstado) {
+	Falla^ falla = buscarFalla(id_falla);
+	if (falla == nullptr) {
+		throw gcnew Exception("No se encontró la falla especificada para cambiar su estado.");
+	}
+
+	// Mutación del estado interno del objeto
+	falla->estado = nuevoEstado;
+
+	// Sincronización automática con SQL Server
+	persistance::ActualizarFallasBD(falla);
 }

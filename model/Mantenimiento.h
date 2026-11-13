@@ -36,7 +36,7 @@ namespace modelPrincipal {
         }
 
         virtual String^ ObtenerTipo() override {
-            return Rol;
+            return "Mantenimiento";
         }
     };
 }

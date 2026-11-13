@@ -4,6 +4,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace modelPrincipal;
 using namespace System::Xml;
+
 using namespace persistancePrincipal;
 
 
@@ -15,24 +16,24 @@ namespace controllerPrincipal {
 	public:
 		controller() {
 			//cargar datos desde archivos XML
-			controller::Espacios = persistance::cargarEspacios();
+			//controller::Espacios = persistance::cargarEspacios();
 			//controller::Fallas = persistance::cargarFallas();
-			controller::Tickets = persistance::cargarTickets();
+			//Tickets = persistance::CargarTicketsBD();
 			controller::Reclamos = persistance::cargarReclamos();
 			//controller::Clientes = persistance::cargarClientes();
 			//controller::Usuarios = persistance::cargarUsuarios();
 		}
 	
-		//espacio
-		static List<Espacio^>^ Espacios = gcnew List<Espacio^>();
+		////espacio
+		//static List<Espacio^>^ Espacios = gcnew List<Espacio^>();
 
-		static void agregarEspacio(bool ocupado, bool est,bool suelo);
-		static bool eliminarEspacio(int id);
-		static bool modificarEspacio(int id, bool ocupado, bool est,bool estaEnSuelo);
-		static Espacio^ buscarEspacio(int id);
+		//static void agregarEspacio(bool ocupado, bool est,bool suelo);
+		//static bool eliminarEspacio(int id);
+		//static bool modificarEspacio(int id, bool ocupado, bool est,bool estaEnSuelo);
+		//static Espacio^ buscarEspacio(int id);
 
-		static void guardarEspacios();
-		static List<Espacio^>^ cargarEspacios();
+		//static void guardarEspacios();
+		//static List<Espacio^>^ cargarEspacios();
 
 		////empleados
 
@@ -89,7 +90,7 @@ namespace controllerPrincipal {
 
 		//tickets
 
-		static List<TicketAuto^>^ Tickets = gcnew List<TicketAuto^>();
+		//static List<TicketAuto^>^ Tickets = gcnew List<TicketAuto^>();
 
 		static void agregarTicket(TicketAuto^ ticket);
 		static void eliminarTicket(int id_ticket);
@@ -104,7 +105,7 @@ namespace controllerPrincipal {
 
 		static List<TicketAuto^>^ listarTickets();
 
-		static void guardarTickets();
+		//static void guardarTickets();
 		static List<TicketAuto^>^ cargarTickets();
 
 

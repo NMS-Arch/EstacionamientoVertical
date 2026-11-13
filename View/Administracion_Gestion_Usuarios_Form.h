@@ -42,6 +42,7 @@ namespace View {
 	private: System::Windows::Forms::NumericUpDown^ numeric_dinamico_id_consultado;
 
 		   int dato_consultado;
+	private: System::Windows::Forms::Button^ btn_Salir_Modificar;
 		   int id_consultado;
 
 	public:
@@ -184,6 +185,7 @@ namespace View {
 			this->label_Dinamico = (gcnew System::Windows::Forms::Label());
 			this->label_Dinamic_ID = (gcnew System::Windows::Forms::Label());
 			this->numeric_dinamico_id_consultado = (gcnew System::Windows::Forms::NumericUpDown());
+			this->btn_Salir_Modificar = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_dinamico_id_consultado))->BeginInit();
@@ -588,11 +590,24 @@ namespace View {
 			this->numeric_dinamico_id_consultado->TabIndex = 36;
 			this->numeric_dinamico_id_consultado->Visible = false;
 			// 
+			// btn_Salir_Modificar
+			// 
+			this->btn_Salir_Modificar->Enabled = false;
+			this->btn_Salir_Modificar->Location = System::Drawing::Point(187, 717);
+			this->btn_Salir_Modificar->Name = L"btn_Salir_Modificar";
+			this->btn_Salir_Modificar->Size = System::Drawing::Size(105, 67);
+			this->btn_Salir_Modificar->TabIndex = 37;
+			this->btn_Salir_Modificar->Text = L"Salir de Modificar";
+			this->btn_Salir_Modificar->UseVisualStyleBackColor = true;
+			this->btn_Salir_Modificar->Visible = false;
+			this->btn_Salir_Modificar->Click += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::btn_Salir_Modificar_Click);
+			// 
 			// Administracion_Gestion_Usuarios_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1327, 751);
+			this->ClientSize = System::Drawing::Size(1327, 796);
+			this->Controls->Add(this->btn_Salir_Modificar);
 			this->Controls->Add(this->numeric_dinamico_id_consultado);
 			this->Controls->Add(this->label_Dinamic_ID);
 			this->Controls->Add(this->label_Dinamico);
@@ -652,6 +667,41 @@ namespace View {
 		private: System::Void btn_Agregar_Click(System::Object^ sender, System::EventArgs^ e) {
 
 			
+			// Validar ComboBoxes (evita el NullReferenceException)
+			if (cb_Rol_Personal->SelectedIndex == -1 || cb_Turno->SelectedIndex == -1 || cb_Estado->SelectedIndex == -1) {
+				MessageBox::Show("Seleccione el rol, el turno y el estado del usuario.",
+					"Validación", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			// Validar TextBoxes vacíos
+			if (String::IsNullOrWhiteSpace(tb_Nombre_Personal->Text) ||
+				String::IsNullOrWhiteSpace(tb_nombre_Usuario->Text) ||
+				String::IsNullOrWhiteSpace(tb_password_Usuario->Text) ||
+				String::IsNullOrWhiteSpace(tb_Dinamico->Text)) {
+				MessageBox::Show("Todos los campos de texto son obligatorios.",
+					"Validación", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			// Validar DNI numérico sin usar try-catch (TryParse devuelve false si falla)
+			int dni_validado = 0;
+			if (!Int32::TryParse(tb_DNI_Personal->Text->Trim(), dni_validado)) {
+				MessageBox::Show("El DNI debe contener unicamente numeros.",
+					"Error de Formato", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+
+			String^ dni_texto = tb_DNI_Personal->Text->Trim();
+
+			// 1. Validar longitud exacta
+			if (dni_texto->Length != 8) {
+				MessageBox::Show("El DNI debe tener exactamente 8 digitos.",
+					"Validación de Formato", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
 
 			if (cb_Rol_Personal->SelectedIndex == 0) {
 
@@ -711,6 +761,8 @@ namespace View {
 			tb_Nombre_Personal->Clear();
 			tb_DNI_Personal->Clear();;
 			cb_Estado->SelectedIndex=-1;
+			cb_Rol_Personal->SelectedIndex = -1;
+			cb_Turno->SelectedIndex = -1;
 
 			tb_nombre_Usuario->Clear();;
 			tb_password_Usuario->Clear();;
@@ -732,6 +784,7 @@ namespace View {
 				label_Dinamic_ID->Visible = true;
 				numeric_dinamico_id_consultado->Visible = true;
 				numeric_dinamico_id_consultado->Enabled = false;
+				numeric_dinamico_id_consultado->Value = id_consultado;
 
 				btn_Modificar->Visible = true;
 				btn_Modificar->Enabled = true;
@@ -748,7 +801,27 @@ namespace View {
 			btn_Modificar->Enabled = false;
 		}
 
+		private: void ocultar_boton_Agregar() {
 
+			btn_Agregar->Enabled = false;
+			btn_Agregar->Visible = false;
+
+
+			btn_Salir_Modificar->Enabled = true;
+			btn_Salir_Modificar->Visible= true;
+
+		}
+
+		private: void aparecer_boton_Agregar() {
+
+			btn_Agregar->Enabled = true;
+			btn_Agregar->Visible = true;
+
+
+			btn_Salir_Modificar->Enabled = false;
+			btn_Salir_Modificar->Visible = false;
+
+		}
 
 
 
@@ -777,6 +850,7 @@ namespace View {
 				controladorUsuarios->ModificarUsuario(new_usuario->Id,new_usuario);
 
 				ocultar_id_consultado();
+				aparecer_boton_Agregar();
 			}
 			else if (cb_Rol_Personal->SelectedIndex == 1)
 			{
@@ -795,6 +869,7 @@ namespace View {
 				controladorUsuarios->ModificarUsuario(new_usuario->Id, new_usuario);
 
 				ocultar_id_consultado();
+				aparecer_boton_Agregar();
 
 			}
 			else if (cb_Rol_Personal->SelectedIndex == 2) {
@@ -814,6 +889,7 @@ namespace View {
 				controladorUsuarios->ModificarUsuario(new_usuario->Id, new_usuario);
 
 				ocultar_id_consultado();
+				aparecer_boton_Agregar();
 			}
 
 			limpiar();
@@ -824,95 +900,96 @@ namespace View {
 
 
 		private: System::Void btn_Consultar_Click(System::Object^ sender, System::EventArgs^ e) {
-			
+
+			// 1. Barrera de validación (Reemplaza al costoso try-catch)
+			if (String::IsNullOrWhiteSpace(tb_Dato_Consultar->Text)) {
+				MessageBox::Show("Por favor, ingrese un dato para buscar.", "Validación", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			int parametro_busqueda = 0;
+			// TryParse intenta convertir. Si falla (ej: el usuario escribió "Hola"), devuelve false y no explota.
+			if (!Int32::TryParse(tb_Dato_Consultar->Text->Trim(), parametro_busqueda)) {
+				MessageBox::Show("Por favor, ingrese un valor numérico válido.", "Validación", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
 			Usuario^ usuario_consultado = nullptr;
 
-			if (dato_consultado == 0) {
-
-				String^ criterio = "id";
-				int id = Convert::ToInt32(tb_Dato_Consultar->Text);
-				usuario_consultado = controladorUsuarios->BuscarAvanzado(criterio, id);
+			// 2. Invocación al Controlador
+			if (dato_consultado == 0) { // Búsqueda por ID
+				usuario_consultado = controladorUsuarios->BuscarAvanzado("ID", parametro_busqueda);
 			}
-			else if (dato_consultado == 1) {
-
-				String^ criterio = "dni";
-				int dni = Convert::ToInt32(tb_Dato_Consultar->Text);
-				usuario_consultado = controladorUsuarios->BuscarAvanzado(criterio, dni);
-
-				
+			else if (dato_consultado == 1) { // Búsqueda por DNI
+				usuario_consultado = controladorUsuarios->BuscarAvanzado("DNI", parametro_busqueda);
 			}
 
+			// 3. Renderizado en Interfaz y Polimorfismo
 			if (usuario_consultado != nullptr) {
 
-				// 1. Mostrar datos generales compartidos por todos los usuarios
+				// Datos generales (Clase Padre)
 				numeric_ID->Value = Convert::ToDecimal(usuario_consultado->Id);
 				tb_Nombre_Personal->Text = usuario_consultado->Nombre;
 				tb_DNI_Personal->Text = usuario_consultado->DNI.ToString();
-				//tb_nombre_Usuario->Text = usuario_consultado->NombreUsuario;
-				//tb_password_Usuario->Text = usuario_consultado->PasswordUsuario;
 
-				//// 2. Mostrar datos en ComboBoxes usando FindStringExact para mayor seguridad
-				//cb_Turno->SelectedIndex = cb_Turno->FindStringExact(usuario_consultado->Turno);
-				//cb_Estado->SelectedIndex = cb_Estado->FindStringExact(usuario_consultado->Estado);
+				// Limpiamos las variables que determinan la búsqueda
+				String^ turnoLimpio = "";
+				String^ estadoLimpio = "";
 
-				// 3. Determinar el ROL específico y llenar el campo dinámico
-
-				// Intentamos convertir a Operador
-				if (dynamic_cast<Operador^>(usuario_consultado) != nullptr) {
+				// Inspección dinámica de tipos (Clases Hijas)
+				if (Operador^ op = dynamic_cast<Operador^>(usuario_consultado)) {
 					cb_Rol_Personal->SelectedIndex = 0;
-
-					
-
-					Operador^ op = dynamic_cast<Operador^>(usuario_consultado);
 					tb_Dinamico->Text = op->EstacionAsignada;
 					tb_nombre_Usuario->Text = op->NombreUsuario;
 					tb_password_Usuario->Text = op->PasswordUsuario;
-					cb_Turno->SelectedIndex = cb_Turno->FindStringExact(op->Turno);
-					cb_Estado->SelectedIndex = cb_Estado->FindStringExact(op->Estado);
 
-					id_consultado=op->Id;
-					mostrar_id_consultado();
+					turnoLimpio = op->Turno != nullptr ? op->Turno->Trim() : "";
+					estadoLimpio = op->Estado != nullptr ? op->Estado->Trim() : "";
+
+					id_consultado = op->Id;
 				}
-				// Intentamos convertir a Mantenimiento
-				else if (dynamic_cast<Mantenimiento^>(usuario_consultado) != nullptr) {
+				else if (Mantenimiento^ mant = dynamic_cast<Mantenimiento^>(usuario_consultado)) {
 					cb_Rol_Personal->SelectedIndex = 1;
-
-					Mantenimiento^ mant = dynamic_cast<Mantenimiento^>(usuario_consultado);
 					tb_Dinamico->Text = mant->EspecialidadTecnica;
 					tb_nombre_Usuario->Text = mant->NombreUsuario;
 					tb_password_Usuario->Text = mant->PasswordUsuario;
-					cb_Turno->SelectedIndex = cb_Turno->FindStringExact(mant->Turno);
-					cb_Estado->SelectedIndex = cb_Estado->FindStringExact(mant->Estado);
+
+					turnoLimpio = mant->Turno != nullptr ? mant->Turno->Trim() : "";
+					estadoLimpio = mant->Estado != nullptr ? mant->Estado->Trim() : "";
 
 					id_consultado = mant->Id;
-					mostrar_id_consultado();
 				}
-				// Intentamos convertir a Administrador
-				else if (dynamic_cast<Administrador^>(usuario_consultado) != nullptr) {
+				else if (Administrador^ admin = dynamic_cast<Administrador^>(usuario_consultado)) {
 					cb_Rol_Personal->SelectedIndex = 2;
-
-					Administrador^ admin = dynamic_cast<Administrador^>(usuario_consultado);
 					tb_Dinamico->Text = admin->NivelAcceso;
 					tb_nombre_Usuario->Text = admin->NombreUsuario;
 					tb_password_Usuario->Text = admin->PasswordUsuario;
-					cb_Turno->SelectedIndex = cb_Turno->FindStringExact(admin->Turno);
-					cb_Estado->SelectedIndex = cb_Estado->FindStringExact(admin->Estado);
+
+					turnoLimpio = admin->Turno != nullptr ? admin->Turno->Trim() : "";
+					estadoLimpio = admin->Estado != nullptr ? admin->Estado->Trim() : "";
 
 					id_consultado = admin->Id;
-					mostrar_id_consultado();
 				}
 
+				// ====================================================================
+				// ASIGNACIÓN SEGURA A COMBOBOX
+				// ====================================================================
+				// FindStringExact buscará la cadena sin los espacios extra
+				int indexTurno = cb_Turno->FindStringExact(turnoLimpio);
+				cb_Turno->SelectedIndex = (indexTurno != -1) ? indexTurno : -1;
+
+				int indexEstado = cb_Estado->FindStringExact(estadoLimpio);
+				cb_Estado->SelectedIndex = (indexEstado != -1) ? indexEstado : -1;
+
+				mostrar_id_consultado();
+				ocultar_boton_Agregar();
 			}
 			else {
-				// Si es nullptr, significa que la búsqueda no arrojó resultados
+				// Objeto no encontrado
 				id_consultado = -1;
 				MessageBox::Show("No se encontró ningún usuario con el dato ingresado.", "Búsqueda", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
-
-			
-			
 		}
-
 
 
 		private: System::Void btn_Eliminar_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1035,12 +1112,28 @@ namespace View {
 		private: System::Void Administracion_Gestion_Usuarios_Form_Load(System::Object^ sender, System::EventArgs^ e) {
 		
 			actualizar_celdas();
+
+			limpiar();
+			ocultar_id_consultado();
+			aparecer_boton_Agregar();
 		
 		}
 		private: System::Void Administracion_Gestion_Usuarios_Form_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
 		
 		
 			actualizar_celdas();
+
+			limpiar();
+			ocultar_id_consultado();
+			aparecer_boton_Agregar();
+		}
+		
+		private: System::Void btn_Salir_Modificar_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+			limpiar();
+			ocultar_id_consultado();
+			aparecer_boton_Agregar();
+		
 		}
 };
 }

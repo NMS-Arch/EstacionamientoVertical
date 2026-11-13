@@ -3,107 +3,23 @@
 
 
 
-
-
-// Método de Consulta General
 List<Usuario^>^ controllerPrincipal::ControlUsuario::ObtenerTodos() {
-    return listaUsuarios;
+    return persistance::CargarUsuariosBD();
 }
 
-// 1. AGREGAR (La regla de negocio del DNI se mantiene, pero el ID domina)
-void controllerPrincipal::ControlUsuario::RegistrarUsuario(Usuario^ nuevoUsuario) {
-    // Regla de Negocio: Evitar DNIs duplicados (El DNI sigue siendo único en el mundo real)
-    // Aquí podrías tener un método BuscarPorDNI() solo para esta validación.
-    for (int i = 0; i < listaUsuarios->Count; i++) {
-        if (listaUsuarios[i]->DNI == nuevoUsuario->DNI) {
-            throw gcnew Exception("Error: Ya existe un usuario registrado con el DNI " + nuevoUsuario->DNI);
-        }
-    }
-
-    // Lógica de ID Autoincremental Correcta (Esta será nuestra verdadera llave primaria)
-    int nuevoId = 1;
-    if (listaUsuarios->Count > 0) {
-        nuevoId = listaUsuarios[listaUsuarios->Count - 1]->Id + 1;
-    }
-    nuevoUsuario->Id = nuevoId;
-
-    // Agregamos a la RAM
-    listaUsuarios->Add(nuevoUsuario);
-
-    // ¡SINCRONIZACIÓN AUTOMÁTICA CON DISCO!
-    persistance::guardarUsuarios(listaUsuarios);
-}
-
-// 2. BUSCAR POR ID (Llave Primaria Inmutable)
 Usuario^ controllerPrincipal::ControlUsuario::BuscarUsuario(int idBuscado) {
-    for (int i = 0; i < listaUsuarios->Count; i++) {
-        // Ahora la búsqueda del motor interno se basa en el ID
-        if (listaUsuarios[i]->Id == idBuscado) {
-            return listaUsuarios[i];
+    List<Usuario^>^ actuales = ObtenerTodos();
+    for each (Usuario ^ usu in actuales) {
+        if (usu->Id == idBuscado) {
+            return usu;
         }
     }
     return nullptr;
 }
 
-// 3. ELIMINAR POR ID
-bool controllerPrincipal::ControlUsuario::EliminarUsuario(int idBuscado) {
-    for (int i = 0; i < listaUsuarios->Count; i++) {
-        if (listaUsuarios[i]->Id == idBuscado) {
-            listaUsuarios->RemoveAt(i);
-
-            // ¡SINCRONIZACIÓN AUTOMÁTICA!
-            persistance::guardarUsuarios(listaUsuarios);
-            return true;
-        }
-    }
-    return false;
-}
-
-// 4. MODIFICAR POR ID (Recibe el ID inmutable y el objeto con los nuevos datos)
-bool controllerPrincipal::ControlUsuario::ModificarUsuario(int idOriginal, Usuario^ datosNuevos) {
-    for (int i = 0; i < listaUsuarios->Count; i++) {
-        if (listaUsuarios[i]->Id == idOriginal) {
-
-            // REGLA DE ORO: El ID jamás muta. Se lo inyectamos a la fuerza al nuevo objeto.
-            // Así, si 'datosNuevos' trae una corrección de DNI, se actualizará sin problemas.
-            datosNuevos->Id = listaUsuarios[i]->Id;
-
-            // Reemplazamos el puntero en la memoria RAM
-            listaUsuarios[i] = datosNuevos;
-
-            // ¡SINCRONIZACIÓN AUTOMÁTICA!
-            persistance::guardarUsuarios(listaUsuarios);
-            return true;
-        }
-    }
-    return false;
-}
-
-
-// 5. FILTRADO POLIMÓRFICO (Sub-listas)
-List<Usuario^>^ controllerPrincipal::ControlUsuario::FiltrarPorTipo(String^ tipoBuscado) {
-    // Creamos una lista temporal en la memoria RAM
-    List<Usuario^>^ listaFiltrada = gcnew List<Usuario^>();
-
-    for (int i = 0; i < listaUsuarios->Count; i++) {
-        Usuario^ usu = listaUsuarios[i];
-
-        // Gracias a la herencia y al método virtual puro que creamos antes,
-        // le preguntamos al objeto quién es. No necesitamos 'dynamic_cast' aquí.
-        if (usu->ObtenerTipo() == tipoBuscado) {
-            listaFiltrada->Add(usu); // Agregamos la REFERENCIA a la nueva lista
-        }
-    }
-
-    return listaFiltrada;
-}
-
-// 6. BÚSQUEDA DINÁMICA (Por ID o DNI)
 Usuario^ controllerPrincipal::ControlUsuario::BuscarAvanzado(String^ criterio, int valorBuscado) {
-    for (int i = 0; i < listaUsuarios->Count; i++) {
-        Usuario^ usu = listaUsuarios[i];
-
-        // Evaluamos el criterio que el usuario eligió en el ComboBox de la GUI
+    List<Usuario^>^ actuales = ObtenerTodos();
+    for each (Usuario ^ usu in actuales) {
         if (criterio == "DNI" && usu->DNI == valorBuscado) {
             return usu;
         }
@@ -111,6 +27,81 @@ Usuario^ controllerPrincipal::ControlUsuario::BuscarAvanzado(String^ criterio, i
             return usu;
         }
     }
-    // Si termina el bucle y no encontró a nadie, retorna nulo
     return nullptr;
+}
+
+List<Usuario^>^ controllerPrincipal::ControlUsuario::FiltrarPorTipo(String^ tipoBuscado) {
+    List<Usuario^>^ listaFiltrada = gcnew List<Usuario^>();
+    List<Usuario^>^ todos = ObtenerTodos();
+
+    for each (Usuario ^ usu in todos) {
+        // Despacho dinámico puro: cada subclase responde quién es sin usar dynamic_cast
+        if (usu->ObtenerTipo() == tipoBuscado) {
+            listaFiltrada->Add(usu);
+        }
+    }
+    return listaFiltrada;
+}
+
+// =========================================================================
+// OPERACIONES CRUD MUTADORAS CON VALIDACIÓN DE REGLAS DE NEGOCIO
+// =========================================================================
+
+void controllerPrincipal::ControlUsuario::RegistrarUsuario(Usuario^ nuevoUsuario) {
+    // Regla de Negocio: El DNI no puede duplicarse en la base de datos
+    List<Usuario^>^ actuales = ObtenerTodos();
+    for each (Usuario ^ usu in actuales) {
+        if (usu->DNI == nuevoUsuario->DNI) {
+            throw gcnew Exception("Error: Ya existe un usuario registrado con el DNI " + nuevoUsuario->DNI);
+        }
+    }
+
+    // Delegamos a SQL Server; IDENTITY(1,1) asigna el Id y GuardarUsuariosBD lo inyecta en nuevoUsuario->Id
+    persistance::GuardarUsuariosBD(nuevoUsuario);
+}
+
+bool controllerPrincipal::ControlUsuario::ModificarUsuario(int idOriginal, Usuario^ datosNuevos) {
+    List<Usuario^>^ actuales = ObtenerTodos();
+    bool existe = false;
+
+    for each (Usuario ^ usu in actuales) {
+        if (usu->Id == idOriginal) {
+            existe = true;
+        }
+        // Validamos que el nuevo DNI no choque con otro usuario distinto
+        else if (usu->DNI == datosNuevos->DNI) {
+            throw gcnew Exception("Error: El DNI " + datosNuevos->DNI + " ya pertenece a otro usuario.");
+        }
+    }
+
+    if (!existe) return false;
+
+    // El ID jamás muta
+    datosNuevos->Id = idOriginal;
+    persistance::ActualizarUsuariosBD(datosNuevos);
+    return true;
+}
+
+bool controllerPrincipal::ControlUsuario::EliminarUsuario(int idBuscado) {
+    Usuario^ existente = BuscarUsuario(idBuscado);
+    if (existente == nullptr) return false;
+
+    persistance::EliminarUsuariosBD(idBuscado);
+    return true;
+}
+
+// =========================================================================
+// MÉTODO MUTADOR DE NEGOCIO (EJEMPLO DE MUTACIÓN DE ESTADO + UPDATE)
+// =========================================================================
+
+void controllerPrincipal::ControlUsuario::SumarPuntosCliente(int idCliente, int puntosGanados) {
+    Usuario^ usu = BuscarUsuario(idCliente);
+    Cliente^ cli = dynamic_cast<Cliente^>(usu);
+
+    if (cli == nullptr) {
+        throw gcnew Exception("El usuario seleccionado no es un Cliente Externo.");
+    }
+
+    cli->PuntosFidelidad += puntosGanados;
+    persistance::ActualizarUsuariosBD(cli);
 }

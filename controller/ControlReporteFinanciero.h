@@ -15,14 +15,14 @@ namespace controllerPrincipal {
 	private:
 		
 
-		static List<RegistroFinanciero^>^ listaRegistrosFinancieros;
+		//static List<RegistroFinanciero^>^ listaRegistrosFinancieros;
 
 
 	public:
-		static ControlReporteFinanciero() {
-			listaRegistrosFinancieros = persistance::cargarRegistros();
+		//static ControlReporteFinanciero() {
+		//	//listaRegistrosFinancieros = persistance::cargarRegistros();
 
-		}
+		//}
 
 		static void agregarRegistroFin(RegistroFinanciero^ registroFin_entrada);
 		static void eliminarRegistroFin(int id_registroFin);

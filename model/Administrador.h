@@ -42,13 +42,8 @@ namespace modelPrincipal {
 
         // Despacho dinámico para la interfaz gráfica
         virtual String^ ObtenerTipo() override {
-            return Rol;
+            return "Administrador";
         }
 
-
-
-        //void verReclamos();
-        //void verFinanzas();
-        //void finalizarReclamo(Reclamo^ id);
     };
 }

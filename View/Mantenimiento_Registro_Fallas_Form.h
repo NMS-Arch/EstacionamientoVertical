@@ -621,6 +621,31 @@ namespace View {
 
 		private: System::Void btn_Agregar_Click(System::Object^ sender, System::EventArgs^ e) {
 
+			if (cb_Afectado->SelectedIndex == -1 ||
+				cb_Prioridad->SelectedIndex == -1 ||
+				cb_Tipo->SelectedIndex == -1 ||
+				cb_Estado->SelectedIndex == -1) {
+
+				MessageBox::Show("Falta información: Por favor, seleccione una opción en todos los menús desplegables.",
+					"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return; 
+			}
+
+			if (String::IsNullOrWhiteSpace(tb_Descripcion->Text) ||
+				String::IsNullOrWhiteSpace(tb_Nombre->Text) ||
+				String::IsNullOrWhiteSpace(tb_Rol->Text)) {
+
+				MessageBox::Show("Campos incompletos: La descripción, el nombre y el rol no pueden estar vacíos.",
+					"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			
+			if (numeric_ID_rol->Value <= 0) {
+				MessageBox::Show("ID Inválido: El ID del usuario reportante debe ser mayor a cero.",
+					"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
 
 
 			Falla^ new_falla = gcnew Falla();
@@ -645,6 +670,8 @@ namespace View {
 			new_falla->rolUser = tb_Rol->Text;
 
 			controlFallas->agregarFalla(new_falla);
+
+			Console::WriteLine("Supuestamente se añadio la nueva falla");
 
 			actualizar();
 
@@ -685,7 +712,7 @@ namespace View {
 
 				fila->Cells["Colum_Estado"]->Value = falla->estado;
 
-
+				Console::Write("Se actualizo cuando se agrego");
 			}
 
 			
@@ -790,6 +817,34 @@ namespace View {
 	private: System::Void btn_Modificar_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		int id_consultado = Convert::ToInt32(numeric_ID_Registro->Value);
+
+
+		if (cb_Afectado->SelectedIndex == -1 ||
+			cb_Prioridad->SelectedIndex == -1 ||
+			cb_Tipo->SelectedIndex == -1 ||
+			cb_Estado->SelectedIndex == -1) {
+
+			MessageBox::Show("Falta información: Por favor, seleccione una opción en todos los menús desplegables.",
+				"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+
+		if (String::IsNullOrWhiteSpace(tb_Descripcion->Text) ||
+			String::IsNullOrWhiteSpace(tb_Nombre->Text) ||
+			String::IsNullOrWhiteSpace(tb_Rol->Text)) {
+
+			MessageBox::Show("Campos incompletos: La descripción, el nombre y el rol no pueden estar vacíos.",
+				"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+
+
+		if (numeric_ID_rol->Value <= 0) {
+			MessageBox::Show("ID Inválido: El ID del usuario reportante debe ser mayor a cero.",
+				"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+
 
 
 		Falla^ falla_consultada = gcnew Falla();

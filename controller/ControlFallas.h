@@ -12,15 +12,15 @@ namespace controllerPrincipal {
 
 	public ref class ControlFallas
 	{
-	private:
+	//private:
 
-		static List<Falla^>^ lista_fallas;
+	//	static List<Falla^>^ lista_fallas;
 
 	public:
 
-		static ControlFallas() {
-			lista_fallas = persistance::cargarFallas();
-		}
+		//static ControlFallas() {
+		//	lista_fallas = persistance::cargarFallas();
+		//}
 
 
 		static List<Falla^>^ Fallas = gcnew List<Falla^>();
@@ -35,9 +35,9 @@ namespace controllerPrincipal {
 
 		static List<Falla^>^ obtener_todos_Falla();
 
-		static void guardarFallas();
-		static List<Falla^>^ cargarFallas();
+		//static void guardarFallas();
+		//static List<Falla^>^ cargarFallas();
 
-
+		static void cambiarEstadoFalla(int id_falla, String^ nuevoEstado);
 	};
 }

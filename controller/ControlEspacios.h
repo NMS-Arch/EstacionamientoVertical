@@ -19,21 +19,23 @@ namespace controllerPrincipal {
 		static int En_Mantenimiento = 3;
 
 
-		static List<Espacio^>^ listaEspacios;
+		//static List<Espacio^>^ listaEspacios;
 
 		// Esta inializacion es algo agresiva, ya que introduce espacios por la fuerza
 		// recomiendo que borres o cambies en caso de aumentar o disminuir el numero de espacios
 		static void InicilizarEspaciosFisicos(int numeroEspacios);
+
+		static Espacio^ BuscarEspacio(int idBuscado);
 		
 		static int estadoMotorPrincipal;
 
 	public:
 		static ControlEspacios() {
-			listaEspacios = persistance::cargarEspacios();
+			List<Espacio^>^ espaciosActuales = ObtenerTodosEspacios();
 
-			if (listaEspacios->Count == 0 || listaEspacios->Count < numeroEspacios ) {
+			if (espaciosActuales->Count < numeroEspacios) {
 				InicilizarEspaciosFisicos(numeroEspacios);
-				Console::WriteLine("Verificando que se inicializo los espacios");
+				Console::WriteLine("Verificando e inicializando espacios físicos en SQL Server.");
 			}
 
 			estadoMotorPrincipal = Operativo;

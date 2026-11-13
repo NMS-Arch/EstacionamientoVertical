@@ -8,6 +8,7 @@ using namespace System::Xml::Serialization;
 
 namespace modelPrincipal {
     public ref class Espacio {
+
     public:
         bool ocupado;
 

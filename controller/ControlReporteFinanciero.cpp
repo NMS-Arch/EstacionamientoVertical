@@ -6,50 +6,26 @@
 
 void controllerPrincipal::ControlReporteFinanciero::agregarRegistroFin(RegistroFinanciero^ registroFin_entrada) {
 
-	int maxId = 0;
-	for each (RegistroFinanciero^ regFin in listaRegistrosFinancieros) {
-
-		if (regFin->id_registro > maxId) {
-			maxId = regFin->id_registro;
-		}
-	}
-
-	registroFin_entrada->id_registro = maxId + 1;
-
-	listaRegistrosFinancieros->Add(registroFin_entrada);
-
-	persistance::guardarRegistros(listaRegistrosFinancieros);
+	persistance::GuardarRegistrosBD(registroFin_entrada);
 }
 
 void controllerPrincipal::ControlReporteFinanciero::eliminarRegistroFin(int id_registroFin_entrada) {
-	for (int i = 0; i < listaRegistrosFinancieros->Count; i++) {
-		if (listaRegistrosFinancieros[i]->id_registro == id_registroFin_entrada) {
-			listaRegistrosFinancieros->RemoveAt(i);
-
-			persistance::guardarRegistros(listaRegistrosFinancieros);
-		}
-	}
+	persistance::EliminarRegistrosBD(id_registroFin_entrada);
 
 }
 
 void controllerPrincipal::ControlReporteFinanciero::modificarRegistroFin(int id_registroFin_entrada, RegistroFinanciero^ registroFin_modificado) {
 
-	for (int i = 0; i < listaRegistrosFinancieros->Count; i++) {
-
-		if (listaRegistrosFinancieros[i]->id_registro == id_registroFin_entrada) {
-
-			listaRegistrosFinancieros[i] = registroFin_modificado;
-			persistance::guardarRegistros(listaRegistrosFinancieros);
-		}
-	}
+	registroFin_modificado->id_registro = id_registroFin_entrada;
+	persistance::ActualizarRegistrosBD(registroFin_modificado);
 
 }
 
 RegistroFinanciero^ controllerPrincipal::ControlReporteFinanciero::buscarRegistroFin(int id_registroFin_entrada) {
-	for (int i = 0; i < listaRegistrosFinancieros->Count; i++) {
-		if (listaRegistrosFinancieros[i]->id_registro == id_registroFin_entrada) {
-			return listaRegistrosFinancieros[i];
-			//persistance::guardarTickets(Tickets);
+	List<RegistroFinanciero^>^ actuales = ObtenerRegistrosFin();
+	for each (RegistroFinanciero ^ reg in actuales) {
+		if (reg->id_registro == id_registroFin_entrada) {
+			return reg;
 		}
 	}
 	return nullptr;
@@ -58,15 +34,19 @@ RegistroFinanciero^ controllerPrincipal::ControlReporteFinanciero::buscarRegistr
 
 
 List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::ObtenerRegistrosFin() {
-	return listaRegistrosFinancieros;
+	return persistance::CargarRegistrosBD();
 }
 
 
 List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::filtrarRegistrosPorPeriodo(String^ periodo) {
 	List<RegistroFinanciero^>^ listaFiltrada = gcnew List<RegistroFinanciero^>();
-	DateTime hoy = DateTime::Now.Date; // Obtiene la fecha actual a las 00:00:00
+	List<RegistroFinanciero^>^ todos = ObtenerRegistrosFin();
+	DateTime hoy = DateTime::Now.Date;
 
-	for each (RegistroFinanciero ^ reg in listaRegistrosFinancieros) {
+	for each (RegistroFinanciero ^ reg in todos) {
+		// Ignoramos registros que aún no tienen fecha de salida registrada
+		if (reg->fechaHoraSalida == DateTime::MinValue) continue;
+
 		DateTime fechaSalida = reg->fechaHoraSalida.Date;
 
 		if (periodo == "Hoy" && fechaSalida == hoy) {
@@ -76,9 +56,8 @@ List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::filtra
 			listaFiltrada->Add(reg);
 		}
 		else if (periodo == "Esta Semana") {
-			// Calcula cuál fue el lunes de esta semana
 			int diasRestar = (int)hoy.DayOfWeek - (int)DayOfWeek::Monday;
-			if (diasRestar < 0) diasRestar += 7; // Ajuste si hoy es domingo
+			if (diasRestar < 0) diasRestar += 7;
 
 			DateTime inicioSemana = hoy.AddDays(-diasRestar);
 			if (fechaSalida >= inicioSemana && fechaSalida <= hoy) {
@@ -102,7 +81,7 @@ double controllerPrincipal::ControlReporteFinanciero::calcularGananciasTotales(L
 	double totalAcumulado = 0.0;
 
 	for each (RegistroFinanciero ^ reg in lista) {
-		if (reg->sePago == true) { // Solo suma si realmente se pagó
+		if (reg->sePago == true) {
 			totalAcumulado += reg->monto_total;
 		}
 	}
@@ -113,9 +92,10 @@ double controllerPrincipal::ControlReporteFinanciero::calcularGananciasTotales(L
 
 List<RegistroFinanciero^>^ controllerPrincipal::ControlReporteFinanciero::filtrarPorFechaExacta(DateTime fechaBuscada) {
 	List<RegistroFinanciero^>^ listaFiltrada = gcnew List<RegistroFinanciero^>();
+	List<RegistroFinanciero^>^ todos = ObtenerRegistrosFin();
 
-	for each (RegistroFinanciero ^ reg in listaRegistrosFinancieros) {
-		if (reg->fechaHoraSalida.Date == fechaBuscada.Date) {
+	for each (RegistroFinanciero ^ reg in todos) {
+		if (reg->fechaHoraSalida != DateTime::MinValue && reg->fechaHoraSalida.Date == fechaBuscada.Date) {
 			listaFiltrada->Add(reg);
 		}
 	}

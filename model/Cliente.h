@@ -11,8 +11,8 @@ namespace modelPrincipal {
         Cliente() : Usuario() {} // Requerido por XML
 
         // Llamamos al constructor de la clase base usando la lista de inicialización
-        Cliente(int id, int dni, String^ nombre, int puntos)
-            : Usuario(id, dni, nombre) {
+        Cliente(int Id, int dni, String^ nombre, int puntos)
+            : Usuario(Id, dni, nombre) {
             this->PuntosFidelidad = puntos;
         }
 

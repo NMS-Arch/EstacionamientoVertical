@@ -4,19 +4,6 @@ using namespace System::Xml::Serialization;
 
 namespace modelPrincipal {
 
-    // Declaraciones anticipadas (Forward declarations) para que el compilador reconozca los tipos en los atributos XML
-    ref class Cliente;
-    ref class Empleado;
-    ref class Administrador;
-    ref class Operador;
-    ref class Mantenimiento;
-
-    // Inyectamos la metadata para que el Gestor de Archivos XML sepa cómo discriminar los tipos
-    [XmlInclude(Cliente::typeid)]
-        [XmlInclude(Empleado::typeid)]
-    [XmlInclude(Administrador::typeid)]
-    [XmlInclude(Operador::typeid)]
-    [XmlInclude(Mantenimiento::typeid)]
     public ref class Usuario abstract {
     public:
         // Usamos propiedades de C++/CLI (get/set automáticos) para mantener la encapsulación
