@@ -23,7 +23,15 @@ namespace View {
 		Form^ MenuAdminForm;
 
 		Administrador^ administrador_informacion;
-		ControlReporteFinanciero^ controladorFinanzas;
+	private: System::Windows::Forms::NumericUpDown^ numeric_Peso_para_comenzar_adicional;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column7;
+	private: System::Windows::Forms::NumericUpDown^ numeric_Peso_para_Aplicar_Adicional_Modificar;
+
+	private: System::Windows::Forms::Label^ label8;
+		   ControlReporteFinanciero^ controladorFinanzas;
 
 	public:
 		Administracion_Tarifas_y_Auditoria_Form(Form^ entrada_MenuAdminForm, ControlReporteFinanciero^ entrada_ControladorFinanzas, Administrador^ admin_entrada)
@@ -87,8 +95,8 @@ namespace View {
 
 
 	private: System::Windows::Forms::Button^ btn_Regresar_Menu_Administracion;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column6;
+
+
 
 
 	private:
@@ -124,14 +132,21 @@ namespace View {
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
 			this->btn_Regresar_Menu_Administracion = (gcnew System::Windows::Forms::Button());
+			this->numeric_Peso_para_comenzar_adicional = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->numeric_Peso_para_Aplicar_Adicional_Modificar = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column7 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_CostoHora_Actual))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_CostoPesoAdicional_Actual))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_CostoHora_Modificar))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_CostoPesoAdicional_Modificar))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_para_comenzar_adicional))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_para_Aplicar_Adicional_Modificar))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -146,7 +161,7 @@ namespace View {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(252, 92);
+			this->label2->Location = System::Drawing::Point(496, 92);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(159, 16);
 			this->label2->TabIndex = 1;
@@ -163,7 +178,7 @@ namespace View {
 			// numeric_CostoPesoAdicional_Actual
 			// 
 			this->numeric_CostoPesoAdicional_Actual->DecimalPlaces = 2;
-			this->numeric_CostoPesoAdicional_Actual->Location = System::Drawing::Point(255, 125);
+			this->numeric_CostoPesoAdicional_Actual->Location = System::Drawing::Point(499, 125);
 			this->numeric_CostoPesoAdicional_Actual->Name = L"numeric_CostoPesoAdicional_Actual";
 			this->numeric_CostoPesoAdicional_Actual->Size = System::Drawing::Size(156, 22);
 			this->numeric_CostoPesoAdicional_Actual->TabIndex = 3;
@@ -200,7 +215,7 @@ namespace View {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(57, 303);
+			this->label6->Location = System::Drawing::Point(57, 339);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(159, 16);
 			this->label6->TabIndex = 7;
@@ -217,7 +232,7 @@ namespace View {
 			// numeric_CostoPesoAdicional_Modificar
 			// 
 			this->numeric_CostoPesoAdicional_Modificar->DecimalPlaces = 2;
-			this->numeric_CostoPesoAdicional_Modificar->Location = System::Drawing::Point(244, 301);
+			this->numeric_CostoPesoAdicional_Modificar->Location = System::Drawing::Point(244, 337);
 			this->numeric_CostoPesoAdicional_Modificar->Name = L"numeric_CostoPesoAdicional_Modificar";
 			this->numeric_CostoPesoAdicional_Modificar->Size = System::Drawing::Size(125, 22);
 			this->numeric_CostoPesoAdicional_Modificar->TabIndex = 14;
@@ -242,7 +257,7 @@ namespace View {
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(902, 206);
+			this->dataGridView1->Size = System::Drawing::Size(951, 206);
 			this->dataGridView1->TabIndex = 17;
 			// 
 			// Column1
@@ -287,7 +302,7 @@ namespace View {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(604, 218);
+			this->label12->Location = System::Drawing::Point(566, 224);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(185, 16);
 			this->label12->TabIndex = 19;
@@ -296,26 +311,60 @@ namespace View {
 			// dataGridView2
 			// 
 			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->Column5,
-					this->Column6
+					this->Column6, this->Column7
 			});
-			this->dataGridView2->Location = System::Drawing::Point(607, 247);
+			this->dataGridView2->Location = System::Drawing::Point(569, 253);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->RowHeadersWidth = 51;
 			this->dataGridView2->RowTemplate->Height = 24;
-			this->dataGridView2->Size = System::Drawing::Size(347, 72);
+			this->dataGridView2->Size = System::Drawing::Size(441, 72);
 			this->dataGridView2->TabIndex = 20;
 			// 
 			// btn_Regresar_Menu_Administracion
 			// 
-			this->btn_Regresar_Menu_Administracion->Location = System::Drawing::Point(766, 64);
+			this->btn_Regresar_Menu_Administracion->Location = System::Drawing::Point(822, 64);
 			this->btn_Regresar_Menu_Administracion->Name = L"btn_Regresar_Menu_Administracion";
 			this->btn_Regresar_Menu_Administracion->Size = System::Drawing::Size(188, 73);
 			this->btn_Regresar_Menu_Administracion->TabIndex = 21;
 			this->btn_Regresar_Menu_Administracion->Text = L"Regresar Menu de Administracion";
 			this->btn_Regresar_Menu_Administracion->UseVisualStyleBackColor = true;
 			this->btn_Regresar_Menu_Administracion->Click += gcnew System::EventHandler(this, &Administracion_Tarifas_y_Auditoria_Form::btn_Regresar_Menu_Administracion_Click);
+			// 
+			// numeric_Peso_para_comenzar_adicional
+			// 
+			this->numeric_Peso_para_comenzar_adicional->DecimalPlaces = 2;
+			this->numeric_Peso_para_comenzar_adicional->Location = System::Drawing::Point(265, 125);
+			this->numeric_Peso_para_comenzar_adicional->Name = L"numeric_Peso_para_comenzar_adicional";
+			this->numeric_Peso_para_comenzar_adicional->Size = System::Drawing::Size(156, 22);
+			this->numeric_Peso_para_comenzar_adicional->TabIndex = 23;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(262, 92);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(149, 16);
+			this->label7->TabIndex = 22;
+			this->label7->Text = L"Peso para adicional (tn)";
+			// 
+			// numeric_Peso_para_Aplicar_Adicional_Modificar
+			// 
+			this->numeric_Peso_para_Aplicar_Adicional_Modificar->DecimalPlaces = 2;
+			this->numeric_Peso_para_Aplicar_Adicional_Modificar->Location = System::Drawing::Point(244, 303);
+			this->numeric_Peso_para_Aplicar_Adicional_Modificar->Name = L"numeric_Peso_para_Aplicar_Adicional_Modificar";
+			this->numeric_Peso_para_Aplicar_Adicional_Modificar->Size = System::Drawing::Size(125, 22);
+			this->numeric_Peso_para_Aplicar_Adicional_Modificar->TabIndex = 25;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(57, 305);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(128, 16);
+			this->label8->TabIndex = 24;
+			this->label8->Text = L"Peso para adicional";
 			// 
 			// Column5
 			// 
@@ -326,16 +375,27 @@ namespace View {
 			// 
 			// Column6
 			// 
-			this->Column6->HeaderText = L"CostoAdicional";
+			this->Column6->HeaderText = L"PesoParaAdicional";
 			this->Column6->MinimumWidth = 6;
 			this->Column6->Name = L"Column6";
 			this->Column6->Width = 125;
+			// 
+			// Column7
+			// 
+			this->Column7->HeaderText = L"CostoAdicional";
+			this->Column7->MinimumWidth = 6;
+			this->Column7->Name = L"Column7";
+			this->Column7->Width = 125;
 			// 
 			// Administracion_Tarifas_y_Auditoria_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1005, 682);
+			this->ClientSize = System::Drawing::Size(1033, 682);
+			this->Controls->Add(this->numeric_Peso_para_Aplicar_Adicional_Modificar);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->numeric_Peso_para_comenzar_adicional);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->btn_Regresar_Menu_Administracion);
 			this->Controls->Add(this->dataGridView2);
 			this->Controls->Add(this->label12);
@@ -360,6 +420,8 @@ namespace View {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_CostoPesoAdicional_Modificar))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_para_comenzar_adicional))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_para_Aplicar_Adicional_Modificar))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
