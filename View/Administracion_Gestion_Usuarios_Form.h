@@ -21,7 +21,7 @@ namespace View {
 	{
 	private:
 		Form^ MenuAdminForm;
-
+		bool seAplicoFiltro;
 		Administrador^ administrador_informacion;
 
 
@@ -64,6 +64,7 @@ namespace View {
 			dato_consultado = -1;
 			id_consultado = -1;
 			//
+			seAplicoFiltro = false;
 		}
 
 	protected:
@@ -200,9 +201,10 @@ namespace View {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(39, 49);
+			this->label1->Location = System::Drawing::Point(29, 40);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(129, 16);
+			this->label1->Size = System::Drawing::Size(102, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Gestion de Personal";
 			// 
@@ -213,11 +215,12 @@ namespace View {
 				this->Colum_ID,
 					this->Colum_Nombre, this->Colum_Rol, this->Colum_Turno, this->Colum_DNI, this->Colum_Estado, this->Colum_Name_User, this->Colum_Password_User
 			});
-			this->dataGridView1->Location = System::Drawing::Point(404, 146);
+			this->dataGridView1->Location = System::Drawing::Point(303, 119);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(885, 374);
+			this->dataGridView1->Size = System::Drawing::Size(664, 304);
 			this->dataGridView1->TabIndex = 1;
 			// 
 			// Colum_ID
@@ -279,9 +282,10 @@ namespace View {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(403, 94);
+			this->label2->Location = System::Drawing::Point(302, 76);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(110, 16);
+			this->label2->Size = System::Drawing::Size(86, 13);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Tipo de personal";
 			// 
@@ -289,71 +293,80 @@ namespace View {
 			// 
 			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Todos", L"Operario", L"Mantenimiento" });
-			this->comboBox1->Location = System::Drawing::Point(519, 86);
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Todos", L"Operador", L"Mantenimiento" });
+			this->comboBox1->Location = System::Drawing::Point(389, 70);
+			this->comboBox1->Margin = System::Windows::Forms::Padding(2);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(127, 24);
+			this->comboBox1->Size = System::Drawing::Size(96, 21);
 			this->comboBox1->TabIndex = 3;
 			// 
 			// btn_Aplicar_Filtro
 			// 
-			this->btn_Aplicar_Filtro->Location = System::Drawing::Point(675, 77);
+			this->btn_Aplicar_Filtro->Location = System::Drawing::Point(506, 63);
+			this->btn_Aplicar_Filtro->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Aplicar_Filtro->Name = L"btn_Aplicar_Filtro";
-			this->btn_Aplicar_Filtro->Size = System::Drawing::Size(141, 40);
+			this->btn_Aplicar_Filtro->Size = System::Drawing::Size(106, 32);
 			this->btn_Aplicar_Filtro->TabIndex = 4;
 			this->btn_Aplicar_Filtro->Text = L"Aplicar Filtro";
 			this->btn_Aplicar_Filtro->UseVisualStyleBackColor = true;
+			this->btn_Aplicar_Filtro->Click += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::btn_Aplicar_Filtro_Click);
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(37, 194);
+			this->label3->Location = System::Drawing::Point(28, 158);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(56, 16);
+			this->label3->Size = System::Drawing::Size(44, 13);
 			this->label3->TabIndex = 5;
 			this->label3->Text = L"Nombre";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(37, 249);
+			this->label4->Location = System::Drawing::Point(28, 202);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(104, 16);
+			this->label4->Size = System::Drawing::Size(82, 13);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Rol de Personal";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(39, 559);
+			this->label5->Location = System::Drawing::Point(29, 454);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(106, 16);
+			this->label5->Size = System::Drawing::Size(83, 13);
 			this->label5->TabIndex = 7;
 			this->label5->Text = L"Nombre Usuario";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(39, 345);
+			this->label6->Location = System::Drawing::Point(29, 280);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(30, 16);
+			this->label6->Size = System::Drawing::Size(26, 13);
 			this->label6->TabIndex = 8;
 			this->label6->Text = L"DNI";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(39, 597);
+			this->label7->Location = System::Drawing::Point(29, 485);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(76, 16);
+			this->label7->Size = System::Drawing::Size(61, 13);
 			this->label7->TabIndex = 9;
 			this->label7->Text = L"Contraseña";
 			// 
 			// btn_Agregar
 			// 
-			this->btn_Agregar->Location = System::Drawing::Point(42, 654);
+			this->btn_Agregar->Location = System::Drawing::Point(32, 531);
+			this->btn_Agregar->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Agregar->Name = L"btn_Agregar";
-			this->btn_Agregar->Size = System::Drawing::Size(122, 46);
+			this->btn_Agregar->Size = System::Drawing::Size(92, 37);
 			this->btn_Agregar->TabIndex = 10;
 			this->btn_Agregar->Text = L"Agregar";
 			this->btn_Agregar->UseVisualStyleBackColor = true;
@@ -362,9 +375,10 @@ namespace View {
 			// btn_Modificar
 			// 
 			this->btn_Modificar->Enabled = false;
-			this->btn_Modificar->Location = System::Drawing::Point(178, 654);
+			this->btn_Modificar->Location = System::Drawing::Point(134, 531);
+			this->btn_Modificar->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Modificar->Name = L"btn_Modificar";
-			this->btn_Modificar->Size = System::Drawing::Size(126, 46);
+			this->btn_Modificar->Size = System::Drawing::Size(94, 37);
 			this->btn_Modificar->TabIndex = 11;
 			this->btn_Modificar->Text = L"Modificar";
 			this->btn_Modificar->UseVisualStyleBackColor = true;
@@ -374,9 +388,10 @@ namespace View {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(39, 389);
+			this->label8->Location = System::Drawing::Point(29, 316);
+			this->label8->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(50, 16);
+			this->label8->Size = System::Drawing::Size(40, 13);
 			this->label8->TabIndex = 12;
 			this->label8->Text = L"Estado";
 			// 
@@ -385,16 +400,18 @@ namespace View {
 			this->cb_Estado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Estado->FormattingEnabled = true;
 			this->cb_Estado->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Activo", L"De Baja", L"Despedido" });
-			this->cb_Estado->Location = System::Drawing::Point(172, 381);
+			this->cb_Estado->Location = System::Drawing::Point(129, 310);
+			this->cb_Estado->Margin = System::Windows::Forms::Padding(2);
 			this->cb_Estado->Name = L"cb_Estado";
-			this->cb_Estado->Size = System::Drawing::Size(130, 24);
+			this->cb_Estado->Size = System::Drawing::Size(98, 21);
 			this->cb_Estado->TabIndex = 13;
 			// 
 			// tb_Nombre_Personal
 			// 
-			this->tb_Nombre_Personal->Location = System::Drawing::Point(172, 191);
+			this->tb_Nombre_Personal->Location = System::Drawing::Point(129, 155);
+			this->tb_Nombre_Personal->Margin = System::Windows::Forms::Padding(2);
 			this->tb_Nombre_Personal->Name = L"tb_Nombre_Personal";
-			this->tb_Nombre_Personal->Size = System::Drawing::Size(130, 22);
+			this->tb_Nombre_Personal->Size = System::Drawing::Size(98, 20);
 			this->tb_Nombre_Personal->TabIndex = 14;
 			// 
 			// cb_Rol_Personal
@@ -402,38 +419,43 @@ namespace View {
 			this->cb_Rol_Personal->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Rol_Personal->FormattingEnabled = true;
 			this->cb_Rol_Personal->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operador", L"Mantenimiento", L"Administrador" });
-			this->cb_Rol_Personal->Location = System::Drawing::Point(172, 244);
+			this->cb_Rol_Personal->Location = System::Drawing::Point(129, 198);
+			this->cb_Rol_Personal->Margin = System::Windows::Forms::Padding(2);
 			this->cb_Rol_Personal->Name = L"cb_Rol_Personal";
-			this->cb_Rol_Personal->Size = System::Drawing::Size(129, 24);
+			this->cb_Rol_Personal->Size = System::Drawing::Size(98, 21);
 			this->cb_Rol_Personal->TabIndex = 15;
 			this->cb_Rol_Personal->SelectedIndexChanged += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::cb_Rol_Personal_SelectedIndexChanged);
 			// 
 			// tb_DNI_Personal
 			// 
-			this->tb_DNI_Personal->Location = System::Drawing::Point(174, 339);
+			this->tb_DNI_Personal->Location = System::Drawing::Point(130, 275);
+			this->tb_DNI_Personal->Margin = System::Windows::Forms::Padding(2);
 			this->tb_DNI_Personal->Name = L"tb_DNI_Personal";
-			this->tb_DNI_Personal->Size = System::Drawing::Size(130, 22);
+			this->tb_DNI_Personal->Size = System::Drawing::Size(98, 20);
 			this->tb_DNI_Personal->TabIndex = 16;
 			// 
 			// tb_nombre_Usuario
 			// 
-			this->tb_nombre_Usuario->Location = System::Drawing::Point(174, 551);
+			this->tb_nombre_Usuario->Location = System::Drawing::Point(130, 448);
+			this->tb_nombre_Usuario->Margin = System::Windows::Forms::Padding(2);
 			this->tb_nombre_Usuario->Name = L"tb_nombre_Usuario";
-			this->tb_nombre_Usuario->Size = System::Drawing::Size(128, 22);
+			this->tb_nombre_Usuario->Size = System::Drawing::Size(97, 20);
 			this->tb_nombre_Usuario->TabIndex = 17;
 			// 
 			// tb_password_Usuario
 			// 
-			this->tb_password_Usuario->Location = System::Drawing::Point(174, 591);
+			this->tb_password_Usuario->Location = System::Drawing::Point(130, 480);
+			this->tb_password_Usuario->Margin = System::Windows::Forms::Padding(2);
 			this->tb_password_Usuario->Name = L"tb_password_Usuario";
-			this->tb_password_Usuario->Size = System::Drawing::Size(130, 22);
+			this->tb_password_Usuario->Size = System::Drawing::Size(98, 20);
 			this->tb_password_Usuario->TabIndex = 18;
 			// 
 			// btn_Consultar
 			// 
-			this->btn_Consultar->Location = System::Drawing::Point(575, 615);
+			this->btn_Consultar->Location = System::Drawing::Point(431, 500);
+			this->btn_Consultar->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Consultar->Name = L"btn_Consultar";
-			this->btn_Consultar->Size = System::Drawing::Size(163, 44);
+			this->btn_Consultar->Size = System::Drawing::Size(122, 36);
 			this->btn_Consultar->TabIndex = 19;
 			this->btn_Consultar->Text = L"Consultar";
 			this->btn_Consultar->UseVisualStyleBackColor = true;
@@ -442,9 +464,10 @@ namespace View {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(405, 560);
+			this->label9->Location = System::Drawing::Point(304, 455);
+			this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(86, 16);
+			this->label9->Size = System::Drawing::Size(69, 13);
 			this->label9->TabIndex = 20;
 			this->label9->Text = L"Consultar por";
 			// 
@@ -453,17 +476,19 @@ namespace View {
 			this->cb_Tipo_Datos_Consultar->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Tipo_Datos_Consultar->FormattingEnabled = true;
 			this->cb_Tipo_Datos_Consultar->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"ID", L"DNI" });
-			this->cb_Tipo_Datos_Consultar->Location = System::Drawing::Point(497, 557);
+			this->cb_Tipo_Datos_Consultar->Location = System::Drawing::Point(373, 453);
+			this->cb_Tipo_Datos_Consultar->Margin = System::Windows::Forms::Padding(2);
 			this->cb_Tipo_Datos_Consultar->Name = L"cb_Tipo_Datos_Consultar";
-			this->cb_Tipo_Datos_Consultar->Size = System::Drawing::Size(108, 24);
+			this->cb_Tipo_Datos_Consultar->Size = System::Drawing::Size(82, 21);
 			this->cb_Tipo_Datos_Consultar->TabIndex = 21;
 			this->cb_Tipo_Datos_Consultar->SelectedIndexChanged += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::cb_Tipo_Datos_Consultar_SelectedIndexChanged);
 			// 
 			// btn_Eliminar
 			// 
-			this->btn_Eliminar->Location = System::Drawing::Point(1101, 598);
+			this->btn_Eliminar->Location = System::Drawing::Point(826, 486);
+			this->btn_Eliminar->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Eliminar->Name = L"btn_Eliminar";
-			this->btn_Eliminar->Size = System::Drawing::Size(121, 61);
+			this->btn_Eliminar->Size = System::Drawing::Size(91, 50);
 			this->btn_Eliminar->TabIndex = 22;
 			this->btn_Eliminar->Text = L"Eliminar";
 			this->btn_Eliminar->UseVisualStyleBackColor = true;
@@ -472,58 +497,65 @@ namespace View {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(950, 594);
+			this->label10->Location = System::Drawing::Point(712, 483);
+			this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(82, 16);
+			this->label10->Size = System::Drawing::Size(67, 13);
 			this->label10->TabIndex = 23;
 			this->label10->Text = L"Ingrese el ID";
 			// 
 			// numeric_ID
 			// 
-			this->numeric_ID->Location = System::Drawing::Point(953, 637);
+			this->numeric_ID->Location = System::Drawing::Point(715, 518);
+			this->numeric_ID->Margin = System::Windows::Forms::Padding(2);
 			this->numeric_ID->Name = L"numeric_ID";
-			this->numeric_ID->Size = System::Drawing::Size(120, 22);
+			this->numeric_ID->Size = System::Drawing::Size(90, 20);
 			this->numeric_ID->TabIndex = 24;
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(950, 610);
+			this->label11->Location = System::Drawing::Point(712, 496);
+			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(85, 16);
+			this->label11->Size = System::Drawing::Size(66, 13);
 			this->label11->TabIndex = 25;
 			this->label11->Text = L"para eliminar";
 			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(405, 602);
+			this->label12->Location = System::Drawing::Point(304, 489);
+			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(164, 16);
+			this->label12->Size = System::Drawing::Size(132, 13);
 			this->label12->TabIndex = 26;
 			this->label12->Text = L"Ingrese el dato a consultar";
 			// 
 			// tb_Dato_Consultar
 			// 
-			this->tb_Dato_Consultar->Location = System::Drawing::Point(408, 637);
+			this->tb_Dato_Consultar->Location = System::Drawing::Point(306, 518);
+			this->tb_Dato_Consultar->Margin = System::Windows::Forms::Padding(2);
 			this->tb_Dato_Consultar->Name = L"tb_Dato_Consultar";
-			this->tb_Dato_Consultar->Size = System::Drawing::Size(128, 22);
+			this->tb_Dato_Consultar->Size = System::Drawing::Size(97, 20);
 			this->tb_Dato_Consultar->TabIndex = 27;
 			// 
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(37, 112);
+			this->label13->Location = System::Drawing::Point(28, 91);
+			this->label13->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(119, 16);
+			this->label13->Size = System::Drawing::Size(94, 13);
 			this->label13->TabIndex = 28;
 			this->label13->Text = L"Datos de Personal";
 			// 
 			// btn_Regresar_Menu_Administracion
 			// 
-			this->btn_Regresar_Menu_Administracion->Location = System::Drawing::Point(1050, 49);
+			this->btn_Regresar_Menu_Administracion->Location = System::Drawing::Point(788, 40);
+			this->btn_Regresar_Menu_Administracion->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Regresar_Menu_Administracion->Name = L"btn_Regresar_Menu_Administracion";
-			this->btn_Regresar_Menu_Administracion->Size = System::Drawing::Size(172, 68);
+			this->btn_Regresar_Menu_Administracion->Size = System::Drawing::Size(129, 55);
 			this->btn_Regresar_Menu_Administracion->TabIndex = 29;
 			this->btn_Regresar_Menu_Administracion->Text = L"Regresar al Menu de Administracion";
 			this->btn_Regresar_Menu_Administracion->UseVisualStyleBackColor = true;
@@ -532,9 +564,10 @@ namespace View {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(39, 303);
+			this->label14->Location = System::Drawing::Point(29, 246);
+			this->label14->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(42, 16);
+			this->label14->Size = System::Drawing::Size(35, 13);
 			this->label14->TabIndex = 30;
 			this->label14->Text = L"Turno";
 			// 
@@ -543,17 +576,19 @@ namespace View {
 			this->cb_Turno->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Turno->FormattingEnabled = true;
 			this->cb_Turno->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Manana", L"Tarde", L"Noche" });
-			this->cb_Turno->Location = System::Drawing::Point(172, 296);
+			this->cb_Turno->Location = System::Drawing::Point(129, 240);
+			this->cb_Turno->Margin = System::Windows::Forms::Padding(2);
 			this->cb_Turno->Name = L"cb_Turno";
-			this->cb_Turno->Size = System::Drawing::Size(131, 24);
+			this->cb_Turno->Size = System::Drawing::Size(99, 21);
 			this->cb_Turno->TabIndex = 31;
 			// 
 			// label_Dinamico_0
 			// 
 			this->label_Dinamico_0->AutoSize = true;
-			this->label_Dinamico_0->Location = System::Drawing::Point(39, 518);
+			this->label_Dinamico_0->Location = System::Drawing::Point(29, 421);
+			this->label_Dinamico_0->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label_Dinamico_0->Name = L"label_Dinamico_0";
-			this->label_Dinamico_0->Size = System::Drawing::Size(143, 16);
+			this->label_Dinamico_0->Size = System::Drawing::Size(111, 13);
 			this->label_Dinamico_0->TabIndex = 32;
 			this->label_Dinamico_0->Text = L"Elija el rol del personal";
 			this->label_Dinamico_0->Visible = false;
@@ -561,18 +596,20 @@ namespace View {
 			// tb_Dinamico
 			// 
 			this->tb_Dinamico->Enabled = false;
-			this->tb_Dinamico->Location = System::Drawing::Point(42, 473);
+			this->tb_Dinamico->Location = System::Drawing::Point(32, 384);
+			this->tb_Dinamico->Margin = System::Windows::Forms::Padding(2);
 			this->tb_Dinamico->Name = L"tb_Dinamico";
-			this->tb_Dinamico->Size = System::Drawing::Size(127, 22);
+			this->tb_Dinamico->Size = System::Drawing::Size(96, 20);
 			this->tb_Dinamico->TabIndex = 33;
 			this->tb_Dinamico->Visible = false;
 			// 
 			// label_Dinamico
 			// 
 			this->label_Dinamico->AutoSize = true;
-			this->label_Dinamico->Location = System::Drawing::Point(39, 454);
+			this->label_Dinamico->Location = System::Drawing::Point(29, 369);
+			this->label_Dinamico->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label_Dinamico->Name = L"label_Dinamico";
-			this->label_Dinamico->Size = System::Drawing::Size(67, 16);
+			this->label_Dinamico->Size = System::Drawing::Size(54, 13);
 			this->label_Dinamico->TabIndex = 34;
 			this->label_Dinamico->Text = L"Seleccion";
 			this->label_Dinamico->Visible = false;
@@ -580,9 +617,10 @@ namespace View {
 			// label_Dinamic_ID
 			// 
 			this->label_Dinamic_ID->AutoSize = true;
-			this->label_Dinamic_ID->Location = System::Drawing::Point(39, 155);
+			this->label_Dinamic_ID->Location = System::Drawing::Point(29, 126);
+			this->label_Dinamic_ID->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label_Dinamic_ID->Name = L"label_Dinamic_ID";
-			this->label_Dinamic_ID->Size = System::Drawing::Size(89, 16);
+			this->label_Dinamic_ID->Size = System::Drawing::Size(73, 13);
 			this->label_Dinamic_ID->TabIndex = 35;
 			this->label_Dinamic_ID->Text = L"ID consultado";
 			this->label_Dinamic_ID->Visible = false;
@@ -590,18 +628,20 @@ namespace View {
 			// numeric_dinamico_id_consultado
 			// 
 			this->numeric_dinamico_id_consultado->Enabled = false;
-			this->numeric_dinamico_id_consultado->Location = System::Drawing::Point(172, 153);
+			this->numeric_dinamico_id_consultado->Location = System::Drawing::Point(129, 124);
+			this->numeric_dinamico_id_consultado->Margin = System::Windows::Forms::Padding(2);
 			this->numeric_dinamico_id_consultado->Name = L"numeric_dinamico_id_consultado";
-			this->numeric_dinamico_id_consultado->Size = System::Drawing::Size(120, 22);
+			this->numeric_dinamico_id_consultado->Size = System::Drawing::Size(90, 20);
 			this->numeric_dinamico_id_consultado->TabIndex = 36;
 			this->numeric_dinamico_id_consultado->Visible = false;
 			// 
 			// btn_Salir_Modificar
 			// 
 			this->btn_Salir_Modificar->Enabled = false;
-			this->btn_Salir_Modificar->Location = System::Drawing::Point(187, 717);
+			this->btn_Salir_Modificar->Location = System::Drawing::Point(140, 583);
+			this->btn_Salir_Modificar->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Salir_Modificar->Name = L"btn_Salir_Modificar";
-			this->btn_Salir_Modificar->Size = System::Drawing::Size(105, 67);
+			this->btn_Salir_Modificar->Size = System::Drawing::Size(79, 54);
 			this->btn_Salir_Modificar->TabIndex = 37;
 			this->btn_Salir_Modificar->Text = L"Salir de Modificar";
 			this->btn_Salir_Modificar->UseVisualStyleBackColor = true;
@@ -610,9 +650,9 @@ namespace View {
 			// 
 			// Administracion_Gestion_Usuarios_Form
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1327, 796);
+			this->ClientSize = System::Drawing::Size(995, 647);
 			this->Controls->Add(this->btn_Salir_Modificar);
 			this->Controls->Add(this->numeric_dinamico_id_consultado);
 			this->Controls->Add(this->label_Dinamic_ID);
@@ -651,6 +691,7 @@ namespace View {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"Administracion_Gestion_Usuarios_Form";
 			this->Text = L"Administracion_Gestion_Usuarios_Form";
 			this->Load += gcnew System::EventHandler(this, &Administracion_Gestion_Usuarios_Form::Administracion_Gestion_Usuarios_Form_Load);
@@ -997,7 +1038,6 @@ namespace View {
 			}
 		}
 
-
 		private: System::Void btn_Eliminar_Click(System::Object^ sender, System::EventArgs^ e) {
 			
 			int id_user = Convert::ToInt32(numeric_ID->Value);
@@ -1006,11 +1046,6 @@ namespace View {
 			actualizar_celdas();
 			
 		}
-
-
-		
-
-
 
 		private: System::Void cb_Rol_Personal_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 			
@@ -1140,6 +1175,83 @@ namespace View {
 			ocultar_id_consultado();
 			aparecer_boton_Agregar();
 		
+		}
+		
+		private: void actualizar(List<Usuario^>^ lista) {
+			dataGridView1->Rows->Clear();
+			for each (Usuario ^ usuario in lista) {
+				Empleado^ empleado = dynamic_cast<Empleado^>(usuario);
+				if (empleado == nullptr) continue;
+				int indiceFila = dataGridView1->Rows->Add();
+				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+				fila->Cells["Colum_ID"]->Value = empleado->Id;
+				fila->Cells["Colum_Nombre"]->Value = empleado->Nombre;
+				fila->Cells["Colum_DNI"]->Value = empleado->DNI;
+				fila->Cells["Colum_Turno"]->Value = empleado->Turno;
+				fila->Cells["Colum_Estado"]->Value = empleado->Estado;
+				fila->Cells["Colum_Name_User"]->Value = empleado->NombreUsuario;
+				fila->Cells["Colum_Password_User"]->Value = empleado->PasswordUsuario;
+				String^ rolTexto = "Desconocido";
+				if (dynamic_cast<Operador^>(empleado) != nullptr) {
+					rolTexto = "Operador";
+				}
+				else if (dynamic_cast<Mantenimiento^>(empleado) != nullptr) {
+					rolTexto = "Mantenimiento";
+				}
+				else if (dynamic_cast<Administrador^>(empleado) != nullptr) {
+					rolTexto = "Administrador";
+				}
+				fila->Cells["Colum_Rol"]->Value = rolTexto;
+			}
+		}
+
+		private: System::Void btn_Aplicar_Filtro_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			int seleccionado = comboBox1->SelectedIndex; String^ periodo;
+			List<Usuario^>^ listaFiltrada = gcnew List<Usuario^>();
+			List<Usuario^>^ todos = controladorUsuarios->ObtenerTodos();
+			
+			if (seleccionado == 0) {
+				periodo = "Todos";
+				seAplicoFiltro = true;
+			}
+			else if (seleccionado == 1) {
+				periodo = "Operador";
+				seAplicoFiltro = true;
+			}
+			else if (seleccionado == 2) {
+				periodo = "Mantenimiento";
+				seAplicoFiltro = true;
+			}
+			else {
+				seAplicoFiltro = false;
+			}
+
+			if (seAplicoFiltro == true && periodo != "Todos") {
+				for each (Usuario ^ usuario in todos) {
+
+					Empleado^ empleado = dynamic_cast<Empleado^>(usuario);
+
+					if (empleado == nullptr) continue; 
+
+					String^ rolTexto = "";
+					if (dynamic_cast<Operador^>(empleado) != nullptr) {
+						rolTexto = "Operador";
+					}
+					else if (dynamic_cast<Mantenimiento^>(empleado) != nullptr) {
+						rolTexto = "Mantenimiento";
+					}
+					if (rolTexto == periodo) {
+						listaFiltrada->Add(usuario);
+					}
+				}
+
+			}
+			else {
+				listaFiltrada = todos;
+			}
+			actualizar(listaFiltrada);
+
 		}
 };
 }
