@@ -135,6 +135,7 @@
     <ClInclude Include="ControlFallas.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="ControlReporteFinanciero.h" />
+    <ClInclude Include="ControlTarifas.h" />
     <ClInclude Include="ControlUsuarios.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="ControlFallas.cpp" />
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="ControlReporteFinanciero.cpp" />
+    <ClCompile Include="ControlTarifas.cpp" />
     <ClCompile Include="ControlUsuarios.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

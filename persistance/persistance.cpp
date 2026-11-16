@@ -818,3 +818,101 @@ List<RegistroFinanciero^>^ persistancePrincipal::persistance::CargarRegistrosBD(
 	}
 	return lista;
 }
+
+
+// #################
+// ### Tarifa	 ###
+// #################
+
+
+void persistancePrincipal::persistance::RegistrarNuevaTarifa(Tarifa^ nuevaTarifa) {
+	SqlConnection^ conexion = obtenerConexion();
+
+	// Asumimos que creaste el SP usp_InsertarTarifa
+	SqlCommand^ comando = gcnew SqlCommand("usp_InsertarTarifa", conexion);
+	comando->CommandType = CommandType::StoredProcedure;
+
+	// Inyectamos los parámetros extrayéndolos de tu objeto instanciado vacío pero ya llenado
+	comando->Parameters->Add(gcnew SqlParameter("@PrecioBase", nuevaTarifa->PrecioBase));
+	comando->Parameters->Add(gcnew SqlParameter("@PesoUmbral", nuevaTarifa->PesoUmbral));
+	comando->Parameters->Add(gcnew SqlParameter("@PrecioAdicional", nuevaTarifa->PrecioAdicional));
+
+	try {
+		conexion->Open();
+		comando->ExecuteNonQuery();
+	}
+	catch (Exception^ ex) {
+		throw gcnew Exception("Error en la capa de persistencia al registrar tarifa: " + ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+}
+
+Tarifa^ persistancePrincipal::persistance::ObtenerTarifaVigente() {
+	Tarifa^ tarifaActual = nullptr;
+	SqlConnection^ conexion = obtenerConexion();
+	SqlCommand^ comando = gcnew SqlCommand("usp_ObtenerTarifaVigente", conexion);
+	comando->CommandType = CommandType::StoredProcedure;
+
+	try {
+		conexion->Open();
+		SqlDataReader^ lector = comando->ExecuteReader();
+
+		if (lector->Read()) {
+			tarifaActual = gcnew Tarifa(); // Usamos tu constructor vacío
+
+			// Llenamos propiedad por propiedad (Hidratación del objeto)
+			tarifaActual->IdTarifa = lector->GetInt32(0);
+			tarifaActual->PrecioBase = Convert::ToDouble(lector->GetDecimal(1));
+			tarifaActual->PesoUmbral = Convert::ToDouble(lector->GetDecimal(2));
+			tarifaActual->PrecioAdicional = Convert::ToDouble(lector->GetDecimal(3));
+			tarifaActual->FechaRegistro = lector->GetDateTime(4);
+		}
+		lector->Close();
+	}
+	catch (Exception^ ex) {
+		throw gcnew Exception("Error al obtener la tarifa vigente: " + ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return tarifaActual;
+}
+
+List<Tarifa^>^ persistancePrincipal::persistance::ObtenerHistorialTarifas() {
+	List<Tarifa^>^ lista = gcnew List<Tarifa^>();
+	SqlConnection^ conexion = obtenerConexion();
+	SqlCommand^ comando = gcnew SqlCommand("usp_ObtenerHistorial", conexion);
+	comando->CommandType = CommandType::StoredProcedure;
+
+	try {
+		conexion->Open();
+		SqlDataReader^ lector = comando->ExecuteReader();
+
+		while (lector->Read()) {
+			Tarifa^ obj = gcnew Tarifa();
+			obj->IdTarifa = lector->GetInt32(0);
+			obj->PrecioBase = Convert::ToDouble(lector->GetDecimal(1));
+			obj->PesoUmbral = Convert::ToDouble(lector->GetDecimal(2));
+			obj->PrecioAdicional = Convert::ToDouble(lector->GetDecimal(3));
+			obj->FechaRegistro = lector->GetDateTime(4);
+
+			lista->Add(obj);
+		}
+		lector->Close();
+	}
+	catch (Exception^ ex) {
+		throw gcnew Exception("Error al obtener historial: " + ex->Message);
+	}
+	finally {
+		if (conexion->State == ConnectionState::Open) {
+			conexion->Close();
+		}
+	}
+	return lista;
+}
