@@ -74,6 +74,25 @@ List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosDisponibles
     return libres;
 }
 
+List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerEspaciosOcupados() {
+    // 1. Instanciamos la lista vacía que almacenará los resultados
+    List<Espacio^>^ ocupados = gcnew List<Espacio^>();
+
+    // 2. Traemos todos los registros desde la BD (pasando por Persistencia)
+    List<Espacio^>^ todos = ObtenerTodosEspacios();
+
+    // 3. Filtramos en memoria
+    for each (Espacio ^ esp in todos) {
+        // La regla de negocio es simple: si ocupado es true, entra a la lista.
+        // Podrías agregar "&& esp->estado == 1" si solo cuentas los operativos ocupados.
+        if (esp->ocupado == true) {
+            ocupados->Add(esp);
+        }
+    }
+
+    return ocupados;
+}
+
 
 
 List<Espacio^>^ controllerPrincipal::ControlEspacios::ObtenerTodosEspacios() {
