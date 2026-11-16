@@ -25,5 +25,7 @@ namespace controllerPrincipal {
 
         static List<Tarifa^>^ ListarHistorialPrecios();
 
+        static double CalcularPrecioPorHora(double pesoVehiculo);
+
 	};
 }

@@ -24,3 +24,30 @@ Tarifa^ controllerPrincipal::ControlTarifas::ObtenerPrecioActual() {
 List<Tarifa^>^ controllerPrincipal::ControlTarifas::ListarHistorialPrecios() {
     return persistance::ObtenerHistorialTarifas();
 }
+
+
+
+double controllerPrincipal::ControlTarifas::CalcularPrecioPorHora(double pesoVehiculo) {
+
+    Tarifa^ tarifaVigente = ObtenerPrecioActual();
+
+    // Blindaje de seguridad básico
+    if (tarifaVigente == nullptr) {
+        throw gcnew Exception("No hay tarifa configurada en el sistema.");
+    }
+
+    // Mapeo de tus variables algebraicas a las propiedades del objeto
+    double Pb = tarifaVigente->PrecioBase;
+    double Pa = tarifaVigente->PrecioAdicional;
+    double U = tarifaVigente->PesoUmbral;
+    double W = pesoVehiculo;
+
+    // APLICACIÓN EXACTA DE TU FÓRMULA: Pb + [ Pa * max(0, W - U) ]
+    // Math::Max(0.0, W - U) garantiza que si no hay sobrepeso, se multiplique por cero.
+    double toneladasSobrantes = Math::Max(0.0, W - U);
+
+    double precioFinalPorHora = Pb + (Pa * toneladasSobrantes);
+
+    // Redondeamos a 2 decimales para formato moneda antes de retornar
+    return Math::Round(precioFinalPorHora, 2);
+}
