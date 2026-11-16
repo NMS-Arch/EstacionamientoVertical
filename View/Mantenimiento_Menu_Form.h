@@ -1,6 +1,7 @@
 #pragma once
 #include "Mantenimiento_Motor_Principal_Form.h"
 #include "Mantenimiento_Registro_Fallas_Form.h"
+#include "Mantenimiento_Estadisticas_Fallas_Form.h"
 
 namespace View {
 
@@ -27,6 +28,7 @@ namespace View {
 
 		Mantenimiento_Motor_Principal_Form^ MotorPrincipalForm;
 		Mantenimiento_Registro_Fallas_Form^ RegistroFallasForm;
+		Mantenimiento_Estadisticas_Fallas_Form^ EstadisticasFallasForm;
 
 		bool actualizandoUI = false; // Bandera para evitar que los eventos salten al iniciar
 
@@ -46,6 +48,7 @@ namespace View {
 			loginForm = entrada_loginForm;
 			MotorPrincipalForm = gcnew Mantenimiento_Motor_Principal_Form(this, controller_GUI, controlEspacios, mantenimiento_informacion);
 			RegistroFallasForm = gcnew Mantenimiento_Registro_Fallas_Form(this, controller_GUI, controlFallas, mantenimiento_informacion);
+			EstadisticasFallasForm = gcnew Mantenimiento_Estadisticas_Fallas_Form(this);
 
 			actualizarUI();
 		}
@@ -91,12 +94,13 @@ namespace View {
 	private: System::Windows::Forms::Button^ btn_Registrar_Falla;
 	private: System::Windows::Forms::Button^ btn_Cerrar_Sesion;
 	private: System::Windows::Forms::Button^ btn_Motor_Principal;
+	private: System::Windows::Forms::Button^ btn_Estadisticas_Fallas;
 	private: System::Windows::Forms::Label^ label21;
 	private: System::Windows::Forms::ComboBox^ comboBox11;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
-	
+
 
 	private:
 		System::ComponentModel::Container^ components;
@@ -137,120 +141,121 @@ namespace View {
 			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
 			this->btn_Cerrar_Sesion = (gcnew System::Windows::Forms::Button());
 			this->btn_Motor_Principal = (gcnew System::Windows::Forms::Button());
+			this->btn_Estadisticas_Fallas = (gcnew System::Windows::Forms::Button());
 			this->label21 = (gcnew System::Windows::Forms::Label());
 			this->comboBox11 = (gcnew System::Windows::Forms::ComboBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 
-			// Manteniendo el Layout exacto de tu compañero
+			// Manteniendo el Layout exacto de tu compa ero
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(38, 116); 
-			this->label1->Name = L"label1"; 
-			this->label1->Size = System::Drawing::Size(54, 13); 
+			this->label1->Location = System::Drawing::Point(38, 116);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(54, 13);
 			this->label1->Text = L"Espacio 1";
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(38, 143); 
+			this->label2->Location = System::Drawing::Point(38, 143);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(40, 13); this->label2->Text = L"Estado";
-			this->cb_Espacio_1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
+			this->cb_Espacio_1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_1->FormattingEnabled = true;
 			this->cb_Espacio_1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_1->Location = System::Drawing::Point(92, 141);
-			this->cb_Espacio_1->Name = L"cb_Espacio_1"; this->cb_Espacio_1->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_1->Name = L"cb_Espacio_1"; this->cb_Espacio_1->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_1->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_1_SelectedIndexChanged);
 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(254, 116); 
+			this->label4->Location = System::Drawing::Point(254, 116);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(54, 13); 
+			this->label4->Size = System::Drawing::Size(54, 13);
 			this->label4->Text = L"Espacio 2";
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(254, 143); 
-			this->label3->Name = L"label3"; 
-			this->label3->Size = System::Drawing::Size(40, 13); 
+			this->label3->Location = System::Drawing::Point(254, 143);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(40, 13);
 			this->label3->Text = L"Estado";
-			this->cb_Espacio_2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
-			this->cb_Espacio_2->FormattingEnabled = true; 
-			this->cb_Espacio_2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
+			this->cb_Espacio_2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacio_2->FormattingEnabled = true;
+			this->cb_Espacio_2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_2->Location = System::Drawing::Point(308, 141);
-			this->cb_Espacio_2->Name = L"cb_Espacio_2"; 
-			this->cb_Espacio_2->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_2->Name = L"cb_Espacio_2";
+			this->cb_Espacio_2->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_2->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_2_SelectedIndexChanged);
 
-			this->label6->AutoSize = true; 
-			this->label6->Location = System::Drawing::Point(473, 116); 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(473, 116);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(54, 13);
 			this->label6->Text = L"Espacio 3";
-			this->label5->AutoSize = true; 
+			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(473, 143);
-			this->label5->Name = L"label5"; 
-			this->label5->Size = System::Drawing::Size(40, 13); 
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(40, 13);
 			this->label5->Text = L"Estado";
 			this->cb_Espacio_3->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cb_Espacio_3->FormattingEnabled = true; 
+			this->cb_Espacio_3->FormattingEnabled = true;
 			this->cb_Espacio_3->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_3->Location = System::Drawing::Point(527, 141);
-			this->cb_Espacio_3->Name = L"cb_Espacio_3"; 
+			this->cb_Espacio_3->Name = L"cb_Espacio_3";
 			this->cb_Espacio_3->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_3->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_3_SelectedIndexChanged);
 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(681, 116); 
-			this->label8->Name = L"label8"; 
-			this->label8->Size = System::Drawing::Size(54, 13); 
+			this->label8->Location = System::Drawing::Point(681, 116);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(54, 13);
 			this->label8->Text = L"Espacio 4";
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(681, 143); 
+			this->label7->Location = System::Drawing::Point(681, 143);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(40, 13);
 			this->label7->Text = L"Estado";
 
-			this->cb_Espacio_4->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
+			this->cb_Espacio_4->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_4->FormattingEnabled = true;
-			this->cb_Espacio_4->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
+			this->cb_Espacio_4->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_4->Location = System::Drawing::Point(735, 141);
 			this->cb_Espacio_4->Name = L"cb_Espacio_4";
-			this->cb_Espacio_4->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_4->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_4->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_4_SelectedIndexChanged);
 
-			this->label10->AutoSize = true; 
+			this->label10->AutoSize = true;
 			this->label10->Location = System::Drawing::Point(38, 193);
-			this->label10->Name = L"label10"; 
-			this->label10->Size = System::Drawing::Size(54, 13); 
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(54, 13);
 			this->label10->Text = L"Espacio 5";
 
-			this->label9->AutoSize = true; 
+			this->label9->AutoSize = true;
 			this->label9->Location = System::Drawing::Point(38, 219);
-			this->label9->Name = L"label9"; 
-			this->label9->Size = System::Drawing::Size(40, 13); 
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(40, 13);
 			this->label9->Text = L"Estado";
 
 			this->cb_Espacio_5->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cb_Espacio_5->FormattingEnabled = true; 
-			this->cb_Espacio_5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
-			this->cb_Espacio_5->Location = System::Drawing::Point(92, 217); 
+			this->cb_Espacio_5->FormattingEnabled = true;
+			this->cb_Espacio_5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
+			this->cb_Espacio_5->Location = System::Drawing::Point(92, 217);
 			this->cb_Espacio_5->Name = L"cb_Espacio_5";
-			this->cb_Espacio_5->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_5->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_5->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_5_SelectedIndexChanged);
 
-			this->label12->AutoSize = true; 
+			this->label12->AutoSize = true;
 			this->label12->Location = System::Drawing::Point(250, 193);
-			this->label12->Name = L"label12"; 
-			this->label12->Size = System::Drawing::Size(54, 13); 
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(54, 13);
 			this->label12->Text = L"Espacio 6";
-			this->label11->AutoSize = true; 
-			this->label11->Location = System::Drawing::Point(250, 219); 
-			this->label11->Name = L"label11"; 
-			this->label11->Size = System::Drawing::Size(40, 13); 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(250, 219);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(40, 13);
 			this->label11->Text = L"Estado";
-			this->cb_Espacio_6->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
-			this->cb_Espacio_6->FormattingEnabled = true; 
-			this->cb_Espacio_6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
+			this->cb_Espacio_6->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacio_6->FormattingEnabled = true;
+			this->cb_Espacio_6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_6->Location = System::Drawing::Point(304, 217);
 			this->cb_Espacio_6->Name = L"cb_Espacio_6";
-			this->cb_Espacio_6->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_6->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_6->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_6_SelectedIndexChanged);
 
 			this->label14->AutoSize = true;
@@ -258,86 +263,86 @@ namespace View {
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(54, 13);
 			this->label14->Text = L"Espacio 7";
-			this->label13->AutoSize = true; 
-			this->label13->Location = System::Drawing::Point(473, 219); 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(473, 219);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(40, 13);
 			this->label13->Text = L"Estado";
 			this->cb_Espacio_7->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cb_Espacio_7->FormattingEnabled = true; 
-			this->cb_Espacio_7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
-			this->cb_Espacio_7->Location = System::Drawing::Point(527, 217); this->cb_Espacio_7->Name = L"cb_Espacio_7"; 
-			this->cb_Espacio_7->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_7->FormattingEnabled = true;
+			this->cb_Espacio_7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
+			this->cb_Espacio_7->Location = System::Drawing::Point(527, 217); this->cb_Espacio_7->Name = L"cb_Espacio_7";
+			this->cb_Espacio_7->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_7->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_7_SelectedIndexChanged);
 
-			this->label16->AutoSize = true; 
+			this->label16->AutoSize = true;
 			this->label16->Location = System::Drawing::Point(681, 193);
-			this->label16->Name = L"label16"; 
-			this->label16->Size = System::Drawing::Size(54, 13); 
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(54, 13);
 			this->label16->Text = L"Espacio 8";
-			this->label15->AutoSize = true; 
+			this->label15->AutoSize = true;
 			this->label15->Location = System::Drawing::Point(681, 219);
-			this->label15->Name = L"label15"; 
-			this->label15->Size = System::Drawing::Size(40, 13); 
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(40, 13);
 			this->label15->Text = L"Estado";
-			this->cb_Espacio_8->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
-			this->cb_Espacio_8->FormattingEnabled = true; 
+			this->cb_Espacio_8->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacio_8->FormattingEnabled = true;
 			this->cb_Espacio_8->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
-			this->cb_Espacio_8->Location = System::Drawing::Point(735, 217); 
+			this->cb_Espacio_8->Location = System::Drawing::Point(735, 217);
 			this->cb_Espacio_8->Name = L"cb_Espacio_8";
-			this->cb_Espacio_8->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_8->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_8->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_8_SelectedIndexChanged);
 
 
 			this->label18->AutoSize = true;
 			this->label18->Location = System::Drawing::Point(38, 276);
-			this->label18->Name = L"label18"; 
+			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(54, 13);
 			this->label18->Text = L"Espacio 9";
-			this->label17->AutoSize = true; 
+			this->label17->AutoSize = true;
 			this->label17->Location = System::Drawing::Point(38, 303);
-			this->label17->Name = L"label17"; 
-			this->label17->Size = System::Drawing::Size(40, 13); 
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(40, 13);
 			this->label17->Text = L"Estado";
 			this->cb_Espacio_9->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cb_Espacio_9->FormattingEnabled = true; 
-			this->cb_Espacio_9->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
-			this->cb_Espacio_9->Location = System::Drawing::Point(92, 301); 
+			this->cb_Espacio_9->FormattingEnabled = true;
+			this->cb_Espacio_9->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
+			this->cb_Espacio_9->Location = System::Drawing::Point(92, 301);
 			this->cb_Espacio_9->Name = L"cb_Espacio_9";
 			this->cb_Espacio_9->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_9->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_9_SelectedIndexChanged);
 
 			this->label20->AutoSize = true;
 			this->label20->Location = System::Drawing::Point(250, 276);
-			this->label20->Name = L"label20"; 
-			this->label20->Size = System::Drawing::Size(60, 13); 
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(60, 13);
 			this->label20->Text = L"Espacio 10";
 			this->label19->AutoSize = true;
 			this->label19->Location = System::Drawing::Point(250, 303);
 			this->label19->Name = L"label19";
-			this->label19->Size = System::Drawing::Size(40, 13); 
+			this->label19->Size = System::Drawing::Size(40, 13);
 			this->label19->Text = L"Estado";
-			this->cb_Espacio_10->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
-			this->cb_Espacio_10->FormattingEnabled = true; this->cb_Espacio_10->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" }); 
+			this->cb_Espacio_10->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacio_10->FormattingEnabled = true; this->cb_Espacio_10->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_10->Location = System::Drawing::Point(304, 301);
 			this->cb_Espacio_10->Name = L"cb_Espacio_10";
-			this->cb_Espacio_10->Size = System::Drawing::Size(89, 21); 
+			this->cb_Espacio_10->Size = System::Drawing::Size(89, 21);
 			this->cb_Espacio_10->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_10_SelectedIndexChanged);
 
 			this->btn_Registrar_Falla->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_Registrar_Falla->Location = System::Drawing::Point(58, 444); 
+			this->btn_Registrar_Falla->Location = System::Drawing::Point(58, 444);
 			this->btn_Registrar_Falla->Name = L"btn_Registrar_Falla";
 			this->btn_Registrar_Falla->Size = System::Drawing::Size(155, 67);
-			this->btn_Registrar_Falla->Text = L"Ver Registro de Fallas"; 
+			this->btn_Registrar_Falla->Text = L"Ver Registro de Fallas";
 			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
 			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Registrar_Falla_Click);
 
 
 			this->btn_Cerrar_Sesion->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(257, 444); 
+			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(257, 444);
 			this->btn_Cerrar_Sesion->Name = L"btn_Cerrar_Sesion";
 			this->btn_Cerrar_Sesion->Size = System::Drawing::Size(148, 67);
-			this->btn_Cerrar_Sesion->Text = L"Cerrar Sesion"; 
+			this->btn_Cerrar_Sesion->Text = L"Cerrar Sesion";
 			this->btn_Cerrar_Sesion->UseVisualStyleBackColor = true;
 			this->btn_Cerrar_Sesion->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Cerrar_Sesion_Click);
 
@@ -345,19 +350,25 @@ namespace View {
 			this->btn_Motor_Principal->Location = System::Drawing::Point(425, 41);
 			this->btn_Motor_Principal->Name = L"btn_Motor_Principal";
 			this->btn_Motor_Principal->Size = System::Drawing::Size(317, 32);
-			this->btn_Motor_Principal->Text = L"MOTOR PRINCIPAL"; 
-			this->btn_Motor_Principal->UseVisualStyleBackColor = true; 
+			this->btn_Motor_Principal->Text = L"MOTOR PRINCIPAL";
+			this->btn_Motor_Principal->UseVisualStyleBackColor = true;
 			this->btn_Motor_Principal->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Motor_Principal_Click);
 
+			this->btn_Estadisticas_Fallas->Location = System::Drawing::Point(425, 85);
+			this->btn_Estadisticas_Fallas->Name = L"btn_Estadisticas_Fallas";
+			this->btn_Estadisticas_Fallas->Size = System::Drawing::Size(317, 35);
+			this->btn_Estadisticas_Fallas->Text = L"ESTADISTICAS DE FALLAS";
+			this->btn_Estadisticas_Fallas->UseVisualStyleBackColor = true;
+			this->btn_Estadisticas_Fallas->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Estadisticas_Fallas_Click);
 
 			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(42, 51); 
+			this->label21->Location = System::Drawing::Point(42, 51);
 			this->label21->Name = L"label21";
-			this->label21->Size = System::Drawing::Size(128, 13); 
+			this->label21->Size = System::Drawing::Size(128, 13);
 			this->label21->Text = L"Estado de Motor Principal";
 
 
-			this->comboBox11->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList; 
+			this->comboBox11->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox11->FormattingEnabled = true;
 			this->comboBox11->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"OPERATIVO", L"NO OPERATIVO", L"EN MANTENIMIENTO" });
 			this->comboBox11->Location = System::Drawing::Point(193, 49);
@@ -367,7 +378,7 @@ namespace View {
 
 
 			this->pictureBox1->Location = System::Drawing::Point(548, 287);
-			this->pictureBox1->Name = L"pictureBox1"; 
+			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(211, 249);
 			this->pictureBox1->TabIndex = 65;
 			this->pictureBox1->TabStop = false;
@@ -380,6 +391,7 @@ namespace View {
 			this->Controls->Add(this->comboBox11);
 			this->Controls->Add(this->label21);
 			this->Controls->Add(this->btn_Motor_Principal);
+			this->Controls->Add(this->btn_Estadisticas_Fallas);
 			this->Controls->Add(this->btn_Cerrar_Sesion);
 			this->Controls->Add(this->btn_Registrar_Falla);
 			this->Controls->Add(this->cb_Espacio_10);
@@ -461,23 +473,23 @@ namespace View {
 		pictureBox1->Invalidate();
 	}
 
-	//Activa el metodo cambiar estado cada vez que se detecta un cambio en los comboBox
-	private: System::Void cb_Espacio_1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
+		   //Activa el metodo cambiar estado cada vez que se detecta un cambio en los comboBox
+	private: System::Void cb_Espacio_1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		cambiarEstadoBaseDeDatos(1, cb_Espacio_1->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
-		cambiarEstadoBaseDeDatos(2, cb_Espacio_2->SelectedIndex); 
+	private: System::Void cb_Espacio_2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		cambiarEstadoBaseDeDatos(2, cb_Espacio_2->SelectedIndex);
 	}
-	private: System::Void cb_Espacio_3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
+	private: System::Void cb_Espacio_3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		cambiarEstadoBaseDeDatos(3, cb_Espacio_3->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_4_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
+	private: System::Void cb_Espacio_4_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		cambiarEstadoBaseDeDatos(4, cb_Espacio_4->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_5_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
+	private: System::Void cb_Espacio_5_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		cambiarEstadoBaseDeDatos(5, cb_Espacio_5->SelectedIndex);
 	}
 
@@ -485,20 +497,20 @@ namespace View {
 		cambiarEstadoBaseDeDatos(6, cb_Espacio_6->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_7_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
-		cambiarEstadoBaseDeDatos(7, cb_Espacio_7->SelectedIndex); 
+	private: System::Void cb_Espacio_7_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		cambiarEstadoBaseDeDatos(7, cb_Espacio_7->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_8_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
-		cambiarEstadoBaseDeDatos(8, cb_Espacio_8->SelectedIndex); 
+	private: System::Void cb_Espacio_8_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		cambiarEstadoBaseDeDatos(8, cb_Espacio_8->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_9_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
-		cambiarEstadoBaseDeDatos(9, cb_Espacio_9->SelectedIndex); 
+	private: System::Void cb_Espacio_9_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		cambiarEstadoBaseDeDatos(9, cb_Espacio_9->SelectedIndex);
 	}
 
-	private: System::Void cb_Espacio_10_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) { 
-		cambiarEstadoBaseDeDatos(10, cb_Espacio_10->SelectedIndex); 
+	private: System::Void cb_Espacio_10_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		cambiarEstadoBaseDeDatos(10, cb_Espacio_10->SelectedIndex);
 	}
 
 
@@ -522,16 +534,21 @@ namespace View {
 		RegistroFallasForm->Show();
 	}
 
-	/*private: System::Void comboBox11_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-		if (actualizandoUI) return;
-		int sel = comboBox11->SelectedIndex;
-		if (sel == 0) controlEspacios->restablecerSistema();
-		else if (sel == 1) controlEspacios->paraEmergenciaGeneral();
-		else if (sel == 2) controlEspacios->MotorEnMantenimiento();
-	}*/
+	private: System::Void btn_Estadisticas_Fallas_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		EstadisticasFallasForm->Show();
+	}
+
+		   /*private: System::Void comboBox11_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+			   if (actualizandoUI) return;
+			   int sel = comboBox11->SelectedIndex;
+			   if (sel == 0) controlEspacios->restablecerSistema();
+			   else if (sel == 1) controlEspacios->paraEmergenciaGeneral();
+			   else if (sel == 2) controlEspacios->MotorEnMantenimiento();
+		   }*/
 
 
-	
+
 
 
 	private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
@@ -571,7 +588,7 @@ namespace View {
 		if (lista_espacios != nullptr) {
 			float x, y;
 
-			// El truco de tu compañero: Dibujar en 4 bloques separados para asegurar la prioridad sin solapamiento 
+			// El truco de tu compa ero: Dibujar en 4 bloques separados para asegurar la prioridad sin solapamiento 
 
 			// 1. Todos verdes (Base)
 			for each (Espacio ^ esp in lista_espacios) {
@@ -605,6 +622,6 @@ namespace View {
 		}
 	}
 
-	
+
 	};
 }

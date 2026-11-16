@@ -68,7 +68,7 @@ namespace View {
 
 			//
 			//TODO: Add the constructor code here
-			
+
 			MantenimientoMenuForm = entrada_MantenimientoMenuForm;
 
 			controller_GUI = controller_GUI_entrada;
@@ -654,199 +654,207 @@ namespace View {
 			this->PerformLayout();
 
 		}
-	#pragma endregion
-		private: System::Void btn_Regresar_Menu_Mantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
+#pragma endregion
+	private: System::Void btn_Regresar_Menu_Mantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			this->Hide();
+		this->Hide();
 
-			MantenimientoMenuForm->Show();
+		MantenimientoMenuForm->Show();
 
+	}
+
+	private: System::Void btn_Agregar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		if (cb_Afectado->SelectedIndex == -1 ||
+			cb_Prioridad->SelectedIndex == -1 ||
+			cb_Tipo->SelectedIndex == -1 ||
+			cb_Estado->SelectedIndex == -1) {
+
+			MessageBox::Show("Falta información: Por favor, seleccione una opción en todos los menús desplegables.",
+				"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
 		}
 
-		private: System::Void btn_Agregar_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (String::IsNullOrWhiteSpace(tb_Descripcion->Text) ||
+			String::IsNullOrWhiteSpace(tb_Nombre->Text) ||
+			String::IsNullOrWhiteSpace(tb_Rol->Text)) {
 
-			if (cb_Afectado->SelectedIndex == -1 ||
-				cb_Prioridad->SelectedIndex == -1 ||
-				cb_Tipo->SelectedIndex == -1 ||
-				cb_Estado->SelectedIndex == -1) {
+			MessageBox::Show("Campos incompletos: La descripción, el nombre y el rol no pueden estar vacíos.",
+				"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
 
-				MessageBox::Show("Falta información: Por favor, seleccione una opción en todos los menús desplegables.",
-					"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return; 
+
+		if (numeric_ID_rol->Value <= 0) {
+			MessageBox::Show("ID Inválido: El ID del usuario reportante debe ser mayor a cero.",
+				"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+
+
+		Falla^ new_falla = gcnew Falla();
+
+		new_falla->espacioAfectado = (cb_Afectado->SelectedIndex == 0) ? 11 : cb_Afectado->SelectedIndex;
+
+		new_falla->prioridad = cb_Prioridad->SelectedItem->ToString();
+
+		new_falla->tipo = cb_Tipo->SelectedItem->ToString();
+
+		new_falla->descripcion = tb_Descripcion->Text;
+
+		DateTime fechaHora = DateTime::Now;
+
+		new_falla->fecha = fechaHora;
+
+		new_falla->estado = cb_Estado->SelectedItem->ToString();
+
+
+		new_falla->idUserReportante = Convert::ToInt32(numeric_ID_rol->Value);
+		new_falla->nombreUserReportante = tb_Nombre->Text;
+		new_falla->rolUser = tb_Rol->Text;
+
+		controlFallas->agregarFalla(new_falla);
+
+		Console::WriteLine("Supuestamente se añadio la nueva falla");
+
+		actualizar();
+
+
+	}
+
+
+	private: void actualizar() {
+
+		List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
+
+
+		dataGridView1->Rows->Clear();
+
+		for each (Falla ^ falla in lista_fallas) {
+
+
+			int indiceFila = dataGridView1->Rows->Add();
+			DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
+			String^ afectado;
+
+			if (falla->espacioAfectado != 11) {
+				afectado = "Espacio " + falla->espacioAfectado.ToString();
+			}
+			else {
+				afectado = "Motor Principal";
 			}
 
-			if (String::IsNullOrWhiteSpace(tb_Descripcion->Text) ||
-				String::IsNullOrWhiteSpace(tb_Nombre->Text) ||
-				String::IsNullOrWhiteSpace(tb_Rol->Text)) {
+			fila->Cells["Colum_ID_Falla"]->Value = falla->id;
+			fila->Cells["Colum_Afectado"]->Value = afectado;
 
-				MessageBox::Show("Campos incompletos: La descripción, el nombre y el rol no pueden estar vacíos.",
-					"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return;
+			fila->Cells["Colum_Prioridad"]->Value = falla->prioridad;
+
+			fila->Cells["Colum_Tipo"]->Value = falla->tipo;
+
+			fila->Cells["Colum_Fecha"]->Value = falla->fecha.ToString("dd/MM/yyyy");
+			fila->Cells["Colum_Hora"]->Value = falla->fecha.ToString("HH:mm:ss");
+
+			fila->Cells["Colum_Estado"]->Value = falla->estado;
+
+			Console::Write("Se actualizo cuando se agrego");
+		}
+
+
+
+	}	/*private: System::Void cb_Estado_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		}*/
+
+
+	private: void ocultar_Hora_Fecha() {
+		//
+		label_Fecha_Dinamica->Visible = false;
+		label_Fecha_Dinamica->Enabled = false;
+
+		label_Hora_Dinamica->Visible = false;
+		label_Hora_Dinamica->Enabled = false;
+
+		tb_Fecha->Visible = false;
+		tb_Fecha->Enabled = false;
+
+		tb_Hora->Visible = false;
+		tb_Hora->Enabled = false;
+
+	}
+
+	private: void mostrar_fecha_hora() {
+		//
+		label_Fecha_Dinamica->Visible = true;
+		label_Fecha_Dinamica->Enabled = false;
+
+		label_Hora_Dinamica->Visible = true;
+		label_Hora_Dinamica->Enabled = false;
+
+		tb_Fecha->Visible = true;
+		tb_Fecha->Enabled = false;
+
+		tb_Hora->Visible = true;
+		tb_Hora->Enabled = false;
+
+	}
+
+
+
+	private: System::Void Mantenimiento_Registro_Fallas_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+
+		ocultar_Hora_Fecha();
+		actualizar();
+	}
+
+
+
+
+	private: System::Void btn_Consultar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+		int id_consultado = Convert::ToInt32(numeric_ID_Registro->Value);
+
+
+		Falla^ consultada_falla = controlFallas->buscarFalla(id_consultado);
+
+
+		//cb_Prioridad->SelectedIndex = cb_Prioridad->FindStringExact(consultada_falla->espacioAfectado);
+
+		if (consultada_falla != nullptr) {
+
+			if (consultada_falla->espacioAfectado == 11) {
+				cb_Afectado->SelectedIndex = 0;
 			}
-
-			
-			if (numeric_ID_rol->Value <= 0) {
-				MessageBox::Show("ID Inválido: El ID del usuario reportante debe ser mayor a cero.",
-					"Validación de Interfaz", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return;
-			}
-
-
-			Falla^ new_falla = gcnew Falla();
-
-			new_falla->espacioAfectado = Convert::ToUInt32(cb_Afectado->SelectedIndex)+1;
-
-			new_falla->prioridad = cb_Prioridad->SelectedItem->ToString();
-
-			new_falla->tipo = cb_Tipo->SelectedItem->ToString();
-
-			new_falla->descripcion = tb_Descripcion->Text;
-
-			DateTime fechaHora = DateTime::Now;
-
-			new_falla->fecha = fechaHora;
-
-			new_falla->estado = cb_Estado->SelectedItem->ToString();
-
-
-			new_falla->idUserReportante = Convert::ToInt32(numeric_ID_rol->Value);
-			new_falla->nombreUserReportante = tb_Nombre->Text;
-			new_falla->rolUser = tb_Rol->Text;
-
-			controlFallas->agregarFalla(new_falla);
-
-			Console::WriteLine("Supuestamente se añadio la nueva falla");
-
-			actualizar();
-
-
-		}
-
-
-		private: void actualizar() {
-
-			List<Falla^>^ lista_fallas = controlFallas->obtener_todos_Falla();
-
-
-			dataGridView1->Rows->Clear();
-
-			for each (Falla ^ falla in lista_fallas) {
-
-
-				int indiceFila = dataGridView1->Rows->Add();
-				DataGridViewRow^ fila = dataGridView1->Rows[indiceFila];
-				String^ afectado;
-
-				if (falla->espacioAfectado != 11) {
-					afectado = "Espacio " + falla->espacioAfectado.ToString();
-				}
-				else {
-					afectado = "Motor Principal";
-				}
-
-				fila->Cells["Colum_ID_Falla"]->Value = falla->id;
-				fila->Cells["Colum_Afectado"]->Value = afectado;
-
-				fila->Cells["Colum_Prioridad"]->Value = falla->prioridad;
-
-				fila->Cells["Colum_Tipo"]->Value = falla->tipo;
-
-				fila->Cells["Colum_Fecha"]->Value = falla->fecha.ToString("dd/MM/yyyy");
-				fila->Cells["Colum_Hora"]->Value = falla->fecha.ToString("HH:mm:ss");
-
-				fila->Cells["Colum_Estado"]->Value = falla->estado;
-
-				Console::Write("Se actualizo cuando se agrego");
-			}
-
-			
-
-		}	/*private: System::Void cb_Estado_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-			}*/
-
-
-		private: void ocultar_Hora_Fecha() {
-			//
-			label_Fecha_Dinamica->Visible = false;
-			label_Fecha_Dinamica->Enabled = false;
-
-			label_Hora_Dinamica->Visible = false;
-			label_Hora_Dinamica->Enabled = false;
-
-			tb_Fecha->Visible = false;
-			tb_Fecha->Enabled = false;
-
-			tb_Hora->Visible = false;
-			tb_Hora->Enabled = false;
-
-		}
-
-		private: void mostrar_fecha_hora() {
-			//
-			label_Fecha_Dinamica->Visible = true;
-			label_Fecha_Dinamica->Enabled = false;
-
-			label_Hora_Dinamica->Visible = true;
-			label_Hora_Dinamica->Enabled = false;
-
-			tb_Fecha->Visible = true;
-			tb_Fecha->Enabled = false;
-
-			tb_Hora->Visible = true;
-			tb_Hora->Enabled = false;
-
-		}
-
-
-
-		private: System::Void Mantenimiento_Registro_Fallas_Form_Load(System::Object^ sender, System::EventArgs^ e) {
-
-			ocultar_Hora_Fecha();
-			actualizar();
-		}
-
-
-
-
-		private: System::Void btn_Consultar_Click(System::Object^ sender, System::EventArgs^ e) {
-
-
-			int id_consultado = Convert::ToInt32(numeric_ID_Registro->Value);
-
-
-			Falla^ consultada_falla = controlFallas->buscarFalla(id_consultado);
-
-
-			//cb_Prioridad->SelectedIndex = cb_Prioridad->FindStringExact(consultada_falla->espacioAfectado);
-
-			if (consultada_falla != nullptr) {
-
+			else if (consultada_falla->espacioAfectado >= 1 && consultada_falla->espacioAfectado <= 10) {
 				cb_Afectado->SelectedIndex = consultada_falla->espacioAfectado;
-
-				cb_Prioridad->SelectedIndex = cb_Prioridad->FindStringExact(consultada_falla->prioridad);
-
-				cb_Tipo->SelectedIndex = cb_Tipo->FindStringExact(consultada_falla->tipo);
-
-				tb_Descripcion->Text = consultada_falla->descripcion;
-
-				cb_Estado->SelectedIndex = cb_Estado->FindStringExact(consultada_falla->estado);
-			
-				tb_Fecha->Text = consultada_falla->fecha.ToString("dd/MM/yyyy");
-				tb_Hora->Text = consultada_falla->fecha.ToString("HH:mm:ss");
-
-				numeric_ID_rol->Value = Convert::ToDecimal(consultada_falla->idUserReportante);
-
-				tb_Nombre->Text = consultada_falla->nombreUserReportante;
-
-				tb_Rol->Text = consultada_falla->rolUser;
-
-				mostrar_fecha_hora();
+			}
+			else {
+				cb_Afectado->SelectedIndex = -1;
 			}
 
+			cb_Prioridad->SelectedIndex = cb_Prioridad->FindStringExact(consultada_falla->prioridad);
 
-			actualizar();
+			cb_Tipo->SelectedIndex = cb_Tipo->FindStringExact(consultada_falla->tipo);
 
+			tb_Descripcion->Text = consultada_falla->descripcion;
+
+			cb_Estado->SelectedIndex = cb_Estado->FindStringExact(consultada_falla->estado);
+
+			tb_Fecha->Text = consultada_falla->fecha.ToString("dd/MM/yyyy");
+			tb_Hora->Text = consultada_falla->fecha.ToString("HH:mm:ss");
+
+			numeric_ID_rol->Value = Convert::ToDecimal(consultada_falla->idUserReportante);
+
+			tb_Nombre->Text = consultada_falla->nombreUserReportante;
+
+			tb_Rol->Text = consultada_falla->rolUser;
+
+			mostrar_fecha_hora();
 		}
+
+
+		actualizar();
+
+	}
 
 
 
@@ -893,10 +901,10 @@ namespace View {
 
 		Falla^ falla_consultada = gcnew Falla();
 
-		try{
+		try {
 
-		
-			falla_consultada->espacioAfectado = Convert::ToUInt32(cb_Afectado->SelectedIndex) + 1;
+
+			falla_consultada->espacioAfectado = (cb_Afectado->SelectedIndex == 0) ? 11 : cb_Afectado->SelectedIndex;
 
 			falla_consultada->prioridad = cb_Prioridad->SelectedItem->ToString();
 
@@ -918,14 +926,14 @@ namespace View {
 			controlFallas->modificarFalla(id_consultado, falla_consultada);
 			actualizar();
 		}
-		catch (Exception^e) {
-			MessageBox::Show(e->Message,"Error",MessageBoxButtons::OK,MessageBoxIcon::Error);
+		catch (Exception^ e) {
+			MessageBox::Show(e->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 
-		
+
 	}
-};
-	
+	};
+
 
 }

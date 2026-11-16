@@ -145,6 +145,7 @@
     <ClCompile Include="Administracion_Tarifas_y_Auditoria_Form.cpp" />
     <ClCompile Include="Administrador_Interfaz_Principal_Form.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="Mantenimiento_Estadisticas_Fallas_Form.cpp" />
     <ClCompile Include="Mantenimiento_Menu_Form.cpp" />
     <ClCompile Include="Mantenimiento_Motor_Principal_Form.cpp" />
     <ClCompile Include="Mantenimiento_Registro_Fallas_Form.cpp" />
@@ -168,6 +169,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Mantenimiento_Estadisticas_Fallas_Form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Mantenimiento_Menu_Form.h">
