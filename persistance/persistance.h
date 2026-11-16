@@ -85,13 +85,18 @@ namespace persistancePrincipal {
 		static void guardarUsuarios(List<Usuario^>^ usuarios);
 
 		//reporteFinancieros
-
-
-
 		static void GuardarRegistrosBD(RegistroFinanciero^ registro);
 		static void ActualizarRegistrosBD(RegistroFinanciero^ registro);
 		static void EliminarRegistrosBD(int id);
 		static List<RegistroFinanciero^>^ CargarRegistrosBD();
+
+
+
+
+		//Tarifas
+		static void RegistrarNuevaTarifa(Tarifa^ nuevaTarifa);
+		static Tarifa^ ObtenerTarifaVigente();
+		static List<Tarifa^>^ ObtenerHistorialTarifas();
 
 
 	};

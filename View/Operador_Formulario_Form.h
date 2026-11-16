@@ -35,6 +35,7 @@ namespace View {
 
 		controller^ controlador_GUI;
 		ControlEspacios^ controladorEspacios;
+		ControlTarifas^ controladorTarifas;
 
 		double peso_vehiculo;
 		int ID_espacio_vehiculo;
@@ -44,6 +45,20 @@ namespace View {
 
 
 
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::NumericUpDown^ numeric_mostrar_precio_estandar;
+	private: System::Windows::Forms::NumericUpDown^ numeric_mostrar_peso_umbral;
+	private: System::Windows::Forms::NumericUpDown^ numeric_mostrar_peso_adicional;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Ticket;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Espacio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Placa;
@@ -53,6 +68,11 @@ namespace View {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Hora_Entrada;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_DNI;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Codigo_B;
+
+
+
+	private: System::Windows::Forms::Button^ btn_Actualizar_Precios;
+
 
 
 
@@ -93,6 +113,7 @@ namespace View {
 
 			controlador_GUI = gcnew controller();
 			controladorEspacios = gcnew ControlEspacios();
+			controladorTarifas = gcnew ControlTarifas();
 
 
 			this->peso_vehiculo;
@@ -198,15 +219,6 @@ namespace View {
 			this->btn_Precio_Hora = (gcnew System::Windows::Forms::Button());
 			this->numeric_Precio_Hora = (gcnew System::Windows::Forms::NumericUpDown());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Colum_ID_Ticket = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Espacio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Placa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Modelo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Peso = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Precio_Base = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Hora_Entrada = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Colum_Codigo_B = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btn_Listar_Historial = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->cb_ID_Vehiculo_Dinamico = (gcnew System::Windows::Forms::ComboBox());
@@ -224,12 +236,31 @@ namespace View {
 			this->numeric_ID_Operario_Cuenta = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->btn_Registrar_Falla = (gcnew System::Windows::Forms::Button());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->numeric_mostrar_precio_estandar = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numeric_mostrar_peso_umbral = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numeric_mostrar_peso_adicional = (gcnew System::Windows::Forms::NumericUpDown());
+			this->btn_Actualizar_Precios = (gcnew System::Windows::Forms::Button());
+			this->Colum_ID_Ticket = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Espacio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Placa = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Modelo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Peso = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Precio_Base = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Hora_Entrada = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_DNI = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Colum_Codigo_B = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Peso_Vehiculo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Espacios_Disponibles))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_Precio_Hora))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_forzado))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario_Cuenta))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_mostrar_precio_estandar))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_mostrar_peso_umbral))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_mostrar_peso_adicional))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label3
@@ -319,69 +350,6 @@ namespace View {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(932, 310);
 			this->dataGridView1->TabIndex = 9;
-			// 
-			// Colum_ID_Ticket
-			// 
-			this->Colum_ID_Ticket->HeaderText = L"ID Ticket";
-			this->Colum_ID_Ticket->MinimumWidth = 6;
-			this->Colum_ID_Ticket->Name = L"Colum_ID_Ticket";
-			this->Colum_ID_Ticket->Width = 60;
-			// 
-			// Colum_Espacio
-			// 
-			this->Colum_Espacio->HeaderText = L"Espacio";
-			this->Colum_Espacio->MinimumWidth = 6;
-			this->Colum_Espacio->Name = L"Colum_Espacio";
-			this->Colum_Espacio->Width = 75;
-			// 
-			// Colum_Placa
-			// 
-			this->Colum_Placa->HeaderText = L"Placa";
-			this->Colum_Placa->MinimumWidth = 6;
-			this->Colum_Placa->Name = L"Colum_Placa";
-			this->Colum_Placa->Width = 75;
-			// 
-			// Colum_Modelo
-			// 
-			this->Colum_Modelo->HeaderText = L"Modelo";
-			this->Colum_Modelo->MinimumWidth = 6;
-			this->Colum_Modelo->Name = L"Colum_Modelo";
-			this->Colum_Modelo->Width = 110;
-			// 
-			// Colum_Peso
-			// 
-			this->Colum_Peso->HeaderText = L"Peso(tn)";
-			this->Colum_Peso->MinimumWidth = 6;
-			this->Colum_Peso->Name = L"Colum_Peso";
-			this->Colum_Peso->Width = 60;
-			// 
-			// Colum_Precio_Base
-			// 
-			this->Colum_Precio_Base->HeaderText = L"Precio Base";
-			this->Colum_Precio_Base->MinimumWidth = 6;
-			this->Colum_Precio_Base->Name = L"Colum_Precio_Base";
-			this->Colum_Precio_Base->Width = 75;
-			// 
-			// Colum_Hora_Entrada
-			// 
-			this->Colum_Hora_Entrada->HeaderText = L"Hora Entrada";
-			this->Colum_Hora_Entrada->MinimumWidth = 6;
-			this->Colum_Hora_Entrada->Name = L"Colum_Hora_Entrada";
-			this->Colum_Hora_Entrada->Width = 75;
-			// 
-			// Colum_DNI
-			// 
-			this->Colum_DNI->HeaderText = L"DNI";
-			this->Colum_DNI->MinimumWidth = 6;
-			this->Colum_DNI->Name = L"Colum_DNI";
-			this->Colum_DNI->Width = 125;
-			// 
-			// Colum_Codigo_B
-			// 
-			this->Colum_Codigo_B->HeaderText = L"Codigo B";
-			this->Colum_Codigo_B->MinimumWidth = 6;
-			this->Colum_Codigo_B->Name = L"Colum_Codigo_B";
-			this->Colum_Codigo_B->Width = 125;
 			// 
 			// btn_Listar_Historial
 			// 
@@ -548,11 +516,142 @@ namespace View {
 			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
 			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Registrar_Falla_Click);
 			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(43, 611);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(159, 16);
+			this->label9->TabIndex = 27;
+			this->label9->Text = L"Precio por Hora Estandar";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(228, 611);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(113, 16);
+			this->label10->TabIndex = 28;
+			this->label10->Text = L"Peso Umbral (Tn)";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(408, 611);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(147, 16);
+			this->label11->TabIndex = 29;
+			this->label11->Text = L"Precio Adicional por Tn";
+			// 
+			// numeric_mostrar_precio_estandar
+			// 
+			this->numeric_mostrar_precio_estandar->Enabled = false;
+			this->numeric_mostrar_precio_estandar->Location = System::Drawing::Point(46, 631);
+			this->numeric_mostrar_precio_estandar->Name = L"numeric_mostrar_precio_estandar";
+			this->numeric_mostrar_precio_estandar->Size = System::Drawing::Size(145, 22);
+			this->numeric_mostrar_precio_estandar->TabIndex = 30;
+			// 
+			// numeric_mostrar_peso_umbral
+			// 
+			this->numeric_mostrar_peso_umbral->Enabled = false;
+			this->numeric_mostrar_peso_umbral->Location = System::Drawing::Point(231, 631);
+			this->numeric_mostrar_peso_umbral->Name = L"numeric_mostrar_peso_umbral";
+			this->numeric_mostrar_peso_umbral->Size = System::Drawing::Size(121, 22);
+			this->numeric_mostrar_peso_umbral->TabIndex = 31;
+			// 
+			// numeric_mostrar_peso_adicional
+			// 
+			this->numeric_mostrar_peso_adicional->Enabled = false;
+			this->numeric_mostrar_peso_adicional->Location = System::Drawing::Point(411, 631);
+			this->numeric_mostrar_peso_adicional->Name = L"numeric_mostrar_peso_adicional";
+			this->numeric_mostrar_peso_adicional->Size = System::Drawing::Size(144, 22);
+			this->numeric_mostrar_peso_adicional->TabIndex = 32;
+			// 
+			// btn_Actualizar_Precios
+			// 
+			this->btn_Actualizar_Precios->Location = System::Drawing::Point(585, 618);
+			this->btn_Actualizar_Precios->Name = L"btn_Actualizar_Precios";
+			this->btn_Actualizar_Precios->Size = System::Drawing::Size(150, 35);
+			this->btn_Actualizar_Precios->TabIndex = 33;
+			this->btn_Actualizar_Precios->Text = L"Actualizar precios";
+			this->btn_Actualizar_Precios->UseVisualStyleBackColor = true;
+			this->btn_Actualizar_Precios->Click += gcnew System::EventHandler(this, &Operador_Formulario_Form::btn_Actualizar_Precios_Click);
+			// 
+			// Colum_ID_Ticket
+			// 
+			this->Colum_ID_Ticket->HeaderText = L"ID Ticket";
+			this->Colum_ID_Ticket->MinimumWidth = 6;
+			this->Colum_ID_Ticket->Name = L"Colum_ID_Ticket";
+			this->Colum_ID_Ticket->Width = 60;
+			// 
+			// Colum_Espacio
+			// 
+			this->Colum_Espacio->HeaderText = L"Espacio";
+			this->Colum_Espacio->MinimumWidth = 6;
+			this->Colum_Espacio->Name = L"Colum_Espacio";
+			this->Colum_Espacio->Width = 75;
+			// 
+			// Colum_Placa
+			// 
+			this->Colum_Placa->HeaderText = L"Placa";
+			this->Colum_Placa->MinimumWidth = 6;
+			this->Colum_Placa->Name = L"Colum_Placa";
+			this->Colum_Placa->Width = 75;
+			// 
+			// Colum_Modelo
+			// 
+			this->Colum_Modelo->HeaderText = L"Modelo";
+			this->Colum_Modelo->MinimumWidth = 6;
+			this->Colum_Modelo->Name = L"Colum_Modelo";
+			this->Colum_Modelo->Width = 110;
+			// 
+			// Colum_Peso
+			// 
+			this->Colum_Peso->HeaderText = L"Peso(tn)";
+			this->Colum_Peso->MinimumWidth = 6;
+			this->Colum_Peso->Name = L"Colum_Peso";
+			this->Colum_Peso->Width = 60;
+			// 
+			// Colum_Precio_Base
+			// 
+			this->Colum_Precio_Base->HeaderText = L"Precio por Hora";
+			this->Colum_Precio_Base->MinimumWidth = 6;
+			this->Colum_Precio_Base->Name = L"Colum_Precio_Base";
+			this->Colum_Precio_Base->Width = 75;
+			// 
+			// Colum_Hora_Entrada
+			// 
+			this->Colum_Hora_Entrada->HeaderText = L"Hora Entrada";
+			this->Colum_Hora_Entrada->MinimumWidth = 6;
+			this->Colum_Hora_Entrada->Name = L"Colum_Hora_Entrada";
+			this->Colum_Hora_Entrada->Width = 75;
+			// 
+			// Colum_DNI
+			// 
+			this->Colum_DNI->HeaderText = L"DNI";
+			this->Colum_DNI->MinimumWidth = 6;
+			this->Colum_DNI->Name = L"Colum_DNI";
+			this->Colum_DNI->Width = 125;
+			// 
+			// Colum_Codigo_B
+			// 
+			this->Colum_Codigo_B->HeaderText = L"Codigo B";
+			this->Colum_Codigo_B->MinimumWidth = 6;
+			this->Colum_Codigo_B->Name = L"Colum_Codigo_B";
+			this->Colum_Codigo_B->Width = 125;
+			// 
 			// Operador_Formulario_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1269, 665);
+			this->ClientSize = System::Drawing::Size(1269, 674);
+			this->Controls->Add(this->btn_Actualizar_Precios);
+			this->Controls->Add(this->numeric_mostrar_peso_adicional);
+			this->Controls->Add(this->numeric_mostrar_peso_umbral);
+			this->Controls->Add(this->numeric_mostrar_precio_estandar);
+			this->Controls->Add(this->label11);
+			this->Controls->Add(this->label10);
+			this->Controls->Add(this->label9);
 			this->Controls->Add(this->btn_Registrar_Falla);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->numeric_ID_Operario_Cuenta);
@@ -589,10 +688,11 @@ namespace View {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_forzado))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_ID_Operario_Cuenta))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_mostrar_precio_estandar))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_mostrar_peso_umbral))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numeric_mostrar_peso_adicional))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
-			
 
 		}
 
@@ -665,6 +765,8 @@ namespace View {
 
 		private: System::Void btn_Pesar_Vehiculo_Click(System::Object^ sender, System::EventArgs^ e) {
 
+			
+
 			// Simulación de la acción de pesar un vehículo///////////////////////////
 
 			Random^ peso_random = gcnew Random();
@@ -686,22 +788,24 @@ namespace View {
 
 		private: System::Void btn_Precio_Hora_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			// Simulación de la acción de precio un vehículo
-			Random^ precio_random = gcnew Random();
-			double min = 20.0;
-			double max = 150.0;
+			try {
+				actualizar_precios_actuales();
 
-			double precio_simulado = (precio_random->NextDouble() * (max - min)) + min;
+				
+				precio_hora = controladorTarifas->CalcularPrecioPorHora(peso_vehiculo);
 
-			precio_simulado = Math::Round(precio_simulado, 2);
+		
+				numeric_Precio_Hora->Value = Convert::ToDecimal(precio_hora);
+				numeric_Precio_Hora->Enabled = false;
 
-			//////////////////////////////////////////////////////////////////////////
-			//Esta parte anterior es simulacion, normalmente se obtiene de lo que el administrador 2 para calcular
 
-			numeric_Precio_Hora->Value = Convert::ToDecimal(precio_simulado);
-			numeric_Precio_Hora->Enabled = false;
-			precio_hora = precio_simulado;
-
+			}
+			catch (FormatException^) {
+				MessageBox::Show("Por favor, ingrese un peso válido (número).", "Error de Formato", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message, "Error del Sistema", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
 
 		}
 
@@ -737,6 +841,8 @@ namespace View {
 				fila->Cells["Colum_Codigo_B"]->Value = ticket->codigoBarras;//ticket->id;
 
 			}
+
+			actualizar_precios_actuales();
 		}
 
 		public:void limpiar() {
@@ -805,7 +911,8 @@ namespace View {
 				actualizar();
 
 				// 2. Actualizamos cualquier recuadro de texto en el padre (ej. conteo de tickets)
-				
+				actualizar_precios_actuales();
+
 				limpiar();
 			}
 		}
@@ -831,6 +938,20 @@ namespace View {
 			}
 			
 			SeLogroBajarPlataforma = false;
+
+		}
+		private: System::Void btn_Actualizar_Precios_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			actualizar_precios_actuales();
+		}
+
+		private: void actualizar_precios_actuales() {
+
+			Tarifa^ tarifa_actual = controladorTarifas->ObtenerPrecioActual();
+
+			numeric_mostrar_precio_estandar->Value = Convert::ToDecimal(tarifa_actual->PrecioBase);
+			numeric_mostrar_peso_umbral->Value = Convert::ToDecimal(tarifa_actual->PesoUmbral);
+			numeric_mostrar_peso_adicional->Value = Convert::ToDecimal(tarifa_actual->PrecioAdicional);
 
 		}
 };
