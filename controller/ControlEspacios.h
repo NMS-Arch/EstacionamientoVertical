@@ -48,6 +48,7 @@ namespace controllerPrincipal {
 
 
 		static List<Espacio^>^ ObtenerEspaciosDisponibles();
+		static List<Espacio^>^ ObtenerEspaciosOcupados();
 
 		static List<Espacio^>^ ObtenerTodosEspacios();
 

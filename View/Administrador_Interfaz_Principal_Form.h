@@ -35,6 +35,7 @@ namespace View {
 
 		ControlReporteFinanciero^ controladorFinanzas;
 		ControlUsuario^ controladorUsuarios;
+		ControlEspacios^ controladorEspacios;
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_ID_Registro;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Colum_Monto_Total;
@@ -63,6 +64,7 @@ namespace View {
 			AdminTarifasAuditoriaForm = gcnew Administracion_Tarifas_y_Auditoria_Form(this, controladorFinanzas,administrador_informacion);
 
 
+			controladorEspacios = gcnew ControlEspacios();
 			//
 		}
 
@@ -381,6 +383,12 @@ namespace View {
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
+			this->numeric_Autos_Atendidos_Hoy->Enabled = false;
+
+			this->numeric_Espacios_Ocupados->Enabled = false;
+
+			this->numeric_Ingresos_Hoy->Enabled = false;
+
 		}
 		#pragma endregion
 		private: System::Void btn_Cerrar_Sesion_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -447,7 +455,7 @@ namespace View {
 				fila->Cells["Colum_Nombre_Ope"]->Value = registroFin->nombreUserOperario;
 			}
 
-
+			mostrar_datos();
 		}
 
 		private: System::Void Administrador_Interfaz_Principal_Form_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -455,5 +463,44 @@ namespace View {
 		}
 	//private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	//}
+
+		private: void mostrar_datos() {
+			try {
+				// ==========================================
+				// 1. BLOQUE DE REGISTROS FINANCIEROS
+				// ==========================================
+				DateTime fechaHoy = DateTime::Now.Date;
+
+				List<RegistroFinanciero^>^ listaHoy = controladorFinanzas->filtrarPorFechaExacta(fechaHoy);
+				double ingresosHoy = controladorFinanzas->calcularGananciasTotales(listaHoy);
+				int totalAtendidos = listaHoy->Count;
+
+				// CORRECCIÓN: Le pasamos la variable double directamente, SIN formateo de texto "C2".
+				// Ahora el compilador ya no sufrirá un FormatException aquí.
+				this->numeric_Ingresos_Hoy->Value = System::Convert::ToDecimal(ingresosHoy);
+
+				this->numeric_Autos_Atendidos_Hoy->Value = System::Convert::ToDecimal(totalAtendidos);
+
+
+				// ==========================================
+				// 2. BLOQUE DE ESPACIOS OCUPADOS
+				// ==========================================
+				// Como ya no hay error arriba, el flujo del programa por fin llegará a esta línea:
+				List<Espacio^>^ listaOcupados = controladorEspacios->ObtenerEspaciosOcupados();
+
+				int totalOcupados = listaOcupados->Count;
+
+				// Asignamos al NumericUpDown (Casteo seguro de int a Decimal)
+				this->numeric_Espacios_Ocupados->Value = System::Convert::ToDecimal(totalOcupados);
+
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show("Error al actualizar la interfaz: " + ex->Message,
+					"Error de Ejecución", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+
+
+
 };
 }
