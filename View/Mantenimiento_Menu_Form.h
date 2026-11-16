@@ -147,243 +147,371 @@ namespace View {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
-
-			// Manteniendo el Layout exacto de tu compa ero
+			// 
+			// label1
+			// 
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(38, 116);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(54, 13);
+			this->label1->TabIndex = 101;
 			this->label1->Text = L"Espacio 1";
+			// 
+			// label2
+			// 
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(38, 143);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(40, 13); this->label2->Text = L"Estado";
+			this->label2->Size = System::Drawing::Size(40, 13);
+			this->label2->TabIndex = 100;
+			this->label2->Text = L"Estado";
+			// 
+			// cb_Espacio_1
+			// 
 			this->cb_Espacio_1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_1->FormattingEnabled = true;
 			this->cb_Espacio_1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_1->Location = System::Drawing::Point(92, 141);
-			this->cb_Espacio_1->Name = L"cb_Espacio_1"; this->cb_Espacio_1->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_1->Name = L"cb_Espacio_1";
+			this->cb_Espacio_1->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_1->TabIndex = 99;
 			this->cb_Espacio_1->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_1_SelectedIndexChanged);
-
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(254, 116);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(54, 13);
-			this->label4->Text = L"Espacio 2";
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(254, 143);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(40, 13);
-			this->label3->Text = L"Estado";
+			// 
+			// cb_Espacio_2
+			// 
 			this->cb_Espacio_2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_2->FormattingEnabled = true;
 			this->cb_Espacio_2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_2->Location = System::Drawing::Point(308, 141);
 			this->cb_Espacio_2->Name = L"cb_Espacio_2";
 			this->cb_Espacio_2->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_2->TabIndex = 96;
 			this->cb_Espacio_2->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_2_SelectedIndexChanged);
-
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(473, 116);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(54, 13);
-			this->label6->Text = L"Espacio 3";
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(473, 143);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(40, 13);
-			this->label5->Text = L"Estado";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(254, 143);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(40, 13);
+			this->label3->TabIndex = 97;
+			this->label3->Text = L"Estado";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(254, 116);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(54, 13);
+			this->label4->TabIndex = 98;
+			this->label4->Text = L"Espacio 2";
+			// 
+			// cb_Espacio_3
+			// 
 			this->cb_Espacio_3->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_3->FormattingEnabled = true;
 			this->cb_Espacio_3->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_3->Location = System::Drawing::Point(527, 141);
 			this->cb_Espacio_3->Name = L"cb_Espacio_3";
 			this->cb_Espacio_3->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_3->TabIndex = 93;
 			this->cb_Espacio_3->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_3_SelectedIndexChanged);
-
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(681, 116);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(54, 13);
-			this->label8->Text = L"Espacio 4";
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(681, 143);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(40, 13);
-			this->label7->Text = L"Estado";
-
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(473, 143);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(40, 13);
+			this->label5->TabIndex = 94;
+			this->label5->Text = L"Estado";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(473, 116);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(54, 13);
+			this->label6->TabIndex = 95;
+			this->label6->Text = L"Espacio 3";
+			// 
+			// cb_Espacio_4
+			// 
 			this->cb_Espacio_4->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_4->FormattingEnabled = true;
 			this->cb_Espacio_4->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_4->Location = System::Drawing::Point(735, 141);
 			this->cb_Espacio_4->Name = L"cb_Espacio_4";
 			this->cb_Espacio_4->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_4->TabIndex = 90;
 			this->cb_Espacio_4->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_4_SelectedIndexChanged);
-
-			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(38, 193);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(54, 13);
-			this->label10->Text = L"Espacio 5";
-
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(38, 219);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(40, 13);
-			this->label9->Text = L"Estado";
-
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(681, 143);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(40, 13);
+			this->label7->TabIndex = 91;
+			this->label7->Text = L"Estado";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(681, 116);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(54, 13);
+			this->label8->TabIndex = 92;
+			this->label8->Text = L"Espacio 4";
+			// 
+			// cb_Espacio_5
+			// 
 			this->cb_Espacio_5->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_5->FormattingEnabled = true;
 			this->cb_Espacio_5->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_5->Location = System::Drawing::Point(92, 217);
 			this->cb_Espacio_5->Name = L"cb_Espacio_5";
 			this->cb_Espacio_5->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_5->TabIndex = 87;
 			this->cb_Espacio_5->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_5_SelectedIndexChanged);
-
-			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(250, 193);
-			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(54, 13);
-			this->label12->Text = L"Espacio 6";
-			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(250, 219);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(40, 13);
-			this->label11->Text = L"Estado";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(38, 219);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(40, 13);
+			this->label9->TabIndex = 88;
+			this->label9->Text = L"Estado";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(38, 193);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(54, 13);
+			this->label10->TabIndex = 89;
+			this->label10->Text = L"Espacio 5";
+			// 
+			// cb_Espacio_6
+			// 
 			this->cb_Espacio_6->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_6->FormattingEnabled = true;
 			this->cb_Espacio_6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_6->Location = System::Drawing::Point(304, 217);
 			this->cb_Espacio_6->Name = L"cb_Espacio_6";
 			this->cb_Espacio_6->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_6->TabIndex = 84;
 			this->cb_Espacio_6->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_6_SelectedIndexChanged);
-
-			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(473, 193);
-			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(54, 13);
-			this->label14->Text = L"Espacio 7";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(250, 219);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(40, 13);
+			this->label11->TabIndex = 85;
+			this->label11->Text = L"Estado";
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(250, 193);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(54, 13);
+			this->label12->TabIndex = 86;
+			this->label12->Text = L"Espacio 6";
+			// 
+			// cb_Espacio_7
+			// 
+			this->cb_Espacio_7->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacio_7->FormattingEnabled = true;
+			this->cb_Espacio_7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
+			this->cb_Espacio_7->Location = System::Drawing::Point(527, 217);
+			this->cb_Espacio_7->Name = L"cb_Espacio_7";
+			this->cb_Espacio_7->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_7->TabIndex = 81;
+			this->cb_Espacio_7->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_7_SelectedIndexChanged);
+			// 
+			// label13
+			// 
 			this->label13->AutoSize = true;
 			this->label13->Location = System::Drawing::Point(473, 219);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(40, 13);
+			this->label13->TabIndex = 82;
 			this->label13->Text = L"Estado";
-			this->cb_Espacio_7->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cb_Espacio_7->FormattingEnabled = true;
-			this->cb_Espacio_7->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
-			this->cb_Espacio_7->Location = System::Drawing::Point(527, 217); this->cb_Espacio_7->Name = L"cb_Espacio_7";
-			this->cb_Espacio_7->Size = System::Drawing::Size(89, 21);
-			this->cb_Espacio_7->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_7_SelectedIndexChanged);
-
-			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(681, 193);
-			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(54, 13);
-			this->label16->Text = L"Espacio 8";
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(681, 219);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(40, 13);
-			this->label15->Text = L"Estado";
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(473, 193);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(54, 13);
+			this->label14->TabIndex = 83;
+			this->label14->Text = L"Espacio 7";
+			// 
+			// cb_Espacio_8
+			// 
 			this->cb_Espacio_8->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_8->FormattingEnabled = true;
 			this->cb_Espacio_8->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_8->Location = System::Drawing::Point(735, 217);
 			this->cb_Espacio_8->Name = L"cb_Espacio_8";
 			this->cb_Espacio_8->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_8->TabIndex = 78;
 			this->cb_Espacio_8->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_8_SelectedIndexChanged);
-
-
-			this->label18->AutoSize = true;
-			this->label18->Location = System::Drawing::Point(38, 276);
-			this->label18->Name = L"label18";
-			this->label18->Size = System::Drawing::Size(54, 13);
-			this->label18->Text = L"Espacio 9";
-			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(38, 303);
-			this->label17->Name = L"label17";
-			this->label17->Size = System::Drawing::Size(40, 13);
-			this->label17->Text = L"Estado";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(681, 219);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(40, 13);
+			this->label15->TabIndex = 79;
+			this->label15->Text = L"Estado";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(681, 193);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(54, 13);
+			this->label16->TabIndex = 80;
+			this->label16->Text = L"Espacio 8";
+			// 
+			// cb_Espacio_9
+			// 
 			this->cb_Espacio_9->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_9->FormattingEnabled = true;
 			this->cb_Espacio_9->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
 			this->cb_Espacio_9->Location = System::Drawing::Point(92, 301);
 			this->cb_Espacio_9->Name = L"cb_Espacio_9";
 			this->cb_Espacio_9->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_9->TabIndex = 75;
 			this->cb_Espacio_9->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_9_SelectedIndexChanged);
-
-			this->label20->AutoSize = true;
-			this->label20->Location = System::Drawing::Point(250, 276);
-			this->label20->Name = L"label20";
-			this->label20->Size = System::Drawing::Size(60, 13);
-			this->label20->Text = L"Espacio 10";
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(38, 303);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(40, 13);
+			this->label17->TabIndex = 76;
+			this->label17->Text = L"Estado";
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(38, 276);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(54, 13);
+			this->label18->TabIndex = 77;
+			this->label18->Text = L"Espacio 9";
+			// 
+			// cb_Espacio_10
+			// 
+			this->cb_Espacio_10->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cb_Espacio_10->FormattingEnabled = true;
+			this->cb_Espacio_10->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
+			this->cb_Espacio_10->Location = System::Drawing::Point(304, 301);
+			this->cb_Espacio_10->Name = L"cb_Espacio_10";
+			this->cb_Espacio_10->Size = System::Drawing::Size(89, 21);
+			this->cb_Espacio_10->TabIndex = 72;
+			this->cb_Espacio_10->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_10_SelectedIndexChanged);
+			// 
+			// label19
+			// 
 			this->label19->AutoSize = true;
 			this->label19->Location = System::Drawing::Point(250, 303);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(40, 13);
+			this->label19->TabIndex = 73;
 			this->label19->Text = L"Estado";
-			this->cb_Espacio_10->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cb_Espacio_10->FormattingEnabled = true; this->cb_Espacio_10->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
-			this->cb_Espacio_10->Location = System::Drawing::Point(304, 301);
-			this->cb_Espacio_10->Name = L"cb_Espacio_10";
-			this->cb_Espacio_10->Size = System::Drawing::Size(89, 21);
-			this->cb_Espacio_10->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::cb_Espacio_10_SelectedIndexChanged);
-
-			this->btn_Registrar_Falla->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(250, 276);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(60, 13);
+			this->label20->TabIndex = 74;
+			this->label20->Text = L"Espacio 10";
+			// 
+			// btn_Registrar_Falla
+			// 
+			this->btn_Registrar_Falla->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->btn_Registrar_Falla->Location = System::Drawing::Point(58, 444);
 			this->btn_Registrar_Falla->Name = L"btn_Registrar_Falla";
 			this->btn_Registrar_Falla->Size = System::Drawing::Size(155, 67);
+			this->btn_Registrar_Falla->TabIndex = 71;
 			this->btn_Registrar_Falla->Text = L"Ver Registro de Fallas";
 			this->btn_Registrar_Falla->UseVisualStyleBackColor = true;
 			this->btn_Registrar_Falla->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Registrar_Falla_Click);
-
-
-			this->btn_Cerrar_Sesion->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			// 
+			// btn_Cerrar_Sesion
+			// 
+			this->btn_Cerrar_Sesion->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btn_Cerrar_Sesion->Location = System::Drawing::Point(257, 444);
 			this->btn_Cerrar_Sesion->Name = L"btn_Cerrar_Sesion";
 			this->btn_Cerrar_Sesion->Size = System::Drawing::Size(148, 67);
+			this->btn_Cerrar_Sesion->TabIndex = 70;
 			this->btn_Cerrar_Sesion->Text = L"Cerrar Sesion";
 			this->btn_Cerrar_Sesion->UseVisualStyleBackColor = true;
 			this->btn_Cerrar_Sesion->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Cerrar_Sesion_Click);
-
-
+			// 
+			// btn_Motor_Principal
+			// 
 			this->btn_Motor_Principal->Location = System::Drawing::Point(425, 41);
 			this->btn_Motor_Principal->Name = L"btn_Motor_Principal";
 			this->btn_Motor_Principal->Size = System::Drawing::Size(317, 32);
+			this->btn_Motor_Principal->TabIndex = 68;
 			this->btn_Motor_Principal->Text = L"MOTOR PRINCIPAL";
 			this->btn_Motor_Principal->UseVisualStyleBackColor = true;
 			this->btn_Motor_Principal->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Motor_Principal_Click);
-
-			this->btn_Estadisticas_Fallas->Location = System::Drawing::Point(425, 85);
+			// 
+			// btn_Estadisticas_Fallas
+			// 
+			this->btn_Estadisticas_Fallas->Location = System::Drawing::Point(425, 78);
 			this->btn_Estadisticas_Fallas->Name = L"btn_Estadisticas_Fallas";
 			this->btn_Estadisticas_Fallas->Size = System::Drawing::Size(317, 35);
+			this->btn_Estadisticas_Fallas->TabIndex = 69;
 			this->btn_Estadisticas_Fallas->Text = L"ESTADISTICAS DE FALLAS";
 			this->btn_Estadisticas_Fallas->UseVisualStyleBackColor = true;
 			this->btn_Estadisticas_Fallas->Click += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::btn_Estadisticas_Fallas_Click);
-
+			// 
+			// label21
+			// 
 			this->label21->AutoSize = true;
 			this->label21->Location = System::Drawing::Point(42, 51);
 			this->label21->Name = L"label21";
 			this->label21->Size = System::Drawing::Size(128, 13);
+			this->label21->TabIndex = 67;
 			this->label21->Text = L"Estado de Motor Principal";
-
-
+			// 
+			// comboBox11
+			// 
 			this->comboBox11->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox11->FormattingEnabled = true;
 			this->comboBox11->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"OPERATIVO", L"NO OPERATIVO", L"EN MANTENIMIENTO" });
 			this->comboBox11->Location = System::Drawing::Point(193, 49);
 			this->comboBox11->Name = L"comboBox11";
 			this->comboBox11->Size = System::Drawing::Size(210, 21);
-			//this->comboBox11->SelectedIndexChanged += gcnew System::EventHandler(this, &Mantenimiento_Menu_Form::comboBox11_SelectedIndexChanged);
-
-
+			this->comboBox11->TabIndex = 66;
+			// 
+			// pictureBox1
+			// 
 			this->pictureBox1->Location = System::Drawing::Point(548, 287);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(211, 249);
 			this->pictureBox1->TabIndex = 65;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Mantenimiento_Menu_Form::pictureBox1_Paint);
-
+			// 
+			// Mantenimiento_Menu_Form
+			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(914, 591);
@@ -430,6 +558,7 @@ namespace View {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
 		}
 
 
