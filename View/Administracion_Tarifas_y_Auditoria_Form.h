@@ -237,7 +237,7 @@ namespace View {
 			// numeric_CostoHora_Modificar
 			// 
 			this->numeric_CostoHora_Modificar->DecimalPlaces = 2;
-			this->numeric_CostoHora_Modificar->Location = System::Drawing::Point(244, 261);
+			this->numeric_CostoHora_Modificar->Location = System::Drawing::Point(251, 257);
 			this->numeric_CostoHora_Modificar->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999999, 0, 0, 0 });
 			this->numeric_CostoHora_Modificar->Name = L"numeric_CostoHora_Modificar";
 			this->numeric_CostoHora_Modificar->Size = System::Drawing::Size(125, 22);
@@ -246,7 +246,7 @@ namespace View {
 			// numeric_CostoPesoAdicional_Modificar
 			// 
 			this->numeric_CostoPesoAdicional_Modificar->DecimalPlaces = 2;
-			this->numeric_CostoPesoAdicional_Modificar->Location = System::Drawing::Point(244, 337);
+			this->numeric_CostoPesoAdicional_Modificar->Location = System::Drawing::Point(251, 333);
 			this->numeric_CostoPesoAdicional_Modificar->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {
 				999999, 0, 0,
 					0
@@ -257,7 +257,7 @@ namespace View {
 			// 
 			// btn_Actualizar
 			// 
-			this->btn_Actualizar->Location = System::Drawing::Point(388, 253);
+			this->btn_Actualizar->Location = System::Drawing::Point(395, 249);
 			this->btn_Actualizar->Name = L"btn_Actualizar";
 			this->btn_Actualizar->Size = System::Drawing::Size(82, 106);
 			this->btn_Actualizar->TabIndex = 16;
@@ -400,7 +400,7 @@ namespace View {
 			// numeric_Peso_Umbral_para_Aplicar
 			// 
 			this->numeric_Peso_Umbral_para_Aplicar->DecimalPlaces = 2;
-			this->numeric_Peso_Umbral_para_Aplicar->Location = System::Drawing::Point(244, 303);
+			this->numeric_Peso_Umbral_para_Aplicar->Location = System::Drawing::Point(251, 299);
 			this->numeric_Peso_Umbral_para_Aplicar->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 999999, 0, 0, 0 });
 			this->numeric_Peso_Umbral_para_Aplicar->Name = L"numeric_Peso_Umbral_para_Aplicar";
 			this->numeric_Peso_Umbral_para_Aplicar->Size = System::Drawing::Size(125, 22);
