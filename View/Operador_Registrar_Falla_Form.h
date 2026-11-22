@@ -197,9 +197,8 @@ namespace View {
 			// 
 			this->cb_ID_Espacio->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_ID_Espacio->FormattingEnabled = true;
-			this->cb_ID_Espacio->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
-				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-					L"9", L"10"
+			this->cb_ID_Espacio->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
+				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8"
 			});
 			this->cb_ID_Espacio->Location = System::Drawing::Point(239, 89);
 			this->cb_ID_Espacio->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -395,9 +394,9 @@ namespace View {
 			this->cb_Afectado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Afectado->Enabled = false;
 			this->cb_Afectado->FormattingEnabled = true;
-			this->cb_Afectado->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
+			this->cb_Afectado->Items->AddRange(gcnew cli::array< System::Object^  >(9) {
 				L"Motor Principal", L"Espacio 1", L"Espacio 2",
-					L"Espacio 3", L"Espacio 4", L"Espacio 5", L"Espacio 6", L"Espacio 7", L"Espacio 8", L"Espacio 9", L"Espacio 10"
+					L"Espacio 3", L"Espacio 4", L"Espacio 5", L"Espacio 6", L"Espacio 7", L"Espacio 8"
 			});
 			this->cb_Afectado->Location = System::Drawing::Point(95, 383);
 			this->cb_Afectado->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -563,9 +562,9 @@ namespace View {
 
 			g->DrawLines(Pens::Black, points);
 
-			for (int i = 0; i < 10; i++) {
-				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 10);
-				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 10);
+			for (int i = 0; i < 8; i++) {
+				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 8);
+				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 8);
 
 				g->FillRectangle(Brushes::Green, int(x -10), int(y - 10), 20, 20);
 

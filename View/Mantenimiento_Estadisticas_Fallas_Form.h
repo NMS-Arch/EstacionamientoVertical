@@ -23,7 +23,7 @@ namespace View
         {
             menuMantenimiento = formularioMenu;
             listaFallas = gcnew System::Collections::Generic::List<modelPrincipal::Falla^>();
-            fallasPorEspacio = gcnew cli::array<int>(10);
+            fallasPorEspacio = gcnew cli::array<int>(8);
 
             InitializeComponent();
 
@@ -160,7 +160,7 @@ namespace View
             int total = 0;
             System::DateTime fechaSeleccionada = this->dateTimePickerFecha->Value.Date;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 fallasPorEspacio[i] = 0;
             }
@@ -176,7 +176,7 @@ namespace View
 
                     // Los IDs 1 a 10 corresponden a los espacios vehiculares.
                     // El ID 11 corresponde al motor principal y no se grafica.
-                    if (falla->espacioAfectado >= 1 && falla->espacioAfectado <= 10 &&
+                    if (falla->espacioAfectado >= 1 && falla->espacioAfectado <= 8 &&
                         falla->fecha.Date == fechaSeleccionada)
                     {
                         fallasPorEspacio[falla->espacioAfectado - 1]++;
@@ -248,7 +248,7 @@ namespace View
             }
 
             int mayorCantidad = 0;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 if (fallasPorEspacio[i] > mayorCantidad)
                 {
@@ -312,10 +312,10 @@ namespace View
                 System::Drawing::Point(margenIzquierdo, margenSuperior + altoGrafico),
                 System::Drawing::Point(ancho - margenDerecho, margenSuperior + altoGrafico));
 
-            int anchoColumna = anchoGrafico / 10;
+            int anchoColumna = anchoGrafico / 8;
             int anchoBarra = (int)(anchoColumna * 0.55);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 int x = margenIzquierdo + i * anchoColumna +
                     (anchoColumna - anchoBarra) / 2;

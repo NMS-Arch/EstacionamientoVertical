@@ -937,9 +937,9 @@ namespace View {
 
 			g->DrawLines(Pens::Black, points);
 
-			for (int i = 0; i < 10; i++) {
-				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 10);
-				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 10);
+			for (int i = 0; i < 8; i++) {
+				float x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos(i * 2 * Math::PI / 8);
+				float y = alto / 2 + (alto * 2 / 5) * Math::Sin(i * 2 * Math::PI / 8);
 
 				g->FillRectangle(Brushes::Green, int(x - 10), int(y - 10), 20, 20);
 

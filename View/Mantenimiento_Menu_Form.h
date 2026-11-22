@@ -382,6 +382,7 @@ namespace View {
 			// 
 			// cb_Espacio_9
 			// 
+			this->cb_Espacio_9->Visible = false;
 			this->cb_Espacio_9->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_9->FormattingEnabled = true;
 			this->cb_Espacio_9->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
@@ -402,6 +403,7 @@ namespace View {
 			// 
 			// label18
 			// 
+			this->label18->Visible = false;
 			this->label18->AutoSize = true;
 			this->label18->Location = System::Drawing::Point(38, 276);
 			this->label18->Name = L"label18";
@@ -411,6 +413,7 @@ namespace View {
 			// 
 			// cb_Espacio_10
 			// 
+			this->cb_Espacio_10->Visible = false;
 			this->cb_Espacio_10->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Espacio_10->FormattingEnabled = true;
 			this->cb_Espacio_10->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Operativo", L"No Operativo", L"En Mantenimiento" });
@@ -431,6 +434,7 @@ namespace View {
 			// 
 			// label20
 			// 
+			this->label20->Visible = false;
 			this->label20->AutoSize = true;
 			this->label20->Location = System::Drawing::Point(250, 276);
 			this->label20->Name = L"label20";
@@ -574,13 +578,13 @@ namespace View {
 		actualizandoUI = true;
 
 		// Inicializar los ComboBox con TUS objetos de dominio (ControlEspacios)
-		array<ComboBox^>^ combos = gcnew array<ComboBox^>(10);
+		array<ComboBox^>^ combos = gcnew array<ComboBox^>(8);
 		combos[0] = cb_Espacio_1; combos[1] = cb_Espacio_2; combos[2] = cb_Espacio_3; combos[3] = cb_Espacio_4; combos[4] = cb_Espacio_5;
-		combos[5] = cb_Espacio_6; combos[6] = cb_Espacio_7; combos[7] = cb_Espacio_8; combos[8] = cb_Espacio_9; combos[9] = cb_Espacio_10;
+		combos[5] = cb_Espacio_6; combos[6] = cb_Espacio_7; combos[7] = cb_Espacio_8;
 
 		List<Espacio^>^ lista_espacios = controlEspacios->ObtenerTodosEspacios();
-		if (lista_espacios != nullptr && lista_espacios->Count >= 10) {
-			for (int i = 0; i < 10; i++) {
+		if (lista_espacios != nullptr && lista_espacios->Count >= 8) {
+			for (int i = 0; i < 8; i++) {
 				combos[i]->SelectedIndex = (int)lista_espacios[i]->estado - 1;
 			}
 		}
@@ -721,8 +725,9 @@ namespace View {
 
 			// 1. Todos verdes (Base)
 			for each (Espacio ^ esp in lista_espacios) {
-				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
-				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				if (esp->id > 8) continue;
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 8);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 8);
 				g->FillRectangle(Brushes::Green, int(x - 10), int(y - 10), 20, 20);
 			}
 
@@ -730,22 +735,24 @@ namespace View {
 			//// 2. Fallas en Naranja
 			//for each (Espacio ^ esp in lista_espacios) {
 			//	x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
-			//	y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+			//	y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 8);
 			//	if (idFalla->Contains(esp->id)) g->FillRectangle(Brushes::Orange, int(x - 10), int(y - 10), 20, 20);
 			//}
 
 
 			// 3. Mantenimiento (Amarillo) y No Operativo (Rojo)
 			for each (Espacio ^ esp in lista_espacios) {
-				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
-				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				if (esp->id > 8) continue;
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 8);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 8);
 				if ((int)esp->estado == 3) g->FillRectangle(Brushes::Yellow, int(x - 10), int(y - 10), 20, 20);
 				if ((int)esp->estado == 2) g->FillRectangle(Brushes::Red, int(x - 10), int(y - 10), 20, 20);
 			}
 			// 4. Numeros (Siempre al frente)
 			for each (Espacio ^ esp in lista_espacios) {
-				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 10);
-				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 10);
+				if (esp->id > 8) continue;
+				x = ancho / 2 + (ancho * 2 / 5 - 10) * Math::Cos((esp->id - 1) * 2 * Math::PI / 8);
+				y = alto / 2 + (alto * 2 / 5) * Math::Sin((esp->id - 1) * 2 * Math::PI / 8);
 				g->DrawString((esp->id).ToString(), DefaultFont, Brushes::Black, x - 5, y - 5);
 			}
 		}

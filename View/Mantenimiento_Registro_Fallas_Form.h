@@ -329,9 +329,9 @@ namespace View {
 			// 
 			this->cb_Afectado->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cb_Afectado->FormattingEnabled = true;
-			this->cb_Afectado->Items->AddRange(gcnew cli::array< System::Object^  >(11) {
+			this->cb_Afectado->Items->AddRange(gcnew cli::array< System::Object^  >(9) {
 				L"Motor Principal", L"Espacio 1", L"Espacio 2",
-					L"Espacio 3", L"Espacio 4", L"Espacio 5", L"Espacio 6", L"Espacio 7", L"Espacio 8", L"Espacio 9", L"Espacio 10"
+					L"Espacio 3", L"Espacio 4", L"Espacio 5", L"Espacio 6", L"Espacio 7", L"Espacio 8"
 			});
 			this->cb_Afectado->Location = System::Drawing::Point(109, 542);
 			this->cb_Afectado->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -824,7 +824,7 @@ namespace View {
 			if (consultada_falla->espacioAfectado == 11) {
 				cb_Afectado->SelectedIndex = 0;
 			}
-			else if (consultada_falla->espacioAfectado >= 1 && consultada_falla->espacioAfectado <= 10) {
+			else if (consultada_falla->espacioAfectado >= 1 && consultada_falla->espacioAfectado <= 8) {
 				cb_Afectado->SelectedIndex = consultada_falla->espacioAfectado;
 			}
 			else {

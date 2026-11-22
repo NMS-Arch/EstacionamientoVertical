@@ -12,7 +12,7 @@ namespace controllerPrincipal {
 	public ref class ControlEspacios
 	{
 	private:
-		static int numeroEspacios = 10;
+		static int numeroEspacios = 8;
 
 		static int Operativo = 1;
 		static int No_Operativo = 2;
